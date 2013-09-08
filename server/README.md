@@ -1,7 +1,7 @@
 The chuzr server is a node.js webservice providing HTTP endpoints
 for accessing the chuzr data store.  Endpoints include:
 
- * GET /products?title=&categories=
+ * GET /products?title=&categories=&skip=&limit=
 
  * GET /products/{id}
 
@@ -9,7 +9,10 @@ for accessing the chuzr data store.  Endpoints include:
 
  * POST /votes
 
- * POST /products
+ * POST /users
 
+ * PUT /users/{id}
+
+ * DELETE /users/{id}
+ 
  * PATCH /products/{id}
-
