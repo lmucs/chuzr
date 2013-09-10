@@ -1,5 +1,5 @@
 
-![chuzr-logo](http://i.imgur.com/vnqFGvW.png)
+![chuzr-logo](http://i.imgur.com/utl13WR.png)
 
 **Chuzr** is a social ranking application where users give **opinions** on products, 
 ideas, businesses, sports teams, restaurants, celebrities, and other such things
