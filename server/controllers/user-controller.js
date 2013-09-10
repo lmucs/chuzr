@@ -1,3 +1,5 @@
+User = require('../models/user')
+
 module.exports = function (app) {
 
   // TODO: Needs to be an HTTP 400 eventually.  Actually consider middleware validator.
@@ -17,8 +19,16 @@ module.exports = function (app) {
   })
 
   app.get('/users/:id', function (req, res) {
-    id = validateId(req.params.id)
-    res.send('Get user data for ' + id);
+    id = validateId(req.params.id);
+    try {
+      res.json(User.findById(id));
+    } catch (e) {
+      if (e == User.NO_SUCH_USER) {
+        res.send(400, 'No such user');
+      } else {
+        throw e;
+      }     
+    }
   })
 
   app.put('/users/:id', function (req, res) {

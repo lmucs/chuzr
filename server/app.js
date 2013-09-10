@@ -17,7 +17,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-# TODO - configure mongoose
+// TODO - configure mongoose
 
 require('./controllers/user-controller')(app)
 require('./controllers/product-controller')(app)
