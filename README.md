@@ -1,5 +1,5 @@
 
-![chuzr-logo](http://i.imgur.com/SVmuICp.png)
+![chuzr-logo](https://raw.github.com/rtoal/chuzr/master/artwork/logo/logo400.png)
 
 **Chuzr** is a social ranking application where users give **opinions** on products, 
 ideas, businesses, sports teams, restaurants, celebrities, and other such things
@@ -13,7 +13,7 @@ This project consists of three parts:
   * a [feed processor](https://github.com/rtoal/chuzr/tree/master/feed-processor) for ingesting feeds from various providers
   * a subsystem that performs [offline analysis](https://github.com/rtoal/chuzr/tree/master/analyzer) of user activity to process user opinions, providing reports useful to marketing or advertising agencies.
 
-![Architecture Overview](http://i.imgur.com/CywtjYc.png)
+![Architecture Overview](https://raw.github.com/rtoal/chuzr/master/artwork/diagrams/chuzr_overview.png)
 
 In addition, we've included prototype clients for the [web](https://github.com/rtoal/chuzr/tree/master/web-client), iOS, and android.
 
