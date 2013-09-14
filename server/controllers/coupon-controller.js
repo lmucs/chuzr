@@ -1,4 +1,4 @@
-coupon = require('../models/coupon')
+coupon = require('../models/coupons')
 
 module.exports = function (app) {
 
