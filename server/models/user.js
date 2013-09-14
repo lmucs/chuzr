@@ -7,7 +7,7 @@ var maxId = 0;
 module.exports = User = function (name) {
     this.name = name;
     this.id = maxId++;
-    mockUers.push(this);
+    mockUsers.push(this);
 }
 
 Object.defineProperty(User, 'NO_SUCH_USER', {
