@@ -21,9 +21,9 @@ module.exports = function (app) {
   app.get('/coupons/:id', function (req, res) {
     id = validateId(req.params.id);
     try {
-      res.json(coupon.findById(id));
+      res.json(Coupon.findById(id));
     } catch (e) {
-      if (e == coupon.NO_SUCH_coupon) {
+      if (e == Coupon.NO_SUCH_coupon) {
         res.send(400, 'No such coupon');
       } else {
         throw e;
