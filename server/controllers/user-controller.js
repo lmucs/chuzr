@@ -11,7 +11,10 @@ module.exports = function (app) {
   }
 
   app.get('/users', function (req, res) {
-    res.send('Finding users');
+    skip = +req.query.skip || 0 
+    limit = +req.query.limit || 10 
+    console.log('skip = %d, limit = %d', skip, limit)
+    res.json(User.findAll(skip=skip, limit=limit))
   })
 
   app.post('/users', function (req, res) {

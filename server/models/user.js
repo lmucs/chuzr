@@ -1,13 +1,11 @@
 // This currently uses a mock users array just to get things up and running.
 // Students will need to replace this with a real MongoDB.
 
-var mockUsers = [];
-var maxId = 0;
-
 module.exports = User = function (name) {
-    this.name = name;
     this.id = maxId++;
-    mockUers.push(this);
+    this.name = name;
+    this.dateJoined = new Date();
+    mockUsers.push(this);
 }
 
 Object.defineProperty(User, 'NO_SUCH_USER', {
@@ -38,3 +36,11 @@ User.prototype.save = function (id, userData) {
 User.prototype.delete = function (id) {
     
 }
+
+var mockUsers = [];
+var maxId = 0;
+
+new User("alice");
+new User("bob");
+new User("cassandra");
+new User("dinh");
