@@ -31,6 +31,10 @@ module.exports = function (app) {
     }
   })
 
+  app.patch('/products/:id', function (req, res) {
+  	// TODO
+  })
+
   app.put('/products/:id', function (req, res) {
     id = validateId(req.params.id)
     res.send('Updating product ' + id);
