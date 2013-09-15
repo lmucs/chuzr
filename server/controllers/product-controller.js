@@ -37,7 +37,7 @@ module.exports = function (app) {
     
     //Get a product by id
     app.get('/prodcuts/:id', function (req, res) {
-        id = validateProductId(req.params.id);
+        var id = validateProductId(req.params.id);
         try {
             res.json(Product.findById(id));
         } catch (e) {
@@ -61,5 +61,17 @@ module.exports = function (app) {
             }
         });
         return res.send(product);
+    });
+    
+    app.delete('products/:id', function (req, res) {
+        var id = validateProductId(req.params.id),
+        product = Product.findById(id);
+        return product.remove(function (error) {
+            if (!error) {
+                return res.send("Product removed");
+            } else {
+                res.send(error);
+            }
+        });
     });
 }

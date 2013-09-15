@@ -58,8 +58,15 @@ module.exports = function (app) {
     return res.send(user);
   });
 
-  app.delete('/users/:id', function (req, res) {
-    id = validateUserId(req.params.id);
-    res.send('Deleting user ' + id);
-  });
+    app.delete('users/:id', function (req, res) {
+        var id = validateUserId(req.params.id),
+        user = User.findById(id);
+        return user.remove(function (error) {
+            if (!error) {
+                return res.send("User removed");
+            } else {
+                res.send(error);
+            }
+        });
+    });
 }
