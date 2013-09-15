@@ -46,8 +46,16 @@ module.exports = function (app) {
   });
 
   app.put('/users/:id', function (req, res) {
-    id = validateUserId(req.params.id);
-    res.send('Updating user ' + id);
+    var id = validateUserId(req.params.id),
+    user = User.findById(id);
+    return user.save(function (error) {
+        if (!error) {
+            res.send("User updated");
+        } else {
+            res.send(error);
+        }
+    });
+    return res.send(user);
   });
 
   app.delete('/users/:id', function (req, res) {
