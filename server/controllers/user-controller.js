@@ -3,7 +3,7 @@ User = require('../models/user')
 module.exports = function (app) {
 
   // TODO: Needs to be an HTTP 400 eventually.  Actually consider middleware validator.
-  function validateId(id) {
+  function validateUserId(id) {
     if (/\D/.test(id)) {
       throw Error('Illegal id')
     }
@@ -11,10 +11,11 @@ module.exports = function (app) {
   }
 
   app.get('/users', function (req, res) {
-    skip = +req.query.skip || 0 
-    limit = +req.query.limit || 10 
-    console.log('skip = %d, limit = %d', skip, limit)
-    res.json(User.findAll(skip=skip, limit=limit))
+    console.log("Status Code: ", res.statusCode);
+    skip = +req.query.skip || 0;
+    limit = +req.query.limit || 10;
+    console.log('skip = %d, limit = %d', skip, limit);
+    res.json(User.findAll(skip=skip, limit=limit));
   })
 
   app.post('/users', function (req, res) {
