@@ -5,9 +5,9 @@ module.exports = function (app) {
   // TODO: Needs to be an HTTP 400 eventually.  Actually consider middleware validator.
   function validateUserId(id) {
     if (/\D/.test(id)) {
-      throw Error('Illegal id')
+      throw Error('Illegal id');
     }
-    return id
+    return id;
   }
 
   app.get('/users', function (req, res) {
@@ -36,12 +36,12 @@ module.exports = function (app) {
   })
 
   app.put('/users/:id', function (req, res) {
-    id = validateId(req.params.id)
+    id = validateId(req.params.id);
     res.send('Updating user ' + id);
   })
 
   app.delete('/users/:id', function (req, res) {
-    id = validateId(req.params.id)
+    id = validateId(req.params.id);
     res.send('Deleting user ' + id);
   })
 }
