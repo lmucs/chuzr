@@ -8,7 +8,7 @@ module.exports = function (app) {
       throw Error('Illegal id');
     }
     return id;
-  }
+  };
 
   app.get('/users', function (req, res) {
     console.log("Status Code: ", res.statusCode);
@@ -16,11 +16,11 @@ module.exports = function (app) {
     limit = +req.query.limit || 10;
     console.log('skip = %d, limit = %d', skip, limit);
     res.json(User.findAll(skip=skip, limit=limit));
-  })
+  });
 
   app.post('/users', function (req, res) {
     res.send('Creating a user');
-  })
+  });
 
   app.get('/users/:id', function (req, res) {
     id = validateId(req.params.id);
@@ -33,15 +33,15 @@ module.exports = function (app) {
         throw e;
       }     
     }
-  })
+  });
 
   app.put('/users/:id', function (req, res) {
     id = validateId(req.params.id);
     res.send('Updating user ' + id);
-  })
+  });
 
   app.delete('/users/:id', function (req, res) {
     id = validateId(req.params.id);
     res.send('Deleting user ' + id);
-  })
+  });
 }
