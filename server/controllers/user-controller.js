@@ -19,11 +19,21 @@ module.exports = function (app) {
   });
 
   app.post('/users', function (req, res) {
-    res.send('Creating a user');
+    //res.send('Creating a user');
+    var user = new User();
+    //Assuming we are using the mongoose model.js
+    user.save(function (error) {
+        if (!error) {
+            return res.send("user added");
+        } else {
+            return res.send(error);
+        }
+        });
+        return res.send(user);
   });
 
   app.get('/users/:id', function (req, res) {
-    id = validateId(req.params.id);
+    id = validateUserId(req.params.id);
     try {
       res.json(User.findById(id));
     } catch (e) {
@@ -36,12 +46,12 @@ module.exports = function (app) {
   });
 
   app.put('/users/:id', function (req, res) {
-    id = validateId(req.params.id);
+    id = validateUserId(req.params.id);
     res.send('Updating user ' + id);
   });
 
   app.delete('/users/:id', function (req, res) {
-    id = validateId(req.params.id);
+    id = validateUserId(req.params.id);
     res.send('Deleting user ' + id);
   });
 }
