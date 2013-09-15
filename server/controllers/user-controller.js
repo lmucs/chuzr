@@ -41,3 +41,8 @@ module.exports = function (app) {
     res.send('Deleting user ' + id);
   })
 }
+
+new User("alice");
+new User("bob");
+new User("cassandra");
+new User("dinh");
