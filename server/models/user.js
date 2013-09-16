@@ -18,7 +18,7 @@ Object.defineProperty(User, 'NO_SUCH_USER', {
 User.findAll = function (skip, limit) {
     return mockUsers.slice(skip, skip + limit);
 }
-
+//Mongoose has a built in findById function
 User.findById = function (id) {
     // HAHA OBVIOUSLY THIS IS NOT THE REAL FINAL CODE
     for (var i = 0; i < mockUsers.length; i++) {
