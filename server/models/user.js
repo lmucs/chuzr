@@ -1,9 +1,11 @@
 // This currently uses a mock users array just to get things up and running.
 // Students will need to replace this with a real MongoDB.
 
-module.exports = User = function (name) {
+module.exports = User = function (userData) {
     this.id = maxId++;
-    this.name = name;
+    // TODO - MUST VALIDATE userData
+    if ('name' in userData) this.name = userData.name;
+    if ('reputation' in userData) this.reputation = userData.reputation;
     this.dateJoined = new Date();
     mockUsers.push(this);
 }
@@ -40,7 +42,9 @@ User.prototype.delete = function (id) {
 var mockUsers = [];
 var maxId = 0;
 
-new User("alice");
-new User("bob");
-new User("cassandra");
-new User("dinh");
+// HACK: ADD SOME USERS TO "PRIME THE APP"
+// Get rid of this stuff later -- actually move it into test
+new User({name: "alice", reputation: 100});
+new User({name: "bob", reputation: 200});
+new User({name: "cassandra", reputation: 300});
+new User({name: "dinh", reputation: 400});
