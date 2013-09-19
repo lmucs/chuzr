@@ -1,20 +1,22 @@
 // This currently uses a mock users array just to get things up and running.
-// Students will need to replace this with a real MongoDB.
+// i Students will need to replace this with a real MongoDB
 
-var mockProducts = [];
-var maxId = 0;
+var VALID_PROPERTIES = [
+    'name', 'description', 'imageURL', 'rating', 'categories', 'price', 'related'
+]
 
 module.exports = Product = function (name, description, imageURL, rating, categories, price, related) {
-    this.name = name;
-    this.id = maxId++;
-    this.description = description;
-    this.imageURL = imageURL;
-    this.rating = rating;
-    this.categories = categories;
-    this.price = price;
-    this.related = related;
-    mockProducts.push(this);
+     this.name = name;   
+     this.id = maxId++;
+     this.description = description;
+     this.imageURL = imageURL;
+     this.rating = rating;
+     this.categories = categories;
+     this.price = price;
+     this.related = related;
+     mockProducts.push(this);
 }
+
 
 Object.defineProperty(Product, 'NO_SUCH_PRODUCT', {
     configurable: false,
@@ -42,5 +44,12 @@ Product.prototype.save = function (id, productData) {
 }
 
 Product.prototype.delete = function (id) {
-    
+        
 }
+
+//Fake storage until DB in
+var mockProducts = [];
+var maxId = 0;
+
+var furby = new Product("Furby", "Creepy Toy", "google.com", 8, [], 10.99, []);
+
