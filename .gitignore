@@ -1,2 +1,4 @@
 node_modules
 web-client/public/stylesheets/*.css
+.project
+.settings/org.eclipse.core.resources.prefs
