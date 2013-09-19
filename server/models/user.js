@@ -1,10 +1,23 @@
-// This currently uses a mock users array just to get things up and running.
-// Students will need to replace this with a real MongoDB.
+var VALID_PROPERTIES = [
+  'loginName', 'displayName', 'reputation'
+];
 
-module.exports = User = function (name) {
+function validateUserData (userData) {
+  // TODO
+}
+
+module.exports = User = function (userData) {
     this.id = maxId++;
-    this.name = name;
     this.dateJoined = new Date();
+    validateUserData(userData);
+
+    VALID_PROPERTIES.forEach(function (property) {
+      if (property in userData) {
+        this[property] = userData[property];
+      }
+    }, this);
+    
+    // For now, store it in mock data, later use MongoDB
     mockUsers.push(this);
 }
 
@@ -19,6 +32,7 @@ User.findAll = function (skip, limit) {
     return mockUsers.slice(skip, skip + limit);
 }
 
+//Mongoose has a built in findById function
 User.findById = function (id) {
     // HAHA OBVIOUSLY THIS IS NOT THE REAL FINAL CODE
     for (var i = 0; i < mockUsers.length; i++) {
@@ -37,10 +51,12 @@ User.prototype.delete = function (id) {
     
 }
 
+// Use fake storage until a database is in place
 var mockUsers = [];
 var maxId = 0;
 
-new User("alice");
-new User("bob");
-new User("cassandra");
-new User("dinh");
+// Get rid of this stuff later -- actually move it into test
+new User({loginName: "alice", displayName: "Alice Cooper", reputation: 100});
+new User({loginName: "bob", displayName: "Uncle Bob Martin", reputation: 200});
+new User({loginName: "cassandra", displayName: "The Real Cassandra", reputation: 300});
+new User({loginName: "daisy", displayName: "Daisy Chain", reputation: 400});
