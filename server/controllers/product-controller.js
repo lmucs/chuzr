@@ -1,5 +1,7 @@
 //Created using http://pixelhandler.com/blog/2012/02/09/develop-a-restful-api-using-node-js-with-express-and-mongoose/
 // as reference.
+Product = require('../models/product')
+
 module.exports = function (app) {
     //May not need to be duplicated. Rough draft.
     function validateProductId(id) {
@@ -15,7 +17,7 @@ module.exports = function (app) {
         skip = +req.query.skip || 0; 
         limit = +req.query.limit || 10; 
         console.log('skip = %d, limit = %d', skip, limit);
-        res.json(User.findAll(skip=skip, limit=limit));
+        res.json(Product.findAll(skip=skip, limit=limit));
     });
     
     //Create a new project
