@@ -4,4 +4,24 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/chuzr.css')
   body
+    div(id='nav-bar')
+      table
+        tr
+          td: a(class='button', href='#') chuzr
+          td: a(class='button', href='#') home
+          td: a(class='button', href='#') play
+          td: a(class='button', href='#') social
+       input(id='search', type='text', value='Search')
+          
     block content
+    
+    
+    div(id='footer')
+      table
+        tr
+          td: a(href='#') about
+          td: a(href='#') content
+          td: a(href='#') FAQ
+          td: a(href='#') feedback
+          td: a(href='#') privacy
+      
