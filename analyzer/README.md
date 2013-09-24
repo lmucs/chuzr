@@ -4,6 +4,6 @@
 a number of excellent reports.
 
 * Things to model:
-  * [[Users who have signed up over a period of time]]
-  * [[Votes placed over a period of time]]
-  * [[User who place votes ]]
+  * Users who have signed up over a period of time
+  * Votes placed over a period of time
+  * User who place votes
