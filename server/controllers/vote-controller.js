@@ -14,6 +14,9 @@ module.exports = function (app) {
       //TODO add limit to findByUser
       res.json(Vote.findByUser(req.query.userId));
       return;
+    } else if (req.query.productId) {
+        res.json(Vote.findByProduct(req.query.productId));
+        return;
     }
     console.log("Status Code: ", res.statusCode);
     skip = +req.query.skip || 0;
@@ -50,6 +53,7 @@ module.exports = function (app) {
     }
   });
 
+  /* not working
   // Get votes by user id
   app.get('/votes?userId=:userId', function (req, res) {
     userId = validateUserId(req.params.userId);
@@ -63,7 +67,9 @@ module.exports = function (app) {
       }
     }
   });
+  */
   
+  /*
   // Get votes by product id
   // TODO for some reason this is not getting called on the following URL
   app.get('/votes?productId=:productId', function (req, res) {
@@ -79,6 +85,7 @@ module.exports = function (app) {
       }
     }
   });
+  */
 
   app.put('/votes/:id', function (req, res) {
     var id = validateVoteId(req.params.id),
