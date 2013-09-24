@@ -23,20 +23,9 @@ module.exports = function (app) {
     var user = new User();
     //Assuming we are using the mongoose model.js
     user.save(function (error) {
-        if (!error) {
-            return res.send("user added");
-        } else {
-            return res.send(error);
-        }
-        });
-        return res.send(user);
+      return error ? res.send(error) : res.send("user added");
+    });
   });
-    res.json(200, 'Finding users');
-  })
-
-  app.post('/users', function (req, res) {
-    res.json(200, 'Creating a user');
-  })
 
   app.get('/users/:id', function (req, res) {
     id = validateUserId(req.params.id);
@@ -47,40 +36,28 @@ module.exports = function (app) {
         res.json(400, 'No such user');
       } else {
         throw e;
-      }     
+      }
     }
   });
 
   app.put('/users/:id', function (req, res) {
     var id = validateUserId(req.params.id),
     user = User.findById(id);
-    return user.save(function (error) {
-        if (!error) {
-            res.send("User updated");
-        } else {
-            res.send(error);
-        }
+    user.save(function (error) {
+      return error ? res.send(error) : res.send("user updated");
     });
-    return res.send(user);
   });
 
-    app.delete('users/:id', function (req, res) {
-        var id = validateUserId(req.params.id),
-        user = User.findById(id);
-        return user.remove(function (error) {
-            if (!error) {
-                return res.send("User removed");
-            } else {
-                res.send(error);
-            }
-        });
-    });
-    id = validateId(req.params.id)
-    res.json(200, 'Updating user ' + id);
-  })
+  app.delete('users/:id', function (req, res) {
+      var id = validateUserId(req.params.id),
+      user = User.findById(id);
+      user.remove(function (error) {
+        return error ? res.send(error) : res.send("user removed");
+      });
+  });
 
   app.delete('/users/:id', function (req, res) {
-    id = validateId(req.params.id)
+    id = validateId(req.params.id);
     res.json(200, 'Deleting user ' + id);
-  })
-}
+  });
+};
