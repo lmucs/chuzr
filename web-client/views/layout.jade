@@ -7,21 +7,40 @@ html
     div(id='nav-bar')
       table
         tr
-          td: a(class='button', href='#') chuzr
-          td: a(class='button', href='#') home
-          td: a(class='button', href='#') play
-          td: a(class='button', href='#') social
+          td: a(href='#') chuzr
+          td: a(href='#') home
+          td: a(href='#') play
+          td: a(href='#') social
+       span(id='nav-bar-right') 
        input(id='search', type='text', value='Search')
-          
-    block content
+       a(class='button', href='#', alt='Sign Out') Sign Out
+    
+    div
+      span(id='side-nav')
+       h1 Chuzr
+         hr
+       ul(id='side-nav-links')
+        li: a(href='#') Home 
+        li: a(href='#') Play 
+        li: a(href='#') Browse       
+        hr
+        li: a(href='#') Stuff
+        li: a(href='#') Social
+        hr
+        li: a(href='#') Settings
+        
+      span(id='main-content')
+        block content
     
     
     div(id='footer')
-      table
-        tr
-          td: a(href='#') about
-          td: a(href='#') content
-          td: a(href='#') FAQ
-          td: a(href='#') feedback
-          td: a(href='#') privacy
+      a(href='#') about 
+      |
+      a(href='#')  content 
+      |
+      a(href='#')  FAQ 
+      |
+      a(href='#')  feedback 
+      |
+      a(href='#')  privacy
       
