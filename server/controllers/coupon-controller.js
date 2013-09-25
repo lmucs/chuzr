@@ -22,5 +22,18 @@ module.exports = function (app) {
       return error ? res.send(error) : res.send("coupon added");
     });
   });
+
+  app.get('/coupons/:id', function (req, res) {
+    id = validateCouponId(req.params.id);
+    try {
+      res.json(Coupon.findById(id));
+    } catch (e) {
+      if (e == Coupon.NO_SUCH_COUPON) {
+        res.json(400, 'No such coupon');
+      } else {
+        throw e;
+      }
+    }
+  });
 }
   
