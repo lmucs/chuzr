@@ -35,5 +35,21 @@ module.exports = function (app) {
       }
     }
   });
+
+  app.put('/coupons/:id', function (req, res) {
+    id = validateCouponId(req.params.id);
+    coupon = Coupon.findById(id);
+    coupon.save(function (error) {
+      return error ? res.send(error) : res.send("coupon updated");
+    });
+  });
+
+  app.delete('/coupons/:id', function (req, res) {
+    id = validateCouponId(req.params.id);
+    coupon = Coupon.findById(id);
+    coupon.remove(function (error) {
+      return error ? res.send(error) : res.send("coupon removed");
+    });
+  });
 }
   
