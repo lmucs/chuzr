@@ -4,4 +4,8 @@ module.exports = function (app) {
     res.render('index', {title: 'Chuzr'});
   });
   
+  app.get('/login', function(req, res) {
+    res.render('login', {title: 'Login'});
+  });
+  
 }

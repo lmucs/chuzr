@@ -4,8 +4,7 @@ var data = {
         "name": "products",
         "children": [],
         "size": 10000,
-        "level": 0,
-        "rating": Math.random()
+        "level": 0
     }, 
     addRandomChildren = function (parent) {
     	var childrenNum = Math.floor(Math.random() * 10 / parent.level),
@@ -16,8 +15,7 @@ var data = {
     	for (i = 0; i < childrenNum; i++) {
     		child = {
                 "name": "child_" + i,
-                "level": parent.level + 1,
-                "rating": Math.random()
+                "level": parent.level + 1
             };
             child.size = Math.floor(Math.random() * 10000 / Math.pow(2, child.level)) 
                          + 0.5 * 10000 / Math.pow(2, child.level);
@@ -31,8 +29,7 @@ var data = {
 ["Sports", "Aparel", "Electronics"].forEach(function (category) {
     var child = {
     	"name": category,
-    	"level": 1,
-    	"rating": Math.random()
+    	"level": 1
     };
     
     child.size = Math.floor(Math.random() * 10000 / Math.pow(2, child.level)) 
