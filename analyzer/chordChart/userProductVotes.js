@@ -27,8 +27,21 @@ var svg = d3.select("body").append("svg")
 svg.append("circle")
     .attr("r", outerRadius);
 
-var cities = d3.csv.parse(getCities()),
-    matrix = getMatrix();
+//var cities = d3.csv.parse(getCities()),
+//    matrix = getMatrix();
+var cities = getUsersAndProducts(),
+    matrix = getRelations();
+    
+console.log(cities);
+console.log(matrix);
+
+var total = 0
+for(var i=0; i < matrix.length; i++) {
+    for(var j=0; j < matrix.length; j++) {
+    	total+=matrix[i][j];
+    }
+}
+console.log(total);
 
 // Compute the chord layout.
 layout.matrix(matrix);
@@ -42,7 +55,7 @@ var group = svg.selectAll(".group")
 
 // Add a mouseover title.
 group.append("title").text(function(d, i) {
-	return cities[i].name + ": " + formatPercent(d.value) + " of origins";
+	return (cities[i].userCategory) ? cities[i].userCategory : cities[i].productCategory + ": " + formatPercent(d.value) + " of origins";
 });
 
 // Add the group arc.
@@ -58,7 +71,7 @@ var groupText = group.append("text")
 
 groupText.append("textPath")
 	.attr("xlink:href", function(d, i) { return "#group" + i; })
-    .text(function(d, i) { return cities[i].name; });
+    .text(function(d, i) { return (cities[i].userCategory) ? cities[i].userCategory : cities[i].productCategory; });
 
 // Remove the labels that don't fit. :(
 groupText.filter(function(d, i) { return groupPath[0][i].getTotalLength() / 2 - 16 < this.getComputedTextLength(); })
