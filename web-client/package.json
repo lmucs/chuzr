@@ -8,6 +8,7 @@
   "dependencies": {
     "express": "3.3.8",
     "jade": "*",
-    "stylus": "*"
+    "stylus": "*",
+    "bootstrap-stylus":"*"
   }
 }
