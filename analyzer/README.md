@@ -17,3 +17,5 @@
   * Product rating by price?
   * product ratings vs sales?
   * user member peroid vs number of votes?
+  * *Votes per day?
+  * 
