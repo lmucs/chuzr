@@ -27,21 +27,8 @@ var svg = d3.select("body").append("svg")
 svg.append("circle")
     .attr("r", outerRadius);
 
-//var cities = d3.csv.parse(getCities()),
-//    matrix = getMatrix();
-var cities = getUsersAndProducts(),
+var usersAndProducts = getUsersAndProducts(),
     matrix = getRelations();
-    
-console.log(cities);
-console.log(matrix);
-
-var total = 0
-for(var i=0; i < matrix.length; i++) {
-    for(var j=0; j < matrix.length; j++) {
-    	total+=matrix[i][j];
-    }
-}
-console.log(total);
 
 // Compute the chord layout.
 layout.matrix(matrix);
@@ -55,14 +42,20 @@ var group = svg.selectAll(".group")
 
 // Add a mouseover title.
 group.append("title").text(function(d, i) {
-	return (cities[i].userCategory) ? cities[i].userCategory : cities[i].productCategory + ": " + formatPercent(d.value) + " of origins";
+    return (usersAndProducts[i].userCategory) ? 
+        usersAndProducts[i].userCategory : 
+        usersAndProducts[i].productCategory;
 });
 
 // Add the group arc.
 var groupPath = group.append("path")
-    .attr("id", function(d, i) { return "group" + i; })
+    .attr("id", function(d, i) { 
+        return "group" + i; 
+    })
     .attr("d", arc)
-    .style("fill", function(d, i) { return cities[i].color; });
+    .style("fill", function(d, i) { 
+        return usersAndProducts[i].color; 
+    });
 
 // Add a text label.
 var groupText = group.append("text")
@@ -70,11 +63,19 @@ var groupText = group.append("text")
     .attr("dy", 15);
 
 groupText.append("textPath")
-	.attr("xlink:href", function(d, i) { return "#group" + i; })
-    .text(function(d, i) { return (cities[i].userCategory) ? cities[i].userCategory : cities[i].productCategory; });
+	.attr("xlink:href", function(d, i) { 
+	    return "#group" + i; 
+	})
+    .text(function(d, i) { 
+        return (usersAndProducts[i].userCategory) ? 
+            usersAndProducts[i].userCategory : 
+            usersAndProducts[i].productCategory; 
+    });
 
 // Remove the labels that don't fit. :(
-groupText.filter(function(d, i) { return groupPath[0][i].getTotalLength() / 2 - 16 < this.getComputedTextLength(); })
+groupText.filter(function(d, i) { 
+    return groupPath[0][i].getTotalLength() / 2 - 16 < this.getComputedTextLength(); 
+})
     .remove();
 
 // Add the chords.
@@ -82,18 +83,11 @@ var chord = svg.selectAll(".chord")
     .data(layout.chords)
 	.enter().append("path")
     .attr("class", "chord")
-    .style("fill", function(d) { return cities[d.source.index].color; })
+    .style("fill", function(d) { 
+        return usersAndProducts[d.source.index].color; 
+    })
     .attr("d", path);
 
-// Add an elaborate mouseover title for each chord.
-chord.append("title").text(function(d) {
-    return cities[d.source.index].name
-        + " → " + cities[d.target.index].name
-        + ": " + formatPercent(d.source.value)
-        + "\n" + cities[d.target.index].name
-        + " → " + cities[d.source.index].name
-        + ": " + formatPercent(d.target.value);
-});
 
 function mouseover(d, i) {
     chord.classed("fade", function(p) {
