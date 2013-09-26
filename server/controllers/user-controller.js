@@ -7,7 +7,7 @@ module.exports = function (app) {
     if (/\D/.test(id)) {
       throw Error('Illegal id');
     }
-    return id;
+  return id;
   };
 
   app.get('/users', function (req, res) {
