@@ -4,7 +4,7 @@ module.exports = function (app) {
     //May not need to be duplicated. Rough draft.
     function validateProductId(id) {
         if (/\D/.test(id)) {
-        throw Error('Illegal id')
+            throw Error('Illegal id')
         }
     return id;
     };
@@ -36,7 +36,7 @@ module.exports = function (app) {
     });
     
     //Get a product by id
-    app.get('/prodcuts/:id', function (req, res) {
+    app.get('/products/:id', function (req, res) {
         var id = validateProductId(req.params.id);
         try {
             res.json(Product.findById(id));
