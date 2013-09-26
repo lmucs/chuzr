@@ -6,14 +6,6 @@ for accessing the chuzr data store.  Endpoints include:
  * GET /products/{id}
 
  * GET /users/{id}
- 
-   Should produce some thing like:
-
-        {
-            "displayName": .....
-            ..... : .....
-            ..... : .....
-        }
 
  * POST /votes
 
