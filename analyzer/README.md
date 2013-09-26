@@ -6,3 +6,6 @@
   * Users who have signed up over a period of time
   * Votes placed over a period of time
   * User who place votes
+  * Categories of users(demographics) related to categories of products
+  * Categories of users who vote most
+  * Quantity of categories of users and products on site
