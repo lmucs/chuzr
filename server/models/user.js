@@ -1,87 +1,40 @@
-var VALID_PROPERTIES = [
-  'loginName', 'displayName', 'passwordHash', 'profile', 
-  'reputation'
-];
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
-function validateUserData(userData) {
-  // throw exception if something is bad
-  // Students will implement
-}
-
-module.exports = User = function (userData) {
-  // validateUserData(userData);
-   VALID_PROPERTIES.forEach(function (property) {
-     if (property in userData) {
-       this[property] = userData[property];
-     }
-   }, this);
-  this.id = maxId++;
-  mockUsers.push(this);
-};
-
-Object.defineProperty(User, 'NO_SUCH_USER', {
-  configurable: false,
-  enumerable: false,
-  writable: false,
-  value: {}
+var userSchema = new Schema({
+  name: { type: String, default: '' },
+  email: { type: String, default: ''},
+  hashed_password: { type: String, default: '' }
 });
 
-User.findAll = function (skip, limit) {
-    // TODO - limit clamp
-    return mockUsers.slice(skip, skip + limit);
-};
+var User = mongoose.model('User', userSchema);
 
-//Mongoose has a built in findById function
-User.findById = function (id) {
-    // HAHA OBVIOUSLY THIS IS NOT THE REAL FINAL CODE
-    for (var i = 0; i < mockUsers.length; i++) {
-        if (+id === mockUsers[i].id) {
-            console.log("found %s id", id)
-            return mockUsers[i];
-        }
-    }
-    console.log("darn")
-    throw User.NO_SUCH_USER;
-};
-
-User.prototype.save = function (id, userData) {
-
-};
-
-User.prototype.delete = function (id) {
-};    
-// TODO Stuff that belongs in test.
-var mockUsers = [];
-var maxId = 0;
-
-new User({
-  loginName: "alice", 
-  displayName: "Alice Cooper",
-  passwordHash: "3948rh3498fh3498h",
-  profile: {interests: ["music", "out of school"], sex: "M"},
-  reputation: 100
+// Clear out old data
+User.remove({}, function(err) {
+  if (err) {
+    console.log ('error deleting old data.');
+  }
 });
 
-new User({
-  loginName: "bob", 
-  displayName: "Bob Martin",
-  passwordHash: "3948rh4njrfh3498h",
-  profile: {interests: ["clean code", "sushi chef"], sex: "M"},
-  reputation: 10000000
+// Creating one user.
+var johndoe = new User ({
+  name: { first: 'John', last: '  Doe   ' },
+  age: 25
 });
 
-new User({
-  loginName: "cassandra", 
-  displayName: "Cassandra Cooper",
-  passwordHash: "1111rh4njrfh3498h",
-  profile: {interests: [], sex: "F"},
-  reputation: 1099999
-});
+// Saving it to the database.
+johndoe.save(function (err) {if (err) console.log ('Error on save!')});
 
-new User({
-  loginName: "dusty", 
-  displayName: "Dusty Street",
-  passwordHash: "11441q4njrfh3498h",
-  profile: {interests: ["music", "cars"], sex: "F"},
-  reputation: 109
+// Creating more users manually
+var janedoe = new User ({
+  name: { first: 'Jane', last: 'Doe' },
+  age: 65
 });
+janedoe.save(function (err) {if (err) console.log ('Error on save!')});
+
+// Creating more users manually
+var alicesmith = new User ({
+  name: { first: 'Alice', last: 'Smith' },
+  age: 45
+});
+alicesmith.save(function (err) {if (err) console.log ('Error on save!')});
