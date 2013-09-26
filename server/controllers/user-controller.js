@@ -20,7 +20,7 @@ module.exports = function (app) {
 
   app.post('/users', function (req, res) {
     //res.send('Creating a user');
-    var user = new User();
+    var user = new User(req.body);
     //Assuming we are using the mongoose model.js
     user.save(function (error) {
         if (!error) {
@@ -28,7 +28,7 @@ module.exports = function (app) {
         } else {
             return res.send(error);
         }
-        });
+    });
         return res.send(user);
   });
 
