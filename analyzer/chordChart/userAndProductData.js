@@ -12,7 +12,7 @@ var getUsersAndProducts = function() {
             },
             {
                 "userCategory": "women",
-                "color": "#00FF00",
+                "color": "#BB0000",
                 "votes": {
                     "0": 3,
                     "1": 5,
@@ -21,7 +21,7 @@ var getUsersAndProducts = function() {
             },
             {
                 "userCategory": "children",
-                "color": "#0000FF",
+                "color": "#880000",
                 "votes": {
                     "0": 3,
                     "1": 0,
@@ -30,22 +30,22 @@ var getUsersAndProducts = function() {
             },
             {
                 "productCategory": "sports",
-                "color": "#FFFF00",
+                "color": "#00FF00",
                 "id": 0
             },
             {
                 "productCategory": "electronics",
-                "color": "#FF00FF",
+                "color": "#00AA00",
                 "id": 1
             },
             {
                 "productCategory": "clothes",
-                "color": "#00FFFF",
+                "color": "#008800",
                 "id": 2
             },
             {
                 "productCategory": "food",
-                "color": "#AAAAAA",
+                "color": "#006600",
                 "id": 3
             }
         ];
