@@ -35,6 +35,8 @@ module.exports = function (app) {
       }
     }
   });
+  
+  // TODO get coupons by expiration date? Like if they're still valid or not
 
   app.put('/coupons/:id', function (req, res) {
     id = validateCouponId(req.params.id);
