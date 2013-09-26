@@ -17,5 +17,5 @@
   * Product rating by price?
   * product ratings vs sales?
   * user member peroid vs number of votes?
-  * *Votes per day?
-  * 
+      * Votes per day?
+  * Group products by common likes (i.e. People who chose product A are also likely to choose project B)
