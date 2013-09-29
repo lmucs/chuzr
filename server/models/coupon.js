@@ -1,12 +1,19 @@
 var VALID_PROPERTIES = [
-  'userId', 'productId', 'rating'
+  'issuer', 'value', 'promoCode', 'expirationDate'
 ];
-module.exports = Coupon = function (name, dateExpires) {
+
+module.exports = Coupon = function (couponData) {
+
     this.id = maxId++;
-    this.name = name;
-    this.dateJoined = new Date();
-	this.dateExpires = dateExpires;
-    mockCoupons.push(this);
+	
+	VALID_PROPERTIES.forEach(function (property) {
+      if (property in couponData) {
+        this[property] = couponData[property];
+      }
+    }, this);
+    
+	//mock data
+	mockCoupons.push(this);
 }
 
 Object.defineProperty(Coupon, 'NO_SUCH_COUPON', {
@@ -27,7 +34,7 @@ Coupon.findById = function (id) {
             return mockCoupons[i];
         }
     }
-    throw Coupon.NO_SUCH_Coupon;
+    throw Coupon.NO_SUCH_COUPON;
 }
 
 Coupon.prototype.save = function (id, couponData) {
@@ -41,7 +48,7 @@ Coupon.prototype.delete = function (id) {
 var mockCoupons = [];
 var maxId = 0;
 
-new Coupon("Free TV");
-new Coupon("30% off Wii-U");
-new Coupon("15% Best Buy");
-new Coupon("Buy 2 get 1 Free");
+new Coupon({issuer: "Target", value: "Free TV", promoCode: "XJSD32", expirationDate: new Date(2013, 12, 6)});
+new Coupon({issuer: "Amazon", value: "30% off Wii-U", promoCode: "EFHS79", expirationDate: new Date(2013, 10, 31)});
+new Coupon({issuer: "Best Buy", value: "15% Best Buy", promoCode: "AJGD51", expirationDate: new Date(2014, 1, 31)});
+new Coupon({issuer: "That's Showbiz", value: "Buy 2 Get 1 Free", promoCode: "ZHYF23", expirationDate: new Date(2014, 4, 26)});
