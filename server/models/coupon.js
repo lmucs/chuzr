@@ -1,6 +1,6 @@
-// This currently uses a mock coupons array just to get things up and running.
-// Students will need to replace this with a real MongoDB.
-
+var VALID_PROPERTIES = [
+  'userId', 'productId', 'rating'
+];
 module.exports = Coupon = function (name, dateExpires) {
     this.id = maxId++;
     this.name = name;
