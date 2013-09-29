@@ -1,21 +1,35 @@
 Coupon = require('../models/coupon')
 
 module.exports = function (app) {
+  
   function validateCouponId(id) {
     if (/\D/.test(id)) {
       throw Error('Illegal id');
     }
     return id;
   };
-  
+
   app.get('/coupons', function (req, res) {
     console.log("Status Code: ", res.statusCode);
-    skip == +req.query.skip || 0;
-    limit = +req.query.limit || 10;
+    skip = +req.query.skip || 0; 
+    limit = +req.query.limit || 10; 
     console.log('skip = %d, limit = %d', skip, limit);
-    res.json(Coupon.findall(skip=skip, limit=limit));
+    res.json(Coupon.findAll(skip=skip, limit=limit));
   });
 
+  app.get('/coupons/:id', function (req, res) {
+    var id = validateCouponId(req.params.id);
+    try {
+        res.json(Coupon.findById(id));
+    } catch (e) {
+        if (e == Coupon.NO_SUCH_COUPON) {
+            res.send(400, 'No such coupon');
+        } else {
+            throw e;
+        }     
+    }
+  });
+  
   app.post('/coupons', function (req, res) {
     var coupon = new Coupon();
     coupon.save(function (error) {
@@ -23,18 +37,7 @@ module.exports = function (app) {
     });
   });
 
-  app.get('/coupons/:id', function (req, res) {
-    id = validateCouponId(req.params.id);
-    try {
-      res.json(Coupon.findById(id));
-    } catch (e) {
-      if (e == Coupon.NO_SUCH_COUPON) {
-        res.json(400, 'No such coupon');
-      } else {
-        throw e;
-      }
-    }
-  });
+
   
   // TODO get coupons by expiration date? Like if they're still valid or not
 
