@@ -48,7 +48,7 @@ Coupon.prototype.delete = function (id) {
 var mockCoupons = [];
 var maxId = 0;
 
-new Coupon({issuer: "Target", value: "Free TV", promoCode: "XJSD32", expirationDate: new Date(2013, 12, 6)});
-new Coupon({issuer: "Amazon", value: "30% off Wii-U", promoCode: "EFHS79", expirationDate: new Date(2013, 10, 31)});
-new Coupon({issuer: "Best Buy", value: "15% Best Buy", promoCode: "AJGD51", expirationDate: new Date(2014, 1, 31)});
-new Coupon({issuer: "That's Showbiz", value: "Buy 2 Get 1 Free", promoCode: "ZHYF23", expirationDate: new Date(2014, 4, 26)});
+new Coupon({issuer: "Target", value: "Free TV", promoCode: "XJSD32", expirationDate: new Date(2013, 11, 6)});
+new Coupon({issuer: "Amazon", value: "30% off Wii-U", promoCode: "EFHS79", expirationDate: new Date(2013, 9, 31)});
+new Coupon({issuer: "Best Buy", value: "15% Best Buy", promoCode: "AJGD51", expirationDate: new Date(2014, 0, 31)});
+new Coupon({issuer: "That's Showbiz", value: "Buy 2 Get 1 Free", promoCode: "ZHYF23", expirationDate: new Date(2014, 3, 26)});
