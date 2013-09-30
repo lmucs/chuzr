@@ -1,5 +1,5 @@
 var VALID_PROPERTIES = [
-  'issuer', 'value', 'promoCode', 'expirationDate'
+  'issuer', 'value', 'promoCode', 'expirationDate', 'imageURL'
 ];
 
 module.exports = Coupon = function (couponData) {
@@ -87,8 +87,8 @@ Coupon.prototype.delete = function (id) {
 var mockCoupons = [];
 var maxId = 0;
 
-new Coupon({issuer: "target", value: "Free TV", promoCode: "XJSD32", expirationDate: new Date(2013, 11, 6)});
-new Coupon({issuer: "amazon", value: "30% off Wii-U", promoCode: "EFHS79", expirationDate: new Date(2013, 9, 31)});
-new Coupon({issuer: "best_buy", value: "15% Best Buy", promoCode: "AJGD51", expirationDate: new Date(2014, 0, 31)});
-new Coupon({issuer: "lmu_bookstore", value: "Free Textbooks!", promoCode: "NEVR11", expirationDate: new Date(1980, 5, 6)});
-new Coupon({issuer: "that's_showbiz", value: "Buy 2 Get 1 Free", promoCode: "ZHYF23", expirationDate: new Date(2013, 3, 26)});
+new Coupon({issuer: "target", value: "Free TV", promoCode: "XJSD32", expirationDate: new Date(2013, 11, 6), imageURL: "http://opportunemployment.com/wp-content/uploads/2010/05/old-tv-set.jpg"});
+new Coupon({issuer: "amazon", value: "30% off Wii-U", promoCode: "EFHS79", expirationDate: new Date(2013, 9, 31), imageURL: "http://www.prlog.org/11992135-amazon-coupon-code-october-2012.jpg"});
+new Coupon({issuer: "best_buy", value: "20% off Best Buy", promoCode: "AJGD51", expirationDate: new Date(2014, 0, 31), imageURL: "http://cdn.savings.com/img/Best-Buy-Coupon.jpeg"});
+new Coupon({issuer: "lmu_bookstore", value: "Free Textbooks!", promoCode: "NEVR11", expirationDate: new Date(1980, 5, 6), imageURL: "http://www.universitybusiness.com/sites/default/files/styles/crop-tool-350x250/public/field/image/textboook.jpg?itok=i3kfC4uR"});
+new Coupon({issuer: "that's_showbiz", value: "Buy 2 Get 1 Free", promoCode: "ZHYF23", expirationDate: new Date(2013, 3, 26), imageURL: "http://thumbs.dreamstime.com/x/blue-coupon-ticket-17642622.jpg"});
