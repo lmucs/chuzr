@@ -4,74 +4,76 @@ var VALID_PROPERTIES = [
 
 module.exports = Coupon = function (couponData) {
 
-    this.id = maxId++;
+  this.id = maxId++;
 	
-	VALID_PROPERTIES.forEach(function (property) {
-      if (property in couponData) {
-        this[property] = couponData[property];
-      }
-    }, this);
+  VALID_PROPERTIES.forEach(function (property) {
+    if (property in couponData) {
+      this[property] = couponData[property];
+    }
+  }, this);
     
-	//mock data
-	mockCoupons.push(this);
+  //mock data
+  mockCoupons.push(this);
 }
 
 Object.defineProperty(Coupon, 'NO_SUCH_COUPON', {
-    configurable: false,
-    enumerable: false,
-    writable: false,
-    value: {}
+  configurable: false,
+  enumerable: false,
+  writable: false,
+  value: {}
 });
 
 Coupon.findAll = function (skip, limit) {
-    return mockCoupons.slice(skip, skip + limit);
+  return mockCoupons.slice(skip, skip + limit);
 }
 
 Coupon.findById = function (id) {
-    // HAHA OBVIOUSLY THIS IS NOT THE REAL FINAL CODE
-    for (var i = 0; i < mockCoupons.length; i++) {
-        if (id === mockCoupons[i].id) {
-            return mockCoupons[i];
-        }
+  // HAHA OBVIOUSLY THIS IS NOT THE REAL FINAL CODE
+  for (var i = 0; i < mockCoupons.length; i++) {
+    if (+id === mockCoupons[i].id) {
+      return mockCoupons[i];
     }
-    throw Coupon.NO_SUCH_COUPON;
+  }
+  throw Coupon.NO_SUCH_COUPON;
 }
 
 Coupon.findByIssuer = function (issuer) {
-    var coupons = [];
-    for (var i = 0; i < mockCoupons.length; i++) {
-		if (issuer === mockCoupons[i].issuer) {
-            coupons.push(mockCoupons[i]);
-        }
+  var coupons = [];
+  
+  for (var i = 0; i < mockCoupons.length; i++) {
+    if (issuer === mockCoupons[i].issuer) {
+      coupons.push(mockCoupons[i]);
     }
-    //TODO: throw error if issuer doesn't exist or if that issuer has no coupons
-    return coupons;
+  }
+  //TODO: throw error if issuer doesn't exist or if that issuer has no coupons
+  return coupons;
 }
 
 Coupon.findByStatus = function (status) {
-	var coupons = [];
-	var currentDate = new Date();
-	if (status === "active") {
-		for (var i = 0; i < mockCoupons.length; i++) {
-			if (mockCoupons[i].expirationDate - currentDate >= 0) {
-				coupons.push(mockCoupons[i]);
-			}
-		}
+  var coupons = [];
+  var currentDate = new Date();
+  
+  if (status === "active") {
+	for (var i = 0; i < mockCoupons.length; i++) {
+	  if (mockCoupons[i].expirationDate - currentDate >= 0) {
+		coupons.push(mockCoupons[i]);
+	  }
 	}
-	if (status === "expired") {
-		for (var i = 0; i < mockCoupons.length; i++) {
-			if (mockCoupons[i].expirationDate - currentDate < 0) {
-				coupons.push(mockCoupons[i]);
-			}
-		}
+  }
+  if (status === "expired") {
+	for (var i = 0; i < mockCoupons.length; i++) {
+	  if (mockCoupons[i].expirationDate - currentDate < 0) {
+		coupons.push(mockCoupons[i]);
+	  }
 	}
-	
-	return coupons;
+  }
+  
+  return coupons;
 }
 
 Coupon.prototype.isExpired = function () {
-	var currentDate = new Date();
-	return this.expirationDate < currentDate;
+  var currentDate = new Date();
+  return this.expirationDate < currentDate;
 }
 
 Coupon.prototype.save = function (id, couponData) {
