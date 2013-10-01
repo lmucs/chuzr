@@ -11,24 +11,33 @@ module.exports = function (app) {
 
   app.get('/votes', function (req, res) {
     var parameterFlag = false,
-        votes = [];
+        votes = [],
+        votesByUserId = [],
+        votesByProductId = [],
+        skip = +req.query.skip || 0,
+        limit = +req.query.limit || 10;
+
     if (req.query.userId) {
       //TODO add limit to findByUser
-      votes.push.apply(votes, Vote.findByUser(req.query.userId));
+      votesByUserId = Vote.findByUser(req.query.userId);
       parameterFlag = true;
     }
     if (req.query.productId) {
-      votes.push.apply(votes, Vote.findByProduct(req.query.productId));
+      votesByProductId = Vote.findByProduct(req.query.productId);
       parameterFlag = true;
     }
     if (!parameterFlag) {
-      console.log("Status Code: ", res.statusCode);
-      skip = +req.query.skip || 0;
-      limit = +req.query.limit || 10;
-      console.log('skip = %d, limit = %d', skip, limit);
       return res.json(Vote.findAll(skip=skip, limit=limit));
     }
-    return res.json(votes);
+    
+    if (req.query.userId && req.query.productId) {
+      votes = Vote.arrayIntersection(votesByUserId, votesByProductId);
+    }
+    else {
+      votes.push.apply(votes, votesByProductId);
+      votes.push.apply(votes, votesByUserId);
+    }
+    return res.json(votes.slice(0, limit));
   });
 
   app.post('/votes', function (req, res) {

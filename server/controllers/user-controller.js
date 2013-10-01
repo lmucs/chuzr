@@ -55,7 +55,6 @@ module.exports = function (app) {
             res.send(error);
         }
     });
-    return res.send(user);
   });
 
     app.delete('users/:id', function (req, res) {
