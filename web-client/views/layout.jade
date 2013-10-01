@@ -11,8 +11,8 @@ html
         a(class='brand', href='#') Chuzr
         ul(class='nav')
           li: a(href='/home') Home
-          li: a(href='#') Play
-          li: a(href='#') Social
+          li: a(href='/play') Play
+          li: a(href='/social') Social
         
         ul(class='nav pull-right')
           form(class='navbar-search')
@@ -20,8 +20,8 @@ html
           li(class='dropdown'): a(href='#', class='dropdown-toggle', data-toggle='dropdown') Account
             b(class='caret')
             ul(class='dropdown-menu')
-              li: a(href='#') Settings
-              li: a(href='#') Logout
+              li: a(href='/settings') Settings
+              li: a(href='/logout') Logout
             
             
           
@@ -30,14 +30,14 @@ html
        h1 Chuzr
          hr
        ul(class='nav nav-tabs nav-stacked', id='side-nav-links')
-        li: a(href='#') Home 
-        li: a(href='#') Play 
-        li: a(href='#') Browse       
+        li: a(href='/home') Home 
+        li: a(href='/play') Play 
+        li: a(href='/browse') Browse       
         hr
-        li: a(href='#') Stuff
-        li: a(href='#') Social
+        li: a(href='/stuff') Stuff
+        li: a(href='/social') Social
         hr
-        li: a(href='#') Settings
+        li: a(href='/settings') Settings
         
       div(class='span5', id='main-content')
         block content
@@ -46,11 +46,11 @@ html
     div(class='row-fluid', id='footer')
       div(class='pull-right')
         ul(class='nav nav-pills')
-          li: a(href='#') about 
-          li: a(href='#') contact 
-          li: a(href='#') FAQ 
-          li: a(href='#') feedback 
-          li: a(href='#') privacy
+          li: a(href='/about') about 
+          li: a(href='/contact') contact 
+          li: a(href='/FAQ') FAQ 
+          li: a(href='/feedback') feedback 
+          li: a(href='/privacy') privacy
       
     script(src='/js/jquery-1.10.2.js')
     script(src='/js/bootstrap.js')
