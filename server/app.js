@@ -1,8 +1,9 @@
-var express = require('express');
-var http = require('http');
-var mongoose = require('mongoose');
-var env = process.env.NODE_ENV || 'development';
-var config = require('./config/config')[env];
+var express = require('express'),
+    http = require('http'),
+    fs = require('fs'),
+    mongoose = require('mongoose'),
+    env = process.env.NODE_ENV || 'development',
+    config = require('./config/config')[env];
 
 var app = express();
 
@@ -17,10 +18,25 @@ if ('development' == app.get('env')) {
 
 mongoose.connect(config.db);
 
-require('./models/coupon');
-require('./models/product');
-require('./models/user');
-require('./models/vote');
+// Load models
+fs.readdir(__dirname + '/models', function (err, files) {
+  if (err) console.log(err);
+  files.forEach(function (file) {
+    if (file.match('.js$')) {
+      require(__dirname + '/models/' + file);
+    }
+  });
+});
+
+// Load controllers
+fs.readdir(__dirname + '/controllers', function (err, files) {
+  if (err) console.log(err);
+  files.forEach(function (file) {
+    if (file.match('.js$')) {
+      require(__dirname + '/controllers/' + file)(app);
+    }
+  });
+});
 
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
