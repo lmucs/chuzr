@@ -8,7 +8,7 @@ var userSchema = new Schema({
   },
   email: String,
   username: String,
-  hashed_password: String,
+  hashedPassword: String,
   salt: String
 });
 
