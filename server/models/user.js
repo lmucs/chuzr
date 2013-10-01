@@ -47,8 +47,8 @@ User.prototype.save = function (id, userData) {
 
 }
 
-User.prototype.delete = function (id) {
-    
+User.delete = function (id) {
+    return mockUsers.splice(id, 1);
 }
 
 // Use fake storage until a database is in place

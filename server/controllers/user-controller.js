@@ -29,7 +29,7 @@ module.exports = function (app) {
             return res.send(error);
         }
         });
-        return res.send(user);
+        return res.json(user);
   });
 
   app.get('/users/:id', function (req, res) {
@@ -55,19 +55,21 @@ module.exports = function (app) {
             res.send(error);
         }
     });
-    return res.send(user);
+    return res.json(user);
   });
 
-    app.delete('users/:id', function (req, res) {
+    app.delete('/users/:id', function (req, res) {
         var id = validateUserId(req.params.id),
         user = User.findById(id);
-        User.mockUsers.splice(user);
+        User.delete(id);
+        return res.send("User Removed.");
+        /*
         return user.remove(function (error) {
             if (!error) {
                 return res.send("User removed");
             } else {
                 res.send(error);
             }
-        });
+        });*/
     });
 }
