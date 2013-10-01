@@ -5,6 +5,10 @@ var VALID_PROPERTIES = [
   'name', 'description', 'imageURL', 'rating', 'categories', 'price', 'related'
 ];
 
+function validateProductData (userData) {
+  // TODO
+}
+
 module.exports = Product = function (productData) {
   this.id = maxId++;
   

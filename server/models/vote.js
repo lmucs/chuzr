@@ -51,7 +51,6 @@ Vote.findByUser = function (userId) {
 
 Vote.findByProduct = function (productId) {
   var votes = [];
-  console.log("in find by product");
   for (var i = 0; i < mockVotes.length; i++) {
     if (+productId === mockVotes[i].productId) {
       votes.push(mockVotes[i]);

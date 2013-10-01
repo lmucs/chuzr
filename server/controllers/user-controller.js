@@ -24,12 +24,12 @@ module.exports = function (app) {
     //Assuming we are using the mongoose model.js
     user.save(function (error) {
         if (!error) {
-            return res.send("user added");
+            res.send("user added");
         } else {
             return res.send(error);
         }
     });
-        return res.send(user);
+    return res.json(user);
   });
 
   app.get('/users/:id', function (req, res) {
@@ -48,25 +48,28 @@ module.exports = function (app) {
   app.put('/users/:id', function (req, res) {
     var id = validateUserId(req.params.id),
     user = User.findById(id);
-    return user.save(function (error) {
+    user.save(function (error) {
         if (!error) {
             res.send("User updated");
         } else {
             res.send(error);
         }
     });
-    return res.send(user);
+    return res.json(user);
   });
 
-    app.delete('users/:id', function (req, res) {
+    app.delete('/users/:id', function (req, res) {
         var id = validateUserId(req.params.id),
         user = User.findById(id);
+        User.delete(id);
+        return res.send("User Removed.");
+        /*
         return user.remove(function (error) {
             if (!error) {
                 return res.send("User removed");
             } else {
                 res.send(error);
             }
-        });
+        });*/
     });
 }
