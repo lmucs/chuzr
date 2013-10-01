@@ -17,12 +17,12 @@ module.exports = function (app) {
   //Get all the products
   app.get('/products', function (req, res) {
     console.log("Status Code: ", res.statusCode);
-    skip = +req.query.skip || 0; 
-    limit = +req.query.limit || 10; 
+    skip = +req.query.skip || 0;
+    limit = +req.query.limit || 10;
     console.log('skip = %d, limit = %d', skip, limit);
     res.json(Product.findAll(skip=skip, limit=limit));
   });
-  
+
   //Create a new project
   app.post('/products', function (req, res) {
     /*console.log("Adding new product:");
@@ -35,7 +35,10 @@ module.exports = function (app) {
             return res.send("product added");
         } else {
             return res.send(error);
-    
+        }
+    });
+  });
+
   //Get a product by id
   app.get('/prodcuts/:id', function (req, res) {
     var id = validateProductId(req.params.id);
@@ -46,7 +49,7 @@ module.exports = function (app) {
         res.send(400, 'No such product');
       } else {
         throw e;
-      }     
+      }
     }
     return res.json(product);
   });
@@ -64,7 +67,7 @@ module.exports = function (app) {
     });
     return res.send(product);
   });
-  
+
   app.delete('products/:id', function (req, res) {
     var id = validateProductId(req.params.id),
     product = Product.findById(id);

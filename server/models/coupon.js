@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var VALID_PROPERTIES = [
   'issuer', 'value', 'promoCode', 'expirationDate', 'imageURL'
 ];
@@ -6,13 +5,13 @@ var VALID_PROPERTIES = [
 module.exports = Coupon = function (couponData) {
 
   this.id = maxId++;
-	
+
   VALID_PROPERTIES.forEach(function (property) {
     if (property in couponData) {
       this[property] = couponData[property];
     }
   }, this);
-    
+
   //mock data
   mockCoupons.push(this);
 }
@@ -40,7 +39,7 @@ Coupon.findById = function (id) {
 
 Coupon.findByIssuer = function (issuer) {
   var coupons = [];
-  
+
   for (var i = 0; i < mockCoupons.length; i++) {
     if (issuer === mockCoupons[i].issuer) {
       coupons.push(mockCoupons[i]);
@@ -53,7 +52,7 @@ Coupon.findByIssuer = function (issuer) {
 Coupon.findByStatus = function (status) {
   var coupons = [];
   var currentDate = new Date();
-  
+
   if (status === "active") {
 	for (var i = 0; i < mockCoupons.length; i++) {
 	  if (mockCoupons[i].expirationDate - currentDate >= 0) {
@@ -68,20 +67,21 @@ Coupon.findByStatus = function (status) {
 	  }
 	}
   }
-  
+
   return coupons;
 }
 
 Coupon.prototype.isExpired = function () {
   var currentDate = new Date();
   return this.expirationDate < currentDate;
+};
 
 Coupon.prototype.save = function (id, couponData) {
 
 }
 
 Coupon.prototype.delete = function (id) {
-    
+
 }
 
 var mockCoupons = [];
