@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var VALID_PROPERTIES = [
   'issuer', 'value', 'promoCode', 'expirationDate', 'imageURL'
 ];
@@ -74,7 +75,6 @@ Coupon.findByStatus = function (status) {
 Coupon.prototype.isExpired = function () {
   var currentDate = new Date();
   return this.expirationDate < currentDate;
-}
 
 Coupon.prototype.save = function (id, couponData) {
 
@@ -92,3 +92,4 @@ new Coupon({issuer: "amazon", value: "30% off Wii-U", promoCode: "EFHS79", expir
 new Coupon({issuer: "best_buy", value: "20% off Best Buy", promoCode: "AJGD51", expirationDate: new Date(2014, 0, 31), imageURL: "http://cdn.savings.com/img/Best-Buy-Coupon.jpeg"});
 new Coupon({issuer: "lmu_bookstore", value: "Free Textbooks!", promoCode: "NEVR11", expirationDate: new Date(1980, 5, 6), imageURL: "http://www.universitybusiness.com/sites/default/files/styles/crop-tool-350x250/public/field/image/textboook.jpg?itok=i3kfC4uR"});
 new Coupon({issuer: "that's_showbiz", value: "Buy 2 Get 1 Free", promoCode: "ZHYF23", expirationDate: new Date(2013, 3, 26), imageURL: "http://thumbs.dreamstime.com/x/blue-coupon-ticket-17642622.jpg"});
+

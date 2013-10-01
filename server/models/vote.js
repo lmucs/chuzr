@@ -70,3 +70,4 @@ var maxId = 0;
 new Vote({productId: 2, userId: 1, rating: 3});
 new Vote({productId: 2, userId: 3, rating: 8});
 new Vote({productId: 44, userId: 1, rating: 9});
+

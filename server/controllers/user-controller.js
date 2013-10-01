@@ -23,25 +23,20 @@ module.exports = function (app) {
     var user = new User(req.body);
     //Assuming we are using the mongoose model.js
     user.save(function (error) {
-        if (!error) {
-            res.send("user added");
-        } else {
-            return res.send(error);
-        }
+      return error ? res.send(error) : res.json(user);
     });
-    return res.json(user);
   });
 
   app.get('/users/:id', function (req, res) {
     id = validateUserId(req.params.id);
     try {
-      res.json(User.findById(id));
+      res.send(User.findById(id));
     } catch (e) {
       if (e == User.NO_SUCH_USER) {
-        res.send(400, 'No such user');
+        res.json(400, 'No such user');
       } else {
         throw e;
-      }     
+      }
     }
   });
 
@@ -49,27 +44,19 @@ module.exports = function (app) {
     var id = validateUserId(req.params.id),
     user = User.findById(id);
     user.save(function (error) {
-        if (!error) {
-            res.send("User updated");
-        } else {
-            res.send(error);
-        }
+      return error ? res.send(error) : res.json(user);
     });
-    return res.json(user);
   });
 
-    app.delete('/users/:id', function (req, res) {
-        var id = validateUserId(req.params.id),
-        user = User.findById(id);
-        User.delete(id);
-        return res.send("User Removed.");
-        /*
-        return user.remove(function (error) {
-            if (!error) {
-                return res.send("User removed");
-            } else {
-                res.send(error);
-            }
-        });*/
-    });
-}
+  app.delete('/users/:id', function (req, res) {
+      var id = validateUserId(req.params.id),
+      user = User.findById(id);
+      User.delete(id);
+      /*
+      user.remove(function (error) {
+        return error ? res.send(error) : res.send("user removed");
+      });
+      */
+  });
+};
+

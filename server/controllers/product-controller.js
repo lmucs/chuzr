@@ -3,6 +3,8 @@ Product = require('../models/product')
 
 //Created using http://pixelhandler.com/blog/2012/02/09/develop-a-restful-api-using-node-js-with-express-and-mongoose/
 // as reference.
+Product = require('../models/product')
+
 module.exports = function (app) {
   //May not need to be duplicated. Rough draft.
   function validateProductId(id) {
@@ -26,30 +28,27 @@ module.exports = function (app) {
     /*console.log("Adding new product:");
       console.log(req.body);
       To be fleshed out when product model is created.*/
-    var product = new Product();
+    var product = new Product(req.body);
     //Assuming we are using the mongoose model.js
     product.save(function (error) {
         if (!error) {
             return res.send("product added");
         } else {
             return res.send(error);
-        }
-    });
-    return res.send(product);
-  });
-  
+    
   //Get a product by id
-  app.get('/products/:id', function (req, res) {
+  app.get('/prodcuts/:id', function (req, res) {
     var id = validateProductId(req.params.id);
     try {
-        res.json(Product.findById(id));
+      res.json(Product.findById(id));
     } catch (e) {
-        if (e == Product.NO_SUCH_PRODUCT) {
-            res.send(400, 'No such product');
-        } else {
-            throw e;
-        }     
+      if (e == Product.NO_SUCH_PRODUCT) {
+        res.send(400, 'No such product');
+      } else {
+        throw e;
+      }     
     }
+    return res.json(product);
   });
 
   //Update a product

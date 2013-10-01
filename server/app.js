@@ -10,8 +10,8 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.cookieParser('zombie marie curie'));
-app.use(express.session());
+//app.use(express.cookieParser('zombie marie curie'));
+//app.use(express.session());
 
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
