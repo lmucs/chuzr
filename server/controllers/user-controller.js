@@ -20,7 +20,7 @@ module.exports = function (app) {
 
   app.post('/users', function (req, res) {
     //res.send('Creating a user');
-    var user = new User();
+    var user = new User(req.body);
     //Assuming we are using the mongoose model.js
     user.save(function (error) {
         if (!error) {
@@ -48,7 +48,7 @@ module.exports = function (app) {
   app.put('/users/:id', function (req, res) {
     var id = validateUserId(req.params.id),
     user = User.findById(id);
-    return user.save(function (error) {
+    user.save(function (error) {
         if (!error) {
             res.send("User updated");
         } else {
@@ -61,6 +61,7 @@ module.exports = function (app) {
     app.delete('users/:id', function (req, res) {
         var id = validateUserId(req.params.id),
         user = User.findById(id);
+        User.mockUsers.splice(user);
         return user.remove(function (error) {
             if (!error) {
                 return res.send("User removed");
