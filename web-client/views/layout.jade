@@ -2,8 +2,11 @@ doctype 5
 html
   head
     title= title
+    meta(name ='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/stylesheets/chuzr.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-responsive.css')
+
 
   body
     div(id='nav-bar', class='navbar')
@@ -13,7 +16,7 @@ html
           li: a(href='/home') Home
           li: a(href='/play') Play
           li: a(href='/social') Social
-        
+  
         ul(class='nav pull-right')
           form(class='navbar-search')
             input(type='text', class='search-query', placeholder='Search')
@@ -22,29 +25,24 @@ html
             ul(class='dropdown-menu')
               li: a(href='/settings') Settings
               li: a(href='/logout') Logout
-            
-            
-          
-    div(class='row-fluid')
-      div(class='span2 offset1', id='side-nav')
+   
+    div(class="row-fluid",id='content')
+      div(class='span2', id='side-nav')
        h1 Chuzr
-         hr
-       ul(class='nav nav-tabs nav-stacked', id='side-nav-links')
-        li: a(href='/home') Home 
-        li: a(href='/play') Play 
-        li: a(href='/browse') Browse       
-        hr
-        li: a(href='/stuff') Stuff
-        li: a(href='/social') Social
-        hr
-        li: a(href='/settings') Settings
-        
-      div(class='span5', id='main-content')
+      
+       ul(class='nav nav-tabs nav-list nav-stacked', id='side-nav-links')
+         li: a(href='/home') Home 
+         li: a(href='/play') Play 
+         li: a(href='/browse') Browse       
+         li(class='divider')
+         li: a(href='/stuff') Stuff
+         li: a(href='/social') Social
+         li(class='divider')
+         li: a(href='/settings') Settings
+      
+      div(class='span8', id='main-content')
         block content
-    
-    
-    div(class='row-fluid', id='footer')
-      div(class='pull-right')
+      div( id='footer')
         ul(class='nav nav-pills')
           li: a(href='/about') about 
           li: a(href='/contact') contact 
@@ -54,3 +52,6 @@ html
       
     script(src='/js/jquery-1.10.2.js')
     script(src='/js/bootstrap.js')
+
+
+      
