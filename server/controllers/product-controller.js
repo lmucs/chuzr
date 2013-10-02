@@ -29,7 +29,9 @@ module.exports = function (app) {
       console.log(req.body);
       To be fleshed out when product model is created.*/
     var product = new Product(req.body);
+    res.send("Product Created");
     //Assuming we are using the mongoose model.js
+    /*
     product.save(function (error) {
         if (!error) {
             return res.send("product added");
@@ -37,6 +39,7 @@ module.exports = function (app) {
             return res.send(error);
         }
     });
+    */
   });
 
   //Get a product by id
@@ -64,12 +67,14 @@ module.exports = function (app) {
             return res.send(error);
         }
     });
-    return res.send(product);
   });
 
-  app.delete('products/:id', function (req, res) {
+  app.delete('/products/:id', function (req, res) {
     var id = validateProductId(req.params.id),
     product = Product.findById(id);
+    Product.delete(id);
+    res.send("Product Deleted");
+    /*
     return product.remove(function (error) {
         if (!error) {
             return res.send("Product removed");
@@ -77,5 +82,6 @@ module.exports = function (app) {
             res.send(error);
         }
     });
+    */
   });
 }
