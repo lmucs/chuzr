@@ -33,8 +33,10 @@ module.exports = function (app) {
 
   app.post('/votes', function (req, res) {
     //res.send('Creating a vote');
-    var vote = new Vote();
+    var vote = new Vote(req.body);
+    return res.send("Vote Added");
     //Assuming we are using the mongoose model.js
+    /*
     vote.save(function (error) {
       if (!error) {
         return res.send("vote added");
@@ -42,7 +44,7 @@ module.exports = function (app) {
         return res.send(error);
       }
     });
-    return res.send(vote);
+    */
   });
 
   // Get a vote by its id
@@ -72,9 +74,12 @@ module.exports = function (app) {
     return res.send(vote);
   });
 
-  app.delete('votes/:id', function (req, res) {
+  app.delete('/votes/:id', function (req, res) {
     var id = validateVoteId(req.params.id),
         vote = Vote.findById(id);
+    Vote.delete(id);
+    res.send("Vote Deleted");
+    /*
     return vote.remove(function (error) {
       if (!error) {
         return res.send("Vote removed");
@@ -82,5 +87,6 @@ module.exports = function (app) {
         res.send(error);
       }
     });
+    */
   });
 };
