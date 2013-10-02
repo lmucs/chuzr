@@ -3,11 +3,19 @@ html, body
   font: 16px "Lucida Grande", Helvetica, Arial, sans-serif  
   height: 100%
   width: 100%
+  overflow: hidden
+
+
+.navbar
+  margin-bottom: 5px
+
+#wrap
+  background-color:#DEDEDE
+  height: 100%
+  width: 100%
 
 a:hover
   opacity: 0.5
-
-
 
 #content
   height:90%
@@ -16,17 +24,32 @@ a:hover
 
 
 #main-content
-  height:100%
+  margin-top: 1%
+  margin-bottom: 1%
+  margin-left: 1%
+  padding-left: 10px
   width:80%
+  background-color: rgba(256, 256, 256, .5)
+  overflow: auto
 
 #side-nav
+  top: 0px
   padding-left: 10px
+  padding-top: 50px
   background-color: rgba(256, 256, 256, .85)
   height: 100%
   width: 15%
 
-#footer
-  position: fixed
-  bottom: 0%
-  right: 0%
+#side-nav a img 
+  display: block
+  margin: auto
+
+
+#side-nav-toggle
+  margin-left: 0px
+  padding-top: 20%
+  padding-left: 5px
+  background-color: rgba(256, 256, 256, .5)
+  width:20px
+  height:100%
 
