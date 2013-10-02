@@ -40,7 +40,7 @@ module.exports = function (app) {
   });
 
   //Get a product by id
-  app.get('/prodcuts/:id', function (req, res) {
+  app.get('/products/:id', function (req, res) {
     var id = validateProductId(req.params.id);
     try {
       res.json(Product.findById(id));
@@ -51,7 +51,6 @@ module.exports = function (app) {
         throw e;
       }
     }
-    return res.json(product);
   });
 
   //Update a product

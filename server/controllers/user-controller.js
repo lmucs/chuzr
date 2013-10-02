@@ -33,7 +33,7 @@ module.exports = function (app) {
   app.get('/users/:id', function (req, res) {
     id = validateUserId(req.params.id);
     try {
-      res.send(User.findById(id));
+      res.json(User.findById(id));
     } catch (e) {
       if (e == User.NO_SUCH_USER) {
         res.json(400, 'No such user');
