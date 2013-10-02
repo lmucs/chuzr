@@ -17,3 +17,10 @@
   * Product rating by price?
   * product ratings vs sales?
   * user member peroid vs number of votes?
+      * Votes per day?
+  * Group products by common likes (i.e. People who chose product A are also likely to choose project B)
+
+
+* Log of work:
+* Looking into JS that converts JSON to pretty HTML, trying to clone and fix this: http://json.bloople.net/ to cater to our needs.
+* Trying to figure out this fiddle for CSV format
