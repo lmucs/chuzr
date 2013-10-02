@@ -48,8 +48,11 @@ User.prototype.save = function (id, userData) {
 
 };
 
-User.prototype.delete = function (id) {
-};    
+User.delete = function (id) {
+    return mockUsers.splice(id, 1);
+}
+
+
 // TODO Stuff that belongs in test.
 var mockUsers = [];
 var maxId = 0;

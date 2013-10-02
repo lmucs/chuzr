@@ -7,7 +7,7 @@ module.exports = function (app) {
     if (/\D/.test(id)) {
       throw Error('Illegal id');
     }
-    return id;
+  return id;
   };
 
   app.get('/users', function (req, res) {
@@ -20,10 +20,10 @@ module.exports = function (app) {
 
   app.post('/users', function (req, res) {
     //res.send('Creating a user');
-    var user = new User();
+    var user = new User(req.body);
     //Assuming we are using the mongoose model.js
     user.save(function (error) {
-      return error ? res.send(error) : res.send("user added");
+      return error ? res.send(error) : res.json(user);
     });
   });
 
@@ -44,20 +44,19 @@ module.exports = function (app) {
     var id = validateUserId(req.params.id),
     user = User.findById(id);
     user.save(function (error) {
-      return error ? res.send(error) : res.send("user updated");
+      return error ? res.send(error) : res.json(user);
     });
   });
 
-  app.delete('users/:id', function (req, res) {
+  app.delete('/users/:id', function (req, res) {
       var id = validateUserId(req.params.id),
       user = User.findById(id);
+      User.delete(id);
+      /*
       user.remove(function (error) {
         return error ? res.send(error) : res.send("user removed");
       });
-  });
-
-  app.delete('/users/:id', function (req, res) {
-    id = validateId(req.params.id);
-    res.json(200, 'Deleting user ' + id);
+      */
   });
 };
+
