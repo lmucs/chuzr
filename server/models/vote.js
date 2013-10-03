@@ -1,10 +1,12 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+  , Schema = mongoose.Schema
+  , ObjectId = Schema.ObjectId;
 
 var voteSchema = new Schema({
-    userId: Number          //Schema.Types.ObjectId (will use later once functional)
-  , productId: Number       //Schema.Types.ObjectTd
-  , rating: Number
+    _id         : ObjectId
+  , userId      : Number          //Schema.Types.ObjectId (will use later once functional)
+  , productId   : Number       //Schema.Types.ObjectTd
+  , rating      : Number
 });
 
 var Vote = mongoose.model('Vote', voteSchema);

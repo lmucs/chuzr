@@ -1,8 +1,10 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+  , Schema = mongoose.Schema
+  , ObjectId = Schema.ObjectId;
 
 var productSchema = new Schema({
-    name        : String
+    _id         : Schema.Types.ObjectId
+  , name        : String
   , description : String
   , imageURL    : String
   , rating      : Number

@@ -1,8 +1,10 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+  , Schema = mongoose.Schema
+  , ObjectId = Schema.ObjectId;
 
 var userSchema = new Schema({
-    name            : {
+    _id             : Schema.Types.ObjectId
+  , name            : {
         first   : String
       , last    : { 
             type    : String
