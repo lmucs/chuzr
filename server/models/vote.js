@@ -13,3 +13,31 @@ Vote.remove({}, function(err) {
     console.log ('error deleting old data.');
   }
 });
+
+var voteOne = new Vote({
+  rating: 10
+});
+voteOne.save(function(err) {
+  if (err) console.log(err);
+});
+
+var voteTwo = new Vote({
+  rating: 11
+});
+voteTwo.save(function(err) {
+  if (err) console.log(err);
+});
+
+var voteThree = new Vote({
+  rating: 3
+});
+voteThree.save(function(err) {
+  if (err) console.log(err);
+});
+
+var voteFour = new Vote({
+  rating: 7
+});
+voteFour.save(function(err) {
+  if (err) console.log(err);
+});
