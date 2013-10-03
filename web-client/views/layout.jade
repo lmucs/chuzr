@@ -60,25 +60,8 @@ html
       
     script(src='/js/jquery-1.10.2.js')
     script(src='/js/bootstrap.js')
-    script
-      var sideNavShown = true;
-          sideNavToggle = function(){
-            $("#side-nav-toggle").click(function(){
-              if(sideNavShown){              
-                $("#side-nav").hide(100);
-                $("#toggle-caret").text("▶");
-                $("#main-content").css("width", "95%");
-                sideNavShown = false;
-              } else {
-                $("#side-nav").show(100);
-                $("#toggle-caret").text("◀");
-                $("#main-content").css("width", "80%");
-                sideNavShown = true;
-              }
-            });
+    script(src='/js/sideNavToggle.js')
 
-          };
-      sideNavToggle();
 
         
 
