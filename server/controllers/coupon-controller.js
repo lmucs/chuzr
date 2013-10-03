@@ -66,7 +66,6 @@ module.exports = function (app) {
 	res.send(200);
   });
 
-  //Untested & Incomplete
   app.delete('/coupons/:id', function (req, res) {
     id = validateCouponId(req.params.id);
     coupon = Coupon.findById(id);
