@@ -2,11 +2,11 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var couponSchema = new Schema({
-  issuer: String,
-  value: String,
-  promoCode: String,
-  expirationDate: Date,
-  imageURL: String
+    issuer			: String
+  , value			: String
+  , promoCode		: String
+  , expirationDate	: Date
+  , imageURL		: String
 });
 
 var Coupon = mongoose.model('Coupon', couponSchema);
