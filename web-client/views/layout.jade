@@ -10,7 +10,7 @@ html
       div(class='navbar-inner')
         a(class='brand', href='#') Chuzr
         ul(class='nav')
-          li(class = 'active'): a(href='#') Home
+          li: a(href='/home') Home
           li: a(href='#') Play
           li: a(href='#') Social
         form(class='navbar-search')
@@ -26,8 +26,9 @@ html
           
     div(class='row-fluid')
       div(class='span2 offset1', id='side-nav')
-       h1 Chuzr
-         hr
+       h1 Chuzr 
+         button(class='btn btn-primary', id='hide-side-nav') <
+       hr
        ul(class='nav nav-tabs nav-stacked', id='side-nav-links')
         li: a(href='#') Home 
         li: a(href='#') Play 
@@ -37,8 +38,10 @@ html
         li: a(href='#') Social
         hr
         li: a(href='#') Settings
-        
-      div(class='span5 ', id='main-content')
+      div(class='span1', id='show-side-nav-div')
+        h1: button(class='btn btn-primary', id='show-side-nav') >
+      
+      div(class='span5', id='main-content')
         block content
     
     
@@ -50,6 +53,18 @@ html
           li: a(href='#') FAQ 
           li: a(href='#') feedback 
           li: a(href='#') privacy
-      
+     
     script(src='/js/jquery-1.10.2.js')
     script(src='/js/bootstrap.js')
+    script
+      $("#show-side-nav-div").hide()    
+      $("#hide-side-nav").click(function(){
+        $("#side-nav").hide()
+        $("#show-side-nav-div").show()
+      });
+      
+      $("#show-side-nav").click(function(){
+        $("#side-nav").show()
+        $("#show-side-nav-div").hide()
+      });
+      

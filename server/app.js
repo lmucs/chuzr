@@ -22,6 +22,7 @@ if ('development' == app.get('env')) {
 require('./controllers/user-controller')(app)
 require('./controllers/product-controller')(app)
 require('./controllers/vote-controller')(app)
+require('./controllers/coupon-controller')(app)
 
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
