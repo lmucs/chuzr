@@ -2,17 +2,20 @@ var VALID_PROPERTIES = [
   'issuer', 'value', 'promoCode', 'expirationDate', 'imageURL'
 ];
 
+/** Adds couponData values to coupon if the corresponding properties are valid **/
+function addProperties (coupon, couponData) {
+  VALID_PROPERTIES.forEach(function (property) {
+    if (property in couponData) {
+      coupon[property] = couponData[property];
+    }
+  }, coupon);
+};
+
+/** Coupon Constructor **/
 module.exports = Coupon = function (couponData) {
 
   this.id = maxId++;
-
-  VALID_PROPERTIES.forEach(function (property) {
-    if (property in couponData) {
-      this[property] = couponData[property];
-    }
-  }, this);
-
-  //mock data
+  addProperties(this, couponData);
   mockCoupons.push(this);
 }
 
@@ -23,12 +26,13 @@ Object.defineProperty(Coupon, 'NO_SUCH_COUPON', {
   value: {}
 });
 
+/** Returns all coupons **/
 Coupon.findAll = function (skip, limit) {
   return mockCoupons.slice(skip, skip + limit);
 }
 
+/** Returns coupon of the given id **/
 Coupon.findById = function (id) {
-  // HAHA OBVIOUSLY THIS IS NOT THE REAL FINAL CODE
   for (var i = 0; i < mockCoupons.length; i++) {
     if (+id === mockCoupons[i].id) {
       return mockCoupons[i];
@@ -37,6 +41,7 @@ Coupon.findById = function (id) {
   throw Coupon.NO_SUCH_COUPON;
 }
 
+/** Returns all coupons with the same issuer **/
 Coupon.findByIssuer = function (issuer) {
   var coupons = [];
 
@@ -49,6 +54,7 @@ Coupon.findByIssuer = function (issuer) {
   return coupons;
 }
 
+/** Returns all coupons that are expired or all coupons that are active **/
 Coupon.findByStatus = function (status) {
   var coupons = [];
   var currentDate = new Date();
@@ -71,18 +77,16 @@ Coupon.findByStatus = function (status) {
   return coupons;
 }
 
-Coupon.prototype.isExpired = function () {
+/** Change coupon data **/
+Coupon.update = function (obj, couponData) {
+  addProperties(obj, couponData);
+}
+
+//Untested
+/*Coupon.prototype.isExpired = function () {
   var currentDate = new Date();
   return this.expirationDate < currentDate;
-};
-
-Coupon.prototype.save = function (id, couponData) {
-
-}
-
-Coupon.prototype.delete = function (id) {
-
-}
+};*/
 
 var mockCoupons = [];
 var maxId = 0;

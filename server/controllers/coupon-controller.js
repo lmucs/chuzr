@@ -9,6 +9,7 @@ module.exports = function (app) {
     return id;
   };
 
+  /** Gets all coupons **/
   app.get('/coupons', function (req, res) {
     var parameterFlag = false,
         coupons = [];
@@ -46,25 +47,26 @@ module.exports = function (app) {
     }
   });
   
+  /** Creates a coupon **/
   app.post('/coupons', function (req, res) {
-    var coupon = new Coupon();
-    coupon.save(function (error) {
-      return error ? res.send(error) : res.send("coupon added");
-    });
+	var coupon = new Coupon(req.body)//{
+	res.send(201, coupon);
   });
 
-
-  
-  // TODO get coupons by expiration date? Like if they're still valid or not
-
+  /** Updates a coupon **/
   app.put('/coupons/:id', function (req, res) {
     id = validateCouponId(req.params.id);
-    coupon = Coupon.findById(id);
-    coupon.save(function (error) {
-      return error ? res.send(error) : res.send("coupon updated");
-    });
+	var newData = req.body;
+	try {
+	  coupon = Coupon.findById(id);
+	} catch(e) {
+	  res.send(400, "can't update a nonexisting coupon");
+	}
+	Coupon.update(coupon, newData);
+	res.send(200);
   });
 
+  //Untested & Incomplete
   app.delete('/coupons/:id', function (req, res) {
     id = validateCouponId(req.params.id);
     coupon = Coupon.findById(id);
