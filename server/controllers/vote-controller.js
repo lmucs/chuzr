@@ -42,15 +42,7 @@ module.exports = function (app) {
 
   app.post('/votes', function (req, res) {
     //res.send('Creating a vote');
-    var vote = new Vote();
-    //Assuming we are using the mongoose model.js
-    vote.save(function (error) {
-      if (!error) {
-        return res.send("vote added");
-      } else {
-        return res.send(error);
-      }
-    });
+    var vote = new Vote(req.body);
     return res.send(vote);
   });
 
@@ -71,13 +63,6 @@ module.exports = function (app) {
   app.put('/votes/:id', function (req, res) {
     var id = validateVoteId(req.params.id),
         vote = Vote.findById(id);
-    return vote.save(function (error) {
-      if (!error) {
-        res.send("Vote updated");
-      } else {
-        res.send(error);
-      }
-    });
     return res.send(vote);
   });
 
