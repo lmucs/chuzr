@@ -7,8 +7,11 @@ var userSchema = new Schema({
     last: { type: String, trim: true }
   },
   email: String,
-  username: String,
+  login: String,
   hashedPassword: String,
+  avatarURL: String,
+  reputation: Number,
+  socialHandle: String,
   salt: String
 });
 

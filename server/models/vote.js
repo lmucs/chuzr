@@ -2,6 +2,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var voteSchema = new Schema({
+  userId: Number, //Schema.Types.ObjectId (will use later once functional)
+  productId: Number, //Schema.Types.ObjectTd
   rating: Number
 });
 
@@ -15,28 +17,39 @@ Vote.remove({}, function(err) {
 });
 
 var voteOne = new Vote({
-  rating: 10
+  userId: 1,
+  productId: 32,
+  rating: 8
 });
 voteOne.save(function(err) {
   if (err) console.log(err);
 });
 
+
 var voteTwo = new Vote({
-  rating: 11
+  userId: 0,
+  productId: 30,
+  rating: 4
 });
 voteTwo.save(function(err) {
   if (err) console.log(err);
 });
 
+
 var voteThree = new Vote({
-  rating: 3
+  userId: 0,
+  productId: 15,
+  rating: 9
 });
 voteThree.save(function(err) {
   if (err) console.log(err);
 });
 
+
 var voteFour = new Vote({
-  rating: 7
+  userId: 2,
+  productId: 4,
+  rating: 10
 });
 voteFour.save(function(err) {
   if (err) console.log(err);
