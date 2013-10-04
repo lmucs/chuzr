@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
-var User = require('./../models/user');
-
-mongoose.connect('mongodb://localhost/chuzr_test');
+var User = require('../models/user');
 
 describe('Users', function(){
 

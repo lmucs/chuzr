@@ -67,3 +67,5 @@ var candyUser = new User({
 candyUser.save(function (err) {
     if (err) console.log(err);
 });
+
+module.exports = User
