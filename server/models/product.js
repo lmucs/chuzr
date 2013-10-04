@@ -3,14 +3,14 @@ var mongoose = require('mongoose')
   , ObjectId = Schema.ObjectId;
 
 var productSchema = new Schema({
-    _id         : Schema.Types.ObjectId
+    _id         : ObjectId
   , name        : String
   , description : String
   , imageURL    : String
   , rating      : Number
   , categories  : [String]
   , price       : Number
-  , related     : [String]
+  , related     : [String]    // [ObjectId] for later functionality
 });
 
 module.exports = mongoose.model('Product', productSchema);
