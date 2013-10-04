@@ -10,7 +10,7 @@ var productSchema = new Schema({
   , rating      : Number
   , categories  : [String]
   , price       : Number
-  , related     : [String] //[]Schema.Types.ObjectId
+  , related     : [String]
 });
 
-module.exports = Product = mongoose.model('Product', productSchema);
+module.exports = mongoose.model('Product', productSchema);

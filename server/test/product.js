@@ -1,4 +1,5 @@
-var utils = require('./utils');
+require('./utils');
+
 var Product = require('../models/product');
 
 var productOne = {
