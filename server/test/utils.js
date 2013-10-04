@@ -1,7 +1,8 @@
 /*
- * Require this file in every test file that uses Mongo for testing.
- * It ensures every test starts with connecting to the test database
- * and empties it out, and ends every test by disconnecting.
+ * Require this file at the top of every file that uses Mongo for testing.
+ * It ensures each test is run in the test environment, that each test begins
+ * by connecting to the test database and empties out its collections, and
+ * ends every test by disconnecting.
  */
 
 var config = require('../config/config');
@@ -11,9 +12,9 @@ process.env.NODE_ENV = 'test';
 
 beforeEach(function (done) {
 
-  function clearDB() {
-    for (var i in mongoose.connection.collections) {
-      mongoose.connection.collections[i].remove(function() {});
+  function clearCollections() {
+    for (var collection in mongoose.connection.collections) {
+      mongoose.connection.collections[collection].remove(function() {});
     }
     return done();
   }
@@ -21,10 +22,10 @@ beforeEach(function (done) {
   if (mongoose.connection.readyState === 0) {
     mongoose.connect(config.test.db, function (err) {
       if (err) throw err;
-      return clearDB();
+      return clearCollections();
     });
   } else {
-    return clearDB();
+    return clearCollections();
   }
 });
 

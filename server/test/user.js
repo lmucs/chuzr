@@ -31,8 +31,8 @@ var candyUser = {
 
 describe('Users', function(){
 
-  describe('#save()', function () {
-    it('should save without error', function (done) {
+  describe('#create()', function () {
+    it('should create without error', function (done) {
       User.create(lunaUser, function (err) {
         if (err) throw err;
         done();

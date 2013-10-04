@@ -1,5 +1,6 @@
 require('./utils');
 
+var should = require('should');
 var Product = require('../models/product');
 
 var productOne = {
@@ -24,10 +25,18 @@ var productTwo = {
 
 describe('Products', function () {
 
-  describe('#save()', function () {
-    it('should save without error', function (done) {
+  describe('#create()', function () {
+    it('should create without error', function (done) {
       Product.create(productOne, function (err) {
         if (err) throw err;
+        done();
+      })
+    })
+    it('should assign all properties on creation', function (done) {
+      Product.create(productOne, function (err, product) {
+        should.not.exist(err);
+        product.name.should.equal("Furby")
+        product.rating.should.equal(8)
         done();
       })
     })
