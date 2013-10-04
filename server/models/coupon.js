@@ -11,4 +11,4 @@ var couponSchema = new Schema({
   , imageURL		: String
 });
 
-var Coupon = mongoose.model('Coupon', couponSchema);
+module.exports = mongoose.model('Coupon', couponSchema);

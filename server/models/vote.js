@@ -9,4 +9,4 @@ var voteSchema = new Schema({
   , rating      : Number
 });
 
-var Vote = mongoose.model('Vote', voteSchema);
+module.exports = mongoose.model('Vote', voteSchema);

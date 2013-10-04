@@ -2,7 +2,7 @@ require('./utils');
 
 var Coupon = require('../models/coupon');
 
-var couponOne = new Coupon{
+var couponOne = {
   issuer: "target",
   value: "Free TV",
   promoCode: "XJSD32",
@@ -10,7 +10,7 @@ var couponOne = new Coupon{
   imageURL: "http://opportunemployment.com/wp-content/uploads/2010/05/old-tv-set.jpg"
 };
 
-var couponTwo = new Coupon{
+var couponTwo = {
   issuer: "amazon",
   value: "30% off Wii-U",
   promoCode: "EFHS79",
@@ -18,7 +18,7 @@ var couponTwo = new Coupon{
   imageURL: "http://www.prlog.org/11992135-amazon-coupon-code-october-2012.jpg"
 };
 
-var couponThree = new Coupon{
+var couponThree = {
   issuer: "best_buy",
   value: "20% off Best Buy",
   promoCode: "AJGD51",
@@ -26,7 +26,7 @@ var couponThree = new Coupon{
   imageURL: "http://cdn.savings.com/img/Best-Buy-Coupon.jpeg"
 };
 
-var couponFour = new Coupon{
+var couponFour = {
   issuer: "lmu_bookstore",
   value: "Free Textbooks!",
   promoCode: "NEVR11",

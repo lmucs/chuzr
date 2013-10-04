@@ -1,64 +1,37 @@
 require('./utils');
 
-var User = require('../models/vote');
+var Vote = require('../models/vote');
 
-var voteOne = new Vote({
+var voteOne = {
     userId: 1,
     productId: 32,
     rating: 8
-});
+};
 
-var voteTwo = new Vote({
+var voteTwo = {
     userId: 0,
     productId: 30,
     rating: 4
-});
+};
 
-var voteThree = new Vote({
+var voteThree = {
     userId: 0,
     productId: 15,
     rating: 9
-});
+};
 
-var voteFour = new Vote({
+var voteFour = {
     userId: 2,
     productId: 4,
     rating: 10
-});
+};
 
 
-describe('Users', function(){
+describe('Votes', function(){
 
   describe('#create()', function () {
     it('should create without error', function (done) {
       Vote.create(voteOne, function (err) {
-        if (err) throw err;
-        done();
-      })
-    })
-  })
-
-  describe('#create()', function () {
-    it('should create without error', function (done) {
-      Vote.create(voteTwo, function (err) {
-        if (err) throw err;
-        done();
-      })
-    })
-  })
-
-  describe('#create()', function () {
-    it('should create without error', function (done) {
-      Vote.create(voteThree, function (err) {
-        if (err) throw err;
-        done();
-      })
-    })
-  })
-
-  describe('#create()', function () {
-    it('should create without error', function (done) {
-      Vote.create(voteFour, function (err) {
         if (err) throw err;
         done();
       })
