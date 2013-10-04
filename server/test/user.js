@@ -40,4 +40,22 @@ describe('Users', function(){
     })
   })
 
+  describe('#create()', function () {
+    it('should create without error', function (done) {
+      User.create(clifUser, function (err) {
+        if (err) throw err;
+        done();
+      })
+    })
+  })
+
+  describe('#create()', function () {
+    it('should create without error', function (done) {
+      User.create(candyUser, function (err) {
+        if (err) throw err;
+        done();
+      })
+    })
+  })
+
 });
