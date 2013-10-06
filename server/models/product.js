@@ -43,8 +43,8 @@ Product.prototype.save = function (id, productData) {
 
 }
 
-Product.prototype.delete = function (id) {
-        
+Product.delete = function (id) {
+    return mockProducts.splice(id, 1);
 }
 
 //Fake storage until DB in
