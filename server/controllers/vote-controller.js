@@ -43,7 +43,7 @@ module.exports = function (app) {
   app.post('/votes', function (req, res) {
     //res.send('Creating a vote');
     var vote = new Vote(req.body);
-    return res.send(vote);
+    return res.send(201, vote);
   });
 
   // Get a vote by its id
