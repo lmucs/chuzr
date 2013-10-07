@@ -50,7 +50,7 @@ describe('Coupons', function(){
         coupon.issuer.should.equal("target")
         coupon.value.should.equal("Free TV")
         coupon.promoCode.should.equal("XJSD32")
-        //coupon.expirationDate.should.equal(new Date(2013, 11, 6))  TODO figure out how to test dates
+        coupon.expirationDate.getTime().should.equal(1386316800000)  //TODO figure out how to test dates
         coupon.imageURL.should.equal("http://opportunemployment.com/wp-content/uploads/2010/05/old-tv-set.jpg")
         done();
       })
