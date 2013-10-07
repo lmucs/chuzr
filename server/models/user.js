@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
   , ObjectId = Schema.ObjectId;
 
 var userSchema = new Schema({
-    _id             : Schema.Types.ObjectId
+    _id             : ObjectId
   , name            : {
         first   : String
       , last    : { 
