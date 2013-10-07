@@ -1,5 +1,6 @@
 require('./utils');
 
+var should = require('should');
 var Coupon = require('../models/coupon');
 
 var couponOne = {
@@ -43,30 +44,14 @@ describe('Coupons', function(){
         done();
       })
     })
-  })
-
-  describe('#create()', function () {
-    it('should create without error', function (done) {
-      Coupon.create(couponTwo, function (err) {
-        if (err) throw err;
-        done();
-      })
-    })
-  })
-
-  describe('#create()', function () {
-    it('should create without error', function (done) {
-      Coupon.create(couponThree, function (err) {
-        if (err) throw err;
-        done();
-      })
-    })
-  })
-
-  describe('#create()', function () {
-    it('should create without error', function (done) {
-      Coupon.create(couponFour, function (err) {
-        if (err) throw err;
+    it('should assign all properties on creation', function (done) {
+      Coupon.create(couponOne, function (err, coupon) {
+        should.not.exist(err);
+        coupon.issuer.should.equal("target")
+        coupon.value.should.equal("Free TV")
+        coupon.promoCode.should.equal("XJSD32")
+        //coupon.expirationDate.should.equal(new Date(2013, 11, 6))  TODO figure out how to test dates
+        coupon.imageURL.should.equal("http://opportunemployment.com/wp-content/uploads/2010/05/old-tv-set.jpg")
         done();
       })
     })
