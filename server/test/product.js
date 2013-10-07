@@ -1,7 +1,6 @@
 require('./utils');
 
 var should = require('should');
-var assert = require('assert');
 var Product = require('../models/product');
 
 var productOne = {
@@ -41,7 +40,10 @@ describe('Products', function () {
         product.imageURL.should.equal("http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg")
         product.rating.should.equal(8)
         product.price.should.equal(379.99)
-        //TODO Test the categories and related fields
+
+        //These must be fixed, I simply stringify the arrays and match them
+        product.categories.join().should.equal("tablet,HD")
+        product.related.join().should.equal("iPad,iPad Mini,Microsoft Surface")
         done();
       })
     })
