@@ -5,7 +5,7 @@ for accessing the chuzr data store.  Endpoints include:
 
  * GET /products/{id}
 
- * GET /user/{id}
+ * GET /users/{id}
 
  * POST /votes
 
