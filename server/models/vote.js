@@ -29,24 +29,22 @@ Object.defineProperty(Vote, 'NO_SUCH_VOTE', {
 });
 
 Vote.findById = function (id) {
-    // HAHA OBVIOUSLY THIS IS NOT THE REAL FINAL CODE
-    for (var i = 0; i < mockVotes.length; i++) {
-        if (+id === mockVotes[i].id) {
-            return mockVotes[i];
-        }
+  for (var i = 0; i < mockVotes.length; i++) {
+    if (+id === mockVotes[i].id) {
+      return mockVotes[i];
     }
-    throw Vote.NO_SUCH_VOTE;
+  }
+  throw Vote.NO_SUCH_VOTE;
 }
 
 Vote.findByUser = function (userId) {
-    var votes = [];
-    for (var i = 0; i < mockVotes.length; i++) {
-        if (+userId === mockVotes[i].userId) {
-            votes.push(mockVotes[i]);
-        }
+  var votes = [];
+  for (var i = 0; i < mockVotes.length; i++) {
+    if (+userId === mockVotes[i].userId) {
+      votes.push(mockVotes[i]);
     }
-    //TODO: throw error if user doesn't exist or if that user doesn't have any votes
-    return votes;
+  }
+  return votes;
 }
 
 Vote.findByProduct = function (productId) {
@@ -56,12 +54,23 @@ Vote.findByProduct = function (productId) {
       votes.push(mockVotes[i]);
     }
   }
-  //TODO: throw error if product doesn't exist or if that product doesn't have any votes
   return votes;
 }
 
 Vote.findAll = function (skip, limit) {
-    return mockVotes.slice(skip, skip + limit);
+  return mockVotes.slice(skip, skip + limit);
+}
+
+Vote.arrayIntersection = function (array1, array2) {
+  var intersectedVotes = [];
+  array1.forEach(function (vote) {
+    array2.forEach(function (comparisonVote) {
+      if (vote.id === comparisonVote.id) {
+        intersectedVotes.push(vote);
+      }
+    }, this);
+  }, this);
+  return intersectedVotes;
 }
 
 var mockVotes = [];

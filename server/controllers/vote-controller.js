@@ -11,38 +11,39 @@ module.exports = function (app) {
 
   app.get('/votes', function (req, res) {
     var parameterFlag = false,
-        votes = [];
+        votes = [],
+        votesByUserId = [],
+        votesByProductId = [],
+        skip = +req.query.skip || 0,
+        limit = +req.query.limit || 10;
+
     if (req.query.userId) {
       //TODO add limit to findByUser
-      votes.push.apply(votes, Vote.findByUser(req.query.userId));
+      votesByUserId = Vote.findByUser(req.query.userId);
       parameterFlag = true;
     }
     if (req.query.productId) {
-      votes.push.apply(votes, Vote.findByProduct(req.query.productId));
+      votesByProductId = Vote.findByProduct(req.query.productId);
       parameterFlag = true;
     }
     if (!parameterFlag) {
-      console.log("Status Code: ", res.statusCode);
-      skip = +req.query.skip || 0;
-      limit = +req.query.limit || 10;
-      console.log('skip = %d, limit = %d', skip, limit);
       return res.json(Vote.findAll(skip=skip, limit=limit));
     }
-    return res.json(votes);
+    
+    if (req.query.userId && req.query.productId) {
+      votes = Vote.arrayIntersection(votesByUserId, votesByProductId);
+    }
+    else {
+      votes.push.apply(votes, votesByProductId);
+      votes.push.apply(votes, votesByUserId);
+    }
+    return res.json(votes.slice(0, limit));
   });
 
   app.post('/votes', function (req, res) {
     //res.send('Creating a vote');
-    var vote = new Vote();
-    //Assuming we are using the mongoose model.js
-    vote.save(function (error) {
-      if (!error) {
-        return res.send("vote added");
-      } else {
-        return res.send(error);
-      }
-    });
-    return res.send(vote);
+    var vote = new Vote(req.body);
+    return res.send(201, vote);
   });
 
   // Get a vote by its id
@@ -62,13 +63,6 @@ module.exports = function (app) {
   app.put('/votes/:id', function (req, res) {
     var id = validateVoteId(req.params.id),
         vote = Vote.findById(id);
-    return vote.save(function (error) {
-      if (!error) {
-        res.send("Vote updated");
-      } else {
-        res.send(error);
-      }
-    });
     return res.send(vote);
   });
 
