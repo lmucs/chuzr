@@ -19,7 +19,8 @@ var vis = d3.select("body").insert("svg:svg", "h2")
     .attr("transform", "translate(" + (w - r) / 2 + "," + (h - r) / 2 + ")");
 
 //d3.json("circlePackTestData.json", function(data) {
-createTestData(function (data) {    
+createTestData(function (data) {  
+	console.log(data);
     node = root = data;
     var nodes = pack.nodes(root);
 

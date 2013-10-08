@@ -66,9 +66,12 @@ module.exports = function (app) {
     return res.send(vote);
   });
 
-  app.delete('votes/:id', function (req, res) {
+  app.delete('/votes/:id', function (req, res) {
     var id = validateVoteId(req.params.id),
         vote = Vote.findById(id);
+    Vote.delete(id);
+    res.send("Vote Deleted");
+    /*
     return vote.remove(function (error) {
       if (!error) {
         return res.send("Vote removed");
@@ -76,5 +79,6 @@ module.exports = function (app) {
         res.send(error);
       }
     });
+    */
   });
 };

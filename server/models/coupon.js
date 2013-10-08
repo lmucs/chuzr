@@ -82,11 +82,9 @@ Coupon.update = function (obj, couponData) {
   addProperties(obj, couponData);
 }
 
-//Untested
-/*Coupon.prototype.isExpired = function () {
-  var currentDate = new Date();
-  return this.expirationDate < currentDate;
-};*/
+Coupon.delete = function (id) {
+    return mockCoupons.splice(id, 1);
+}
 
 var mockCoupons = [];
 var maxId = 0;

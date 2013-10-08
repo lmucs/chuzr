@@ -73,6 +73,10 @@ Vote.arrayIntersection = function (array1, array2) {
   return intersectedVotes;
 }
 
+Vote.delete = function (id) {
+    return mockVotes.splice(id, 1);
+}
+
 var mockVotes = [];
 var maxId = 0;
 
