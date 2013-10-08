@@ -64,6 +64,10 @@ Vote.findAll = function (skip, limit) {
     return mockVotes.slice(skip, skip + limit);
 }
 
+Vote.delete = function (id) {
+    return mockVotes.splice(id, 1);
+}
+
 var mockVotes = [];
 var maxId = 0;
 

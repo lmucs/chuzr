@@ -47,10 +47,13 @@ module.exports = function (app) {
   });
   
   app.post('/coupons', function (req, res) {
-    var coupon = new Coupon();
+    var coupon = new Coupon(req.body);
+    res.send("Coupon Added");
+    /*
     coupon.save(function (error) {
       return error ? res.send(error) : res.send("coupon added");
     });
+    */
   });
 
 
@@ -68,9 +71,13 @@ module.exports = function (app) {
   app.delete('/coupons/:id', function (req, res) {
     id = validateCouponId(req.params.id);
     coupon = Coupon.findById(id);
+    Coupon.delete(id);
+    res.send("Coupon Deleted");
+    /*
     coupon.remove(function (error) {
       return error ? res.send(error) : res.send("coupon removed");
     });
+    */
   });
 }
   

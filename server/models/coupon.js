@@ -80,8 +80,8 @@ Coupon.prototype.save = function (id, couponData) {
 
 }
 
-Coupon.prototype.delete = function (id) {
-
+Coupon.delete = function (id) {
+    return mockCoupons.splice(id, 1);
 }
 
 var mockCoupons = [];
