@@ -8,6 +8,7 @@
   "dependencies": {
     "express": "3.3.8",
     "mongoose": "3.x.x",
-    "json2csv": "2.1.0"
+    "json2csv": "2.x.x",
+    "json2html": "0.0.8"
   }
 }
