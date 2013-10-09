@@ -3,8 +3,7 @@ var mongoose = require('mongoose')
   , ObjectId = Schema.ObjectId;
 
 var productSchema = new Schema({
-    _id         : ObjectId
-  , name        : String
+    name        : String
   , description : String
   , imageURL    : String
   , rating      : Number
