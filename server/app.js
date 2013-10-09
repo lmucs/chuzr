@@ -2,6 +2,7 @@ var express = require('express'),
     http = require('http'),
     fs = require('fs'),
     mongoose = require('mongoose'),
+    cors = require('cors'),
     env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env];
 
@@ -11,6 +12,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(cors());
 
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
