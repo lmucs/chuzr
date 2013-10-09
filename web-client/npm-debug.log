@@ -1,0 +1,931 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'recess',
+1 verbose cli   'connect',
+1 verbose cli   'uglify-js',
+1 verbose cli   'jshint',
+1 verbose cli   '-g' ]
+2 info using npm@1.3.8
+3 info using node@v0.10.18
+4 verbose cache add [ 'recess', null ]
+5 verbose cache add name=undefined spec="recess" args=["recess",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'recess',
+6 verbose parsed url   path: 'recess',
+6 verbose parsed url   href: 'recess' }
+7 verbose cache add [ 'connect', null ]
+8 verbose cache add name=undefined spec="connect" args=["connect",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: 'connect',
+9 verbose parsed url   path: 'connect',
+9 verbose parsed url   href: 'connect' }
+10 verbose cache add [ 'uglify-js', null ]
+11 verbose cache add name=undefined spec="uglify-js" args=["uglify-js",null]
+12 verbose parsed url { protocol: null,
+12 verbose parsed url   slashes: null,
+12 verbose parsed url   auth: null,
+12 verbose parsed url   host: null,
+12 verbose parsed url   port: null,
+12 verbose parsed url   hostname: null,
+12 verbose parsed url   hash: null,
+12 verbose parsed url   search: null,
+12 verbose parsed url   query: null,
+12 verbose parsed url   pathname: 'uglify-js',
+12 verbose parsed url   path: 'uglify-js',
+12 verbose parsed url   href: 'uglify-js' }
+13 verbose cache add [ 'jshint', null ]
+14 verbose cache add name=undefined spec="jshint" args=["jshint",null]
+15 verbose parsed url { protocol: null,
+15 verbose parsed url   slashes: null,
+15 verbose parsed url   auth: null,
+15 verbose parsed url   host: null,
+15 verbose parsed url   port: null,
+15 verbose parsed url   hostname: null,
+15 verbose parsed url   hash: null,
+15 verbose parsed url   search: null,
+15 verbose parsed url   query: null,
+15 verbose parsed url   pathname: 'jshint',
+15 verbose parsed url   path: 'jshint',
+15 verbose parsed url   href: 'jshint' }
+16 silly lockFile d0d1f171-recess recess
+17 verbose lock recess /Users/jpiatos13/.npm/d0d1f171-recess.lock
+18 silly lockFile f11a107f-connect connect
+19 verbose lock connect /Users/jpiatos13/.npm/f11a107f-connect.lock
+20 silly lockFile d31cae06-uglify-js uglify-js
+21 verbose lock uglify-js /Users/jpiatos13/.npm/d31cae06-uglify-js.lock
+22 silly lockFile da5c03cb-jshint jshint
+23 verbose lock jshint /Users/jpiatos13/.npm/da5c03cb-jshint.lock
+24 silly lockFile d0d1f171-recess recess
+25 silly lockFile d0d1f171-recess recess
+26 silly lockFile f11a107f-connect connect
+27 silly lockFile f11a107f-connect connect
+28 silly lockFile d31cae06-uglify-js uglify-js
+29 silly lockFile d31cae06-uglify-js uglify-js
+30 silly lockFile da5c03cb-jshint jshint
+31 silly lockFile da5c03cb-jshint jshint
+32 verbose addNamed [ 'recess', '' ]
+33 verbose addNamed [ null, '*' ]
+34 silly lockFile e131134d-recess recess@
+35 verbose lock recess@ /Users/jpiatos13/.npm/e131134d-recess.lock
+36 verbose addNamed [ 'connect', '' ]
+37 verbose addNamed [ null, '*' ]
+38 silly lockFile 6c45e0f3-connect connect@
+39 verbose lock connect@ /Users/jpiatos13/.npm/6c45e0f3-connect.lock
+40 verbose addNamed [ 'uglify-js', '' ]
+41 verbose addNamed [ null, '*' ]
+42 silly lockFile 679a1028-uglify-js uglify-js@
+43 verbose lock uglify-js@ /Users/jpiatos13/.npm/679a1028-uglify-js.lock
+44 verbose addNamed [ 'jshint', '' ]
+45 verbose addNamed [ null, '*' ]
+46 silly lockFile a02a2468-jshint jshint@
+47 verbose lock jshint@ /Users/jpiatos13/.npm/a02a2468-jshint.lock
+48 silly addNameRange { name: 'recess', range: '*', hasData: false }
+49 silly addNameRange { name: 'connect', range: '*', hasData: false }
+50 silly addNameRange { name: 'uglify-js', range: '*', hasData: false }
+51 silly addNameRange { name: 'jshint', range: '*', hasData: false }
+52 verbose url raw recess
+53 verbose url resolving [ 'https://registry.npmjs.org/', './recess' ]
+54 verbose url resolved https://registry.npmjs.org/recess
+55 info trying registry request attempt 1 at 21:54:39
+56 http GET https://registry.npmjs.org/recess
+57 verbose url raw connect
+58 verbose url resolving [ 'https://registry.npmjs.org/', './connect' ]
+59 verbose url resolved https://registry.npmjs.org/connect
+60 info trying registry request attempt 1 at 21:54:39
+61 http GET https://registry.npmjs.org/connect
+62 verbose url raw uglify-js
+63 verbose url resolving [ 'https://registry.npmjs.org/', './uglify-js' ]
+64 verbose url resolved https://registry.npmjs.org/uglify-js
+65 info trying registry request attempt 1 at 21:54:39
+66 verbose etag "6CFO6WD43L7HT6IQ08U1YN9WU"
+67 http GET https://registry.npmjs.org/uglify-js
+68 verbose url raw jshint
+69 verbose url resolving [ 'https://registry.npmjs.org/', './jshint' ]
+70 verbose url resolved https://registry.npmjs.org/jshint
+71 info trying registry request attempt 1 at 21:54:39
+72 verbose etag "M2TMJPSKWDI5EY65RAL0EA9M"
+73 http GET https://registry.npmjs.org/jshint
+74 http 304 https://registry.npmjs.org/uglify-js
+75 silly registry.get cb [ 304,
+75 silly registry.get   { server: 'CouchDB/1.3.1 (Erlang OTP/R15B03)',
+75 silly registry.get     etag: '"6CFO6WD43L7HT6IQ08U1YN9WU"',
+75 silly registry.get     date: 'Fri, 04 Oct 2013 04:54:36 GMT',
+75 silly registry.get     'content-length': '0' } ]
+76 verbose etag uglify-js from cache
+77 http 304 https://registry.npmjs.org/jshint
+78 silly registry.get cb [ 304,
+78 silly registry.get   { server: 'CouchDB/1.3.1 (Erlang OTP/R15B03)',
+78 silly registry.get     etag: '"M2TMJPSKWDI5EY65RAL0EA9M"',
+78 silly registry.get     date: 'Fri, 04 Oct 2013 04:54:36 GMT',
+78 silly registry.get     'content-length': '0' } ]
+79 verbose etag jshint from cache
+80 silly addNameRange number 2 { name: 'uglify-js', range: '*', hasData: true }
+81 silly addNameRange versions [ 'uglify-js',
+81 silly addNameRange   [ '0.0.1',
+81 silly addNameRange     '0.0.2',
+81 silly addNameRange     '0.0.3',
+81 silly addNameRange     '0.0.4',
+81 silly addNameRange     '0.0.5',
+81 silly addNameRange     '1.0.1',
+81 silly addNameRange     '1.0.2',
+81 silly addNameRange     '1.0.3',
+81 silly addNameRange     '1.0.4',
+81 silly addNameRange     '1.0.5',
+81 silly addNameRange     '1.0.6',
+81 silly addNameRange     '1.0.7',
+81 silly addNameRange     '1.1.0',
+81 silly addNameRange     '1.1.1',
+81 silly addNameRange     '1.2.0',
+81 silly addNameRange     '1.2.1',
+81 silly addNameRange     '1.2.2',
+81 silly addNameRange     '1.2.3',
+81 silly addNameRange     '1.2.4',
+81 silly addNameRange     '1.2.5',
+81 silly addNameRange     '1.2.6',
+81 silly addNameRange     '1.3.0',
+81 silly addNameRange     '1.3.1',
+81 silly addNameRange     '1.3.2',
+81 silly addNameRange     '1.3.3',
+81 silly addNameRange     '1.3.4',
+81 silly addNameRange     '2.2.0',
+81 silly addNameRange     '2.2.1',
+81 silly addNameRange     '2.2.2',
+81 silly addNameRange     '2.2.3',
+81 silly addNameRange     '2.2.4',
+81 silly addNameRange     '2.2.5',
+81 silly addNameRange     '2.3.0',
+81 silly addNameRange     '2.3.1',
+81 silly addNameRange     '2.3.2',
+81 silly addNameRange     '2.3.3',
+81 silly addNameRange     '2.3.4',
+81 silly addNameRange     '2.3.5',
+81 silly addNameRange     '2.3.6',
+81 silly addNameRange     '1.3.5',
+81 silly addNameRange     '2.4.0' ] ]
+82 verbose addNamed [ 'uglify-js', '2.4.0' ]
+83 verbose addNamed [ '2.4.0', '2.4.0' ]
+84 silly lockFile 7d6882b8-uglify-js-2-4-0 uglify-js@2.4.0
+85 verbose lock uglify-js@2.4.0 /Users/jpiatos13/.npm/7d6882b8-uglify-js-2-4-0.lock
+86 silly lockFile 7d6882b8-uglify-js-2-4-0 uglify-js@2.4.0
+87 silly lockFile 7d6882b8-uglify-js-2-4-0 uglify-js@2.4.0
+88 silly lockFile 679a1028-uglify-js uglify-js@
+89 silly lockFile 679a1028-uglify-js uglify-js@
+90 silly addNameRange number 2 { name: 'jshint', range: '*', hasData: true }
+91 silly addNameRange versions [ 'jshint',
+91 silly addNameRange   [ '0.1.8',
+91 silly addNameRange     '0.1.9',
+91 silly addNameRange     '0.2.0',
+91 silly addNameRange     '0.2.1',
+91 silly addNameRange     '0.2.2',
+91 silly addNameRange     '0.2.3',
+91 silly addNameRange     '0.3.0',
+91 silly addNameRange     '0.3.1',
+91 silly addNameRange     '0.4.0',
+91 silly addNameRange     '0.5.0',
+91 silly addNameRange     '0.5.1',
+91 silly addNameRange     '0.5.2',
+91 silly addNameRange     '0.5.3',
+91 silly addNameRange     '0.5.4',
+91 silly addNameRange     '0.5.5',
+91 silly addNameRange     '0.5.6',
+91 silly addNameRange     '0.5.7',
+91 silly addNameRange     '0.5.8',
+91 silly addNameRange     '0.5.9',
+91 silly addNameRange     '0.6.0',
+91 silly addNameRange     '0.6.1',
+91 silly addNameRange     '0.6.2',
+91 silly addNameRange     '0.6.3',
+91 silly addNameRange     '0.7.0',
+91 silly addNameRange     '0.7.1',
+91 silly addNameRange     '0.7.2',
+91 silly addNameRange     '0.7.3',
+91 silly addNameRange     '0.8.0',
+91 silly addNameRange     '0.8.1',
+91 silly addNameRange     '0.8.2',
+91 silly addNameRange     '0.9.0',
+91 silly addNameRange     '0.9.1',
+91 silly addNameRange     '1.0.0',
+91 silly addNameRange     '1.1.0',
+91 silly addNameRange     '2.0.0',
+91 silly addNameRange     '2.0.1',
+91 silly addNameRange     '2.1.0',
+91 silly addNameRange     '2.1.1',
+91 silly addNameRange     '2.1.2',
+91 silly addNameRange     '2.1.3',
+91 silly addNameRange     '2.1.4',
+91 silly addNameRange     '2.1.5',
+91 silly addNameRange     '2.1.6',
+91 silly addNameRange     '2.1.7',
+91 silly addNameRange     '2.1.8',
+91 silly addNameRange     '2.1.9',
+91 silly addNameRange     '2.1.10',
+91 silly addNameRange     '2.1.11' ] ]
+92 verbose addNamed [ 'jshint', '2.1.11' ]
+93 verbose addNamed [ '2.1.11', '2.1.11' ]
+94 silly lockFile a928d2e0-jshint-2-1-11 jshint@2.1.11
+95 verbose lock jshint@2.1.11 /Users/jpiatos13/.npm/a928d2e0-jshint-2-1-11.lock
+96 silly lockFile 4854f5ca-mjs-org-jshint-jshint-2-1-11-tgz https://registry.npmjs.org/jshint/-/jshint-2.1.11.tgz
+97 verbose lock https://registry.npmjs.org/jshint/-/jshint-2.1.11.tgz /Users/jpiatos13/.npm/4854f5ca-mjs-org-jshint-jshint-2-1-11-tgz.lock
+98 verbose addRemoteTarball [ 'https://registry.npmjs.org/jshint/-/jshint-2.1.11.tgz',
+98 verbose addRemoteTarball   'eb5108fef9ba5ddebb830983f572d242e49e3f96' ]
+99 info retry fetch attempt 1 at 21:54:40
+100 verbose fetch to= /var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/tmp.tgz
+101 http GET https://registry.npmjs.org/jshint/-/jshint-2.1.11.tgz
+102 http 200 https://registry.npmjs.org/recess
+103 silly registry.get cb [ 200,
+103 silly registry.get   { vary: 'Accept',
+103 silly registry.get     server: 'CouchDB/1.3.1 (Erlang OTP/R15B03)',
+103 silly registry.get     etag: '"CKXNVF40OV11VEMIXQHXCAY4"',
+103 silly registry.get     date: 'Fri, 04 Oct 2013 04:54:36 GMT',
+103 silly registry.get     'content-type': 'application/json',
+103 silly registry.get     'content-length': '42182' } ]
+104 silly addNameRange number 2 { name: 'recess', range: '*', hasData: true }
+105 silly addNameRange versions [ 'recess',
+105 silly addNameRange   [ '0.1.0',
+105 silly addNameRange     '1.0.0',
+105 silly addNameRange     '1.0.1',
+105 silly addNameRange     '1.0.2',
+105 silly addNameRange     '1.0.3',
+105 silly addNameRange     '1.0.4',
+105 silly addNameRange     '1.1.0',
+105 silly addNameRange     '1.1.1',
+105 silly addNameRange     '1.1.3',
+105 silly addNameRange     '1.1.4',
+105 silly addNameRange     '1.1.5',
+105 silly addNameRange     '1.1.6',
+105 silly addNameRange     '1.1.7',
+105 silly addNameRange     '1.1.8',
+105 silly addNameRange     '1.1.9' ] ]
+106 verbose addNamed [ 'recess', '1.1.9' ]
+107 verbose addNamed [ '1.1.9', '1.1.9' ]
+108 silly lockFile 21009289-recess-1-1-9 recess@1.1.9
+109 verbose lock recess@1.1.9 /Users/jpiatos13/.npm/21009289-recess-1-1-9.lock
+110 silly lockFile 8f8cecd7-pmjs-org-recess-recess-1-1-9-tgz https://registry.npmjs.org/recess/-/recess-1.1.9.tgz
+111 verbose lock https://registry.npmjs.org/recess/-/recess-1.1.9.tgz /Users/jpiatos13/.npm/8f8cecd7-pmjs-org-recess-recess-1-1-9-tgz.lock
+112 verbose addRemoteTarball [ 'https://registry.npmjs.org/recess/-/recess-1.1.9.tgz',
+112 verbose addRemoteTarball   '831c551f45df87d484c6123ffde91030bef1581a' ]
+113 info retry fetch attempt 1 at 21:54:40
+114 verbose fetch to= /var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/tmp.tgz
+115 http GET https://registry.npmjs.org/recess/-/recess-1.1.9.tgz
+116 http 200 https://registry.npmjs.org/jshint/-/jshint-2.1.11.tgz
+117 http 200 https://registry.npmjs.org/recess/-/recess-1.1.9.tgz
+118 verbose tar unpack /var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/tmp.tgz
+119 silly lockFile e8ff7612-80648-0-3965481179766357-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/package
+120 verbose lock tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/package /Users/jpiatos13/.npm/e8ff7612-80648-0-3965481179766357-package.lock
+121 silly lockFile b739428a-80648-0-3965481179766357-tmp-tgz tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/tmp.tgz
+122 verbose lock tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/tmp.tgz /Users/jpiatos13/.npm/b739428a-80648-0-3965481179766357-tmp-tgz.lock
+123 silly gunzTarPerm modes [ '755', '644' ]
+124 silly gunzTarPerm extractEntry package.json
+125 silly gunzTarPerm extractEntry README.md
+126 silly gunzTarPerm extractEntry bin/apply
+127 silly gunzTarPerm extractEntry bin/build
+128 silly gunzTarPerm extractEntry bin/changelog
+129 silly gunzTarPerm extractEntry bin/jshint
+130 silly gunzTarPerm extractEntry bin/land
+131 silly gunzTarPerm extractEntry src/cli.js
+132 silly gunzTarPerm extractEntry src/jshint.js
+133 silly gunzTarPerm extractEntry src/lex.js
+134 silly gunzTarPerm extractEntry src/messages.js
+135 silly gunzTarPerm extractEntry src/reg.js
+136 silly gunzTarPerm extractEntry src/state.js
+137 silly gunzTarPerm extractEntry src/style.js
+138 silly gunzTarPerm extractEntry src/vars.js
+139 silly gunzTarPerm extractEntry src/platforms/rhino.js
+140 silly gunzTarPerm extractEntry src/reporters/checkstyle.js
+141 silly gunzTarPerm extractEntry src/reporters/default.js
+142 silly gunzTarPerm extractEntry src/reporters/jslint_xml.js
+143 silly gunzTarPerm extractEntry src/reporters/non_error.js
+144 verbose tar unpack /var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/tmp.tgz
+145 silly lockFile a85b77e2-0712-0-46546897175721824-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/package
+146 verbose lock tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/package /Users/jpiatos13/.npm/a85b77e2-0712-0-46546897175721824-package.lock
+147 silly lockFile 1fb9a96e-0712-0-46546897175721824-tmp-tgz tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/tmp.tgz
+148 verbose lock tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/tmp.tgz /Users/jpiatos13/.npm/1fb9a96e-0712-0-46546897175721824-tmp-tgz.lock
+149 silly gunzTarPerm modes [ '755', '644' ]
+150 silly gunzTarPerm extractEntry package.json
+151 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+152 silly gunzTarPerm extractEntry .npmignore
+153 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+154 silly gunzTarPerm extractEntry README.md
+155 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+156 silly gunzTarPerm extractEntry LICENSE
+157 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+158 silly gunzTarPerm extractEntry lib/core.js
+159 silly gunzTarPerm modified mode [ 'lib/core.js', 438, 420 ]
+160 silly gunzTarPerm extractEntry lib/index.js
+161 silly gunzTarPerm modified mode [ 'lib/index.js', 438, 420 ]
+162 silly gunzTarPerm extractEntry lib/min.js
+163 silly gunzTarPerm modified mode [ 'lib/min.js', 438, 420 ]
+164 silly gunzTarPerm extractEntry lib/util.js
+165 silly gunzTarPerm modified mode [ 'lib/util.js', 438, 420 ]
+166 silly gunzTarPerm extractEntry lib/compile/inline-images.js
+167 silly gunzTarPerm modified mode [ 'lib/compile/inline-images.js', 438, 420 ]
+168 silly gunzTarPerm extractEntry lib/compile/prefix-whitespace.js
+169 silly gunzTarPerm modified mode [ 'lib/compile/prefix-whitespace.js', 438, 420 ]
+170 silly gunzTarPerm extractEntry lib/compile/strict-property-order.js
+171 silly gunzTarPerm modified mode [ 'lib/compile/strict-property-order.js', 438, 420 ]
+172 silly gunzTarPerm extractEntry lib/compile/zero-units.js
+173 silly gunzTarPerm modified mode [ 'lib/compile/zero-units.js', 438, 420 ]
+174 silly gunzTarPerm extractEntry lib/lint/inline-images.js
+175 silly gunzTarPerm modified mode [ 'lib/lint/inline-images.js', 438, 420 ]
+176 silly gunzTarPerm extractEntry lib/lint/no-IDs.js
+177 silly gunzTarPerm modified mode [ 'lib/lint/no-IDs.js', 438, 420 ]
+178 silly gunzTarPerm extractEntry lib/lint/no-JS-prefix.js
+179 silly gunzTarPerm modified mode [ 'lib/lint/no-JS-prefix.js', 438, 420 ]
+180 silly gunzTarPerm extractEntry lib/lint/no-overqualifying.js
+181 silly gunzTarPerm modified mode [ 'lib/lint/no-overqualifying.js', 438, 420 ]
+182 silly gunzTarPerm extractEntry lib/lint/no-underscores.js
+183 silly gunzTarPerm modified mode [ 'lib/lint/no-underscores.js', 438, 420 ]
+184 silly gunzTarPerm extractEntry lib/lint/no-universal-selectors.js
+185 silly gunzTarPerm modified mode [ 'lib/lint/no-universal-selectors.js', 438, 420 ]
+186 silly gunzTarPerm extractEntry lib/lint/strict-property-order.js
+187 silly gunzTarPerm modified mode [ 'lib/lint/strict-property-order.js', 438, 420 ]
+188 silly gunzTarPerm extractEntry lib/lint/zero-units.js
+189 silly gunzTarPerm modified mode [ 'lib/lint/zero-units.js', 438, 420 ]
+190 silly gunzTarPerm extractEntry .gitattributes
+191 silly gunzTarPerm modified mode [ '.gitattributes', 438, 420 ]
+192 silly gunzTarPerm extractEntry .travis.yml
+193 silly gunzTarPerm modified mode [ '.travis.yml', 438, 420 ]
+194 silly gunzTarPerm extractEntry makefile
+195 silly gunzTarPerm modified mode [ 'makefile', 438, 420 ]
+196 silly gunzTarPerm extractEntry benchmark/index.js
+197 silly gunzTarPerm modified mode [ 'benchmark/index.js', 438, 420 ]
+198 silly gunzTarPerm extractEntry benchmark/benchmark.less
+199 silly gunzTarPerm modified mode [ 'benchmark/benchmark.less', 438, 420 ]
+200 silly gunzTarPerm extractEntry bin/recess
+201 silly gunzTarPerm modified mode [ 'bin/recess', 438, 420 ]
+202 silly gunzTarPerm extractEntry test/index.js
+203 silly gunzTarPerm modified mode [ 'test/index.js', 438, 420 ]
+204 silly gunzTarPerm extractEntry test/compiled/preboot.css
+205 silly gunzTarPerm modified mode [ 'test/compiled/preboot.css', 438, 420 ]
+206 silly gunzTarPerm extractEntry test/compiled/blog.css
+207 silly gunzTarPerm modified mode [ 'test/compiled/blog.css', 438, 420 ]
+208 silly gunzTarPerm extractEntry test/compiled/no-IDs.css
+209 silly gunzTarPerm modified mode [ 'test/compiled/no-IDs.css', 438, 420 ]
+210 silly gunzTarPerm extractEntry test/compiled/no-JS.css
+211 silly gunzTarPerm modified mode [ 'test/compiled/no-JS.css', 438, 420 ]
+212 silly gunzTarPerm extractEntry test/compiled/no-overqualifying.css
+213 silly gunzTarPerm modified mode [ 'test/compiled/no-overqualifying.css', 438, 420 ]
+214 silly gunzTarPerm extractEntry test/compiled/no-underscores.css
+215 silly gunzTarPerm modified mode [ 'test/compiled/no-underscores.css', 438, 420 ]
+216 silly gunzTarPerm extractEntry test/compiled/inline-images.css
+217 silly gunzTarPerm modified mode [ 'test/compiled/inline-images.css', 438, 420 ]
+218 silly gunzTarPerm extractEntry test/compiled/prefixes.css
+219 silly gunzTarPerm modified mode [ 'test/compiled/prefixes.css', 438, 420 ]
+220 silly gunzTarPerm extractEntry test/compiled/property-order.css
+221 silly gunzTarPerm modified mode [ 'test/compiled/property-order.css', 438, 420 ]
+222 silly gunzTarPerm extractEntry test/compiled/simple.css
+223 silly gunzTarPerm modified mode [ 'test/compiled/simple.css', 438, 420 ]
+224 silly gunzTarPerm extractEntry test/compiled/universal-selectors.css
+225 silly gunzTarPerm modified mode [ 'test/compiled/universal-selectors.css', 438, 420 ]
+226 silly gunzTarPerm extractEntry test/compiled/zero-units.css
+227 silly gunzTarPerm modified mode [ 'test/compiled/zero-units.css', 438, 420 ]
+228 silly gunzTarPerm extractEntry test/fixtures/preboot.less
+229 silly gunzTarPerm modified mode [ 'test/fixtures/preboot.less', 438, 420 ]
+230 silly gunzTarPerm extractEntry test/fixtures/blog.css
+231 silly gunzTarPerm modified mode [ 'test/fixtures/blog.css', 438, 420 ]
+232 silly gunzTarPerm extractEntry test/fixtures/no-IDs.css
+233 silly gunzTarPerm modified mode [ 'test/fixtures/no-IDs.css', 438, 420 ]
+234 silly gunzTarPerm extractEntry test/fixtures/no-JS.css
+235 silly gunzTarPerm modified mode [ 'test/fixtures/no-JS.css', 438, 420 ]
+236 silly gunzTarPerm extractEntry test/fixtures/no-overqualifying.css
+237 silly gunzTarPerm modified mode [ 'test/fixtures/no-overqualifying.css', 438, 420 ]
+238 silly gunzTarPerm extractEntry test/fixtures/no-underscores.css
+239 silly gunzTarPerm modified mode [ 'test/fixtures/no-underscores.css', 438, 420 ]
+240 silly gunzTarPerm extractEntry test/fixtures/inline-images.css
+241 silly gunzTarPerm modified mode [ 'test/fixtures/inline-images.css', 438, 420 ]
+242 silly gunzTarPerm extractEntry test/fixtures/prefixes.css
+243 silly gunzTarPerm modified mode [ 'test/fixtures/prefixes.css', 438, 420 ]
+244 silly gunzTarPerm extractEntry test/fixtures/property-order.css
+245 silly gunzTarPerm modified mode [ 'test/fixtures/property-order.css', 438, 420 ]
+246 silly gunzTarPerm extractEntry test/fixtures/simple.css
+247 silly gunzTarPerm modified mode [ 'test/fixtures/simple.css', 438, 420 ]
+248 silly gunzTarPerm extractEntry test/fixtures/sprite.png
+249 silly gunzTarPerm modified mode [ 'test/fixtures/sprite.png', 438, 420 ]
+250 silly gunzTarPerm extractEntry test/fixtures/universal-selectors.css
+251 silly gunzTarPerm modified mode [ 'test/fixtures/universal-selectors.css', 438, 420 ]
+252 silly gunzTarPerm extractEntry test/fixtures/zero-units.css
+253 silly gunzTarPerm modified mode [ 'test/fixtures/zero-units.css', 438, 420 ]
+254 silly gunzTarPerm extractEntry test/sprite.png
+255 silly gunzTarPerm modified mode [ 'test/sprite.png', 438, 420 ]
+256 silly gunzTarPerm extractEntry test/types/compile.js
+257 silly gunzTarPerm modified mode [ 'test/types/compile.js', 438, 420 ]
+258 silly gunzTarPerm extractEntry test/types/errors.js
+259 silly gunzTarPerm modified mode [ 'test/types/errors.js', 438, 420 ]
+260 silly gunzTarPerm extractEntry test/types/lint.js
+261 silly gunzTarPerm modified mode [ 'test/types/lint.js', 438, 420 ]
+262 silly lockFile e8ff7612-80648-0-3965481179766357-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/package
+263 silly lockFile e8ff7612-80648-0-3965481179766357-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/package
+264 silly lockFile b739428a-80648-0-3965481179766357-tmp-tgz tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/tmp.tgz
+265 silly lockFile b739428a-80648-0-3965481179766357-tmp-tgz tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/tmp.tgz
+266 verbose tar pack [ '/Users/jpiatos13/.npm/jshint/2.1.11/package.tgz',
+266 verbose tar pack   '/var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/package' ]
+267 verbose tarball /Users/jpiatos13/.npm/jshint/2.1.11/package.tgz
+268 verbose folder /var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/package
+269 silly lockFile e8ff7612-80648-0-3965481179766357-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/package
+270 verbose lock tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/package /Users/jpiatos13/.npm/e8ff7612-80648-0-3965481179766357-package.lock
+271 silly lockFile c58d7096-13-npm-jshint-2-1-11-package-tgz tar:///Users/jpiatos13/.npm/jshint/2.1.11/package.tgz
+272 verbose lock tar:///Users/jpiatos13/.npm/jshint/2.1.11/package.tgz /Users/jpiatos13/.npm/c58d7096-13-npm-jshint-2-1-11-package-tgz.lock
+273 silly lockFile a85b77e2-0712-0-46546897175721824-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/package
+274 silly lockFile a85b77e2-0712-0-46546897175721824-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/package
+275 silly lockFile 1fb9a96e-0712-0-46546897175721824-tmp-tgz tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/tmp.tgz
+276 silly lockFile 1fb9a96e-0712-0-46546897175721824-tmp-tgz tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/tmp.tgz
+277 verbose tar pack [ '/Users/jpiatos13/.npm/recess/1.1.9/package.tgz',
+277 verbose tar pack   '/var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/package' ]
+278 verbose tarball /Users/jpiatos13/.npm/recess/1.1.9/package.tgz
+279 verbose folder /var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/package
+280 silly lockFile a85b77e2-0712-0-46546897175721824-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/package
+281 verbose lock tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/package /Users/jpiatos13/.npm/a85b77e2-0712-0-46546897175721824-package.lock
+282 silly lockFile 2108e8ae-s13-npm-recess-1-1-9-package-tgz tar:///Users/jpiatos13/.npm/recess/1.1.9/package.tgz
+283 verbose lock tar:///Users/jpiatos13/.npm/recess/1.1.9/package.tgz /Users/jpiatos13/.npm/2108e8ae-s13-npm-recess-1-1-9-package-tgz.lock
+284 silly lockFile e8ff7612-80648-0-3965481179766357-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/package
+285 silly lockFile e8ff7612-80648-0-3965481179766357-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480648-0.3965481179766357/package
+286 silly lockFile c58d7096-13-npm-jshint-2-1-11-package-tgz tar:///Users/jpiatos13/.npm/jshint/2.1.11/package.tgz
+287 silly lockFile c58d7096-13-npm-jshint-2-1-11-package-tgz tar:///Users/jpiatos13/.npm/jshint/2.1.11/package.tgz
+288 silly lockFile 76dfcd6a-atos13-npm-jshint-2-1-11-package /Users/jpiatos13/.npm/jshint/2.1.11/package
+289 verbose lock /Users/jpiatos13/.npm/jshint/2.1.11/package /Users/jpiatos13/.npm/76dfcd6a-atos13-npm-jshint-2-1-11-package.lock
+290 silly lockFile 76dfcd6a-atos13-npm-jshint-2-1-11-package /Users/jpiatos13/.npm/jshint/2.1.11/package
+291 silly lockFile 76dfcd6a-atos13-npm-jshint-2-1-11-package /Users/jpiatos13/.npm/jshint/2.1.11/package
+292 verbose tar unpack /Users/jpiatos13/.npm/jshint/2.1.11/package.tgz
+293 silly lockFile c2f73787-atos13-npm-jshint-2-1-11-package tar:///Users/jpiatos13/.npm/jshint/2.1.11/package
+294 verbose lock tar:///Users/jpiatos13/.npm/jshint/2.1.11/package /Users/jpiatos13/.npm/c2f73787-atos13-npm-jshint-2-1-11-package.lock
+295 silly lockFile c58d7096-13-npm-jshint-2-1-11-package-tgz tar:///Users/jpiatos13/.npm/jshint/2.1.11/package.tgz
+296 verbose lock tar:///Users/jpiatos13/.npm/jshint/2.1.11/package.tgz /Users/jpiatos13/.npm/c58d7096-13-npm-jshint-2-1-11-package-tgz.lock
+297 silly gunzTarPerm modes [ '755', '644' ]
+298 silly gunzTarPerm extractEntry package.json
+299 silly gunzTarPerm extractEntry README.md
+300 silly gunzTarPerm extractEntry bin/apply
+301 silly gunzTarPerm extractEntry bin/build
+302 silly gunzTarPerm extractEntry bin/changelog
+303 silly gunzTarPerm extractEntry bin/jshint
+304 silly gunzTarPerm extractEntry bin/land
+305 silly gunzTarPerm extractEntry src/cli.js
+306 silly gunzTarPerm extractEntry src/jshint.js
+307 silly gunzTarPerm extractEntry src/lex.js
+308 silly gunzTarPerm extractEntry src/messages.js
+309 silly gunzTarPerm extractEntry src/reg.js
+310 silly gunzTarPerm extractEntry src/state.js
+311 silly gunzTarPerm extractEntry src/style.js
+312 silly gunzTarPerm extractEntry src/vars.js
+313 silly gunzTarPerm extractEntry src/platforms/rhino.js
+314 silly gunzTarPerm extractEntry src/reporters/checkstyle.js
+315 silly gunzTarPerm extractEntry src/reporters/default.js
+316 silly gunzTarPerm extractEntry src/reporters/jslint_xml.js
+317 silly gunzTarPerm extractEntry src/reporters/non_error.js
+318 http 200 https://registry.npmjs.org/connect
+319 silly registry.get cb [ 200,
+319 silly registry.get   { vary: 'Accept',
+319 silly registry.get     server: 'CouchDB/1.3.1 (Erlang OTP/R15B03)',
+319 silly registry.get     etag: '"BMYU0F59PKAU2TU809X3GINQK"',
+319 silly registry.get     date: 'Fri, 04 Oct 2013 04:54:36 GMT',
+319 silly registry.get     'content-type': 'application/json',
+319 silly registry.get     'content-length': '289634' } ]
+320 silly addNameRange number 2 { name: 'connect', range: '*', hasData: true }
+321 silly addNameRange versions [ 'connect',
+321 silly addNameRange   [ '0.0.1',
+321 silly addNameRange     '0.0.2',
+321 silly addNameRange     '0.0.3',
+321 silly addNameRange     '0.0.4',
+321 silly addNameRange     '0.0.5',
+321 silly addNameRange     '0.0.6',
+321 silly addNameRange     '0.1.0',
+321 silly addNameRange     '0.2.0',
+321 silly addNameRange     '0.2.1',
+321 silly addNameRange     '0.2.2',
+321 silly addNameRange     '0.2.3',
+321 silly addNameRange     '0.2.4',
+321 silly addNameRange     '0.2.5',
+321 silly addNameRange     '0.2.6',
+321 silly addNameRange     '0.2.7',
+321 silly addNameRange     '0.3.0',
+321 silly addNameRange     '0.4.0',
+321 silly addNameRange     '0.5.0',
+321 silly addNameRange     '0.5.1',
+321 silly addNameRange     '0.5.2',
+321 silly addNameRange     '0.5.3',
+321 silly addNameRange     '0.5.4',
+321 silly addNameRange     '0.5.5',
+321 silly addNameRange     '0.5.6',
+321 silly addNameRange     '0.5.7',
+321 silly addNameRange     '0.5.8',
+321 silly addNameRange     '0.5.9',
+321 silly addNameRange     '0.5.10',
+321 silly addNameRange     '1.0.0',
+321 silly addNameRange     '1.0.1',
+321 silly addNameRange     '1.0.2',
+321 silly addNameRange     '1.0.3',
+321 silly addNameRange     '1.0.4',
+321 silly addNameRange     '1.0.5',
+321 silly addNameRange     '1.0.6',
+321 silly addNameRange     '1.1.0',
+321 silly addNameRange     '1.1.1',
+321 silly addNameRange     '1.1.2',
+321 silly addNameRange     '1.1.3',
+321 silly addNameRange     '1.1.4',
+321 silly addNameRange     '1.1.5',
+321 silly addNameRange     '1.2.0',
+321 silly addNameRange     '1.2.1',
+321 silly addNameRange     '1.2.2',
+321 silly addNameRange     '1.2.3',
+321 silly addNameRange     '1.3.0',
+321 silly addNameRange     '1.4.0',
+321 silly addNameRange     '1.4.1',
+321 silly addNameRange     '1.4.2',
+321 silly addNameRange     '1.4.3',
+321 silly addNameRange     '1.4.4',
+321 silly addNameRange     '1.4.5',
+321 silly addNameRange     '1.4.6',
+321 silly addNameRange     '1.5.0',
+321 silly addNameRange     '1.5.1',
+321 silly addNameRange     '1.5.2',
+321 silly addNameRange     '1.6.0',
+321 silly addNameRange     '1.6.1',
+321 silly addNameRange     '1.6.2',
+321 silly addNameRange     '1.6.3',
+321 silly addNameRange     '1.6.4',
+321 silly addNameRange     '1.7.0',
+321 silly addNameRange     '1.7.1',
+321 silly addNameRange     '1.7.2',
+321 silly addNameRange     '1.7.3',
+321 silly addNameRange     '1.8.0',
+321 silly addNameRange     '1.8.1',
+321 silly addNameRange     '1.8.2',
+321 silly addNameRange     '1.8.3',
+321 silly addNameRange     '1.8.4',
+321 silly addNameRange     '1.8.5',
+321 silly addNameRange     '2.0.0',
+321 silly addNameRange     '2.0.1',
+321 silly addNameRange     '2.0.2',
+321 silly addNameRange     '2.0.3',
+321 silly addNameRange     '1.8.6',
+321 silly addNameRange     '2.1.0',
+321 silly addNameRange     '2.1.1',
+321 silly addNameRange     '2.1.2',
+321 silly addNameRange     '1.8.7',
+321 silly addNameRange     '2.1.3',
+321 silly addNameRange     '2.2.0',
+321 silly addNameRange     '2.2.1',
+321 silly addNameRange     '2.2.2',
+321 silly addNameRange     '2.3.0',
+321 silly addNameRange     '2.3.1',
+321 silly addNameRange     '2.3.2',
+321 silly addNameRange     '2.3.3',
+321 silly addNameRange     '1.9.0',
+321 silly addNameRange     '1.9.1',
+321 silly addNameRange     '2.3.4',
+321 silly addNameRange     '2.3.5',
+321 silly addNameRange     '2.3.6',
+321 silly addNameRange     '2.3.7',
+321 silly addNameRange     '1.9.2',
+321 silly addNameRange     '2.3.8',
+321 silly addNameRange     '2.3.9',
+321 silly addNameRange     '2.4.0',
+321 silly addNameRange     '2.4.1',
+321 silly addNameRange     '2.4.2',
+321 silly addNameRange     '2.4.3',
+321 silly addNameRange     '2.4.4',
+321 silly addNameRange     '2.4.5',
+321 silly addNameRange     '2.4.6',
+321 silly addNameRange     '2.5.0',
+321 silly addNameRange     '2.6.0',
+321 silly addNameRange     '2.6.1',
+321 silly addNameRange     '2.6.2',
+321 silly addNameRange     '2.7.0',
+321 silly addNameRange     '2.7.1',
+321 silly addNameRange     '2.7.2',
+321 silly addNameRange     '2.7.3',
+321 silly addNameRange     '2.7.4',
+321 silly addNameRange     '2.7.5',
+321 silly addNameRange     '2.7.6',
+321 silly addNameRange     '2.7.7',
+321 silly addNameRange     '2.7.8',
+321 silly addNameRange     '2.7.9',
+321 silly addNameRange     '2.7.10',
+321 silly addNameRange     '2.7.11',
+321 silly addNameRange     '2.8.0',
+321 silly addNameRange     '2.8.1',
+321 silly addNameRange     '2.8.2',
+321 silly addNameRange     '2.8.3',
+321 silly addNameRange     '2.8.4',
+321 silly addNameRange     '2.8.5',
+321 silly addNameRange     '2.8.6',
+321 silly addNameRange     '2.8.7',
+321 silly addNameRange     '2.8.8',
+321 silly addNameRange     '2.9.0' ] ]
+322 verbose addNamed [ 'connect', '2.9.0' ]
+323 verbose addNamed [ '2.9.0', '2.9.0' ]
+324 silly lockFile 50a8158d-connect-2-9-0 connect@2.9.0
+325 verbose lock connect@2.9.0 /Users/jpiatos13/.npm/50a8158d-connect-2-9-0.lock
+326 silly lockFile a85b77e2-0712-0-46546897175721824-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/package
+327 silly lockFile a85b77e2-0712-0-46546897175721824-package tar:///var/folders/qk/yl6zn3715pv5n25mtxz0s2rm0000gn/T/npm-27574-Xr92cOtL/1380862480712-0.46546897175721824/package
+328 silly lockFile 2108e8ae-s13-npm-recess-1-1-9-package-tgz tar:///Users/jpiatos13/.npm/recess/1.1.9/package.tgz
+329 silly lockFile 2108e8ae-s13-npm-recess-1-1-9-package-tgz tar:///Users/jpiatos13/.npm/recess/1.1.9/package.tgz
+330 silly lockFile f24c82ab-iatos13-npm-recess-1-1-9-package /Users/jpiatos13/.npm/recess/1.1.9/package
+331 verbose lock /Users/jpiatos13/.npm/recess/1.1.9/package /Users/jpiatos13/.npm/f24c82ab-iatos13-npm-recess-1-1-9-package.lock
+332 silly lockFile f24c82ab-iatos13-npm-recess-1-1-9-package /Users/jpiatos13/.npm/recess/1.1.9/package
+333 silly lockFile f24c82ab-iatos13-npm-recess-1-1-9-package /Users/jpiatos13/.npm/recess/1.1.9/package
+334 verbose tar unpack /Users/jpiatos13/.npm/recess/1.1.9/package.tgz
+335 silly lockFile 53d0c561-iatos13-npm-recess-1-1-9-package tar:///Users/jpiatos13/.npm/recess/1.1.9/package
+336 verbose lock tar:///Users/jpiatos13/.npm/recess/1.1.9/package /Users/jpiatos13/.npm/53d0c561-iatos13-npm-recess-1-1-9-package.lock
+337 silly lockFile 2108e8ae-s13-npm-recess-1-1-9-package-tgz tar:///Users/jpiatos13/.npm/recess/1.1.9/package.tgz
+338 verbose lock tar:///Users/jpiatos13/.npm/recess/1.1.9/package.tgz /Users/jpiatos13/.npm/2108e8ae-s13-npm-recess-1-1-9-package-tgz.lock
+339 silly gunzTarPerm modes [ '755', '644' ]
+340 silly lockFile 50a8158d-connect-2-9-0 connect@2.9.0
+341 silly lockFile 50a8158d-connect-2-9-0 connect@2.9.0
+342 silly lockFile 6c45e0f3-connect connect@
+343 silly lockFile 6c45e0f3-connect connect@
+344 silly gunzTarPerm extractEntry package.json
+345 silly gunzTarPerm extractEntry .npmignore
+346 silly gunzTarPerm extractEntry README.md
+347 silly gunzTarPerm extractEntry LICENSE
+348 silly gunzTarPerm extractEntry benchmark/index.js
+349 silly lockFile c2f73787-atos13-npm-jshint-2-1-11-package tar:///Users/jpiatos13/.npm/jshint/2.1.11/package
+350 silly lockFile c2f73787-atos13-npm-jshint-2-1-11-package tar:///Users/jpiatos13/.npm/jshint/2.1.11/package
+351 silly lockFile c58d7096-13-npm-jshint-2-1-11-package-tgz tar:///Users/jpiatos13/.npm/jshint/2.1.11/package.tgz
+352 silly lockFile c58d7096-13-npm-jshint-2-1-11-package-tgz tar:///Users/jpiatos13/.npm/jshint/2.1.11/package.tgz
+353 silly gunzTarPerm extractEntry benchmark/benchmark.less
+354 silly gunzTarPerm extractEntry .gitattributes
+355 verbose chmod /Users/jpiatos13/.npm/jshint/2.1.11/package.tgz 644
+356 verbose chown /Users/jpiatos13/.npm/jshint/2.1.11/package.tgz [ 501, 20 ]
+357 silly lockFile 4854f5ca-mjs-org-jshint-jshint-2-1-11-tgz https://registry.npmjs.org/jshint/-/jshint-2.1.11.tgz
+358 silly lockFile 4854f5ca-mjs-org-jshint-jshint-2-1-11-tgz https://registry.npmjs.org/jshint/-/jshint-2.1.11.tgz
+359 silly lockFile a928d2e0-jshint-2-1-11 jshint@2.1.11
+360 silly lockFile a928d2e0-jshint-2-1-11 jshint@2.1.11
+361 silly lockFile a02a2468-jshint jshint@
+362 silly lockFile a02a2468-jshint jshint@
+363 silly gunzTarPerm extractEntry bin/recess
+364 silly gunzTarPerm extractEntry lib/core.js
+365 silly gunzTarPerm extractEntry lib/index.js
+366 silly gunzTarPerm extractEntry lib/min.js
+367 silly gunzTarPerm extractEntry lib/util.js
+368 silly gunzTarPerm extractEntry lib/compile/inline-images.js
+369 silly gunzTarPerm extractEntry lib/compile/prefix-whitespace.js
+370 silly gunzTarPerm extractEntry lib/compile/strict-property-order.js
+371 silly gunzTarPerm extractEntry lib/compile/zero-units.js
+372 silly gunzTarPerm extractEntry lib/lint/inline-images.js
+373 silly gunzTarPerm extractEntry lib/lint/no-IDs.js
+374 silly gunzTarPerm extractEntry lib/lint/no-JS-prefix.js
+375 silly gunzTarPerm extractEntry lib/lint/no-overqualifying.js
+376 silly gunzTarPerm extractEntry lib/lint/no-underscores.js
+377 silly gunzTarPerm extractEntry lib/lint/no-universal-selectors.js
+378 silly gunzTarPerm extractEntry lib/lint/strict-property-order.js
+379 silly gunzTarPerm extractEntry lib/lint/zero-units.js
+380 silly gunzTarPerm extractEntry makefile
+381 silly gunzTarPerm extractEntry .travis.yml
+382 silly gunzTarPerm extractEntry test/index.js
+383 silly gunzTarPerm extractEntry test/compiled/preboot.css
+384 silly gunzTarPerm extractEntry test/compiled/blog.css
+385 silly gunzTarPerm extractEntry test/compiled/no-IDs.css
+386 silly gunzTarPerm extractEntry test/compiled/no-JS.css
+387 silly gunzTarPerm extractEntry test/compiled/no-overqualifying.css
+388 silly gunzTarPerm extractEntry test/compiled/no-underscores.css
+389 silly gunzTarPerm extractEntry test/compiled/inline-images.css
+390 silly gunzTarPerm extractEntry test/compiled/prefixes.css
+391 silly gunzTarPerm extractEntry test/compiled/property-order.css
+392 silly gunzTarPerm extractEntry test/compiled/simple.css
+393 silly gunzTarPerm extractEntry test/compiled/universal-selectors.css
+394 silly gunzTarPerm extractEntry test/compiled/zero-units.css
+395 silly gunzTarPerm extractEntry test/fixtures/preboot.less
+396 silly gunzTarPerm extractEntry test/fixtures/blog.css
+397 silly gunzTarPerm extractEntry test/fixtures/no-IDs.css
+398 silly gunzTarPerm extractEntry test/fixtures/no-JS.css
+399 silly gunzTarPerm extractEntry test/fixtures/no-overqualifying.css
+400 silly gunzTarPerm extractEntry test/fixtures/no-underscores.css
+401 silly gunzTarPerm extractEntry test/fixtures/inline-images.css
+402 silly gunzTarPerm extractEntry test/fixtures/prefixes.css
+403 silly gunzTarPerm extractEntry test/fixtures/property-order.css
+404 silly gunzTarPerm extractEntry test/fixtures/simple.css
+405 silly gunzTarPerm extractEntry test/fixtures/sprite.png
+406 silly gunzTarPerm extractEntry test/fixtures/universal-selectors.css
+407 silly gunzTarPerm extractEntry test/fixtures/zero-units.css
+408 silly gunzTarPerm extractEntry test/sprite.png
+409 silly gunzTarPerm extractEntry test/types/compile.js
+410 silly gunzTarPerm extractEntry test/types/errors.js
+411 silly gunzTarPerm extractEntry test/types/lint.js
+412 silly lockFile 53d0c561-iatos13-npm-recess-1-1-9-package tar:///Users/jpiatos13/.npm/recess/1.1.9/package
+413 silly lockFile 53d0c561-iatos13-npm-recess-1-1-9-package tar:///Users/jpiatos13/.npm/recess/1.1.9/package
+414 silly lockFile 2108e8ae-s13-npm-recess-1-1-9-package-tgz tar:///Users/jpiatos13/.npm/recess/1.1.9/package.tgz
+415 silly lockFile 2108e8ae-s13-npm-recess-1-1-9-package-tgz tar:///Users/jpiatos13/.npm/recess/1.1.9/package.tgz
+416 verbose chmod /Users/jpiatos13/.npm/recess/1.1.9/package.tgz 644
+417 verbose chown /Users/jpiatos13/.npm/recess/1.1.9/package.tgz [ 501, 20 ]
+418 silly lockFile 8f8cecd7-pmjs-org-recess-recess-1-1-9-tgz https://registry.npmjs.org/recess/-/recess-1.1.9.tgz
+419 silly lockFile 8f8cecd7-pmjs-org-recess-recess-1-1-9-tgz https://registry.npmjs.org/recess/-/recess-1.1.9.tgz
+420 silly lockFile 21009289-recess-1-1-9 recess@1.1.9
+421 silly lockFile 21009289-recess-1-1-9 recess@1.1.9
+422 silly lockFile e131134d-recess recess@
+423 silly lockFile e131134d-recess recess@
+424 silly resolved [ { name: 'uglify-js',
+424 silly resolved     description: 'JavaScript parser, mangler/compressor and beautifier toolkit',
+424 silly resolved     homepage: 'http://lisperator.net/uglifyjs',
+424 silly resolved     main: 'tools/node.js',
+424 silly resolved     version: '2.4.0',
+424 silly resolved     engines: { node: '>=0.4.0' },
+424 silly resolved     maintainers: [ [Object] ],
+424 silly resolved     repository: { type: 'git', url: 'https://github.com/mishoo/UglifyJS2.git' },
+424 silly resolved     dependencies:
+424 silly resolved      { async: '~0.2.6',
+424 silly resolved        'source-map': '~0.1.7',
+424 silly resolved        optimist: '~0.3.5',
+424 silly resolved        'uglify-to-browserify': '~1.0.0' },
+424 silly resolved     browserify: { transform: [Object] },
+424 silly resolved     bin: { uglifyjs: 'bin/uglifyjs' },
+424 silly resolved     scripts: { test: 'node test/run-tests.js' },
+424 silly resolved     readme: 'UglifyJS 2\n==========\n[![Build Status](https://travis-ci.org/mishoo/UglifyJS2.png)](https://travis-ci.org/mishoo/UglifyJS2)\n\nUglifyJS is a JavaScript parser, minifier, compressor or beautifier toolkit.\n\nThis page documents the command line utility.  For\n[API and internals documentation see my website](http://lisperator.net/uglifyjs/).\nThere\'s also an\n[in-browser online demo](http://lisperator.net/uglifyjs/#demo) (for Firefox,\nChrome and probably Safari).\n\nInstall\n-------\n\nFirst make sure you have installed the latest version of [node.js](http://nodejs.org/)\n(You may need to restart your computer after this step).\n\nFrom NPM for use as a command line app:\n\n    npm install uglify-js -g\n\nFrom NPM for programmatic use:\n\n    npm install uglify-js\n\nFrom Git:\n\n    git clone git://github.com/mishoo/UglifyJS2.git\n    cd UglifyJS2\n    npm link .\n\nUsage\n-----\n\n    uglifyjs [input files] [options]\n\nUglifyJS2 can take multiple input files.  It\'s recommended that you pass the\ninput files first, then pass the options.  UglifyJS will parse input files\nin sequence and apply any compression options.  The files are parsed in the\nsame global scope, that is, a reference from a file to some\nvariable/function declared in another file will be matched properly.\n\nIf you want to read from STDIN instead, pass a single dash instead of input\nfiles.\n\nThe available options are:\n\n```\n  --source-map       Specify an output file where to generate source map.\n                                                                        [string]\n  --source-map-root  The path to the original source to be included in the\n                     source map.                                        [string]\n  --source-map-url   The path to the source map to be added in //#\n                     sourceMappingURL.  Defaults to the value passed with\n                     --source-map.                                      [string]\n  --in-source-map    Input source map, useful if you\'re compressing JS that was\n                     generated from some other original code.\n  --screw-ie8        Pass this flag if you don\'t care about full compliance\n                     with Internet Explorer 6-8 quirks (by default UglifyJS\n                     will try to be IE-proof).                         [boolean]\n  --expr             Parse a single expression, rather than a program (for\n                     parsing JSON)                                     [boolean]\n  -p, --prefix       Skip prefix for original filenames that appear in source\n                     maps. For example -p 3 will drop 3 directories from file\n                     names and ensure they are relative paths. You can also\n                     specify -p relative, which will make UglifyJS figure out\n                     itself the relative paths between original sources, the\n                     source map and the output file.                    [string]\n  -o, --output       Output file (default STDOUT).\n  -b, --beautify     Beautify output/specify output options.            [string]\n  -m, --mangle       Mangle names/pass mangler options.                 [string]\n  -r, --reserved     Reserved names to exclude from mangling.\n  -c, --compress     Enable compressor/pass compressor options. Pass options\n                     like -c hoist_vars=false,if_return=false. Use -c with no\n                     argument to use the default compression options.   [string]\n  -d, --define       Global definitions                                 [string]\n  -e, --enclose      Embed everything in a big function, with a configurable\n                     parameter/argument list.                           [string]\n  --comments         Preserve copyright comments in the output. By default this\n                     works like Google Closure, keeping JSDoc-style comments\n                     that contain "@license" or "@preserve". You can optionally\n                     pass one of the following arguments to this flag:\n                     - "all" to keep all comments\n                     - a valid JS regexp (needs to start with a slash) to keep\n                     only comments that match.\n                     Note that currently not *all* comments can be kept when\n                     compression is on, because of dead code removal or\n                     cascading statements into sequences.               [string]\n  --stats            Display operations run time on STDERR.            [boolean]\n  --acorn            Use Acorn for parsing.                            [boolean]\n  --spidermonkey     Assume input files are SpiderMonkey AST format (as JSON).\n                                                                       [boolean]\n  --self             Build itself (UglifyJS2) as a library (implies\n                     --wrap=UglifyJS --export-all)                     [boolean]\n  --wrap             Embed everything in a big function, making the “exports”\n                     and “global” variables available. You need to pass an\n                     argument to this option to specify the name that your\n                     module will take when included in, say, a browser.\n                                                                        [string]\n  --export-all       Only used when --wrap, this tells UglifyJS to add code to\n                     automatically export all globals.                 [boolean]\n  --lint             Display some scope warnings                       [boolean]\n  -v, --verbose      Verbose                                           [boolean]\n  -V, --version      Print version number and exit.                    [boolean]\n```\n\nSpecify `--output` (`-o`) to declare the output file.  Otherwise the output\ngoes to STDOUT.\n\n## Source map options\n\nUglifyJS2 can generate a source map file, which is highly useful for\ndebugging your compressed JavaScript.  To get a source map, pass\n`--source-map output.js.map` (full path to the file where you want the\nsource map dumped).\n\nAdditionally you might need `--source-map-root` to pass the URL where the\noriginal files can be found.  In case you are passing full paths to input\nfiles to UglifyJS, you can use `--prefix` (`-p`) to specify the number of\ndirectories to drop from the path prefix when declaring files in the source\nmap.\n\nFor example:\n\n    uglifyjs /home/doe/work/foo/src/js/file1.js \\\n             /home/doe/work/foo/src/js/file2.js \\\n             -o foo.min.js \\\n             --source-map foo.min.js.map \\\n             --source-map-root http://foo.com/src \\\n             -p 5 -c -m\n\nThe above will compress and mangle `file1.js` and `file2.js`, will drop the\noutput in `foo.min.js` and the source map in `foo.min.js.map`.  The source\nmapping will refer to `http://foo.com/src/js/file1.js` and\n`http://foo.com/src/js/file2.js` (in fact it will list `http://foo.com/src`\nas the source map root, and the original files as `js/file1.js` and\n`js/file2.js`).\n\n### Composed source map\n\nWhen you\'re compressing JS code that was output by a compiler such as\nCoffeeScript, mapping to the JS code won\'t be too helpful.  Instead, you\'d\nlike to map back to the original code (i.e. CoffeeScript).  UglifyJS has an\noption to take an input source map.  Assuming you have a mapping from\nCoffeeScript → compiled JS, UglifyJS can generate a map from CoffeeScript →\ncompressed JS by mapping every token in the compiled JS to its original\nlocation.\n\nTo use this feature you need to pass `--in-source-map\n/path/to/input/source.map`.  Normally the input source map should also point\nto the file containing the generated JS, so if that\'s correct you can omit\ninput files from the command line.\n\n## Mangler options\n\nTo enable the mangler you need to pass `--mangle` (`-m`).  The following\n(comma-separated) options are supported:\n\n- `sort` — to assign shorter names to most frequently used variables.  This\n  saves a few hundred bytes on jQuery before gzip, but the output is\n  _bigger_ after gzip (and seems to happen for other libraries I tried it\n  on) therefore it\'s not enabled by default.\n\n- `toplevel` — mangle names declared in the toplevel scope (disabled by\n  default).\n\n- `eval` — mangle names visible in scopes where `eval` or `when` are used\n  (disabled by default).\n\nWhen mangling is enabled but you want to prevent certain names from being\nmangled, you can declare those names with `--reserved` (`-r`) — pass a\ncomma-separated list of names.  For example:\n\n    uglifyjs ... -m -r \'$,require,exports\'\n\nto prevent the `require`, `exports` and `$` names from being changed.\n\n## Compressor options\n\nYou need to pass `--compress` (`-c`) to enable the compressor.  Optionally\nyou can pass a comma-separated list of options.  Options are in the form\n`foo=bar`, or just `foo` (the latter implies a boolean option that you want\nto set `true`; it\'s effectively a shortcut for `foo=true`).\n\n- `sequences` -- join consecutive simple statements using the comma operator\n- `properties` -- rewrite property access using the dot notation, for\n  example `foo["bar"] → foo.bar`\n- `dead_code` -- remove unreachable code\n- `drop_debugger` -- remove `debugger;` statements\n- `unsafe` (default: false) -- apply "unsafe" transformations (discussion below)\n- `conditionals` -- apply optimizations for `if`-s and conditional\n  expressions\n- `comparisons` -- apply certain optimizations to binary nodes, for example:\n  `!(a <= b) → a > b` (only when `unsafe`), attempts to negate binary nodes,\n  e.g. `a = !b && !c && !d && !e → a=!(b||c||d||e)` etc.\n- `evaluate` -- attempt to evaluate constant expressions\n- `booleans` -- various optimizations for boolean context, for example `!!a\n  ? b : c → a ? b : c`\n- `loops` -- optimizations for `do`, `while` and `for` loops when we can\n  statically determine the condition\n- `unused` -- drop unreferenced functions and variables\n- `hoist_funs` -- hoist function declarations\n- `hoist_vars` (default: false) -- hoist `var` declarations (this is `false`\n  by default because it seems to increase the size of the output in general)\n- `if_return` -- optimizations for if/return and if/continue\n- `join_vars` -- join consecutive `var` statements\n- `cascade` -- small optimization for sequences, transform `x, x` into `x`\n  and `x = something(), x` into `x = something()`\n- `warnings` -- display warnings when dropping unreachable code or unused\n  declarations etc.\n- `negate_iife` -- negate "Immediately-Called Function Expressions"\n  where the return value is discarded, to avoid the parens that the\n  code generator would insert.\n\n### The `unsafe` option\n\nIt enables some transformations that *might* break code logic in certain\ncontrived cases, but should be fine for most code.  You might want to try it\non your own code, it should reduce the minified size.  Here\'s what happens\nwhen this flag is on:\n\n- `new Array(1, 2, 3)` or `Array(1, 2, 3)` → `[1, 2, 3 ]`\n- `new Object()` → `{}`\n- `String(exp)` or `exp.toString()` → `"" + exp`\n- `new Object/RegExp/Function/Error/Array (...)` → we discard the `new`\n- `typeof foo == "undefined"` → `foo === void 0`\n- `void 0` → `"undefined"` (if there is a variable named "undefined" in\n  scope; we do it because the variable name will be mangled, typically\n  reduced to a single character).\n\n### Conditional compilation\n\nYou can use the `--define` (`-d`) switch in order to declare global\nvariables that UglifyJS will assume to be constants (unless defined in\nscope).  For example if you pass `--define DEBUG=false` then, coupled with\ndead code removal UglifyJS will discard the following from the output:\n```javascript\nif (DEBUG) {\n\tconsole.log("debug stuff");\n}\n```\n\nUglifyJS will warn about the condition being always false and about dropping\nunreachable code; for now there is no option to turn off only this specific\nwarning, you can pass `warnings=false` to turn off *all* warnings.\n\nAnother way of doing that is to declare your globals as constants in a\nseparate file and include it into the build.  For example you can have a\n`build/defines.js` file with the following:\n```javascript\nconst DEBUG = false;\nconst PRODUCTION = true;\n// etc.\n```\n\nand build your code like this:\n\n    uglifyjs build/defines.js js/foo.js js/bar.js... -c\n\nUglifyJS will notice the constants and, since they cannot be altered, it\nwill evaluate references to them to the value itself and drop unreachable\ncode as usual.  The possible downside of this approach is that the build\nwill contain the `const` declarations.\n\n<a name="codegen-options"></a>\n## Beautifier options\n\nThe code generator tries to output shortest code possible by default.  In\ncase you want beautified output, pass `--beautify` (`-b`).  Optionally you\ncan pass additional arguments that control the code output:\n\n- `beautify` (default `true`) -- whether to actually beautify the output.\n  Passing `-b` will set this to true, but you might need to pass `-b` even\n  when you want to generate minified code, in order to specify additional\n  arguments, so you can use `-b beautify=false` to override it.\n- `indent-level` (default 4)\n- `indent-start` (default 0) -- prefix all lines by that many spaces\n- `quote-keys` (default `false`) -- pass `true` to quote all keys in literal\n  objects\n- `space-colon` (default `true`) -- insert a space after the colon signs\n- `ascii-only` (default `false`) -- escape Unicode characters in strings and\n  regexps\n- `inline-script` (default `false`) -- escape the slash in occurrences of\n  `</script` in strings\n- `width` (default 80) -- only takes effect when beautification is on, this\n  specifies an (orientative) line width that the beautifier will try to\n  obey.  It refers to the width of the line text (excluding indentation).\n  It doesn\'t work very well currently, but it does make the code generated\n  by UglifyJS more readable.\n- `max-line-len` (default 32000) -- maximum line length (for uglified code)\n- `bracketize` (default `false`) -- always insert brackets in `if`, `for`,\n  `do`, `while` or `with` statements, even if their body is a single\n  statement.\n- `semicolons` (default `true`) -- separate statements with semicolons.  If\n  you pass `false` then whenever possible we will use a newline instead of a\n  semicolon, leading to more readable output of uglified code (size before\n  gzip could be smaller; size after gzip insignificantly larger).\n\n### Keeping copyright notices or other comments\n\nYou can pass `--comments` to retain certain comments in the output.  By\ndefault it will keep JSDoc-style comments that contain "@preserve",\n"@license" or "@cc_on" (conditional compilation for IE).  You can pass\n`--comments all` to keep all the comments, or a valid JavaScript regexp to\nkeep only comments that match this regexp.  For example `--comments\n\'/foo|bar/\'` will keep only comments that contain "foo" or "bar".\n\nNote, however, that there might be situations where comments are lost.  For\nexample:\n```javascript\nfunction f() {\n\t/** @preserve Foo Bar */\n\tfunction g() {\n\t  // this function is never called\n\t}\n\treturn something();\n}\n```\n\nEven though it has "@preserve", the comment will be lost because the inner\nfunction `g` (which is the AST node to which the comment is attached to) is\ndiscarded by the compressor as not referenced.\n\nThe safest comments where to place copyright information (or other info that\nneeds to be kept in the output) are comments attached to toplevel nodes.\n\n## Support for the SpiderMonkey AST\n\nUglifyJS2 has its own abstract syntax tree format; for\n[practical reasons](http://lisperator.net/blog/uglifyjs-why-not-switching-to-spidermonkey-ast/)\nwe can\'t easily change to using the SpiderMonkey AST internally.  However,\nUglifyJS now has a converter which can import a SpiderMonkey AST.\n\nFor example [Acorn][acorn] is a super-fast parser that produces a\nSpiderMonkey AST.  It has a small CLI utility that parses one file and dumps\nthe AST in JSON on the standard output.  To use UglifyJS to mangle and\ncompress that:\n\n    acorn file.js | uglifyjs --spidermonkey -m -c\n\nThe `--spidermonkey` option tells UglifyJS that all input files are not\nJavaScript, but JS code described in SpiderMonkey AST in JSON.  Therefore we\ndon\'t use our own parser in this case, but just transform that AST into our\ninternal AST.\n\n### Use Acorn for parsing\n\nMore for fun, I added the `--acorn` option which will use Acorn to do all\nthe parsing.  If you pass this option, UglifyJS will `require("acorn")`.\n\nAcorn is really fast (e.g. 250ms instead of 380ms on some 650K code), but\nconverting the SpiderMonkey tree that Acorn produces takes another 150ms so\nin total it\'s a bit more than just using UglifyJS\'s own parser.\n\nAPI Reference\n-------------\n\nAssuming installation via NPM, you can load UglifyJS in your application\nlike this:\n```javascript\nvar UglifyJS = require("uglify-js");\n```\n\nIt exports a lot of names, but I\'ll discuss here the basics that are needed\nfor parsing, mangling and compressing a piece of code.  The sequence is (1)\nparse, (2) compress, (3) mangle, (4) generate output code.\n\n### The simple way\n\nThere\'s a single toplevel function which combines all the steps.  If you\ndon\'t need additional customization, you might want to go with `minify`.\nExample:\n```javascript\nvar result = UglifyJS.minify("/path/to/file.js");\nconsole.log(result.code); // minified output\n// if you need to pass code instead of file name\nvar result = UglifyJS.minify("var b = function () {};", {fromString: true});\n```\n\nYou can also compress multiple files:\n```javascript\nvar result = UglifyJS.minify([ "file1.js", "file2.js", "file3.js" ]);\nconsole.log(result.code);\n```\n\nTo generate a source map:\n```javascript\nvar result = UglifyJS.minify([ "file1.js", "file2.js", "file3.js" ], {\n\toutSourceMap: "out.js.map"\n});\nconsole.log(result.code); // minified output\nconsole.log(result.map);\n```\n\nNote that the source map is not saved in a file, it\'s just returned in\n`result.map`.  The value passed for `outSourceMap` is only used to set the\n`file` attribute in the source map (see [the spec][sm-spec]).\n\nYou can also specify sourceRoot property to be included in source map:\n```javascript\nvar result = UglifyJS.minify([ "file1.js", "file2.js", "file3.js" ], {\n\toutSourceMap: "out.js.map",\n\tsourceRoot: "http://example.com/src"\n});\n```\n\nIf you\'re compressing compiled JavaScript and have a source map for it, you\ncan use the `inSourceMap` argument:\n```javascript\nvar result = UglifyJS.minify("compiled.js", {\n\tinSourceMap: "compiled.js.map",\n\toutSourceMap: "minified.js.map"\n});\n// same as before, it returns `code` and `map`\n```\n\nThe `inSourceMap` is only used if you also request `outSourceMap` (it makes\nno sense otherwise).\n\nOther options:\n\n- `warnings` (default `false`) — pass `true` to display compressor warnings.\n\n- `fromString` (default `false`) — if you pass `true` then you can pass\n  JavaScript source code, rather than file names.\n\n- `mangle` — pass `false` to skip mangling names.\n\n- `output` (default `null`) — pass an object if you wish to specify\n  additional [output options][codegen].  The defaults are optimized\n  for best compression.\n\n- `compress` (default `{}`) — pass `false` to skip compressing entirely.\n  Pass an object to specify custom [compressor options][compressor].\n\nWe could add more options to `UglifyJS.minify` — if you need additional\nfunctionality please suggest!\n\n### The hard way\n\nFollowing there\'s more detailed API info, in case the `minify` function is\ntoo simple for your needs.\n\n#### The parser\n```javascript\nvar toplevel_ast = UglifyJS.parse(code, options);\n```\n\n`options` is optional and if present it must be an object.  The following\nproperties are available:\n\n- `strict` — disable automatic semicolon insertion and support for trailing\n  comma in arrays and objects\n- `filename` — the name of the file where this code is coming from\n- `toplevel` — a `toplevel` node (as returned by a previous invocation of\n  `parse`)\n\nThe last two options are useful when you\'d like to minify multiple files and\nget a single file as the output and a proper source map.  Our CLI tool does\nsomething like this:\n```javascript\nvar toplevel = null;\nfiles.forEach(function(file){\n\tvar code = fs.readFileSync(file);\n\ttoplevel = UglifyJS.parse(code, {\n\t\tfilename: file,\n\t\ttoplevel: toplevel\n\t});\n});\n```\n\nAfter this, we have in `toplevel` a big AST containing all our files, with\neach token having proper information about where it came from.\n\n#### Scope information\n\nUglifyJS contains a scope analyzer that you need to call manually before\ncompressing or mangling.  Basically it augments various nodes in the AST\nwith information about where is a name defined, how many times is a name\nreferenced, if it is a global or not, if a function is using `eval` or the\n`with` statement etc.  I will discuss this some place else, for now what\'s\nimportant to know is that you need to call the following before doing\nanything with the tree:\n```javascript\ntoplevel.figure_out_scope()\n```\n\n#### Compression\n\nLike this:\n```javascript\nvar compressor = UglifyJS.Compressor(options);\nvar compressed_ast = toplevel.transform(compressor);\n```\n\nThe `options` can be missing.  Available options are discussed above in\n“Compressor options”.  Defaults should lead to best compression in most\nscripts.\n\nThe compressor is destructive, so don\'t rely that `toplevel` remains the\noriginal tree.\n\n#### Mangling\n\nAfter compression it is a good idea to call again `figure_out_scope` (since\nthe compressor might drop unused variables / unreachable code and this might\nchange the number of identifiers or their position).  Optionally, you can\ncall a trick that helps after Gzip (counting character frequency in\nnon-mangleable words).  Example:\n```javascript\ncompressed_ast.figure_out_scope();\ncompressed_ast.compute_char_frequency();\ncompressed_ast.mangle_names();\n```\n\n#### Generating output\n\nAST nodes have a `print` method that takes an output stream.  Essentially,\nto generate code you do this:\n```javascript\nvar stream = UglifyJS.OutputStream(options);\ncompressed_ast.print(stream);\nvar code = stream.toString(); // this is your minified code\n```\n\nor, for a shortcut you can do:\n```javascript\nvar code = compressed_ast.print_to_string(options);\n```\n\nAs usual, `options` is optional.  The output stream accepts a lot of otions,\nmost of them documented above in section “Beautifier options”.  The two\nwhich we care about here are `source_map` and `comments`.\n\n#### Keeping comments in the output\n\nIn order to keep certain comments in the output you need to pass the\n`comments` option.  Pass a RegExp or a function.  If you pass a RegExp, only\nthose comments whose body matches the regexp will be kept.  Note that body\nmeans without the initial `//` or `/*`.  If you pass a function, it will be\ncalled for every comment in the tree and will receive two arguments: the\nnode that the comment is attached to, and the comment token itself.\n\nThe comment token has these properties:\n\n- `type`: "comment1" for single-line comments or "comment2" for multi-line\n  comments\n- `value`: the comment body\n- `pos` and `endpos`: the start/end positions (zero-based indexes) in the\n  original code where this comment appears\n- `line` and `col`: the line and column where this comment appears in the\n  original code\n- `file` — the file name of the original file\n- `nlb` — true if there was a newline before this comment in the original\n  code, or if this comment contains a newline.\n\nYour function should return `true` to keep the comment, or a falsy value\notherwise.\n\n#### Generating a source mapping\n\nYou need to pass the `source_map` argument when calling `print`.  It needs\nto be a `SourceMap` object (which is a thin wrapper on top of the\n[source-map][source-map] library).\n\nExample:\n```javascript\nvar source_map = UglifyJS.SourceMap(source_map_options);\nvar stream = UglifyJS.OutputStream({\n\t...\n\tsource_map: source_map\n});\ncompressed_ast.print(stream);\n\nvar code = stream.toString();\nvar map = source_map.toString(); // json output for your source map\n```\n\nThe `source_map_options` (optional) can contain the following properties:\n\n- `file`: the name of the JavaScript output file that this mapping refers to\n- `root`: the `sourceRoot` property (see the [spec][sm-spec])\n- `orig`: the "original source map", handy when you compress generated JS\n  and want to map the minified output back to the original code where it\n  came from.  It can be simply a string in JSON, or a JSON object containing\n  the original source map.\n\n  [acorn]: https://github.com/marijnh/acorn\n  [source-map]: https://github.com/mozilla/source-map\n  [sm-spec]: https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit\n  [codegen]: http://lisperator.net/uglifyjs/codegen\n  [compressor]: http://lisperator.net/uglifyjs/compress\n',
+424 silly resolved     readmeFilename: 'README.md',
+424 silly resolved     bugs: { url: 'https://github.com/mishoo/UglifyJS2/issues' },
+424 silly resolved     _id: 'uglify-js@2.4.0',
+424 silly resolved     _from: 'uglify-js@' },
+424 silly resolved   { name: 'connect',
+424 silly resolved     version: '2.9.0',
+424 silly resolved     description: 'High performance middleware framework',
+424 silly resolved     keywords: [ 'framework', 'web', 'middleware', 'connect', 'rack' ],
+424 silly resolved     repository: { type: 'git', url: 'git://github.com/senchalabs/connect.git' },
+424 silly resolved     author:
+424 silly resolved      { name: 'TJ Holowaychuk',
+424 silly resolved        email: 'tj@vision-media.ca',
+424 silly resolved        url: 'http://tjholowaychuk.com' },
+424 silly resolved     dependencies:
+424 silly resolved      { qs: '0.6.5',
+424 silly resolved        'cookie-signature': '1.0.1',
+424 silly resolved        'buffer-crc32': '0.2.1',
+424 silly resolved        cookie: '0.1.0',
+424 silly resolved        send: '0.1.4',
+424 silly resolved        bytes: '0.2.0',
+424 silly resolved        fresh: '0.2.0',
+424 silly resolved        pause: '0.0.1',
+424 silly resolved        uid2: '0.0.2',
+424 silly resolved        debug: '*',
+424 silly resolved        methods: '0.0.1',
+424 silly resolved        multiparty: '2.1.8' },
+424 silly resolved     devDependencies: { should: '*', mocha: '*', jade: '*', dox: '*' },
+424 silly resolved     licenses: [ [Object] ],
+424 silly resolved     main: 'index',
+424 silly resolved     engines: { node: '>= 0.8.0' },
+424 silly resolved     scripts: { test: 'make' },
+424 silly resolved     readme: '[![build status](https://secure.travis-ci.org/senchalabs/connect.png)](http://travis-ci.org/senchalabs/connect)\n# Connect\n\n  Connect is an extensible HTTP server framework for [node](http://nodejs.org), providing high performance "plugins" known as _middleware_.\n\n Connect is bundled with over _20_ commonly used middleware, including\n a logger, session support, cookie parser, and [more](http://senchalabs.github.com/connect). Be sure to view the 2.x [documentation](http://senchalabs.github.com/connect/).\n\n```js\nvar connect = require(\'connect\')\n  , http = require(\'http\');\n\nvar app = connect()\n  .use(connect.favicon())\n  .use(connect.logger(\'dev\'))\n  .use(connect.static(\'public\'))\n  .use(connect.directory(\'public\'))\n  .use(connect.cookieParser())\n  .use(connect.session({ secret: \'my secret here\' }))\n  .use(function(req, res){\n    res.end(\'Hello from Connect!\\n\');\n  });\n\nhttp.createServer(app).listen(3000);\n```\n\n## Middleware\n\n  - [csrf](http://www.senchalabs.org/connect/csrf.html)\n  - [basicAuth](http://www.senchalabs.org/connect/basicAuth.html)\n  - [bodyParser](http://www.senchalabs.org/connect/bodyParser.html)\n  - [json](http://www.senchalabs.org/connect/json.html)\n  - [multipart](http://www.senchalabs.org/connect/multipart.html)\n  - [urlencoded](http://www.senchalabs.org/connect/urlencoded.html)\n  - [cookieParser](http://www.senchalabs.org/connect/cookieParser.html)\n  - [directory](http://www.senchalabs.org/connect/directory.html)\n  - [compress](http://www.senchalabs.org/connect/compress.html)\n  - [errorHandler](http://www.senchalabs.org/connect/errorHandler.html)\n  - [favicon](http://www.senchalabs.org/connect/favicon.html)\n  - [limit](http://www.senchalabs.org/connect/limit.html)\n  - [logger](http://www.senchalabs.org/connect/logger.html)\n  - [methodOverride](http://www.senchalabs.org/connect/methodOverride.html)\n  - [query](http://www.senchalabs.org/connect/query.html)\n  - [responseTime](http://www.senchalabs.org/connect/responseTime.html)\n  - [session](http://www.senchalabs.org/connect/session.html)\n  - [static](http://www.senchalabs.org/connect/static.html)\n  - [staticCache](http://www.senchalabs.org/connect/staticCache.html)\n  - [vhost](http://www.senchalabs.org/connect/vhost.html)\n  - [subdomains](http://www.senchalabs.org/connect/subdomains.html)\n  - [cookieSession](http://www.senchalabs.org/connect/cookieSession.html)\n\n## Running Tests\n\nfirst:\n\n    $ npm install -d\n\nthen:\n\n    $ make test\n\n## Authors\n\n Below is the output from [git-summary](http://github.com/visionmedia/git-extras).\n\n\n     project: connect\n     commits: 2033\n     active : 301 days\n     files  : 171\n     authors: \n      1414\tTj Holowaychuk          69.6%\n       298\tvisionmedia             14.7%\n       191\tTim Caswell             9.4%\n        51\tTJ Holowaychuk          2.5%\n        10\tRyan Olds               0.5%\n         8\tAstro                   0.4%\n         5\tNathan Rajlich          0.2%\n         5\tJakub Nešetřil          0.2%\n         3\tDaniel Dickison         0.1%\n         3\tDavid Rio Deiros        0.1%\n         3\tAlexander Simmerl       0.1%\n         3\tAndreas Lind Petersen   0.1%\n         2\tAaron Heckmann          0.1%\n         2\tJacques Crocker         0.1%\n         2\tFabian Jakobs           0.1%\n         2\tBrian J Brennan         0.1%\n         2\tAdam Malcontenti-Wilson 0.1%\n         2\tGlen Mailer             0.1%\n         2\tJames Campos            0.1%\n         1\tTrent Mick              0.0%\n         1\tTroy Kruthoff           0.0%\n         1\tWei Zhu                 0.0%\n         1\tcomerc                  0.0%\n         1\tdarobin                 0.0%\n         1\tnateps                  0.0%\n         1\tMarco Sanson            0.0%\n         1\tArthur Taylor           0.0%\n         1\tAseem Kishore           0.0%\n         1\tBart Teeuwisse          0.0%\n         1\tCameron Howey           0.0%\n         1\tChad Weider             0.0%\n         1\tCraig Barnes            0.0%\n         1\tEran Hammer-Lahav       0.0%\n         1\tGregory McWhirter       0.0%\n         1\tGuillermo Rauch         0.0%\n         1\tJae Kwon                0.0%\n         1\tJakub Nesetril          0.0%\n         1\tJoshua Peek             0.0%\n         1\tJxck                    0.0%\n         1\tAJ ONeal                0.0%\n         1\tMichael Hemesath        0.0%\n         1\tMorten Siebuhr          0.0%\n         1\tSamori Gorse            0.0%\n         1\tTom Jensen              0.0%\n\n## Node Compatibility\n\n  Connect `< 1.x` is compatible with node 0.2.x\n\n\n  Connect `1.x` is compatible with node 0.4.x\n\n\n  Connect (_master_) `2.x` is compatible with node 0.6.x\n\n## CLA\n\n [http://sencha.com/cla](http://sencha.com/cla)\n\n## License\n\nView the [LICENSE](https://github.com/senchalabs/connect/blob/master/LICENSE) file. The [Silk](http://www.famfamfam.com/lab/icons/silk/) icons used by the `directory` middleware created by/copyright of [FAMFAMFAM](http://www.famfamfam.com/).\n',
+424 silly resolved     readmeFilename: 'Readme.md',
+424 silly resolved     bugs: { url: 'https://github.com/senchalabs/connect/issues' },
+424 silly resolved     _id: 'connect@2.9.0',
+424 silly resolved     _from: 'connect@' },
+424 silly resolved   { name: 'jshint',
+424 silly resolved     version: '2.1.11',
+424 silly resolved     homepage: 'http://jshint.com/',
+424 silly resolved     description: 'Static analysis tool for JavaScript',
+424 silly resolved     author:
+424 silly resolved      { name: 'Anton Kovalyov',
+424 silly resolved        email: 'anton@kovalyov.net',
+424 silly resolved        url: 'http://anton.kovalyov.net/' },
+424 silly resolved     repository: { type: 'git', url: 'https://github.com/jshint/jshint.git' },
+424 silly resolved     bugs: { url: 'https://github.com/jshint/jshint/issues' },
+424 silly resolved     bin: { jshint: './bin/jshint' },
+424 silly resolved     scripts:
+424 silly resolved      { build: 'node bin/build',
+424 silly resolved        test: 'nodeunit tests tests/regression tests/unit',
+424 silly resolved        pretest: 'jshint src' },
+424 silly resolved     main: './src/jshint.js',
+424 silly resolved     dependencies:
+424 silly resolved      { shelljs: '0.1.x',
+424 silly resolved        underscore: '1.4.x',
+424 silly resolved        cli: '0.4.x',
+424 silly resolved        minimatch: '0.x.x',
+424 silly resolved        'console-browserify': '0.1.x' },
+424 silly resolved     devDependencies:
+424 silly resolved      { jshint: '2.1.x',
+424 silly resolved        shelljs: '0.1.x',
+424 silly resolved        browserify: '2.12.x',
+424 silly resolved        coveraje: '0.2.x',
+424 silly resolved        nodeunit: '0.8.x',
+424 silly resolved        sinon: '1.7.x' },
+424 silly resolved     jshintConfig:
+424 silly resolved      { boss: true,
+424 silly resolved        node: true,
+424 silly resolved        strict: true,
+424 silly resolved        white: true,
+424 silly resolved        smarttabs: true,
+424 silly resolved        maxlen: 100,
+424 silly resolved        newcap: false,
+424 silly resolved        undef: true,
+424 silly resolved        unused: true,
+424 silly resolved        onecase: true,
+424 silly resolved        indent: 2 },
+424 silly resolved     licenses: [ [Object] ],
+424 silly resolved     preferGlobal: true,
+424 silly resolved     files: [ 'bin', 'src' ],
+424 silly resolved     readme: 'JSHint, A Static Code Analysis Tool for JavaScript\n--------------------------------------------------\n\n\\[ [Use it online](http://jshint.com/) •  [About](http://jshint.com/about/) • \n[Docs](http://jshint.com/docs/) • [FAQ](http://jshint.com/docs/faq) • \n[Install](http://jshint.com/install/) • [Hack](http://jshint.com/hack/) • \n[Blog](http://jshint.com/blog/) • [Twitter](https://twitter.com/jshint/) \\]\n\n[![Build Status](https://travis-ci.org/jshint/jshint.png?branch=master)](https://travis-ci.org/jshint/jshint)\n[![NPM version](https://badge.fury.io/js/jshint.png)](http://badge.fury.io/js/jshint)\n\nJSHint is a community-driven tool to detect errors and potential problems\nin JavaScript code and to enforce your team’s coding conventions. It is\nvery flexible so you can easily adjust it to your particular coding guidelines\nand the environment you expect your code to execute in.\n\n#### Reporting a bug\n\nTo report a bug simply create a\n[new GitHub Issue](https://github.com/jshint/jshint/issues/new) and describe\nyour problem or suggestion. We welcome all kind of feedback regarding\nJSHint including but not limited to:\n\n * When JSHint doesn\'t work as expected\n * When JSHint complains about valid JavaScript code that works in all browsers\n * When you simply want a new option or feature\n\nBefore reporting a bug look around to see if there are any open or closed tickets\nthat cover your issue. And remember the wisdom: pull request > bug report > tweet.\n\n\n#### License\n\nJSHint is distributed under the MIT License. One file and one file only\n(src/stable/jshint.js) is distributed under the slightly modified MIT License.\n\n\n#### Thank you!\n\nWe really appreciate all kind of feedback and contributions. Thanks for using and supporting JSHint!\n',
+424 silly resolved     readmeFilename: 'README.md',
+424 silly resolved     _id: 'jshint@2.1.11',
+424 silly resolved     dist: { shasum: 'eb5108fef9ba5ddebb830983f572d242e49e3f96' },
+424 silly resolved     _from: 'jshint@',
+424 silly resolved     _resolved: 'https://registry.npmjs.org/jshint/-/jshint-2.1.11.tgz' },
+424 silly resolved   { name: 'recess',
+424 silly resolved     description: 'A simple, attractive code quality tool for CSS built on top of LESS',
+424 silly resolved     version: '1.1.9',
+424 silly resolved     author:
+424 silly resolved      { name: 'Jacob Thornton',
+424 silly resolved        email: 'jacob@twitter.com',
+424 silly resolved        url: 'https://github.com/fat' },
+424 silly resolved     repository: { type: 'git', url: 'git://github.com/twitter/recess.git' },
+424 silly resolved     keywords: [ 'css', 'lint' ],
+424 silly resolved     licenses: [ [Object] ],
+424 silly resolved     main: './lib',
+424 silly resolved     homepage: 'http://twitter.github.com/recess',
+424 silly resolved     engines: { node: '>= 0.4.0' },
+424 silly resolved     dependencies:
+424 silly resolved      { colors: '>= 0.3.0',
+424 silly resolved        nopt: '>= 1.0.10',
+424 silly resolved        underscore: '>= 1.2.1',
+424 silly resolved        watch: '>= 0.5.1',
+424 silly resolved        less: '~1.3.0' },
+424 silly resolved     directories: { bin: './bin' },
+424 silly resolved     scripts: { test: 'node test' },
+424 silly resolved     bin: { recess: './bin/recess' },
+424 silly resolved     preferGlobal: true,
+424 silly resolved     readme: 'RECESS [![Build Status](https://secure.travis-ci.org/twitter/recess.png)](http://travis-ci.org/twitter/recess)\n======\n\nDeveloped at Twitter to support our internal styleguide, RECESS is a simple, attractive code quality tool for CSS built on top of LESS.\n\nIncorporate it into your development process as a linter, or integrate it directly into your build system as a compiler, RECESS will keep your source looking clean and super manageable.\n\n\nGENERAL USE\n-----------\n\n```CLI\n$ recess [path] [options]\n```\n\nOPTIONS\n-------\n\n- --compile - compiles your code and outputs it to the terminal. Fixes white space and sort order. Can compile css or less.\n- --compress - compress your compiled code.\n- --config - accepts a path, which specifies a json config object\n- --format <format> - control the output format of errors:\n  - --format text - the default format, shows errors and context\n  - --format compact - show errors one-error-per-line, useful for IDE integration\n- --noSummary - don\'t output the summary block for each file\n- --includePath - accepts an additional directory path to look for `@import`:ed LESS files in.\n- --stripColors - removes color from output (useful when logging)\n- --watch - watch filesystem for changes, useful when compiling Less projects\n- --noIDs - doesn\'t complain about using IDs in your stylesheets\n- --noJSPrefix - doesn\'t complain about styling `.js-` prefixed classnames\n- --noOverqualifying - doesn\'t complain about overqualified selectors (ie: `div#foo.bar`)\n- --noUnderscores - doesn\'t complain about using underscores in your class names\n- --noUniversalSelectors - doesn\'t complain about using the universal `*` selector\n- --prefixWhitespace - adds whitespace prefix to line up vender prefixed properties\n- --strictPropertyOrder - doesn\'t looking into your property ordering\n- --zeroUnits - doesn\'t complain if you add units to values of 0\n\n\nEXAMPLES\n--------\n\nLint all css files\n\n```CLI\n$ recess *.css\n```\n\nLint file, ignore styling of IDs\n\n```CLI\n$ recess ./bootstrap.css --noIds false\n```\n\nLint file with compact output and no color\n\n```CLI\n$ recess ./bootstrap.css --format compact --stripColors\n```\n\nCompile and compress .less file, then output it to a new file\n\n```CLI\n$ recess ./bootstrap.less --compress > ./bootstrap-production.css\n```\n\nWatch a directory for changes and auto compile a css file from the changes. *experimental*\n\n```CLI\n$ recess input.less:ouput.css --watch watch/this/dir/for/changes\n```\n\nWatch a single file for changes and auto compile a css file from the changes. *experimental*\n\n```CLI\n$ recess input.less:ouput.css --watch\n```\n\nPROGRAMMATIC API\n----------------\n\nRecess provides a pretty simple programmatic api.\n\n```JS\nvar recess = require(\'recess\')\n```\n\nOnce you\'ve required recess, just pass it a `path` (or array of paths) and an optional `options` object and an optional `callback`:\n\n```js\nrecess([\'../fat.css\', \'../twitter.css\'], { compile: true }, callback)\n```\n\nThe following options (and defaults) are available in the programatic api:\n\n- compile: false\n- compress: false\n- includePath: []\n- noIDs: true\n- noJSPrefix: true\n- noOverqualifying: true\n- noUnderscores: true\n- noUniversalSelectors: true\n- prefixWhitespace: true\n- strictPropertyOrder: true\n- stripColors: false\n- zeroUnits: true\n\nThe callback is fired when each instance has finished processessing an input. The callback is passed an array of of instances (one for each path). The instances have a bunch of useful things on them like the raw data and an array of output strings.\n\nWhen compiling, access the compiled source through the output property:\n\n```js\nvar recess = require(\'recess\')\n\nrecess(\'./js/fat.css\', { compile: true }, function (err, obj) {\n  if (err) throw err\n  console.log(\n  \tobj // recess instance for fat.css\n  , obj.output // array of loggable content\n  , obj.errors // array of failed lint rules\n  )\n})\n```\n\nINSTALLATION\n------------\n\nTo install recess you need both node and npm installed.\n\n```CLI\n$ npm install recess -g\n```\n\nAUTHORS\n------------\n\n+ **Jacob Thornton**: https://twitter.com/fat\n\nLICENSE\n------------\n\nCopyright 2012 Twitter, Inc.\n\nLicensed under the Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0',
+424 silly resolved     readmeFilename: 'README.md',
+424 silly resolved     bugs: { url: 'https://github.com/twitter/recess/issues' },
+424 silly resolved     _id: 'recess@1.1.9',
+424 silly resolved     dist: { shasum: 'b87a8582f100099afffb50eea9b11d0db0e652dd' },
+424 silly resolved     _from: 'recess@',
+424 silly resolved     _resolved: 'https://registry.npmjs.org/recess/-/recess-1.1.9.tgz' } ]
+425 info install uglify-js@2.4.0 into /usr/local/lib
+426 info install connect@2.9.0 into /usr/local/lib
+427 info install jshint@2.1.11 into /usr/local/lib
+428 info install recess@1.1.9 into /usr/local/lib
+429 info installOne uglify-js@2.4.0
+430 info installOne connect@2.9.0
+431 info installOne jshint@2.1.11
+432 info installOne recess@1.1.9
+433 info /usr/local/lib/node_modules/uglify-js unbuild
+434 info /usr/local/lib/node_modules/connect unbuild
+435 info /usr/local/lib/node_modules/jshint unbuild
+436 info /usr/local/lib/node_modules/recess unbuild
+437 verbose tar unpack /Users/jpiatos13/.npm/uglify-js/2.4.0/package.tgz
+438 silly lockFile 8b726fda-local-lib-node-modules-uglify-js tar:///usr/local/lib/node_modules/uglify-js
+439 verbose lock tar:///usr/local/lib/node_modules/uglify-js /Users/jpiatos13/.npm/8b726fda-local-lib-node-modules-uglify-js.lock
+440 silly lockFile 1f794b8a--npm-uglify-js-2-4-0-package-tgz tar:///Users/jpiatos13/.npm/uglify-js/2.4.0/package.tgz
+441 verbose lock tar:///Users/jpiatos13/.npm/uglify-js/2.4.0/package.tgz /Users/jpiatos13/.npm/1f794b8a--npm-uglify-js-2-4-0-package-tgz.lock
+442 verbose tar unpack /Users/jpiatos13/.npm/connect/2.9.0/package.tgz
+443 silly lockFile d169a5cb-r-local-lib-node-modules-connect tar:///usr/local/lib/node_modules/connect
+444 verbose lock tar:///usr/local/lib/node_modules/connect /Users/jpiatos13/.npm/d169a5cb-r-local-lib-node-modules-connect.lock
+445 silly lockFile 11bd0780-13-npm-connect-2-9-0-package-tgz tar:///Users/jpiatos13/.npm/connect/2.9.0/package.tgz
+446 verbose lock tar:///Users/jpiatos13/.npm/connect/2.9.0/package.tgz /Users/jpiatos13/.npm/11bd0780-13-npm-connect-2-9-0-package-tgz.lock
+447 verbose tar unpack /Users/jpiatos13/.npm/jshint/2.1.11/package.tgz
+448 silly lockFile 59dfcd45-sr-local-lib-node-modules-jshint tar:///usr/local/lib/node_modules/jshint
+449 verbose lock tar:///usr/local/lib/node_modules/jshint /Users/jpiatos13/.npm/59dfcd45-sr-local-lib-node-modules-jshint.lock
+450 silly lockFile c58d7096-13-npm-jshint-2-1-11-package-tgz tar:///Users/jpiatos13/.npm/jshint/2.1.11/package.tgz
+451 verbose lock tar:///Users/jpiatos13/.npm/jshint/2.1.11/package.tgz /Users/jpiatos13/.npm/c58d7096-13-npm-jshint-2-1-11-package-tgz.lock
+452 verbose tar unpack /Users/jpiatos13/.npm/recess/1.1.9/package.tgz
+453 silly lockFile 7a88eaac-sr-local-lib-node-modules-recess tar:///usr/local/lib/node_modules/recess
+454 verbose lock tar:///usr/local/lib/node_modules/recess /Users/jpiatos13/.npm/7a88eaac-sr-local-lib-node-modules-recess.lock
+455 silly lockFile 2108e8ae-s13-npm-recess-1-1-9-package-tgz tar:///Users/jpiatos13/.npm/recess/1.1.9/package.tgz
+456 verbose lock tar:///Users/jpiatos13/.npm/recess/1.1.9/package.tgz /Users/jpiatos13/.npm/2108e8ae-s13-npm-recess-1-1-9-package-tgz.lock
+457 silly gunzTarPerm modes [ '755', '644' ]
+458 silly gunzTarPerm modes [ '755', '644' ]
+459 silly gunzTarPerm modes [ '755', '644' ]
+460 silly gunzTarPerm modes [ '755', '644' ]
+461 error Error: EACCES, mkdir '/usr/local/lib/node_modules/uglify-js'
+461 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/uglify-js']
+461 error   errno: 3,
+461 error   code: 'EACCES',
+461 error   path: '/usr/local/lib/node_modules/uglify-js',
+461 error   fstream_type: 'Directory',
+461 error   fstream_path: '/usr/local/lib/node_modules/uglify-js',
+461 error   fstream_class: 'DirWriter',
+461 error   fstream_stack:
+461 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+461 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53',
+461 error      'Object.oncomplete (fs.js:107:15)' ] }
+462 error Please try running this command again as root/Administrator.
+463 error System Darwin 12.5.0
+464 error command "node" "/usr/local/bin/npm" "install" "recess" "connect" "uglify-js" "jshint" "-g"
+465 error cwd /Users/jpiatos13/Dropbox/school-files/LMU/cs/github/senior-project/chuzr/web-client
+466 error node -v v0.10.18
+467 error npm -v 1.3.8
+468 error path /usr/local/lib/node_modules/uglify-js
+469 error fstream_path /usr/local/lib/node_modules/uglify-js
+470 error fstream_type Directory
+471 error fstream_class DirWriter
+472 error code EACCES
+473 error errno 3
+474 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/uglify-js'
+475 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+475 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53
+475 error fstream_stack Object.oncomplete (fs.js:107:15)
+476 verbose exit [ 3, true ]
