@@ -18,6 +18,6 @@ var userSchema = new Schema({
   , reputation      : Number
   , socialHandle    : String
   , salt            : String
-};
+});
 
 module.exports = mongoose.model('User', userSchema);
