@@ -2,49 +2,53 @@ Coupon = require('../models/coupon')
 
 module.exports = function (app) {
   
-  function validateCouponId(id) {
-    if (/\D/.test(id)) {
-      throw Error('Illegal id');
-    }
-    return id;
-  };
-
   app.get('/coupons', function (req, res) {
-    Coupon.find(function (err, coupons) {
-      if (!err) {
-        return res.send(coupons);
-      } else {
-        return console.log(err);
-      }
+    skip = +req.query.skip || 0;
+    limit = +req.query.limit || 10;
+	Coupon.find( { 'issuer': req.query.issuer }, {skip: skip, limit: limit}, function (err, docs) {
+      if (err) res.json(500, err)
+      res.json(docs);
     });
-  });
-  
-  app.get('/coupons/:id', function (req, res) {
-    return Coupon.findById(req.params.id, function (err, coupons) {
-      if (!err) {
-        return res.send(coupons);
-    }
-      else {
-        return res.send(404, 'No Such Coupon');
-      }
+	}
+    // TODO: Support query parameters!
+    else {
+	  Coupon.find({}, null, {skip: skip, limit: limit}, function (err, docs) {
+      if (err) res.json(500, err)
+      res.json(docs);
     });
+	}
   });
   
   app.post('/coupons', function (req, res) {
-    var coupon = new Coupon({
-      issuer: req.body.issuer,
-      value: req.body.value,
-      promoCode: req.body.promoCode,
-      expirationDate: req.body.expirationDate,
-      imageURL: req.body.imageURL
+    Coupon.create(req.body, function (err) {
+      if (err) res.json(400, err)
+      res.send(201);
     });
-    coupon.save(function (err) {
-      if (!err) {
-        return console.log('Coupon Added');
-      } else {
-        return console.log(err);
-      }
+  });
+
+  app.get('/coupons/:id', function (req, res) {
+    var id = req.params.id;
+    Coupon.findById(id, null, function (err, doc) {
+      if (err) res.json(400, err)
+      if (doc === null) res.json(404)
+      res.json(doc)
     });
-    return res.send(coupon);
+  });
+
+  app.put('/coupons/:id', function (req, res) {
+    var id = req.params.id;
+    console.log(req.body)
+    Coupon.update({_id: id}, req.body, function (err, doc) {
+      if (err) res.json(400, err)
+      res.json(200, {Updated: doc});
+    });
+  });
+
+  app.delete('/coupons/:id', function (req, res) {
+    var id = req.params.id;
+    Coupon.remove({_id: id}, function (err) {
+      if (err) res.json(400, err)
+      res.json(200, {Deleted: id});
+    });
   });
 }
