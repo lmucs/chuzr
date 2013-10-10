@@ -1,0 +1,11 @@
+{
+  "name": "chuzr-feed-processor",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ingestor.js"
+  },
+  "dependencies": {
+    "xml2js": "latest"
+  }
+}
