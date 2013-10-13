@@ -2,11 +2,20 @@ Product = require('../models/product')
 
 module.exports = function (app) {
 
+  function pagination(req) {
+    return {skip: +req.query.skip || 0, limit: +req.query.limit || 10}
+  }
+
   app.get('/products', function (req, res) {
-    skip = +req.query.skip || 0;
-    limit = +req.query.limit || 10;
-    // TODO: Support query parameters!
-    Product.find({}, null, {skip: skip, limit: limit}, function (err, docs) {
+    search = {}
+    if (req.query.name) {
+      search['name'] = {'$regex': '^' + req.query.name, '$options': 'i'}
+    }
+    if (req.query.c) {
+      search['categories'] = {'$in': [req.query.c]}
+    }
+    console.log("Searching Products: %j", search)
+    Product.find(search, null, pagination(req), function (err, docs) {
       if (err) res.json(500, err)
       res.json(docs);
     });
