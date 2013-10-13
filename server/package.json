@@ -10,6 +10,7 @@
     "mongoose": "3.x.x",
     "should": "latest",
     "json2csv": "2.1.0",
+    "supertest": "latest",
     "cors": "latest"
   }
 }
