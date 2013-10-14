@@ -1,22 +1,29 @@
 Coupon = require('../models/coupon')
 
 module.exports = function (app) {
-  
+
+  function pagination(req) {
+    return {skip: +req.query.skip || 0, limit: +req.query.limit || 10}
+  }
+
   app.get('/coupons', function (req, res) {
-    skip = +req.query.skip || 0;
-    limit = +req.query.limit || 10;
-	Coupon.find( { 'issuer': req.query.issuer }, {skip: skip, limit: limit}, function (err, docs) {
+    search = {};
+    if (req.query.issuer) {
+      search['issuer'] = {'$regex': req.query.issuer, '$options': 'i'}
+    }
+    if (req.query.status === 'active') {
+      var currentDate = new Date();
+      search['expirationDate'] = {'$gte': currentDate}
+    }
+    if (req.query.status === 'expired') {
+      var currentDate = new Date();
+      search['expirationDate'] = {'$lt': currentDate}
+    }
+    console.log("Searching Products: %j", search)
+    Coupon.find(search, null, pagination(req), function (err, docs) {
       if (err) res.json(500, err)
       res.json(docs);
     });
-	}
-    // TODO: Support query parameters!
-    else {
-	  Coupon.find({}, null, {skip: skip, limit: limit}, function (err, docs) {
-      if (err) res.json(500, err)
-      res.json(docs);
-    });
-	}
   });
   
   app.post('/coupons', function (req, res) {
