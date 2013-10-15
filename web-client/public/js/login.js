@@ -13,7 +13,7 @@ $(function(){
           currentUser.userID = userID;
           window.location.replace("http://localhost:3001/home");
         } else {
-          window.location.replace("httpL//localhost:3001");
+          window.location.replace("http://localhost:3001");
         }
 
       })
