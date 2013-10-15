@@ -4,7 +4,7 @@ block content
   div(id='forms')
     h2 Settings
     br
-    form(class='form-horizontal')
+    form(class='form-horizontal', id='settings-form')
       div(class='control-group')
         label(class='control-label', for='displayName') Display Name
         div(class='controls')
@@ -14,15 +14,15 @@ block content
         div(class='controls')
           input(type='text', id='name', placeholder='Name')
       div(class='control-group')
-        label(class='control-label', for='location') City
+        label(class='control-label', for='location') City/State
         div(class='controls')
           input(type='text', id='location', placeholder='Los Angeles, CA')
       div(class='control-group')
         label(class='control-label') Birthday
         div(class='controls controls-row')
-          input(class='span1', type='text', id='birthMonth', placeholder='MM', maxlength='2')
-          input(class='span1', type='text', id='birthDate', placeholder='DD', maxlength='2')
-          input(class='span2', type='text', id='birthYear', placeholder='YYYY', maxlength='4')
+          input(class='input-mini', type='text', id='birthMonth', placeholder='MM', maxlength='2')
+          input(class='input-mini', type='text', id='birthDate', placeholder='DD', maxlength='2')
+          input(class='input-mini', type='text', id='birthYear', placeholder='YYYY', maxlength='4')
       div(class='control-group')
         label(class='control-label', for='aboutMe') About Me
         div(class='controls')
@@ -38,3 +38,12 @@ block content
             input(type='text', id='profilePicture', placeholder='coolpicture.jpg')
             button(class='btn', type='button') Browse
             button(class='btn', type='button') Upload
+      div(class='control-group')
+        label(class='control-label', for='pwConfirmation') Confirm
+        div(class='controls')
+          input(type='password', id='pwConfirmation', placeholder='password')
+          span(class='help-inline') Confirm changes by entering your password
+      div(class='control-group')
+        div(class='controls')
+          button(class='btn', type='button') Submit Changes
+    script(src='/js/settings.js')
