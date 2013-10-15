@@ -9,13 +9,21 @@ module.exports = function (app) {
     }
   return id;
   };
+  
+  function pagination (req) {
+    return {skip: +req.query.skip || 0, limit: +req.query.limit || 10 }
+  }
 
   app.get('/users', function (req, res) {
-    console.log("Status Code: ", res.statusCode);
-    skip = +req.query.skip || 0;
-    limit = +req.query.limit || 10;
-    console.log('skip = %d, limit = %d', skip, limit);
-    res.json(User.findAll(skip=skip, limit=limit));
+    search = {};
+    if (req.query.name) {
+      search['name'] = {'$regex': '^' + req.query.name, '$options': 'i'}
+    }
+    console.log("Searching Users: &j", search)
+    User.find(search, null, pagination(req), function (err, docs) {
+      if (err) res.json(500, err)
+      res.json(docs);
+    });
   });
 
   app.post('/users', function (req, res) {
