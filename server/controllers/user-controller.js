@@ -42,7 +42,7 @@ module.exports = function (app) {
   });
 
   app.put('/users/:id', function (req, res) {
-    var id = req.params.id,
+    var id = req.params.id;
     console.log(req.body)
     User.update({_id: id}, req.body, function (err, doc) {
       if (err) res.json(400, err)
@@ -51,15 +51,11 @@ module.exports = function (app) {
   });
 
   app.delete('/users/:id', function (req, res) {
-      var id = validateUserId(req.params.id),
-      user = User.findById(id);
-      User.delete(id);
-      res.json("User Deleted");
-      /*
-      user.remove(function (error) {
-        return error ? res.send(error) : res.send("user removed");
-      });
-      */
+    var id = req.params.id;
+    User.remove({_id: id}, function (err) {
+      if (err) res.json(400, err)
+      res.json(200, {Deleted: id});
+    });
   });
-};
+}
 
