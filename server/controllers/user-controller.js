@@ -34,23 +34,19 @@ module.exports = function (app) {
   });
 
   app.get('/users/:id', function (req, res) {
-    id = validateUserId(req.params.id);
-    try {
-      res.json(User.findById(id));
-    } catch (e) {
-      if (e == User.NO_SUCH_USER) {
-        res.json(400, 'No such user');
-      } else {
-        throw e;
-      }
-    }
+    var id = req.params.id;
+    User.create(req.body, function (err, user) {
+      if (err) res.json(400, err)
+      res.send(201, user);
+    });
   });
 
   app.put('/users/:id', function (req, res) {
-    var id = validateUserId(req.params.id),
-    user = User.findById(id);
-    user.save(function (error) {
-      return error ? res.send(error) : res.json(user);
+    var id = req.params.id,
+    console.log(req.body)
+    User.update({_id: id}, req.body, function (err, doc) {
+      if (err) res.json(400, err)
+      res.json(200, {Updated: doc});
     });
   });
 
