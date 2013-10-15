@@ -30,19 +30,19 @@ module.exports = function (app) {
 
   app.get('/products/:id', function (req, res) {
     var id = req.params.id;
-    Product.findById(id, null, function (err, doc) {
+    Product.findById(id, null, function (err, product) {
       if (err) res.json(400, err)
-      if (doc === null) res.json(404, {"No such id": id})
-      res.json(doc)
+      if (product === null) res.json(404, {"No such id": id})
+      res.json(product)
     });
   });
 
   app.put('/products/:id', function (req, res) {
     var id = req.params.id;
     console.log(req.body)
-    Product.update({_id: id}, req.body, function (err, doc) {
+    Product.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) res.json(400, err)
-      res.json(200, {Updated: doc});
+      res.json(200, {Updated: numUpdated});
     });
   });
 
