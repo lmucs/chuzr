@@ -19,15 +19,15 @@ module.exports = function (app) {
 
     if (req.query.userId) {
       //TODO add limit to findByUser
-      votesByUserId = Vote.findByUser(req.query.userId);
+      votesByUserId = Vote.find({userId: req.query.userId});
       parameterFlag = true;
     }
     if (req.query.productId) {
-      votesByProductId = Vote.findByProduct(req.query.productId);
+      votesByProductId = Vote.find({productId: req.query.productId});
       parameterFlag = true;
     }
     if (!parameterFlag) {
-      return res.json(Vote.findAll(skip=skip, limit=limit));
+      return Vote.find().slice(skip, limit);
     }
     
     if (req.query.userId && req.query.productId) {
@@ -37,13 +37,14 @@ module.exports = function (app) {
       votes.push.apply(votes, votesByProductId);
       votes.push.apply(votes, votesByUserId);
     }
-    return res.json(votes.slice(0, limit));
+    return res.json(200, votes.slice(0, limit));
   });
 
   app.post('/votes', function (req, res) {
-    //res.send('Creating a vote');
-    var vote = new Vote(req.body);
-    return res.send(201, vote);
+    Vote.create(req.body, function (err) {
+      if (err) throw err;
+      res.send(201, req.body);
+    })
   });
 
   // Get a vote by its id
@@ -71,14 +72,5 @@ module.exports = function (app) {
         vote = Vote.findById(id);
     Vote.delete(id);
     res.send("Vote Deleted");
-    /*
-    return vote.remove(function (error) {
-      if (!error) {
-        return res.send("Vote removed");
-      } else {
-        res.send(error);
-      }
-    });
-    */
   });
 };
