@@ -38,7 +38,7 @@
   });
 
   $(function() {
-    $( "#selectable" ).selectable({
+    $( "#format" ).selectable({
       stop: function() {
         var result = $( "#select-result" ).empty();
         $( ".ui-selected", this ).each(function() {

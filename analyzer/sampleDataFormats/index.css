@@ -3,3 +3,9 @@
   #selectable .ui-selected { background: #F39814; color: white; }
   #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
   #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+
+ #format { font-size: 1.4em; }
+  #format .ui-selecting { background: #FECA40; }
+  #format .ui-selected { background: #F39814; color: white; }
+  #format { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #format li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
