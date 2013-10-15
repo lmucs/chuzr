@@ -3,8 +3,7 @@ var mongoose = require('mongoose')
   , ObjectId = Schema.ObjectId;
 
 var voteSchema = new Schema({
-    _id         : ObjectId
-  , userId      : Number        //ObjectId (will use later once functional)
+    userId      : Number        //ObjectId (will use later once functional)
   , productId   : Number        //ObjectTd
   , rating      : Number
 });

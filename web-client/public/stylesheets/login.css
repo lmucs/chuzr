@@ -1,0 +1,10 @@
+#side-nav,
+#side-nav-toggle {
+  display: none;
+}
+#login {
+  position: fixed;
+  top: 20%;
+  left: 25%;
+  width: 50%;
+}
