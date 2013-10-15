@@ -3,8 +3,7 @@ var mongoose = require('mongoose')
   , ObjectId = Schema.ObjectId;
 
 var couponSchema = new Schema({
-	_id         	: ObjectId
-  , issuer			: String
+    issuer			: String
   , value			: String
   , promoCode		: String
   , expirationDate	: Date

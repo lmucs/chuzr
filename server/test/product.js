@@ -1,7 +1,9 @@
 require('./utils');
 
 var should = require('should');
+var request = require('supertest');  
 var Product = require('../models/product');
+var url = require('../config/config').test.url;
 
 var productOne = {
   name : "Kindle Fire HDX",
@@ -23,7 +25,7 @@ var productTwo = {
   related : ["Sketchers ShapeUps"]
 };
 
-describe('Products', function () {
+describe('Products Model', function () {
 
   describe('#create()', function () {
     it('should create without error', function (done) {
@@ -44,6 +46,21 @@ describe('Products', function () {
         //These must be fixed, I simply stringify the arrays and match them
         product.categories.join().should.equal("tablet,HD")
         product.related.join().should.equal("iPad,iPad Mini,Microsoft Surface")
+        done();
+      })
+    })
+  })
+
+});
+
+describe('Products Controller', function () {
+
+  describe('#search', function () {
+    it('should return an empty list when no products', function (done) {
+      request(url).get('/products').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(200);
+        res.body.should.eql([])
         done();
       })
     })
