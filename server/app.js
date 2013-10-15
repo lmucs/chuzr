@@ -1,29 +1,39 @@
-/* chuzr web service */
+var express = require('express'),
+    http = require('http'),
+    fs = require('fs'),
+    mongoose = require('mongoose'),
+    cors = require('cors');
 
-var express = require('express');
-var http = require('http');
-var mongoose = require('mongoose')
-
-var app = express();
-
+console.log('Configuring the Chuzr API');
+var env = process.env.NODE_ENV || 'development',
+    config = require('./config/config')[env],
+    app = express();
 app.set('port', process.env.PORT || 3000);
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-//app.use(express.cookieParser('zombie marie curie'));
-//app.use(express.session());
-
-if ('development' == app.get('env')) {
+app.use(cors());
+if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// TODO - configure mongoose
+console.log('Connecting to Mongo at %s', config.db)
+mongoose.connect(config.db);
 
-require('./controllers/user-controller')(app)
-require('./controllers/product-controller')(app)
-require('./controllers/vote-controller')(app)
-require('./controllers/coupon-controller')(app)
+console.log('Loading models')
+fs.readdirSync(__dirname + '/models').forEach(function (file) {
+  if (file.match('.js$')) {
+    require(__dirname + '/models/' + file);
+  }
+});
+
+console.log('Loading controllers')
+fs.readdirSync(__dirname + '/controllers').forEach(function (file) {
+  if (file.match('.js$')) {
+    require(__dirname + '/controllers/' + file)(app);
+  }
+});
 
 http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Chuzr API running on port %s, environment=%s', app.get('port'), env);
 });
