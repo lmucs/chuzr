@@ -24,6 +24,11 @@ module.exports = function (app) {
     res.render('stuff-home', {title: 'Chuzr Stuff'});
   });
 
+  app.get('/trends', function(req, res) {
+    res.render('trends', {title: 'Trends'});
+  });
+
+
   app.get('/settings', function(req, res) {
     res.render('settings', {title: 'Settings'});
   });

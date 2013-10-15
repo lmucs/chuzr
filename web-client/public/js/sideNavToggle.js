@@ -2,7 +2,7 @@ $(function(){
   var sideNavShown = true;
   $("#side-nav-toggle").hover(
       function(){
-        $("#side-nav-toggle").css("width", "20px");
+        $("#side-nav-toggle").animate({"width": "25px"}, 200);
         if(sideNavShown){
           $("#toggle-caret").text("◀");
         }else{
@@ -10,23 +10,22 @@ $(function(){
         }
       },
       function(){
-        $("#side-nav-toggle").css("width", "5px");
+        $("#side-nav-toggle").animate({"width": "7px"},600);
         $("#toggle-caret").text("");
       });
 
   $("#side-nav-toggle").click(function(){
     if(sideNavShown){              
-      $("#side-nav").hide(100);
-      $("#main-content").css("width", "95%");
+      $("#side-nav").animate({"width": "hide"});
+      $("#side-nav-toggle").animate({"width": "7px"});
+      $("#toggle-caret").text("");
       sideNavShown = false;
     } else {
-      $("#side-nav").show(100);
-      $("#main-content").css("width", "70%");
+      $("#side-nav").animate({"width": "show"});
+      $("#side-nav-toggle").animate({"width": "7px"});
+      $("#toggle-caret").text("");
       sideNavShown = true;
     }
+    
   });
-
-
-
-
 });
