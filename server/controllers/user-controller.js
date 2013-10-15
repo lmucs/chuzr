@@ -27,15 +27,10 @@ module.exports = function (app) {
   });
 
   app.post('/users', function (req, res) {
-    //res.send('Creating a user');
-    var user = new User(req.body);
-    return res.send("User Created.");
-    //Assuming we are using the mongoose model.js
-    /*
-    user.save(function (error) {
-      return error ? res.send(error) : res.json(user);
+    User.create(req.body, function(err, user) {
+      if (err) res.json(400, err)
+      res.send(201, user);
     });
-    */
   });
 
   app.get('/users/:id', function (req, res) {
