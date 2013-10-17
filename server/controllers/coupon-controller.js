@@ -19,7 +19,7 @@ module.exports = function (app) {
       var currentDate = new Date();
       search['expirationDate'] = {'$lt': currentDate}
     }
-    console.log("Searching Products: %j", search)
+    console.log("Searching Coupons: %j", search)
     Coupon.find(search, null, pagination(req), function (err, docs) {
       if (err) res.json(500, err)
       res.json(docs);
