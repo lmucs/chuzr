@@ -1,7 +1,10 @@
 require('./utils');
 
 var should = require('should');
+var request = require('supertest');  
 var Coupon = require('../models/coupon');
+var url = require('../config/config').test.url;
+
 
 var couponOne = {
   issuer: "target",
@@ -35,7 +38,7 @@ var couponFour = {
   imageURL: "http://www.universitybusiness.com/sites/default/files/styles/crop-tool-350x250/public/field/image/textboook.jpg?itok=i3kfC4uR"
 };
 
-describe('Coupons', function(){
+describe('Coupon Model', function(){
 
   describe('#create()', function () {
     it('should create without error', function (done) {
@@ -58,3 +61,30 @@ describe('Coupons', function(){
   })
 
 });
+
+describe('Coupon Controller', function () {
+
+  describe('#search', function () {
+    it('should return an empty list when no coupons', function (done) {
+      request(url).get('/coupons').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(200);
+		console.log(res.body);
+        res.body.should.eql([]);
+        done();
+      })
+    })
+  })
+
+  describe('#post', function () {
+    it('should return 201 after post', function (done) {
+      request(url).post('/coupons')
+	  .set('Content-Type', 'application/json')
+	  .send(couponTwo)
+	  .end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+		console.log(res.body);
+		done();
+      })
+    })
