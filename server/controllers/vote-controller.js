@@ -16,9 +16,7 @@ module.exports = function (app) {
     if (req.query.productId) {
       search["productId"] = req.query.productId;
     }
-    console.log("Searching Votes: %j", search);
     Vote.find(search, null, pagination(req), function (err, votes) {
-      console.log(err);
       if (err) res.json(500, err);
       res.json(200, votes);
     });
