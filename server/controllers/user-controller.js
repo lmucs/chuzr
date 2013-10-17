@@ -1,4 +1,8 @@
 User = require('../models/user')
+var express = require('express'),
+auth = express.basicAuth(function(user, pass) {
+  return user === 'testUser' && pass === 'testPass';
+});
 
 module.exports = function (app) {
 
@@ -14,12 +18,12 @@ module.exports = function (app) {
     return {skip: +req.query.skip || 0, limit: +req.query.limit || 10 }
   }
 
-  app.get('/users', function (req, res) {
+  app.get('/users', auth, function (req, res) {
     search = {};
     if (req.query.name) {
       search['name'] = {'$regex': '^' + req.query.name, '$options': 'i'}
     }
-    console.log("Searching Users: &j", search)
+    console.log("Searching Users: %j", search)
     User.find(search, null, pagination(req), function (err, docs) {
       if (err) res.json(500, err)
       res.json(docs);
