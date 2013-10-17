@@ -42,8 +42,6 @@ describe('Products Model', function () {
         product.imageURL.should.equal("http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg")
         product.rating.should.equal(8)
         product.price.should.equal(379.99)
-
-        //These must be fixed, I simply stringify the arrays and match them
         product.categories.join().should.equal("tablet,HD")
         product.related.join().should.equal("iPad,iPad Mini,Microsoft Surface")
         done();
@@ -61,6 +59,29 @@ describe('Products Controller', function () {
         if (err) throw err;
         res.should.have.status(200);
         res.body.should.eql([])
+        done();
+      })
+    })
+  })
+
+  describe('#create', function () {
+    it('should create with a 201 status', function (done) {
+      request(url).post('/products').send(productOne).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+        done();
+      })
+    })
+    it('should assign all properties on creation', function (done) {
+      request(url).post('/products').send(productOne).end(function (err, res) {
+        if (err) throw err;
+        res.body.name.should.equal("Kindle Fire HDX")
+        res.body.description.should.equal("Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras")
+        res.body.imageURL.should.equal("http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg")
+        res.body.rating.should.equal(8)
+        res.body.price.should.equal(379.99)
+        res.body.categories.join().should.equal("tablet,HD")
+        res.body.related.join().should.equal("iPad,iPad Mini,Microsoft Surface")
         done();
       })
     })
