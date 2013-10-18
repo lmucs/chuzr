@@ -58,14 +58,29 @@ describe('Products Controller', function () {
       request(url).get('/products').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(200);
-        res.body.should.eql([])
+        res.body.should.eql([]);
+        done();
+      })
+    })
+    it('should get by id without error', function (done) {
+      // Create the product.
+      request(url).post('/products').send(productOne).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+
+        // Get that product by id.
+        request(url).get('/products/' + res.body._id).end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+        })
+
         done();
       })
     })
   })
 
   describe('#create', function () {
-    it('should create with a 201 status', function (done) {
+    it('should create without error', function (done) {
       request(url).post('/products').send(productOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -75,16 +90,42 @@ describe('Products Controller', function () {
     it('should assign all properties on creation', function (done) {
       request(url).post('/products').send(productOne).end(function (err, res) {
         if (err) throw err;
-        res.body.name.should.equal("Kindle Fire HDX")
-        res.body.description.should.equal("Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras")
-        res.body.imageURL.should.equal("http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg")
-        res.body.rating.should.equal(8)
-        res.body.price.should.equal(379.99)
-        res.body.categories.join().should.equal("tablet,HD")
-        res.body.related.join().should.equal("iPad,iPad Mini,Microsoft Surface")
+        res.body.name.should.equal("Kindle Fire HDX");
+        res.body.description.should.equal("Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras");
+        res.body.imageURL.should.equal("http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg");
+        res.body.rating.should.equal(8);
+        res.body.price.should.equal(379.99);
+        res.body.categories.join().should.equal("tablet,HD");
+        res.body.related.join().should.equal("iPad,iPad Mini,Microsoft Surface");
+        done();
+      })
+    })
+    it('should only assign the schema\'s properties on creation, including an _id', function (done) {
+      request(url).post('/products').send(productOne).end(function (err, res) {
+        if (err) throw err;
+        Object.keys(res.body).length.should.equal(9);
         done();
       })
     })
   })
+
+  describe('#delete', function () {
+    it('should delete without error', function (done) {
+      // Create the product.
+      request(url).post('/products').send(productOne).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+
+        // Delete that product.
+        request(url).del('/products/' + res.body._id).end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+        })
+
+        done();
+      })
+    })
+  }) 
+
 
 });
