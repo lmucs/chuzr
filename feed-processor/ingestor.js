@@ -12,7 +12,8 @@ var Ingestor = function () {
         data += chunk;
       });
       res.on('end', function () {
-        parse(data);
+        var result = parse(data);
+        console.log(JSON.stringify(result));
         console.log("Ingestion complete.");
       });
     }).on('error', function (err) {
