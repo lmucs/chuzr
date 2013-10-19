@@ -18,8 +18,7 @@ $(function(){
     .done(function(user){
       console.log("ajax retrieved" );
       console.log(user);
-
-
+      
       displayName = user.displayName;
       name = user.name;
       location = user.location;
