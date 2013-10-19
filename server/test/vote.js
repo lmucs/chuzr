@@ -110,9 +110,8 @@ describe('Votes Controller', function(){
         request(url).get('/votes/' + res.body._id).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
+          done();
         })
-
-        done();
       })
     })
     it('should return a list of three votes', function (done) {
@@ -253,6 +252,7 @@ describe('Votes Controller', function(){
         res.body[0].userId.should.equal(0)
         res.body[0].productId.should.equal(32)
         res.body[0].rating.should.equal(4)
+        done()
       })
   })
 
@@ -318,7 +318,7 @@ describe('Votes Controller', function(){
         if (err) throw err;
         res.should.have.status(200)
         console.log(res.body)
-        Object.keys(res.body).length.should.equal(10);
+        res.body.length.should.equal(10);
         done();
       })
     })
