@@ -2,7 +2,11 @@ extends layout
 
 block content
   h1= title
-  form(class='navbar-search')
-    input(type='text', class='search-query', placeholder='Search')
+  div(class='input-prepend')
+    div(class='btn-group')
+      select(class='span12')
+        option: 'Name'
+        option: 'Type'
+    input(class='span9', id=prependDropdownButton, type='text')
     div(button class="btn btn-mini" type="button")
       p go
