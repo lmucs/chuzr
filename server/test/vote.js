@@ -110,9 +110,8 @@ describe('Votes Controller', function(){
         request(url).get('/votes/' + res.body._id).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
+          done();
         })
-
-        done();
       })
     })
     it('should return a list of three votes', function (done) {
@@ -319,7 +318,7 @@ describe('Votes Controller', function(){
         if (err) throw err;
         res.should.have.status(200)
         console.log(res.body)
-        Object.keys(res.body).length.should.equal(10);
+        res.body.length.should.equal(10);
         done();
       })
     })
