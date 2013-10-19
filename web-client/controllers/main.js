@@ -28,6 +28,9 @@ module.exports = function (app) {
     res.render('trends', {title: 'Trends'});
   });
 
+  app.get('/profile', function(req, res) {
+    res.render('profile', {title: 'profile'});
+  });
 
   app.get('/settings', function(req, res) {
     res.render('settings', {title: 'Settings'});
