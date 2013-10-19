@@ -87,9 +87,8 @@ describe('Users Controller', function () {
         request(url).get('/users/' + res.body._id).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(201);
+          done();
         })
-
-        done();
       })
     })
   })
@@ -129,9 +128,8 @@ describe('Users Controller', function () {
         request(url).del('/users/' + res.body._id).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
+          done();
         })
-
-        done();
       })
     })
   }) 
