@@ -24,7 +24,7 @@ module.exports = function (app) {
 
   });
 
-  app.post('/votes', function (req, res) {
+  app.post('/votes', auth, function (req, res) {
     Vote.create(req.body, function (err, vote) {
       if (err) res.send(400, err);
       res.send(201, vote);
@@ -42,7 +42,7 @@ module.exports = function (app) {
     });
   });
 
-  app.put('/votes/:id', function (req, res) {
+  app.put('/votes/:id', auth, function (req, res) {
     var id = req.params.id;
     console.log(req.body)
     Product.update({_id: id}, req.body, function (err, numUpdated) {
@@ -51,7 +51,7 @@ module.exports = function (app) {
     });
   });
 
-  app.delete('/votes/:id', function (req, res) {
+  app.delete('/votes/:id', auth, function (req, res) {
     var id = req.params.id;
     Product.remove({_id: id}, function (err) {
       if (err) res.json(400, err)
