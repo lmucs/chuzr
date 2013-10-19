@@ -51,7 +51,7 @@ describe('Products Model', function () {
 
 });
 
-describe('Products Controller', function () {
+describe.skip('Products Controller', function () {
 
   describe('#search()', function () {
     it('should return an empty list when no products', function (done) {
