@@ -92,9 +92,8 @@ describe('Coupons Controller', function () {
         request(url).get('/coupons/' + res.body._id).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
+          done();
         })
-
-        done();
       })
     })
     
@@ -307,9 +306,8 @@ describe('Coupons Controller', function () {
         request(url).del('/coupons/' + res.body._id).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
+          done();
         })
-
-        done();
       })
     })
   });

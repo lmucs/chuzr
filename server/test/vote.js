@@ -98,7 +98,6 @@ describe('Votes Model', function(){
       })
     })
   })
-
 });
 
 describe('Votes Controller', function(){
