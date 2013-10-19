@@ -139,7 +139,7 @@ describe('Products Controller', function () {
         res.should.have.status(201);
       })
       
-      //Ensure correct coupon posted
+      //Ensure correct product posted
       request(url).get('/products').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(200);
@@ -151,12 +151,12 @@ describe('Products Controller', function () {
         res.body[0].categories.join().should.equal("tablet,HD");
         res.body[0].related.join().should.equal("iPad,iPad Mini,Microsoft Surface");
 
-        // Update that coupon.
+        // Update that product.
         request(url).put('/products/' + res.body[0]._id).send(productTwo).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
           
-          //Ensure coupon has new data
+          //Ensure product has new data
           request(url).get('/products').end(function (err, res) {
             if (err) throw err;
             res.should.have.status(200)
