@@ -252,7 +252,7 @@ describe('Votes Controller', function(){
         res.body[0].userId.should.equal(0)
         res.body[0].productId.should.equal(32)
         res.body[0].rating.should.equal(4)
-        done()
+		done();
       })
   })
 
