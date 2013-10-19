@@ -1,12 +1,12 @@
 User = require('../models/user')
 var express = require('express'),
-auth = require('./auth-controller');
-/*
+auth = require('./auth-controller').auth;
+
 auth = express.basicAuth(function(user, pass, callback) {
   //To be replaced with actual users and passes
   var result = (user === 'testUser' && pass === 'testPass');
   callback(null, result);
-});*/
+});
 
 module.exports = function (app) {
 
