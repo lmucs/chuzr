@@ -317,7 +317,6 @@ describe('Votes Controller', function(){
       request(url).get('/votes').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(200)
-        console.log(res.body)
         res.body.length.should.equal(10);
         done();
       })
