@@ -28,7 +28,7 @@ html
                 li: a(href='/logout') Logout
 
       div(class='row-fluid', id='content')
-        div(class='span2', id='side-nav')
+        div(class='span1', id='side-nav')
          a(href='/home')
            img(src="/images/chuzr-logo.png", height='128', width='232')
          br
@@ -46,16 +46,17 @@ html
         div(class='span1',id='side-nav-toggle')
           h4(id='toggle-caret')
  
-        div(class='span9', id='main-content')
+        div(class='span10', id='main-content')
+          div: h2 Welcome to #{title}
           block content
       
-      div(class='navbar navbar-fixed-bottom',id='footer-nav')
-        div(class='navbar-inner')
-          ul(class='nav pull-right', id='footer-links')
-            li: a(href='/about') about 
-            li: a(href='/contact') contact 
-            li: a(href='/FAQ') FAQ 
-            li: a(href='/feedback') feedback 
-            li: a(href='/privacy') privacy
+    div(class='navbar navbar-fixed-bottom',id='footer-nav')
+      div(class='navbar-inner')
+        ul(class='nav pull-right', id='footer-links')
+          li: a(href='/about') about 
+          li: a(href='/contact') contact 
+          li: a(href='/FAQ') FAQ 
+          li: a(href='/feedback') feedback 
+          li: a(href='/privacy') privacy
       
     
