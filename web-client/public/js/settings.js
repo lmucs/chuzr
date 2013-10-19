@@ -1,5 +1,5 @@
 $(function(){
-  var userID = user.userID,
+  var userID = 1,
       displayName = '',
       name = '',
       location = '',
@@ -12,10 +12,14 @@ $(function(){
       password = '';
 
   $.ajax({
-    url:"http://localhost:3000/users" + userID,
+    url:"http://localhost:3000/products/526024925d503660ea5a69be",
     cache: false
   })  
     .done(function(user){
+      console.log("ajax retrieved" );
+      console.log(user);
+
+
       displayName = user.displayName;
       name = user.name;
       location = user.location;
@@ -27,13 +31,15 @@ $(function(){
       profilePicture = user.avatarURL;
       password = user.hashedPassword;
 
-      $("#displayName").text(displayName);
-      $("#name").text(name);
+      console.log("name: " + name);
+
+      $("#displayName").attr("placeholder", displayName);
+      $("#name").attr("placeholder", name);
       $("#location").text(location);
       $("#birthMonth").text(birthMonth);
       $("#birthDate").text(birthDate);
       $("#birthYear").text(birthYear);
       $("#aboutMe").text(aboutMe);
       $("#website").text(website);
-    })
+    });
 });
