@@ -145,7 +145,7 @@ describe('Votes Controller', function(){
         res.body[2].userId.should.equal(0)
         res.body[2].productId.should.equal(15)
         res.body[2].rating.should.equal(9)
-        Object.keys(res.body).length.should.equal(15);
+        res.body.length.should.equal(3);
         done();
       })
     })
@@ -182,7 +182,7 @@ describe('Votes Controller', function(){
         res.body[1].userId.should.equal(0)
         res.body[1].productId.should.equal(32)
         res.body[1].rating.should.equal(4)
-        Object.keys(res.body).length.should.equal(10);
+        res.body.length.should.equal(2);
         done();
       })
     })
@@ -219,7 +219,7 @@ describe('Votes Controller', function(){
         res.body[1].userId.should.equal(0)
         res.body[1].productId.should.equal(15)
         res.body[1].rating.should.equal(9)
-        Object.keys(res.body).length.should.equal(10);
+        res.body.length.should.equal(2);
         done();
       })
     })
@@ -253,6 +253,7 @@ describe('Votes Controller', function(){
         res.body[0].userId.should.equal(0)
         res.body[0].productId.should.equal(32)
         res.body[0].rating.should.equal(4)
+      })
   })
 
     it('should return a list of 10 votes, testing limit', function (done) {
@@ -317,7 +318,7 @@ describe('Votes Controller', function(){
         if (err) throw err;
         res.should.have.status(200)
         console.log(res.body)
-        Object.keys(res.body).length.should.equal(50);
+        Object.keys(res.body).length.should.equal(10);
         done();
       })
     })
@@ -342,5 +343,4 @@ describe('Votes Controller', function(){
       })
     })
   })
-});
 });
