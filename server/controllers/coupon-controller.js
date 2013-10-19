@@ -27,27 +27,27 @@ module.exports = function (app) {
   });
   
   app.post('/coupons', function (req, res) {
-    Coupon.create(req.body, function (err) {
+    Coupon.create(req.body, function (err, coupon) {
       if (err) res.json(400, err)
-      res.send(201);
+      res.send(201, coupon);
     });
   });
 
   app.get('/coupons/:id', function (req, res) {
     var id = req.params.id;
-    Coupon.findById(id, null, function (err, doc) {
+    Coupon.findById(id, null, function (err, coupon) {
       if (err) res.json(400, err)
-      if (doc === null) res.json(404)
-      res.json(doc)
+      if (coupon === null) res.json(404)
+      res.json(coupon)
     });
   });
 
   app.put('/coupons/:id', function (req, res) {
     var id = req.params.id;
     console.log(req.body)
-    Coupon.update({_id: id}, req.body, function (err, doc) {
+    Coupon.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) res.json(400, err)
-      res.json(200, {Updated: doc});
+      res.json(200, {Updated: numUpdated});
     });
   });
 
