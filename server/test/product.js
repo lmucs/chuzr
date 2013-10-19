@@ -159,7 +159,6 @@ describe('Products Controller', function () {
           //Ensure product has new data
           request(url).get('/products').end(function (err, res) {
             if (err) throw err;
-            res.should.have.status(200)
             res.should.have.status(200);
             res.body[0].name.should.equal("Shake-Weight");
             res.body[0].description.should.equal("Suggestive workout machine");
