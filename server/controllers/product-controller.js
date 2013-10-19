@@ -8,11 +8,13 @@ module.exports = function (app) {
 
   app.get('/products', function (req, res) {
     search = {}
-    if (req.query.name) {
-      search['name'] = {'$regex': '^' + req.query.name, '$options': 'i'}
-    }
-    if (req.query.c) {
-      search['categories'] = {'$in': [req.query.c]}
+    if (req.query.search) {
+      search = {
+        '$or': [
+          {name: {'$regex': '^' + req.query.search, '$options': 'i'}},
+          {categories: {'$in': [req.query.c]}}
+        ]
+      }
     }
     console.log("Searching Products: %j", search)
     Product.find(search, null, pagination(req), function (err, docs) {
