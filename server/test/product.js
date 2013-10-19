@@ -27,10 +27,20 @@ var productTwo = {
 
 describe('Products Model', function () {
 
+  describe('#search()', function () {
+    it('should return an empty list when no products', function (done) {
+      Product.find({}, function (err, product) {
+        should.not.exist(err);
+        product.should.eql([]);
+        done();
+      })
+    })
+  })
+
   describe('#create()', function () {
     it('should create without error', function (done) {
       Product.create(productOne, function (err) {
-        if (err) throw err;
+        should.not.exist(err);
         done();
       })
     })
