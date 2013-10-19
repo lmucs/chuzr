@@ -17,7 +17,7 @@ module.exports = function (app) {
   });
   
   app.get('/browse', function(req, res) {
-    res.render('browse-home', {title: 'Browse Chuzr'});
+    res.render('browse-home', {title: 'Browse'});
   });
 
   app.get('/stuff', function(req, res) {

@@ -2,4 +2,7 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  form(class='navbar-search')
+    input(type='text', class='search-query', placeholder='Search')
+    div(button class="btn btn-mini" type="button")
+      p go
