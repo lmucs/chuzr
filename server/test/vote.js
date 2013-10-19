@@ -1,6 +1,7 @@
 require('./utils');
 
 var should = require('should');
+var request = require('supertest');  
 var Vote = require('../models/vote');
 var VoteController = require('../controllers/vote-controller')
 var request = require('supertest')
@@ -252,11 +253,8 @@ describe('Votes Controller', function(){
         res.body[0].userId.should.equal(0)
         res.body[0].productId.should.equal(32)
         res.body[0].rating.should.equal(4)
-        Object.keys(res.body).length.should.equal(5);
-        done();
-      })
-    })
-    
+  })
+
     it('should return a list of 10 votes, testing limit', function (done) {
       // Create 11 votes
       request(url).post('/votes').send(voteOne).end(function (err, res) {
@@ -344,5 +342,5 @@ describe('Votes Controller', function(){
       })
     })
   })
-
-})
+});
+});
