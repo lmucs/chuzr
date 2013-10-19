@@ -62,7 +62,7 @@ describe('Users Model', function(){
 
 });
 
-describe.skip('Users Controller', function () {
+describe('Users Controller', function () {
 
   describe('#search()', function () {
     it('should return an empty list when no users', function (done) {

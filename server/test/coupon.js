@@ -62,7 +62,7 @@ describe('Coupons Model', function(){
 
 });
 
-describe.skip('Coupons Controller', function () {
+describe('Coupons Controller', function () {
 
   describe('#search()', function () {
     it('should return an empty list when no coupons', function (done) {
