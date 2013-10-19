@@ -53,7 +53,7 @@ describe('Products Model', function () {
 
 describe('Products Controller', function () {
 
-  describe('#search', function () {
+  describe('#search()', function () {
     it('should return an empty list when no products', function (done) {
       request(url).get('/products').end(function (err, res) {
         if (err) throw err;
@@ -79,7 +79,7 @@ describe('Products Controller', function () {
     })
   })
 
-  describe('#create', function () {
+  describe('#create()', function () {
     it('should create without error', function (done) {
       request(url).post('/products').send(productOne).end(function (err, res) {
         if (err) throw err;
@@ -87,7 +87,7 @@ describe('Products Controller', function () {
         done();
       })
     })
-    it('should assign all properties on creation', function (done) {
+    it('should assign all properties on creation, including an _id', function (done) {
       request(url).post('/products').send(productOne).end(function (err, res) {
         if (err) throw err;
         res.body.name.should.equal("Kindle Fire HDX");
@@ -97,19 +97,13 @@ describe('Products Controller', function () {
         res.body.price.should.equal(379.99);
         res.body.categories.join().should.equal("tablet,HD");
         res.body.related.join().should.equal("iPad,iPad Mini,Microsoft Surface");
-        done();
-      })
-    })
-    it('should only assign the schema\'s properties on creation, including an _id', function (done) {
-      request(url).post('/products').send(productOne).end(function (err, res) {
-        if (err) throw err;
         Object.keys(res.body).length.should.equal(9);
         done();
       })
     })
   })
 
-  describe('#delete', function () {
+  describe('#delete()', function () {
     it('should delete without error', function (done) {
       // Create the product.
       request(url).post('/products').send(productOne).end(function (err, res) {
