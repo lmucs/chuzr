@@ -40,4 +40,21 @@ module.exports = function (app) {
       res.json(vote)
     });
   });
+
+  app.put('/votes/:id', function (req, res) {
+    var id = req.params.id;
+    console.log(req.body)
+    Product.update({_id: id}, req.body, function (err, numUpdated) {
+      if (err) res.json(400, err)
+      res.json(200, {Updated: numUpdated});
+    });
+  });
+
+  app.delete('/votes/:id', function (req, res) {
+    var id = req.params.id;
+    Product.remove({_id: id}, function (err) {
+      if (err) res.json(400, err)
+      res.json(200, {Deleted: id});
+    });
+  });
 };
