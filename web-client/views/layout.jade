@@ -14,9 +14,11 @@ html
     div(id='wrap')
       div(class='navbar', id='nav-bar')
         div(class='navbar-inner')
-          a(class='brand', href='/home') Chuzr
           ul(class='nav')
-            li: a(href='/play') Play
+            li:  a(href='/home')
+              img(src="/images/chuzr-logo.png", height='50', width='50')
+            li: a(href='/play') 
+              img(src="/images/play-button.png", height='25', width='25')
             li: a(href='/social') Social    
           ul(class='nav pull-right')
             form(class='navbar-search')
@@ -24,6 +26,7 @@ html
             li(class='dropdown'): a(href='#', class='dropdown-toggle', data-toggle='dropdown') Account
               b(class='caret')
               ul(class='dropdown-menu')
+                li: a(href='/profile') Profile
                 li: a(href='/settings') Settings
                 li: a(href='/logout') Logout
 
@@ -47,7 +50,6 @@ html
           h4(id='toggle-caret')
  
         div(class='span10', id='main-content')
-          div: h2 Welcome to #{title}
           block content
       
     div(class='navbar navbar-fixed-bottom',id='footer-nav')
