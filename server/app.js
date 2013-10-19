@@ -37,6 +37,7 @@ console.log('Loading controllers')
 fs.readdirSync(__dirname + '/controllers').forEach(function (file) {
   if (file.match('.js$')) {
     require(__dirname + '/controllers/' + file)(app);
+    console.log(file);
   }
 });
 
