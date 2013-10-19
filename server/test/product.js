@@ -82,9 +82,8 @@ describe('Products Controller', function () {
         request(url).get('/products/' + res.body._id).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
+          done();
         })
-
-        done();
       })
     })
   })
@@ -124,9 +123,8 @@ describe('Products Controller', function () {
         request(url).del('/products/' + res.body._id).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
+          done();
         })
-
-        done();
       })
     })
   })
