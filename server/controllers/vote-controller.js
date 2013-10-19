@@ -1,4 +1,5 @@
 Vote = require('../models/vote')
+auth = require('./auth-controller')
 
 module.exports = function (app) {
 

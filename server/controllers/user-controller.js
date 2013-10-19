@@ -1,5 +1,10 @@
 User = require('../models/user')
-var express = require('express');
+var express = require('express'),
+auth = express.basicAuth(function(user, pass, callback) {
+  //To be replaced with actual users and passes
+  var result = (user === 'testUser' && pass === 'testPass');
+  callback(null, result);
+});
 
 module.exports = function (app) {
 
@@ -15,7 +20,7 @@ module.exports = function (app) {
     return {skip: +req.query.skip || 0, limit: +req.query.limit || 10 }
   }
 
-  app.get('/users', function (req, res) {
+  app.get('/users', auth, function (req, res) {
     search = {};
     if (req.query.name) {
       search['name'] = {'$regex': '^' + req.query.name, '$options': 'i'}
@@ -27,7 +32,7 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/users', function (req, res) {
+  app.post('/users', auth, function (req, res) {
     User.create(req.body, function(err, user) {
       if (err) res.json(400, err)
       res.send(201, user);
@@ -42,7 +47,7 @@ module.exports = function (app) {
     });
   });
 
-  app.put('/users/:id', function (req, res) {
+  app.put('/users/:id', auth, function (req, res) {
     var id = req.params.id;
     console.log(req.body)
     User.update({_id: id}, req.body, function (err, doc) {
@@ -51,7 +56,7 @@ module.exports = function (app) {
     });
   });
 
-  app.delete('/users/:id', function (req, res) {
+  app.delete('/users/:id', auth, function (req, res) {
     var id = req.params.id;
     User.remove({_id: id}, function (err) {
       if (err) res.json(400, err)
