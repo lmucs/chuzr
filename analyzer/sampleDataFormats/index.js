@@ -31,7 +31,7 @@
         var result = $( "#select-result" ).empty();
         $( ".ui-selected", this ).each(function() {
           var index = $( "#selectable li" ).index( this );
-          result.append( " #" + ( index + 1 ) );
+          result.append( " #" + (index + 1 ) );
         });
       }
     });
@@ -40,9 +40,9 @@
   $(function() {
     $( "#format" ).selectable({
       stop: function() {
-        var result = $( "#select-result" ).empty();
+        var result = $( "#select-format-result" ).empty();
         $( ".ui-selected", this ).each(function() {
-          var index = $( "#selectable li" ).index( this );
+          var index = $( "#format li" ).index( this );
           result.append( " #" + ( index + 1 ) );
         });
       }
