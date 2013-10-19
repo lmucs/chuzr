@@ -24,7 +24,7 @@ var userTwo = {
     last: 'Bar'
   },
   email: 'clifbar@example.com',
-  username: 'clifclif'
+  login: 'clifclif'
 };
 
 var userThree = {
@@ -33,7 +33,11 @@ var userThree = {
     last: 'Bar'
   },
   email: 'candybar@example.com',
-  username: 'candycandy'
+  login: 'candycandy',
+  reputation: 15,
+  socialHandle: 'candybar',
+  avatarURL: 'http://i.candybar.com/candy.png',
+  hashedPassword: 'aoeihg9984jh19we'
 };
 
 describe('Users Model', function(){
@@ -132,7 +136,46 @@ describe('Users Controller', function () {
     })
   }) 
 
+  describe('#update()', function () {
+    it('should update without error', function (done) {
+      // Create the user.
+      request(url).post('/users').send(userOne).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      })
+      
+      //Ensure correct user posted
+      request(url).get('/users').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(200);
+        res.body[0].name.first.should.equal('Luna')
+        res.body[0].name.last.should.equal('Bar')
+        res.body[0].email.should.equal('lunabar@example.com')
+        res.body[0].login.should.equal('lunaluna')
+        res.body[0].reputation.should.equal(1000)
+        res.body[0].hashedPassword.should.equal('qiyh4XPJGsOZ2MEAyLkfWqeQ')
+        res.body[0].avatarURL.should.equal('http://i.lunabar.com/luna.png')
+
+        // Update that user.
+        request(url).put('/users/' + res.body[0]._id).send(userThree).end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+          
+          //Ensure user has new data
+          request(url).get('/users').end(function (err, res) {
+            if (err) throw err;
+            res.should.have.status(200);
+            res.body[0].name.first.should.equal('Candy')
+            res.body[0].name.last.should.equal('Bar')
+            res.body[0].email.should.equal('candybar@example.com')
+            res.body[0].login.should.equal('candycandy')
+            res.body[0].reputation.should.equal(15)
+            res.body[0].hashedPassword.should.equal('aoeihg9984jh19we')
+            res.body[0].avatarURL.should.equal('http://i.candybar.com/candy.png')
+            done();
+          })
+        })
+      })
+    });
+  });
 });
-
-
-
