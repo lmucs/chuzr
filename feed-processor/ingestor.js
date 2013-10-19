@@ -1,28 +1,45 @@
 var http = require('http');
 var parseXML = require('xml2js').parseString;
-var url = 'http://www.beso.com/users/MrsClassic/favorites.json';
-// var url = 'http://www.w3schools.com/xml/note.xml';
 
-http.get(url, function(res) {
-    var body = '';
-    var parse;
+var Ingestor = function () {
 
-    res.on('data', function(chunk) {
-        body += chunk;
+  var _retrieveData = function (url, parse) {
+    var data = '';
+    console.log("Retrieving data from", url);
+    http.get(url, function (res) {
+      console.log("Attempting get...");
+      res.on('data', function (chunk) {
+        data += chunk;
+      });
+      res.on('end', function () {
+        parse(data);
+        console.log("Ingestion complete.");
+      });
+    }).on('error', function (err) {
+      console.log("Error retrieving data: ", err);
     });
+  };
 
-    res.on('end', function() {
-        var response;
-        try {
-          response = JSON.parse(body);
-        } catch (e) {
-          parseXML(body, function (err, result) {
-            if (err) console.log(err);
-            response = result;
-          });
-        }
-        console.log("Got response: ", JSON.stringify(response));
+  var _xml = function (url) {
+    console.log("Ingesting xml...");
+    _retrieveData(url, function (data) {
+      return parseXML(data, function (err, result) {
+        if (err) console.log("Error parsing xml: ", err);
+      });
     });
-}).on('error', function(e) {
-      console.log("Got error: ", e);
-});
+  };
+
+  var _json = function (url) {
+    console.log("Ingesting json...");
+    _retrieveData(url, function (data) {
+      return JSON.parse(data);
+    });
+  };
+
+  return {
+    xml : _xml,
+    json : _json
+  };
+}();
+
+module.exports = Ingestor;
