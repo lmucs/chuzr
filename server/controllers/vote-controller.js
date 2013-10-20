@@ -35,7 +35,7 @@ module.exports = function (app) {
     var id = req.params.id;
       
     Vote.findById(id, null, function (err, vote) {
-      if (err) res.json(400, err)
+      if (err) res.json(404, err)
       if (vote === null) res.json(404, {"No such id": id})
       res.json(vote)
     });
