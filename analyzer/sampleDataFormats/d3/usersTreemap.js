@@ -1,11 +1,10 @@
 $(function () {
-    var data = getTestData(),
+    var data = createTestData(),
         selectOptions = [
-            {name: 'Votes', val: 'votes'},
-            {name: 'Purchases', val: 'purchases'},
-            {name: 'Posts', val: 'posts'},
-            {name: 'Category Size', val: 'category'}
+            {name: 'Size', val: 'size'},
+            {name: 'Rating', val: 'rating'}
         ];
+    console.log(data);
 	createTreemap("treemap", selectOptions, data);
 });
 
@@ -41,3 +40,50 @@ function getTestData() {
     });
 	return data;
 };
+
+function createTestData() {
+    var data = {
+            "name": "products",
+            "children": [],
+            "size": 10000,
+            "level": 0,
+            "rating": Math.random()
+        }, 
+        addRandomChildren = function (parent) {
+            var childrenNum = Math.floor(Math.random() * 10 / parent.level),
+                children = [],
+                child,
+                i;
+            
+            for (i = 0; i < childrenNum; i++) {
+                child = {
+                    "name": "child_" + i,
+                    "level": parent.level + 1,
+                    "rating": Math.random()
+                };
+                child.size = Math.floor(Math.random() * 10000 / Math.pow(2, child.level)) 
+                             + 0.5 * 10000 / Math.pow(2, child.level);
+                child.children = addRandomChildren(child);
+                children.push(child);
+            }
+            
+            return children;
+        };
+    
+    ["Sports", "Aparel", "Electronics"].forEach(function (category) {
+        var child = {
+            "name": category,
+            "level": 1,
+            "rating": Math.random()
+        };
+        
+        child.size = Math.floor(Math.random() * 10000 / Math.pow(2, child.level)) 
+            + 0.5 * 10000 / Math.pow(2, child.level);
+            
+        child.children = addRandomChildren(child);
+        
+        data.children.push(child);
+    });
+    
+    return data;
+}

@@ -31,10 +31,11 @@ var createTreemap = function(containerId, selectOptions, data) {
 
         nodes = treemap.nodes(root)
             .filter(function (d) {
-                return !d.children;
-            }),
+            	return true;
+                //return !d.children;
+            });
 
-        cell = svg.selectAll("g")
+        var cell = svg.selectAll("g")
             .data(nodes)
             .enter().append("svg:g")
             .attr("class", "cell")
@@ -45,10 +46,10 @@ var createTreemap = function(containerId, selectOptions, data) {
                 return zoom(node == d.parent ? root : d.parent);
             });
             
-    $("#" + containerId).append($('<select></select>'));
+    $("#" + containerId).append($('<select></select>').attr('id', 'sizeBy'));
     
     selectOptions.forEach(function(option) {
-        $('select').append($('<option></option>')
+        $('#sizeBy').append($('<option></option>')
             .text(option.name)
             .attr('value', option.val)
         );
@@ -56,13 +57,20 @@ var createTreemap = function(containerId, selectOptions, data) {
 
     cell.append("svg:rect")
         .attr("width", function (d) {
-                return d.dx - 1;
+                return d.dx;
             })
         .attr("height", function (d) {
-                return d.dy - 1;
+                return d.dy;
             })
         .style("fill", function (d) {
-                return d.color;
+                if (d.color) {
+                    return d.color;
+                } else {
+                    return "red";
+                }
+            })        
+        .style("stroke", function (d) {
+                return "black";
             });
 
     cell.append("title")
@@ -90,7 +98,7 @@ var createTreemap = function(containerId, selectOptions, data) {
             zoom(root);
         });
 
-    d3.select("select").on("change", function () {
+    d3.select("#sizeBy").on("change", function () {
             treemap.value(accessors[this.value]).nodes(root);
             zoom(node);
         });
@@ -110,6 +118,9 @@ var createTreemap = function(containerId, selectOptions, data) {
 
             category: function (d) {
                     return 1;
+                },
+            rating: function (d) {
+            	    return d.rating; 
                 }
         };
 
@@ -126,10 +137,10 @@ var createTreemap = function(containerId, selectOptions, data) {
 
         t.select("rect")
             .attr("width", function (d) {
-                    return kx * d.dx - 1;
+                    return kx * d.dx;
                 })
             .attr("height", function(d) {
-                    return ky * d.dy - 1;
+                    return ky * d.dy;
                 })
 
         t.select("text")

@@ -19,7 +19,7 @@ var vis = d3.select("body").insert("svg:svg", "h2")
     .attr("transform", "translate(" + (w - r) / 2 + "," + (h - r) / 2 + ")");
     
 var color = function(node) {
-    var rating = node.rating,
+    var rating = node.rating / 100,
         b = 0,
         r = 255*2*(1-rating),
         g = 255*2*rating;
@@ -128,7 +128,7 @@ function createTestData() {
             "children": [],
             "size": 10000,
             "level": 0,
-            "rating": Math.random()
+            "rating": Math.floor(Math.random()*99+1)
         }, 
         addRandomChildren = function (parent) {
             var childrenNum = Math.floor(Math.random() * 10 / parent.level),
@@ -140,7 +140,7 @@ function createTestData() {
                 child = {
                     "name": "child_" + i,
                     "level": parent.level + 1,
-                    "rating": Math.random()
+                    "rating": Math.floor(Math.random()*99+1)
                 };
                 child.size = Math.floor(Math.random() * 10000 / Math.pow(2, child.level)) 
                              + 0.5 * 10000 / Math.pow(2, child.level);
@@ -155,7 +155,7 @@ function createTestData() {
         var child = {
             "name": category,
             "level": 1,
-            "rating": Math.random()
+            "rating": Math.floor(Math.random()*99+1)
         };
         
         child.size = Math.floor(Math.random() * 10000 / Math.pow(2, child.level)) 
