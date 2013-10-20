@@ -1,4 +1,5 @@
 User = require('../models/user')
+var express = require('express');
 
 module.exports = function (app) {
 
@@ -9,58 +10,53 @@ module.exports = function (app) {
     }
   return id;
   };
+  
+  function pagination (req) {
+    return {skip: +req.query.skip || 0, limit: +req.query.limit || 10 }
+  }
 
   app.get('/users', function (req, res) {
-    console.log("Status Code: ", res.statusCode);
-    skip = +req.query.skip || 0;
-    limit = +req.query.limit || 10;
-    console.log('skip = %d, limit = %d', skip, limit);
-    res.json(User.findAll(skip=skip, limit=limit));
+    search = {};
+    if (req.query.name) {
+      search['name'] = {'$regex': '^' + req.query.name, '$options': 'i'}
+    }
+    console.log("Searching Users: %j", search)
+    User.find(search, null, pagination(req), function (err, docs) {
+      if (err) res.json(500, err)
+      res.json(docs);
+    });
   });
 
   app.post('/users', function (req, res) {
-    //res.send('Creating a user');
-    var user = new User(req.body);
-    return res.send("User Created.");
-    //Assuming we are using the mongoose model.js
-    /*
-    user.save(function (error) {
-      return error ? res.send(error) : res.json(user);
+    User.create(req.body, function(err, user) {
+      if (err) res.json(400, err)
+      res.send(201, user);
     });
-    */
   });
 
   app.get('/users/:id', function (req, res) {
-    id = validateUserId(req.params.id);
-    try {
-      res.json(User.findById(id));
-    } catch (e) {
-      if (e == User.NO_SUCH_USER) {
-        res.json(400, 'No such user');
-      } else {
-        throw e;
-      }
-    }
+    var id = req.params.id;
+    User.create(req.body, function (err, user) {
+      if (err) res.json(400, err)
+      res.send(201, user);
+    });
   });
 
   app.put('/users/:id', function (req, res) {
-    var id = validateUserId(req.params.id),
-    user = User.findById(id);
-    user.save(function (error) {
-      return error ? res.send(error) : res.json(user);
+    var id = req.params.id;
+    console.log(req.body)
+    User.update({_id: id}, req.body, function (err, doc) {
+      if (err) res.json(400, err)
+      res.json(200, {Updated: doc});
     });
   });
 
   app.delete('/users/:id', function (req, res) {
-      var id = validateUserId(req.params.id),
-      user = User.findById(id);
-      User.delete(id);
-      res.json("User Deleted");
-      /*
-      user.remove(function (error) {
-        return error ? res.send(error) : res.send("user removed");
-      });
-      */
+    var id = req.params.id;
+    User.remove({_id: id}, function (err) {
+      if (err) res.json(400, err)
+      res.json(200, {Deleted: id});
+    });
   });
-};
+}
 
