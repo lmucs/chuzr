@@ -135,41 +135,40 @@ describe('Products Controller', function () {
       request(url).post('/products').send(productOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
-      })
       
-      //Ensure correct product posted
-      request(url).get('/products').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(200);
-        res.body[0].name.should.equal("Kindle Fire HDX");
-        res.body[0].description.should.equal("Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras");
-        res.body[0].imageURL.should.equal("http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg");
-        res.body[0].rating.should.equal(8);
-        res.body[0].price.should.equal(379.99);
-        res.body[0].categories.join().should.equal("tablet,HD");
-        res.body[0].related.join().should.equal("iPad,iPad Mini,Microsoft Surface");
-
-        // Update that product.
-        request(url).put('/products/' + res.body[0]._id).send(productTwo).end(function (err, res) {
+        //Ensure correct product posted
+        request(url).get('/products').end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
-          
-          //Ensure product has new data
-          request(url).get('/products').end(function (err, res) {
+          res.body[0].name.should.equal("Kindle Fire HDX");
+          res.body[0].description.should.equal("Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras");
+          res.body[0].imageURL.should.equal("http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg");
+          res.body[0].rating.should.equal(8);
+          res.body[0].price.should.equal(379.99);
+          res.body[0].categories.join().should.equal("tablet,HD");
+          res.body[0].related.join().should.equal("iPad,iPad Mini,Microsoft Surface");
+
+          // Update that product.
+          request(url).put('/products/' + res.body[0]._id).send(productTwo).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(200);
-            res.body[0].name.should.equal("Shake-Weight");
-            res.body[0].description.should.equal("Suggestive workout machine");
-            res.body[0].imageURL.should.equal("NSFW");
-            res.body[0].rating.should.equal(10);
-            res.body[0].price.should.equal(9.99);
-            res.body[0].categories.join().should.equal("infomercial,exercise");
-            res.body[0].related.join().should.equal("Sketchers ShapeUps");
-            done();
+          
+            //Ensure product has new data
+            request(url).get('/products').end(function (err, res) {
+              if (err) throw err;
+              res.should.have.status(200);
+              res.body[0].name.should.equal("Shake-Weight");
+              res.body[0].description.should.equal("Suggestive workout machine");
+              res.body[0].imageURL.should.equal("NSFW");
+              res.body[0].rating.should.equal(10);
+              res.body[0].price.should.equal(9.99);
+              res.body[0].categories.join().should.equal("infomercial,exercise");
+              res.body[0].related.join().should.equal("Sketchers ShapeUps");
+              done();
+            })
           })
         })
       })
     });
   });
-
 });
