@@ -146,15 +146,6 @@ describe('Votes Controller', function(){
       request(url).get('/votes').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(200)
-        res.body[0].userId.should.equal(1)
-        res.body[0].productId.should.equal(32)
-        res.body[0].rating.should.equal(8)
-        res.body[1].userId.should.equal(0)
-        res.body[1].productId.should.equal(32)
-        res.body[1].rating.should.equal(4)
-        res.body[2].userId.should.equal(0)
-        res.body[2].productId.should.equal(15)
-        res.body[2].rating.should.equal(9)
         res.body.length.should.equal(3);
         done();
       })
@@ -186,12 +177,6 @@ describe('Votes Controller', function(){
       request(url).get('/votes?productId=32').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(200)
-        res.body[0].userId.should.equal(1)
-        res.body[0].productId.should.equal(32)
-        res.body[0].rating.should.equal(8)
-        res.body[1].userId.should.equal(0)
-        res.body[1].productId.should.equal(32)
-        res.body[1].rating.should.equal(4)
         res.body.length.should.equal(2);
         done();
       })
@@ -223,17 +208,11 @@ describe('Votes Controller', function(){
       request(url).get('/votes?userId=0').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(200)
-        res.body[0].userId.should.equal(0)
-        res.body[0].productId.should.equal(32)
-        res.body[0].rating.should.equal(4)
-        res.body[1].userId.should.equal(0)
-        res.body[1].productId.should.equal(15)
-        res.body[1].rating.should.equal(9)
         res.body.length.should.equal(2);
         done();
       })
     })
-    
+
     it('should return one vote with userId = 0 and productId = 32', function (done) {
       // Create 4 votes.
       request(url).post('/votes').send(voteOne).end(function (err, res) {
@@ -359,15 +338,6 @@ describe('Votes Controller', function(){
       request(url).get('/votes?limit=3').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(200);
-        res.body[0].userId.should.eql(1);
-        res.body[0].productId.should.eql(32);
-        res.body[0].rating.should.eql(8);
-        res.body[1].userId.should.eql(0);
-        res.body[1].productId.should.eql(32);
-        res.body[1].rating.should.eql(4);
-        res.body[2].userId.should.eql(0);
-        res.body[2].productId.should.eql(15);
-        res.body[2].rating.should.eql(9);
         res.body.length.should.equal(3);
         done();
       })
@@ -440,12 +410,6 @@ describe('Votes Controller', function(){
       request(url).get('/votes?skip=1').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(200);
-        res.body[0].userId.should.eql(0);
-        res.body[0].productId.should.eql(32);
-        res.body[0].rating.should.eql(4);
-        res.body[9].userId.should.eql(65);
-        res.body[9].productId.should.eql(789);
-        res.body[9].rating.should.eql(1);
         res.body.length.should.equal(10);
         done();
       })
@@ -482,17 +446,27 @@ describe('Votes Controller', function(){
       request(url).get('/votes?skip=1&limit=3').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(200);
-        res.body[0].userId.should.eql(0);
-        res.body[0].productId.should.eql(32);
-        res.body[0].rating.should.eql(4);
-        res.body[1].userId.should.eql(0);
-        res.body[1].productId.should.eql(15);
-        res.body[1].rating.should.eql(9);
-        res.body[2].userId.should.eql(2);
-        res.body[2].productId.should.eql(4);
-        res.body[2].rating.should.eql(10);
         res.body.length.should.equal(3);
         done();
+      })
+    })
+    
+    it('should return a 404 when looking for a vote that doesn\'t exist', function (done) {
+      // Create the vote.
+      request(url).post('/votes').send(voteOne).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+          console.log(res.body._id)
+          console.log(res.body._id - 1)
+
+        // Attempt to get the vote with a non-existent id.
+        request(url).get('/votes/' + (res.body._id - 1)).end(function (err, res) {
+          console.log(res.body._id)
+          console.log(res.body._id - 1)
+          if (err) throw err;
+          res.should.have.status(404);
+          done();
+        })
       })
     })
   })
