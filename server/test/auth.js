@@ -40,6 +40,20 @@ describe('User Authentication', function(){
         })
       })
     })
+    it('should return 201 while trying to delete', function (done) {
+      request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      });
+      request(url).get('/users').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).del('/users/' + res.body[0]._id).auth('testUser', 'testPass').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+          done();
+        })
+      })
+    })
   });
   
   describe('#denied', function () {
@@ -47,7 +61,6 @@ describe('User Authentication', function(){
       request(url).post('/users').auth('testUser', 'testPast').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(401);
-        res.body.should.eql([]);
         done();
       })
     })
@@ -60,9 +73,36 @@ describe('User Authentication', function(){
         request(url).put('/users/' + res.body[0]._id).send({reputation: 1001}).auth('testUsers', 'letmein').end(function (err, res) {
           if (err) throw err;
           res.should.have.status(401);
-          res.body.should.eql([]);
           done();
         })
+      })
+    })
+    it('should return 401 while trying to delete', function (done) {
+      request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      });
+      request(url).get('/users').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).del('/users/' + res.body[0]._id).auth('iAmGeneric', '12345').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(401);
+          done();
+        })
+      })      
+    })
+  });
+  
+  describe('#persistence', function() {
+    it('should return 401 after the first authentication', function (done) {
+      request(url).post('/users').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      })
+      request(url).post('/users').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(401);
+        done();
       })
     })
   });
