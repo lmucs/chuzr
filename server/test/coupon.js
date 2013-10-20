@@ -102,29 +102,29 @@ describe('Coupons Controller', function () {
       request(url).post('/coupons').send(couponOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
-      })
       
-      request(url).post('/coupons').send(couponTwo).end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      })
+        request(url).post('/coupons').send(couponTwo).end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(201);
       
-      //Get coupons
-      request(url).get('/coupons').end(function (err, res) {
-      if (err) throw err;
-      res.should.have.status(200)
-      res.body[0].issuer.should.equal("target");
-      res.body[0].value.should.equal("Free TV");
-      res.body[0].promoCode.should.equal("XJSD32");
-      res.body[0].expirationDate.should.equal("2013-12-06T08:00:00.000Z");
-      res.body[0].imageURL.should.equal("http://opportunemployment.com/wp-content/uploads/2010/05/old-tv-set.jpg");
-      res.body[1].issuer.should.equal("amazon");
-      res.body[1].value.should.equal("30% off Wii-U");
-      res.body[1].promoCode.should.equal("EFHS79");
-      res.body[1].expirationDate.should.equal("2013-10-31T07:00:00.000Z");
-      res.body[1].imageURL.should.equal("http://www.prlog.org/11992135-amazon-coupon-code-october-2012.jpg");
-      res.body.length.should.equal(2);
-      done();
+          //Get coupons
+          request(url).get('/coupons').end(function (err, res) {
+            if (err) throw err;
+            res.should.have.status(200)
+            res.body[0].issuer.should.equal("target");
+            res.body[0].value.should.equal("Free TV");
+            res.body[0].promoCode.should.equal("XJSD32");
+            res.body[0].expirationDate.should.equal("2013-12-06T08:00:00.000Z");
+            res.body[0].imageURL.should.equal("http://opportunemployment.com/wp-content/uploads/2010/05/old-tv-set.jpg");
+            res.body[1].issuer.should.equal("amazon");
+            res.body[1].value.should.equal("30% off Wii-U");
+            res.body[1].promoCode.should.equal("EFHS79");
+            res.body[1].expirationDate.should.equal("2013-10-31T07:00:00.000Z");
+            res.body[1].imageURL.should.equal("http://www.prlog.org/11992135-amazon-coupon-code-october-2012.jpg");
+            res.body.length.should.equal(2);
+            done();
+          })
+        })
       }) 
     }); 
     
