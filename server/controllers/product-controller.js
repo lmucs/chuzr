@@ -12,7 +12,7 @@ module.exports = function (app) {
       search = {
         '$or': [
           {name: {'$regex': '^' + req.query.search, '$options': 'i'}},
-          {categories: {'$in': [req.query.c]}}
+          {categories: {'$in': [req.query.search]}}
         ]
       }
     }
