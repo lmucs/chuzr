@@ -134,24 +134,25 @@ describe('Products Controller', function () {
       // Create the product.
       request(url).post('/products').send(productOne).end(function (err, res) {
         if (err) throw err;
-        res.should.have.status(201);
         
         //Update that product.
-        request(url).put('/products/' + res.body._id).send(productTwo).end(function (err, res) {
+        var id=res.body._id;
+        
+        request(url).put('/products/' + id).send(productTwo).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
         
           //Ensure product has new data
-          request(url).get('/products').end(function (err, res) {
+          request(url).get('/products/' + id).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(200);
-            res.body[0].name.should.equal("Shake-Weight");
-            res.body[0].description.should.equal("Suggestive workout machine");
-            res.body[0].imageURL.should.equal("NSFW");
-            res.body[0].rating.should.equal(10);
-            res.body[0].price.should.equal(9.99);
-            res.body[0].categories.join().should.equal("infomercial,exercise");
-            res.body[0].related.join().should.equal("Sketchers ShapeUps");
+            res.body.name.should.equal("Shake-Weight");
+            res.body.description.should.equal("Suggestive workout machine");
+            res.body.imageURL.should.equal("NSFW");
+            res.body.rating.should.equal(10);
+            res.body.price.should.equal(9.99);
+            res.body.categories.join().should.equal("infomercial,exercise");
+            res.body.related.join().should.equal("Sketchers ShapeUps");
             done();
           })  
         })    

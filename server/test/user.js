@@ -139,24 +139,25 @@ describe('Users Controller', function () {
       // Create the user.
       request(url).post('/users').send(userOne).end(function (err, res) {
         if (err) throw err;
-        res.should.have.status(201);
         
         //Update that user.
-        request(url).put('/users/' + res.body._id).send(userThree).end(function (err, res) {
+        var id=res.body._id;
+        
+        request(url).put('/users/' + id).send(userThree).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
         
           //Ensure user has new data
-          request(url).get('/users').end(function (err, res) {
+          request(url).get('/users/' + id).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(200);
-            res.body[0].name.first.should.equal('Candy')
-            res.body[0].name.last.should.equal('Bar')
-            res.body[0].email.should.equal('candybar@example.com')
-            res.body[0].login.should.equal('candycandy')
-            res.body[0].reputation.should.equal(15)
-            res.body[0].hashedPassword.should.equal('aoeihg9984jh19we')
-            res.body[0].avatarURL.should.equal('http://i.candybar.com/candy.png')
+            res.body.name.first.should.equal('Candy')
+            res.body.name.last.should.equal('Bar')
+            res.body.email.should.equal('candybar@example.com')
+            res.body.login.should.equal('candycandy')
+            res.body.reputation.should.equal(15)
+            res.body.hashedPassword.should.equal('aoeihg9984jh19we')
+            res.body.avatarURL.should.equal('http://i.candybar.com/candy.png')
             done();
           })  
         })    
