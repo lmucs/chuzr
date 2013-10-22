@@ -456,8 +456,6 @@ describe('Votes Controller', function(){
       request(url).post('/votes').send(voteOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
-          console.log(res.body._id)
-          console.log(res.body._id - 1)
 
         // Attempt to get the vote with a non-existent id.
         request(url).get('/votes/' + res.body._id + "1").end(function (err, res) {

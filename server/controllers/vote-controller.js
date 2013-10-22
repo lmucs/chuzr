@@ -43,7 +43,6 @@ module.exports = function (app) {
 
   app.put('/votes/:id', function (req, res) {
     var id = req.params.id;
-    console.log(req.body)
     Product.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) res.json(400, err)
       res.json(200, {Updated: numUpdated});
