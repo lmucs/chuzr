@@ -1,30 +1,25 @@
-var api = require('./config/api');
+var api = require('./config/api'),
+    filter = require('./filters/filter'),
+    product = require('./filters/product'),
+    format = require('./filters/format');
 
 var Url = function () {
-  var home = 'http://catalog.bizrate.com/services/catalog/v1/us/';
 
-  var productFilters = {
-    'apiKey' :  api.key,
-    'publisherId' :  api.id,
-    'keyword' : 'shoes',
-    'results' : '2'
-  };
-
-  var generateFilterString = function (filters) {
-    var result = [];
-    for (k in filters) {
-      result.push(k + '=' + filters[k]);
-    }
-    return result.join('&');
-  };
+  var home = 'http://catalog.bizrate.com/services/catalog/v1/us/',
+      filterQueries = [
+        api,
+        product,
+        format
+      ].map(filter.query).join('&');
 
   var _generate = function () {
-    return home + 'product?' + generateFilterString(productFilters) + '&format=json';
+    return home + 'product?' + filterQueries;
   };
 
   return {
     generate : _generate
   };
+
 }();
 
 module.exports = Url;
