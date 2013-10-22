@@ -13,6 +13,11 @@ var Ingestor = function () {
       });
       res.on('end', function () {
         var result = parse(data);
+        var productArray = result.products.product;
+        for (p in productArray) {
+            console.log(productArray[p]);
+        }
+        // DatabaseLoader.load(product)
         console.log('Ingestion complete.');
       });
     }).on('error', function (err) {
