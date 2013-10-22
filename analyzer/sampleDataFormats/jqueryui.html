@@ -1,0 +1,45 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>jQuery UI Tabs - Content via Ajax</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+  <script>
+  $(function() {
+    $( "#tabs" ).tabs({
+      beforeLoad: function( event, ui ) {
+        ui.jqXHR.error(function() {
+          ui.panel.html(
+            "Couldn't load this tab. We'll try to fix this as soon as possible. " +
+            "If this wouldn't be a demo." );
+        });
+      }
+    });
+  });
+  </script>
+</head>
+<body>
+ 
+<div id="tabs">
+  <ul>
+    <li><a href="#intro">Intro</a></li>
+    <li><a href="CSV/CSVDownload.html">CSV</a></li>
+    <li><a href="json2html.html">HTML</a></li>
+    <li><a href="favorites.json">JSON</a></li>
+    <li><a href="d3/productsTreemap.html">Treemap</a></li>
+    <li><a href="d3/userProductVotes.html">ProductVote</a></li>
+    <li><a href="d3/CirclePackVicualization.html">CirclePack</a></li>
+
+  </ul>
+  <div id="tabs-1">
+    <p>Click on a tab to see a format!</p>
+  </div>
+</div>
+ 
+ 
+</body>
+</html>
