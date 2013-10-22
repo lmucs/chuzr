@@ -8,5 +8,9 @@ block content
         option: 'Name'
         option: 'Type'
     input(class='span9', id=prependDropdownButton, type='text')
-    div(button class="btn btn-mini" type="button")
+    div(button id="find-products" class="btn btn-mini" type="button")
       p go
+
+  div(id="results")
+
+  script(src='/js/browse.js')
