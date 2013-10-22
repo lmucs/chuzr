@@ -6,6 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "xml2js": "latest"
+    "xml2js": "latest",
+    "mongoose": "3.x.x"
   }
 }

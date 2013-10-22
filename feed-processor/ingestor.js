@@ -14,7 +14,8 @@ var Ingestor = function () {
       res.on('end', function () {
         parse(data);
         console.log("Ingestion complete.");
-      });
+        console.log(parse(data));
+        });
     }).on('error', function (err) {
       console.log("Error retrieving data: ", err);
     });
