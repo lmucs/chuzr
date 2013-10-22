@@ -19,7 +19,7 @@ var vis = d3.select("body").insert("svg:svg", "h2")
     .attr("transform", "translate(" + (w - r) / 2 + "," + (h - r) / 2 + ")");
     
 var color = function(node) {
-    var rating = node.rating,
+    var rating = node.rating / 100,
         b = 0,
         r = 255*2*(1-rating),
         g = 255*2*rating;
@@ -35,57 +35,57 @@ var color = function(node) {
 }
 
 //d3.json("circlePackTestData.json", function(data) {
-createTestData(function (data) {    
-    node = root = data;
-    var nodes = pack.nodes(root);
+data = createTestData();
+node = root = data;
+console.log(data);
+var nodes = pack.nodes(root);
 
-    vis.selectAll("circle")
-        .data(nodes)
-        .enter().append("svg:circle")
-        .attr("class", function(d) { 
-            return d.children ? "parent" : "child"; 
-        })
-        .attr("cx", function(d) { 
-            return d.x; 
-        })
-        .attr("cy", function(d) { 
-            return d.y;
-        })
-        .attr("r", function(d) { 
-            return d.r;
-        })
-        .style("fill", function(d) { 
-            return color(d);
-        })        
-        //.style("fill", "rgb(255,0,0)")
-        .on("click", function(d) { 
-            return zoom(node == d ? root : d);
-        });
-
-    vis.selectAll("text")
-        .data(nodes)
-        .enter().append("svg:text")
-        .attr("class", function(d) { 
-            return d.children ? "parent" : "child";
-        })
-        .attr("x", function(d) { 
-            return d.x;
-        })
-        .attr("y", function(d) { 
-            return d.y;
-        })
-        .attr("dy", ".35em")
-        .attr("text-anchor", "middle")
-        .style("opacity", function(d) { 
-            return d.r > 20 ? 1 : 0;
-        })
-        .text(function(d) { 
-            return d.name;
-        });
-
-    d3.select(window).on("click", function() {
-        zoom(root);
+vis.selectAll("circle")
+    .data(nodes)
+    .enter().append("svg:circle")
+    .attr("class", function(d) { 
+        return d.children ? "parent" : "child"; 
+    })
+    .attr("cx", function(d) { 
+        return d.x; 
+    })
+    .attr("cy", function(d) { 
+        return d.y;
+    })
+    .attr("r", function(d) { 
+        return d.r;
+    })
+    .style("fill", function(d) { 
+        return color(d);
+    })        
+    //.style("fill", "rgb(255,0,0)")
+    .on("click", function(d) { 
+        return zoom(node == d ? root : d);
     });
+
+vis.selectAll("text")
+    .data(nodes)
+    .enter().append("svg:text")
+    .attr("class", function(d) { 
+        return d.children ? "parent" : "child";
+    })
+    .attr("x", function(d) { 
+        return d.x;
+    })
+    .attr("y", function(d) { 
+        return d.y;
+    })
+    .attr("dy", ".35em")
+    .attr("text-anchor", "middle")
+    .style("opacity", function(d) { 
+        return d.r > 20 ? 1 : 0;
+    })
+    .text(function(d) { 
+        return d.name;
+    });
+
+d3.select(window).on("click", function() {
+    zoom(root);
 });
 
 function zoom(d, i) {
@@ -122,13 +122,13 @@ function zoom(d, i) {
     d3.event.stopPropagation();
 }
 
-function createTestData(callback) {
+function createTestData() {
     var data = {
             "name": "products",
             "children": [],
             "size": 10000,
             "level": 0,
-            "rating": Math.random()
+            "rating": Math.floor(Math.random()*99+1)
         }, 
         addRandomChildren = function (parent) {
             var childrenNum = Math.floor(Math.random() * 10 / parent.level),
@@ -140,7 +140,7 @@ function createTestData(callback) {
                 child = {
                     "name": "child_" + i,
                     "level": parent.level + 1,
-                    "rating": Math.random()
+                    "rating": Math.floor(Math.random()*99+1)
                 };
                 child.size = Math.floor(Math.random() * 10000 / Math.pow(2, child.level)) 
                              + 0.5 * 10000 / Math.pow(2, child.level);
@@ -155,7 +155,7 @@ function createTestData(callback) {
         var child = {
             "name": category,
             "level": 1,
-            "rating": Math.random()
+            "rating": Math.floor(Math.random()*99+1)
         };
         
         child.size = Math.floor(Math.random() * 10000 / Math.pow(2, child.level)) 
@@ -166,5 +166,5 @@ function createTestData(callback) {
         data.children.push(child);
     });
     
-    callback(data);
+    return data;
 }

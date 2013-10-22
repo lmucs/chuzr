@@ -30,8 +30,13 @@
       stop: function() {
         var result = $( "#select-result" ).empty();
         $( ".ui-selected", this ).each(function() {
+<<<<<<< HEAD
           var index = $( "#selectable li" ).id( this );
           result.append( " #" + ( index ) );
+=======
+          var index = $( "#selectable li" ).index( this );
+          result.append( " #" + (index + 1 ) );
+>>>>>>> b3ba865554c1eb499b7d272d367a499dd26c82e9
         });
       }
     });
@@ -40,7 +45,7 @@
   $(function() {
     $( "#format" ).selectable({
       stop: function() {
-        var result = $( "#select-result" ).empty();
+        var result = $( "#select-format-result" ).empty();
         $( ".ui-selected", this ).each(function() {
           var index = $( "#format li" ).index( this );
           result.append( " #" + ( index + 1 ) );

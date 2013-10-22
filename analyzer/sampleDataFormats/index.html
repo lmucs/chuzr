@@ -8,6 +8,17 @@
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <script src="index.js"></script>
+  <script>
+  function inform(){
+  alert("dflkajdsf;lsdkjf;")
+  }
+
+  function selection(){
+
+  }
+  </script>
+
+
   <link rel="stylesheet" href="index.css" />
 </head>
 <body>
@@ -17,11 +28,11 @@
 </p>
  
 <ol id="selectable">
-  <li class="ui-widget-content" id="votes">Votes</li>
-  <li class="ui-widget-content" id="products">Products</li>
-  <li class="ui-widget-content" id="users">Users</li>
-  <li class="ui-widget-content" id="rankings">Rankings</li>
-  <li class="ui-widget-content" id="coupons">Coupons</li>
+  <li class="ui-widget-content">Votes</li>
+  <li class="ui-widget-content">Products</li>
+  <li class="ui-widget-content">Users</li>
+  <li class="ui-widget-content">Rankings</li>
+  <li class="ui-widget-content">Coupons</li>
 </ol>
  
 <label for="from">From</label>
@@ -29,16 +40,19 @@
 <label for="to">to</label>
 <input type="text" id="to" name="to" />
 
-<div> Format </div>
+<p id="feedback">
+<span>Format </span> <span id="select-format-result">none</span>.
+</p>
 
 <ol id="format">
-  <li class="ui-widget-content" id="html">HTML</li>
-  <li class="ui-widget-content" id="csv">CSV</li>
-  <li class="ui-widget-content" id="JSON">JSON</li>
-  <li class="ui-widget-content" id="d3">D3 visualization</li>
+  <li class="ui-widget-content">HTML</li>
+  <li class="ui-widget-content">CSV</li>
+  <li class="ui-widget-content">JSON</li>
+  <li class="ui-widget-content">D3 visualization</li>
 </ol>
 
-<input type="submit" value="A submit button" />
+<input type="submit" value="A submit button" onClick="selection()"/>
+<input type="submit" value="Test button" onClick="inform()" />
  
  
 </body>
