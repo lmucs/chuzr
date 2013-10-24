@@ -86,7 +86,7 @@ describe('Users Controller', function () {
         // Get that user by id.
         request(url).get('/users/' + res.body._id).end(function (err, res) {
           if (err) throw err;
-          res.should.have.status(201);
+          res.should.have.status(200);
           done();
         })
       })
@@ -143,21 +143,21 @@ describe('Users Controller', function () {
         //Update that user.
         var id=res.body._id;
         
-        request(url).put('/users/' + id).send(userThree).end(function (err, res) {
+        request(url).put('/users/' + id).send(userThree).end(function (err, res2) {
           if (err) throw err;
-          res.should.have.status(200);
+          res2.should.have.status(200);
         
           //Ensure user has new data
-          request(url).get('/users/' + id).end(function (err, res) {
+          request(url).get('/users/' + id).end(function (err, response) {
             if (err) throw err;
-            res.should.have.status(200);
-            res.body.name.first.should.equal('Candy')
-            res.body.name.last.should.equal('Bar')
-            res.body.email.should.equal('candybar@example.com')
-            res.body.login.should.equal('candycandy')
-            res.body.reputation.should.equal(15)
-            res.body.hashedPassword.should.equal('aoeihg9984jh19we')
-            res.body.avatarURL.should.equal('http://i.candybar.com/candy.png')
+            response.should.have.status(200);
+            response.body.name.first.should.equal('Candy')
+            response.body.name.last.should.equal('Bar')
+            response.body.email.should.equal('candybar@example.com')
+            response.body.login.should.equal('candycandy')
+            response.body.reputation.should.equal(15)
+            response.body.hashedPassword.should.equal('aoeihg9984jh19we')
+            response.body.avatarURL.should.equal('http://i.candybar.com/candy.png')
             done();
           })  
         })    

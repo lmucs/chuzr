@@ -322,19 +322,19 @@ describe('Coupons Controller', function () {
         //Update that coupon.
         var id=res.body._id;
         
-        request(url).put('/coupons/' + id).send(couponTwo).end(function (err, res) {
+        request(url).put('/coupons/' + id).send(couponTwo).end(function (err, res2) {
           if (err) throw err;
-          res.should.have.status(200)
-
+          res2.should.have.status(200)
+          
           //Ensure coupon has new data
-          request(url).get('/coupons/' + id).end(function (err, res) {
+          request(url).get('/coupons/' + id).end(function (err, response) {
             if (err) throw err;
-            res.should.have.status(200)
-            res.body.issuer.should.equal("amazon");
-            res.body.value.should.equal("30% off Wii-U");
-            res.body.promoCode.should.equal("EFHS79");
-            res.body.expirationDate.should.equal("2013-10-31T07:00:00.000Z");
-            res.body.imageURL.should.equal("http://www.prlog.org/11992135-amazon-coupon-code-october-2012.jpg");
+            response.should.have.status(200)
+            response.body.issuer.should.equal("amazon");
+            response.body.value.should.equal("30% off Wii-U");
+            response.body.promoCode.should.equal("EFHS79");
+            response.body.expirationDate.should.equal("2013-10-31T07:00:00.000Z");
+            response.body.imageURL.should.equal("http://www.prlog.org/11992135-amazon-coupon-code-october-2012.jpg");
             done();
           })  
         })    

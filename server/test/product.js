@@ -138,21 +138,21 @@ describe('Products Controller', function () {
         //Update that product.
         var id=res.body._id;
         
-        request(url).put('/products/' + id).send(productTwo).end(function (err, res) {
+        request(url).put('/products/' + id).send(productTwo).end(function (err, res2) {
           if (err) throw err;
-          res.should.have.status(200);
+          res2.should.have.status(200);
         
           //Ensure product has new data
-          request(url).get('/products/' + id).end(function (err, res) {
+          request(url).get('/products/' + id).end(function (err, response) {
             if (err) throw err;
-            res.should.have.status(200);
-            res.body.name.should.equal("Shake-Weight");
-            res.body.description.should.equal("Suggestive workout machine");
-            res.body.imageURL.should.equal("NSFW");
-            res.body.rating.should.equal(10);
-            res.body.price.should.equal(9.99);
-            res.body.categories.join().should.equal("infomercial,exercise");
-            res.body.related.join().should.equal("Sketchers ShapeUps");
+            response.should.have.status(200);
+            response.body.name.should.equal("Shake-Weight");
+            response.body.description.should.equal("Suggestive workout machine");
+            response.body.imageURL.should.equal("NSFW");
+            response.body.rating.should.equal(10);
+            response.body.price.should.equal(9.99);
+            response.body.categories.join().should.equal("infomercial,exercise");
+            response.body.related.join().should.equal("Sketchers ShapeUps");
             done();
           })  
         })    
