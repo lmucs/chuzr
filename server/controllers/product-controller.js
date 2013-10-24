@@ -1,4 +1,5 @@
 Product = require('../models/product')
+auth = require('./auth-controller')
 
 module.exports = function (app) {
 
@@ -21,7 +22,7 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/products', function (req, res) {
+  app.post('/products', auth, function (req, res) {
     Product.create(req.body, function (err, product) {
       if (err) res.json(400, err)
       res.send(201, product);
@@ -30,23 +31,23 @@ module.exports = function (app) {
 
   app.get('/products/:id', function (req, res) {
     var id = req.params.id;
-    Product.findById(id, null, function (err, doc) {
+    Product.findById(id, null, function (err, product) {
       if (err) res.json(400, err)
-      if (doc === null) res.json(404, {"No such id": id})
-      res.json(doc)
+      if (product === null) res.json(404, {"No such id": id})
+      res.json(product)
     });
   });
 
-  app.put('/products/:id', function (req, res) {
+  app.put('/products/:id', auth, function (req, res) {
     var id = req.params.id;
     console.log(req.body)
-    Product.update({_id: id}, req.body, function (err, doc) {
+    Product.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) res.json(400, err)
-      res.json(200, {Updated: doc});
+      res.json(200, {Updated: numUpdated});
     });
   });
 
-  app.delete('/products/:id', function (req, res) {
+  app.delete('/products/:id', auth, function (req, res) {
     var id = req.params.id;
     Product.remove({_id: id}, function (err) {
       if (err) res.json(400, err)

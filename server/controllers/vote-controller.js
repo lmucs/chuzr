@@ -1,84 +1,61 @@
 Vote = require('../models/vote')
+auth = require('./auth-controller')
 
 module.exports = function (app) {
 
-  function validateVoteId(id) {
-    if (/\D/.test(id)) {
-      throw Error('Illegal id');
-    }
-    return id;
-  };
+  function pagination(req) {
+    return {skip: +req.query.skip || 0, limit: +req.query.limit || 10}
+  }
 
+  // Get all the votes or get votes by userId and/or productId
   app.get('/votes', function (req, res) {
-    var parameterFlag = false,
-        votes = [],
-        votesByUserId = [],
-        votesByProductId = [],
-        skip = +req.query.skip || 0,
-        limit = +req.query.limit || 10;
+    var search = {};
 
     if (req.query.userId) {
-      //TODO add limit to findByUser
-      votesByUserId = Vote.findByUser(req.query.userId);
-      parameterFlag = true;
+      search["userId"] = req.query.userId;
     }
     if (req.query.productId) {
-      votesByProductId = Vote.findByProduct(req.query.productId);
-      parameterFlag = true;
+      search["productId"] = req.query.productId;
     }
-    if (!parameterFlag) {
-      return res.json(Vote.findAll(skip=skip, limit=limit));
-    }
-    
-    if (req.query.userId && req.query.productId) {
-      votes = Vote.arrayIntersection(votesByUserId, votesByProductId);
-    }
-    else {
-      votes.push.apply(votes, votesByProductId);
-      votes.push.apply(votes, votesByUserId);
-    }
-    return res.json(votes.slice(0, limit));
+    Vote.find(search, null, pagination(req), function (err, votes) {
+      if (err) res.json(500, err);
+      res.json(200, votes);
+    });
+
   });
 
-  app.post('/votes', function (req, res) {
-    //res.send('Creating a vote');
-    var vote = new Vote(req.body);
-    return res.send(201, vote);
+  app.post('/votes', auth, function (req, res) {
+    Vote.create(req.body, function (err, vote) {
+      if (err) res.send(400, err);
+      res.send(201, vote);
+    })
   });
 
   // Get a vote by its id
   app.get('/votes/:id', function (req, res) {
-    id = validateVoteId(req.params.id);
-    try {
-      res.json(Vote.findById(id));
-    } catch (e) {
-      if (e == Vote.NO_SUCH_VOTE) {
-        res.send(400, 'No such vote');
-      } else {
-        throw e;
-      }     
-    }
-  });
-
-  app.put('/votes/:id', function (req, res) {
-    var id = validateVoteId(req.params.id),
-        vote = Vote.findById(id);
-    return res.send(vote);
-  });
-
-  app.delete('/votes/:id', function (req, res) {
-    var id = validateVoteId(req.params.id),
-        vote = Vote.findById(id);
-    Vote.delete(id);
-    res.send("Vote Deleted");
-    /*
-    return vote.remove(function (error) {
-      if (!error) {
-        return res.send("Vote removed");
-      } else {
-        res.send(error);
-      }
+    var id = req.params.id;
+      
+    Vote.findById(id, null, function (err, vote) {
+      if (err) res.json(400, err)
+      if (vote === null) res.json(404, {"No such id": id})
+      res.json(vote)
     });
-    */
+  });
+
+  app.put('/votes/:id', auth, function (req, res) {
+    var id = req.params.id;
+    console.log(req.body)
+    Product.update({_id: id}, req.body, function (err, numUpdated) {
+      if (err) res.json(400, err)
+      res.json(200, {Updated: numUpdated});
+    });
+  });
+
+  app.delete('/votes/:id', auth, function (req, res) {
+    var id = req.params.id;
+    Product.remove({_id: id}, function (err) {
+      if (err) res.json(400, err)
+      res.json(200, {Deleted: id});
+    });
   });
 };
