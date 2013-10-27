@@ -1,5 +1,7 @@
 Product = require('../models/product')
-auth = require('./auth-controller')
+var express = require('express'),
+auth = require('../authentication/auth-controller').auth ;
+
 
 module.exports = function (app) {
 

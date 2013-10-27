@@ -1,5 +1,5 @@
 Coupon = require('../models/coupon')
-auth = require('./auth-controller')
+auth = require('../authentication/auth-controller').auth
 
 module.exports = function (app) {
 

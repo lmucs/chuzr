@@ -1,8 +1,8 @@
 require('./utils')
 
 var should = require('should'),
-var request = require('supertest');  
-var url = require('../config/config').test.url;
+    request = require('supertest'),  
+    url = require('../config/config').test.url;
 var userOne = {
   name: {
     first: 'Luna',
@@ -162,6 +162,6 @@ describe('Product Authentication', function() {
         done();
       })
     })
-  }):  
+  });  
 });
 
