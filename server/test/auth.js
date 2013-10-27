@@ -3,6 +3,7 @@ require('./utils')
 var should = require('should'),
     request = require('supertest'),  
     url = require('../config/config').test.url;
+    
 var userOne = {
   name: {
     first: 'Luna',
@@ -15,6 +16,7 @@ var userOne = {
   avatarURL: 'http://i.lunabar.com/luna.png',
   hashedPassword: 'qiyh4XPJGsOZ2MEAyLkfWqeQ'
 };
+
 var productOne = {
   name : "Kindle Fire HDX",
   description : "Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras",
@@ -23,6 +25,14 @@ var productOne = {
   categories : ["tablet", "HD"],
   price : 379.99,
   related : ["iPad", "iPad Mini", "Microsoft Surface"]
+};
+
+var couponOne = {
+  issuer: "target",
+  value: "Free TV",
+  promoCode: "XJSD32",
+  expirationDate: new Date(2013, 11, 6),
+  imageURL: "http://opportunemployment.com/wp-content/uploads/2010/05/old-tv-set.jpg"
 };
 
 describe('User Authentication', function(){
@@ -103,7 +113,7 @@ describe('User Authentication', function(){
   
   describe('#persistence', function() {
     it('should return 401 after the first authentication', function (done) {
-      request(url).post('/users').auth('testUser', 'testPass').end(function (err, res) {
+      request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
       })
@@ -162,6 +172,138 @@ describe('Product Authentication', function() {
         done();
       })
     })
-  });  
+    it('should return 401 while trying to put', function (done) {
+      request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+      });
+      request(url).get('/products').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).put('/products/' + res.body[0]._id).send({price: 400.00}).auth('testUsers', 'password').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(401);
+          done();
+        })
+      })
+    })
+    it('should return 401 while trying to delete', function (done) {
+      request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      });
+      request(url).get('/products').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).del('/products/' + res.body[0]._id).auth('bob', 'testPass').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(401);
+          done();
+        })
+      })      
+    })
+  });
+  
+  describe('#persistence', function() {
+    it('should return 401 after the first authentication', function (done) {
+      request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      })
+      request(url).post('/products').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(401);
+        done();
+      })
+    })
+  });
+});  
+
+
+describe('Coupon Authentication', function() {
+  describe('#accepted', function () {
+    it('should return 201 while trying to post', function (done) {
+      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+        done();
+      })
+    })
+    it('should return 200 while trying to put', function (done) {
+      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      });
+      request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).put('/coupons/' + res.body[0]._id).auth('testUser', 'testPass').send({issuer: "walmart"}).end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+          done();
+        })
+      })
+    })
+    it('should return 201 while trying to delete', function (done) {
+      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      });
+      request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).del('/coupons/' + res.body[0]._id).auth('testUser', 'testPass').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+          done();
+        })
+      })
+    })
+  });
+  describe('#denied', function () {
+    it('should return 401 while trying to post', function (done) {
+      request(url).post('/coupons').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(401);
+        done();
+      })
+    })
+    it('should return 401 while trying to put', function (done) {
+      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+      });
+      request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).put('/coupons/' + res.body[0]._id).send({price: 400.00}).auth('testUsers', 'testpass').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(401);
+          done();
+        })
+      })
+    })
+    it('should return 401 while trying to delete', function (done) {
+      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      });
+      request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).del('/coupons/' + res.body[0]._id).auth('user', 'testPass').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(401);
+          done();
+        })
+      })      
+    })
+  });
+  describe('#persistence', function() {
+    it('should return 401 after the first authentication', function (done) {
+      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      })
+      request(url).post('/coupons').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(401);
+        done();
+      })
+    })
+  });
+  
 });
 

@@ -27,7 +27,7 @@ module.exports = function (app) {
     });
   });
   
-  app.post('/coupons', function (req, res) {
+  app.post('/coupons', auth, function (req, res) {
     Coupon.create(req.body, function (err, coupon) {
       if (err) res.json(400, err)
       res.send(201, coupon);
@@ -43,7 +43,7 @@ module.exports = function (app) {
     });
   });
 
-  app.put('/coupons/:id', function (req, res) {
+  app.put('/coupons/:id', auth, function (req, res) {
     var id = req.params.id;
     console.log(req.body)
     Coupon.update({_id: id}, req.body, function (err, numUpdated) {
@@ -52,7 +52,7 @@ module.exports = function (app) {
     });
   });
 
-  app.delete('/coupons/:id', function (req, res) {
+  app.delete('/coupons/:id', auth, function (req, res) {
     var id = req.params.id;
     Coupon.remove({_id: id}, function (err) {
       if (err) res.json(400, err)
