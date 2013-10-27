@@ -35,6 +35,12 @@ var couponOne = {
   imageURL: "http://opportunemployment.com/wp-content/uploads/2010/05/old-tv-set.jpg"
 };
 
+var voteOne = {
+  userId: 1,
+  productId: 32,
+  rating: 8
+};
+
 describe('User Authentication', function(){
   describe('#accepted', function () {
     it('should return 201 while trying to post', function (done) {
@@ -117,7 +123,7 @@ describe('User Authentication', function(){
         if (err) throw err;
         res.should.have.status(201);
       })
-      request(url).post('/users').end(function (err, res) {
+      request(url).post('/users').send(userOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(401);
         done();
@@ -166,7 +172,7 @@ describe('Product Authentication', function() {
   });
   describe('#denied', function () {
     it('should return 401 while trying to post', function (done) {
-      request(url).post('/products').end(function (err, res) {
+      request(url).post('/products').send(productOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(401);
         done();
@@ -207,7 +213,7 @@ describe('Product Authentication', function() {
         if (err) throw err;
         res.should.have.status(201);
       })
-      request(url).post('/products').end(function (err, res) {
+      request(url).post('/products').send(productOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(401);
         done();
@@ -215,7 +221,6 @@ describe('Product Authentication', function() {
     })
   });
 });  
-
 
 describe('Coupon Authentication', function() {
   describe('#accepted', function () {
@@ -257,7 +262,7 @@ describe('Coupon Authentication', function() {
   });
   describe('#denied', function () {
     it('should return 401 while trying to post', function (done) {
-      request(url).post('/coupons').end(function (err, res) {
+      request(url).post('/coupons').send(couponOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(401);
         done();
@@ -297,13 +302,100 @@ describe('Coupon Authentication', function() {
         if (err) throw err;
         res.should.have.status(201);
       })
-      request(url).post('/coupons').end(function (err, res) {
+      request(url).post('/coupons').send(couponOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(401);
         done();
       })
     })
-  });
-  
+  });  
 });
 
+describe('Vote Authentication', function() {
+  describe('#accepted', function () {
+    it('should return 201 while trying to post', function (done) {
+      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+        done();
+      })
+    })
+    it('should return 200 while trying to put', function (done) {
+      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      });
+      request(url).get('/votes').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).put('/votes/' + res.body[0]._id).auth('testUser', 'testPass').send({rating: 6}).end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+          done();
+        })
+      })
+    })
+    it('should return 201 while trying to delete', function (done) {
+      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      });
+      request(url).get('/votes').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).del('/votes/' + res.body[0]._id).auth('testUser', 'testPass').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+          done();
+        })
+      })
+    })
+  });
+  describe('#denied', function () {
+    it('should return 401 while trying to post', function (done) {
+      request(url).post('/votes').send(voteOne).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(401);
+        done();
+      })
+    })
+    it('should return 401 while trying to put', function (done) {
+      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+      });
+      request(url).get('/votes').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).put('/votes/' + res.body[0]._id).send({rating: 5}).auth('testUsers', 'testpAss').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(401);
+          done();
+        })
+      })
+    })
+    it('should return 401 while trying to delete', function (done) {
+      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      });
+      request(url).get('/votes').auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        request(url).del('/votes/' + res.body[0]._id).auth('users34', 'testP4ss').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(401);
+          done();
+        })
+      })      
+    })
+  });
+  describe('#persistence', function() {
+    it('should return 401 after the first authentication', function (done) {
+      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      })
+      request(url).post('/votes').send(voteOne).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(401);
+        done();
+      })
+    })
+  });  
+});
