@@ -2,69 +2,59 @@ doctype 5
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/chuzr.css')
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    meta(name ='viewport', content='width=device-width, initial-scale=1.0')
+    link(href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css", rel="stylesheet")
+    link(href='/stylesheets/chuzr.css', rel='stylesheet')
+    link(href='assets/css/bootstrap-responsive.css', rel='stylesheet')
 
   body
-    div(id='nav-bar', class='navbar')
-      div(class='navbar-inner')
-        a(class='brand', href='#') Chuzr
-        ul(class='nav')
-          li: a(href='/home') Home
-          li: a(href='#') Play
-          li: a(href='#') Social
-        form(class='navbar-search')
-          input(type='text', class='search-query', placeholder='Search')
-        ul(class='nav pull-right')
-          li(class='dropdown'): a(href='#', class='dropdown-toggle', data-toggle='dropdown') Account
-            b(class='caret')
-            ul(class='dropdown-menu')
-              li: a(href='#') Settings
-              li: a(href='#') Logout
-            
-            
-          
-    div(class='row-fluid')
-      div(class='span2 offset1', id='side-nav')
-       h1 Chuzr 
-         button(class='btn btn-primary', id='hide-side-nav') <
-       hr
-       ul(class='nav nav-tabs nav-stacked', id='side-nav-links')
-        li: a(href='#') Home 
-        li: a(href='#') Play 
-        li: a(href='#') Browse       
-        hr
-        li: a(href='#') Stuff
-        li: a(href='#') Social
-        hr
-        li: a(href='#') Settings
-      div(class='span1', id='show-side-nav-div')
-        h1: button(class='btn btn-primary', id='show-side-nav') >
+    div(id='wrap')
+      div(class='navbar', id='nav-bar')
+        div(class='navbar-inner')
+          a(class='brand', href='/home') Chuzr
+          ul(class='nav')
+            li: a(href='/play') Play
+            li: a(href='/social') Social    
+          ul(class='nav pull-right')
+            form(class='navbar-search')
+              input(type='text', class='search-query', placeholder='Search')
+            li(class='dropdown'): a(href='#', class='dropdown-toggle', data-toggle='dropdown') Account
+              b(class='caret')
+              ul(class='dropdown-menu')
+                li: a(href='/settings') Settings
+                li: a(href='/logout') Logout
+
+      div(class='row-fluid', id='content')
+        div(class='span2', id='side-nav')
+         a(href='/home')
+           img(src="/images/chuzr-logo.png", height='128', width='232')
+         br
+         ul(class='nav nav-tabs nav-list nav-stacked', id='side-nav-links')
+            li: a(href='/home') Home 
+            li: a(href='/play') Play 
+            li: a(href='/browse') Browse       
+            li(class='divider')
+            li: a(href='/stuff') Stuff
+            li: a(href='/social') Social
+            li: a(href='/trends') Trends
+            li(class='divider')
+            li: a(href='/settings') Settings
+
+        div(class='span1',id='side-nav-toggle')
+          h4(id='toggle-caret')
+ 
+        div(class='span9', id='main-content')
+          block content
       
-      div(class='span5', id='main-content')
-        block content
-    
-    
-    div(class='row-fluid', id='footer')
-      div(class='pull-right')
-        ul(class='nav nav-pills')
-          li: a(href='#') about 
-          li: a(href='#') contact 
-          li: a(href='#') FAQ 
-          li: a(href='#') feedback 
-          li: a(href='#') privacy
-     
-    script(src='/js/jquery-1.10.2.js')
-    script(src='/js/bootstrap.js')
-    script
-      $("#show-side-nav-div").hide()    
-      $("#hide-side-nav").click(function(){
-        $("#side-nav").hide()
-        $("#show-side-nav-div").show()
-      });
+      div(class='navbar navbar-fixed-bottom',id='footer-nav')
+        div(class='navbar-inner')
+          ul(class='nav pull-right', id='footer-links')
+            li: a(href='/about') about 
+            li: a(href='/contact') contact 
+            li: a(href='/FAQ') FAQ 
+            li: a(href='/feedback') feedback 
+            li: a(href='/privacy') privacy
       
-      $("#show-side-nav").click(function(){
-        $("#side-nav").show()
-        $("#show-side-nav-div").hide()
-      });
-      
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script(src='//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js')
+    script(src='/js/sideNavToggle.js')
