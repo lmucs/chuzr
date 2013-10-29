@@ -4,7 +4,7 @@ var path = require('path'),
 module.exports = {
 
   development: {
-    db: 'mongodb://localhost/chuzr_ingestor_dev',
+    db: 'mongodb://localhost/chuzr_dev',
     root: rootPath,
     app: {
       name: 'Chuzr'
@@ -12,7 +12,7 @@ module.exports = {
   },
 
   test: {
-    db: 'mongodb://localhost/chuzr_ingestor_test',
+    db: 'mongodb://localhost/chuzr_test',
     root: rootPath,
     app: {
       name: 'Chuzr'
