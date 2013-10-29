@@ -11,6 +11,7 @@
     "should": "latest",
     "json2csv": "2.1.0",
     "supertest": "latest",
-    "cors": "latest"
+    "cors": "latest",
+    "mocha": "latest"
   }
 }
