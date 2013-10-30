@@ -5,7 +5,8 @@ var http = require('http');
 var path = require('path');
 var stylus = require('stylus');
 
-
+var env = process.env.NODE_ENV || 'development';
+var conf = require('./config/webConfig')[env];
 var app = express();
 
 
@@ -17,8 +18,13 @@ app.use(express.favicon(path.join(__dirname, 'public/icons/favicon.png')));
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.cookieParser('zombie feynman'));
-app.use(express.session());
+app.use(express.cookieParser());
+app.use(express.session({
+  store: new MongoStore({
+    url: conf.url
+  }),
+  secret: conf.secret
+}));
 app.use(app.router);
 app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));

@@ -17,12 +17,6 @@ if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// if(app.get('env') === 'test') {
-//   app.use(express.basicAuth(function(user, pass) {
-//     return user === 'testUser' && pass === 'testPass';
-//   }));
-// }
-
 console.log('Connecting to Mongo at %s', config.db)
 mongoose.connect(config.db);
 
