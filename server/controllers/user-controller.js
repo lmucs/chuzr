@@ -36,9 +36,10 @@ module.exports = function (app) {
 
   app.get('/users/:id', function (req, res) {
     var id = req.params.id;
-    User.create(req.body, function (err, user) {
+    User.findById(id, null, function (err, user) {
       if (err) res.json(400, err)
-      res.send(201, user);
+      if (user === null) res.json(404)
+      res.json(user)
     });
   });
 
