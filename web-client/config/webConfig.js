@@ -4,8 +4,26 @@ var path = require('path'),
 module.exports = {
 
   development: {
+    db: 'mongodb://localhost/chuzr_dev',
+    host: 'localhost',
+    port: 27017,
+    url: 'http://' + this.host + '/' + this.port,
+    secret: 'zombie feynman',
+    root: rootPath,
+    app: {
+      name: 'Chuzr'
+    }
+  },
+
+  test: {
     db: 'mongodb://localhost/chuzr_test',
-    url: 'http://localhost/3001',
-    secret: 'zombie feynman'
+    host: 'localhost',
+    port: 27017,
+    url: 'http://' + this.host + '/' + this.port,
+    secret: 'zombie feynman',
+    root: rootPath,
+    app: {
+      name: 'Chuzr'
+    }
   }
 };
