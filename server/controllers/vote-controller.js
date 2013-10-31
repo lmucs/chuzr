@@ -24,12 +24,13 @@ module.exports = function (app) {
   });
 
   app.post('/votes', function (req, res) {
-    // TODO: If vote for this product with this user already exists, just update
     var user = req.body.userId,
         product = req.body.productId;
+    // Auto generate the timestamp and active elements
     req.body.timestamp = Date.now();
     req.body.active = true;
 
+    // Update last active vote to inactive
     Vote.findOne(
       {"userId": user, "productId": product, "active": true}, null, function (err, vote) {
       if (err) res.json(500, err);
@@ -37,6 +38,7 @@ module.exports = function (app) {
         if (err) res.json(400, err);
       });
     });
+
     Vote.create(req.body, function (err, vote) {
       if (err) res.send(400, err);
       res.send(201, vote);
