@@ -9,6 +9,6 @@ where both values are strings:
 
 
     module.exports = {
-      apiKey: xxx,
-      publisherId: xxx
+      apiKey: "xxx",
+      publisherId: "xxx"
     };
