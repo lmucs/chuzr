@@ -1,5 +1,37 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(id='forms')
+    h2 Settings
+    br
+    form(class='form-horizontal')
+      div(class='control-group')
+        label(class='control-label', for='displayName') Display Name
+        div(class='controls')
+          input(type='text', id='displayName', placeholder='Display Name')
+      div(class='control-group')
+        label(class='control-label', for='name') Name
+        div(class='controls')
+          input(type='text', id='name', placeholder='Name')
+      div(class='control-group')
+        label(class='control-label', for='location') City
+        div(class='controls')
+          input(type='text', id='location', placeholder='Los Angeles, CA')
+      div(class='control-group')
+        label(class='control-label') Birthday
+        div(class='controls controls-row')
+          input(class='span1', type='text', id='birthMonth', placeholder='MM', maxlength='2')
+          input(class='span1', type='text', id='birthDate', placeholder='DD', maxlength='2')
+          input(class='span2', type='text', id='birthYear', placeholder='YYYY', maxlength='4')
+      div(class='control-group')
+        label(class='control-label', for='aboutMe') About Me
+        div(class='controls')
+          textarea(id='aboutMe', placeholder='A little about yourself...', rows='5')
+      div(class='control-group')
+        label(class='control-label', for='website') Website
+        div(class='controls')
+          input(type='text', id='website', placeholder='Website URL')
+      div(class='control-group')
+        label(class='control-label', for='profilePicture') Profile Picture
+        div(class='controls input-append')
+          input(type='text', id='profilePicture', placeholder='coolpicture.jpg')
