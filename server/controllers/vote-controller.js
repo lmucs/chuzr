@@ -25,6 +25,18 @@ module.exports = function (app) {
 
   app.post('/votes', function (req, res) {
     // TODO: If vote for this product with this user already exists, just update
+    var user = req.body.userId,
+        product = req.body.productId;
+    req.body.timestamp = Date.now();
+    req.body.active = true;
+
+    Vote.findOne(
+      {"userId": user, "productId": product, "active": true}, null, function (err, vote) {
+      if (err) res.json(500, err);
+      if (vote) Vote.update({"_id": vote._id}, {$set: {"active": false}}, function (err, numberUpdated) {
+        if (err) res.json(400, err);
+      });
+    });
     Vote.create(req.body, function (err, vote) {
       if (err) res.send(400, err);
       res.send(201, vote);
@@ -34,27 +46,10 @@ module.exports = function (app) {
   // Get a vote by its id
   app.get('/votes/:id', function (req, res) {
     var id = req.params.id;
-      
     Vote.findById(id, null, function (err, vote) {
-      if (err) res.json(404, err)
-      if (vote === null) res.json(404, {"No such id": id})
-      res.json(vote)
-    });
-  });
-
-  app.put('/votes/:id', function (req, res) {
-    var id = req.params.id;
-    Vote.update({_id: id}, req.body, function (err, numUpdated) {
-      if (err) res.json(400, err)
-      res.json(200, {Updated: numUpdated});
-    });
-  });
-
-  app.delete('/votes/:id', function (req, res) {
-    var id = req.params.id;
-    Vote.remove({_id: id}, function (err) {
-      if (err) res.json(400, err)
-      res.json(200, {Deleted: id});
+      if (err) res.json(404, err);
+      if (vote === null) res.json(404, {"No such id": id});
+      res.json(vote);
     });
   });
 };
