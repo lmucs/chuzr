@@ -3,13 +3,26 @@ var mongoose = require('mongoose')
   , ObjectId = Schema.ObjectId;
 
 var productSchema = new Schema({
-    name        : String
-  , description : String
-  , imageURL    : String
-  , rating      : Number
-  , categories  : [String]
-  , price       : Number
-  , related     : [String]    // [ObjectId] for later functionality
+	name 			: String
+  , brand 			: String
+  , description 	: String
+  , images			: {
+  		image 	: [
+  			{
+	  			value : String
+	  		  , xsize : Number
+	  		  , ysize : Number	
+  		 	}
+  		]
+  	}
+  , url 			: String
+  , price			: {
+  		max		: Number
+  	  , min		: Number
+  	}
+  , shopzillaId		: Number
+  , categoryId		: Number
+  , related			: [Number]
 });
 
 module.exports = mongoose.model('Product', productSchema);
