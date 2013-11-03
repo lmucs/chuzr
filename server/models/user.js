@@ -28,17 +28,17 @@ userSchema.pre('save', function (next) {
   //don't bother hashing if no changes were made
   if (!user.isModified('hashedPassword')) return next();
   
-  bcrypt.hash(pass, workFactor, function(err, hash) {
+  bcrypt.hash(user.hashedPassword, workFactor, function(err, hash) {
     if (err) return next(err);
     user.hashedPassword = hash;
     next();
   });
-};
+});
 
 userSchema.methods.checkPassword = function (entry, callback) {
-  bcrypt.compare(entry, this.password, function (err, isMatch) {
+  bcrypt.compare(entry, this.hashedPassword, function (err, isMatch) {
     if (err) return callback(err);
     callback(null, isMatch);
   });
-}
+};
 module.exports = mongoose.model('User', userSchema);
