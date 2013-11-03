@@ -20,7 +20,7 @@ app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.session({
   store: new MongoStore({
-    url: conf.url
+    url: conf.db
   }),
   secret: conf.secret
 }));
