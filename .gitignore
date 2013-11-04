@@ -5,3 +5,5 @@ web-client/public/stylesheets/*.css
 .settings/org.eclipse.core.resources.prefs
 .DS_Store
 web-client/npm-debug.log
+npm-debug.log
+server/test/npm-debug.log
