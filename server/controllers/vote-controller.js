@@ -6,7 +6,7 @@ module.exports = function (app) {
     return {skip: +req.query.skip || 0, limit: +req.query.limit || 10}
   }
 
-  // Get all the votes or get votes by userId and/or productId
+  // Get all the votes or get votes by userId and/or productId and/or active state
   app.get('/votes', function (req, res) {
     var search = {};
 
@@ -15,6 +15,9 @@ module.exports = function (app) {
     }
     if (req.query.productId) {
       search["productId"] = req.query.productId;
+    }
+    if (req.query.active) {
+      search["active"] = req.query.active;
     }
     Vote.find(search, null, pagination(req), function (err, votes) {
       if (err) res.json(500, err);

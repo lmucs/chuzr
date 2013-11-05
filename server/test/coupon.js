@@ -4,48 +4,45 @@ var should = require('should');
 var request = require('supertest');  
 var Coupon = require('../models/coupon');
 var url = require('../config/config').test.url;
-var async = require('async');
 
 
-var couponOne = {
-  issuer: "target",
-  value: "Free TV",
-  promoCode: "XJSD32",
-  expirationDate: new Date(new Date().getTime() + 1E12),
-  imageURL: "http://opportunemployment.com/wp-content/uploads/2010/05/old-tv-set.jpg"
-};
-
-var couponTwo = {
-  issuer: "amazon",
-  value: "30% off Wii-U",
-  promoCode: "EFHS79",
-  expirationDate: new Date(new Date().getTime() + 1E12),
-  imageURL: "http://www.prlog.org/11992135-amazon-coupon-code-october-2012.jpg"
-};
-
-var couponThree = {
-  issuer: "best_buy",
-  value: "20% off Best Buy",
-  promoCode: "AJGD51",
-  expirationDate: new Date(new Date().getTime() + 1E12),
-  imageURL: "http://cdn.savings.com/img/Best-Buy-Coupon.jpeg"
-};
-
-var couponFour = {
-  issuer: "lmu_bookstore",
-  value: "Free Textbooks!",
-  promoCode: "NEVR11",
-  expirationDate: new Date(new Date().getTime() - 1E12),
-  imageURL: "http://www.universitybusiness.com/sites/default/files/styles/crop-tool-350x250/public/field/image/textboook.jpg?itok=i3kfC4uR"
-};
-
-var couponFive = {
-  issuer: "target",
-  value: "10% off Orbit gum",
-  promoCode: "SKS143",
-  expirationDate: new Date(new Date().getTime() + 1E12),
-  imageURL: "http://cdn.savings.com/img/Best-Buy-Coupon.jpeg"
-};
+var testCoupons = [
+  {
+    issuer: "target",
+    value: "Free TV",
+    promoCode: "XJSD32",
+    expirationDate: new Date(new Date().getTime() + 1E12),
+    imageURL: "http://opportunemployment.com/wp-content/uploads/2010/05/old-tv-set.jpg"
+  },
+  {
+    issuer: "amazon",
+    value: "30% off Wii-U",
+    promoCode: "EFHS79",
+    expirationDate: new Date(new Date().getTime() + 1E12),
+    imageURL: "http://www.prlog.org/11992135-amazon-coupon-code-october-2012.jpg"
+  },
+  {
+    issuer: "best_buy",
+    value: "20% off Best Buy",
+    promoCode: "AJGD51",
+    expirationDate: new Date(new Date().getTime() + 1E12),
+    imageURL: "http://cdn.savings.com/img/Best-Buy-Coupon.jpeg"
+  },
+  {
+    issuer: "lmu_bookstore",
+    value: "Free Textbooks!",
+    promoCode: "NEVR11",
+    expirationDate: new Date(new Date().getTime() - 1E12),
+    imageURL: "http://www.universitybusiness.com/sites/default/files/styles/crop-tool-350x250/public/field/image/textboook.jpg?itok=i3kfC4uR"
+  },
+  {
+    issuer: "target",
+    value: "10% off Orbit gum",
+    promoCode: "SKS143",
+    expirationDate: new Date(new Date().getTime() + 1E12),
+    imageURL: "http://cdn.savings.com/img/Best-Buy-Coupon.jpeg"
+  }
+];
 
 /*
  * Asserts that two coupon representations are the same. The coupons can be either
@@ -64,53 +61,49 @@ function couponsShouldBeSame(coupon, other) {
   coupon.imageURL.should.eql(other.imageURL);
 }
 
-function insertFiveCouponsAndThen(callback) {
-  request(url).post('/coupons').send(couponOne).end(function (err, res) {
-  should.not.exist(err);
-    res.should.have.status(201);
-    request(url).post('/coupons').send(couponTwo).end(function (err, res) {
+/*
+ * Inserts from an array then calls the callback AFTER all coupons are inserted.
+ */
+function insertCoupons(coupons, callback) {
+  var couponsRemaining = coupons.length;
+  if (couponsRemaining === 0) callback();
+  for (var i = 0; i < coupons.length; i++) {
+    request(url).post('/coupons').send(coupons[i]).end(function (err, res) {
       should.not.exist(err);
       res.should.have.status(201);
-      request(url).post('/coupons').send(couponThree).end(function (err, res) {
-        should.not.exist(err);
-        res.should.have.status(201);
-        request(url).post('/coupons').send(couponFour).end(function (err, res) {
-          should.not.exist(err);
-          res.should.have.status(201);
-          request(url).post('/coupons').send(couponFive).end(function (err, res) {
-            should.not.exist(err);
-            res.should.have.status(201);
-            callback();
-          });
-        });
-      });
+      if (--couponsRemaining === 0) callback();
     });
-  });
+  }
 }
 
-describe('Coupons Model', function() {
+describe('Coupon Model', function() {
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      Coupon.create(couponOne, function (err) {
+      Coupon.create(testCoupons[0], function (err) {
         should.not.exist(err);
         done();
       })
-    })
+    });
+
     it('should assign all properties on creation', function (done) {
-      Coupon.create(couponOne, function (err, coupon) {
+      Coupon.create(testCoupons[0], function (err, coupon) {
         should.not.exist(err);
-        coupon.should.have.properties(Object.keys(couponOne))
-        couponsShouldBeSame(coupon, couponOne)
+        coupon.should.have.properties(Object.keys(testCoupons[0]))
+        couponsShouldBeSame(coupon, testCoupons[0])
         done();
       })
     })
   })
+});
 
-  describe('#retrieve()', function () {
+describe('Coupon Controller', function() {
+
+  describe('retrieve', function () {
+
     it('should get by id correctly', function (done) {
       // Create the coupon.
-      request(url).post('/coupons').send(couponOne).end(function (err, res) {
+      request(url).post('/coupons').send(testCoupons[0]).end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
         res.should.be.json;
@@ -126,35 +119,24 @@ describe('Coupons Model', function() {
     })
   })
     
-  describe('#search()', function () {
+  describe('search', function () {
 
     it('should return a list of two coupons if two inserted', function (done) {
-
-      //Create two coupons
-      request(url).post('/coupons').send(couponOne).end(function (err, res) {
-        should.not.exist(err);
-        res.should.have.status(201);
-      
-        request(url).post('/coupons').send(couponTwo).end(function (err, res) {
+      insertCoupons([testCoupons[0], testCoupons[1]], function () {
+        request(url).get('/coupons').end(function (err, res) {
           should.not.exist(err);
-          res.should.have.status(201);
-      
-          //Get coupons
-          request(url).get('/coupons').end(function (err, res) {
-            should.not.exist(err);
-            res.should.have.status(200);
-            res.body.length.should.equal(2);
-            coupon1 = res.body[0];
-            coupon2 = res.body[1];
-            (coupon1.promoCode === "EFHS79" || coupon2.promoCode === "EFHS79").should.be.ok
-            done();
-          })
+          res.should.have.status(200);
+          res.body.length.should.equal(2);
+          coupon1 = res.body[0];
+          coupon2 = res.body[1];
+          (coupon1.promoCode === "EFHS79" || coupon2.promoCode === "EFHS79").should.be.ok
+          done();
         })
       }) 
     }); 
     
     it('should return two coupons with issuer=target', function (done) {
-      insertFiveCouponsAndThen(function () {
+      insertCoupons(testCoupons, function () {
         request(url).get('/coupons?issuer=target').end(function (err, res) {
           should.not.exist(err)
           res.should.have.status(200)
@@ -165,11 +147,11 @@ describe('Coupons Model', function() {
     }); 
 
     it('should return one expired coupon', function (done) {
-      insertFiveCouponsAndThen(function () {
+      insertCoupons(testCoupons, function () {
         request(url).get('/coupons?status=expired').end(function (err, res) {
           should.not.exist(err)
           res.should.have.status(200)
-          couponsShouldBeSame(res.body[0], couponFour)
+          couponsShouldBeSame(res.body[0], testCoupons[3])
           res.body.length.should.equal(1);
           done();
         })
@@ -177,7 +159,7 @@ describe('Coupons Model', function() {
     }); 	
 
     it('should return four active coupons', function (done) {
-      insertFiveCouponsAndThen(function () {
+      insertCoupons(testCoupons, function () {
         request(url).get('/coupons?status=active').end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(200)
@@ -185,26 +167,59 @@ describe('Coupons Model', function() {
           done();
         })
       })
-    });   
+    });  
+
+    describe('pagination', function () {
+      it('should have a default limit of 10', function (done) {
+        insertCoupons(testCoupons.concat(testCoupons, testCoupons), function () {
+          request(url).get('/coupons').end(function (err, res) {
+            should.not.exist(err);
+            res.should.have.status(200)
+            res.body.length.should.equal(10);
+            done();
+          })
+        })
+      })
+      it('should respect the limit', function (done) {
+        insertCoupons(testCoupons.concat(testCoupons, testCoupons), function () {
+          request(url).get('/coupons?limit=8').end(function (err, res) {
+            should.not.exist(err);
+            res.should.have.status(200)
+            res.body.length.should.equal(8);
+            done();
+          })
+        })
+      })
+      it('should treat the skip properly', function (done) {
+        insertCoupons(testCoupons.concat(testCoupons, testCoupons), function () {
+          request(url).get('/coupons?skip=12&limit=100').end(function (err, res) {
+            should.not.exist(err);
+            res.should.have.status(200)
+            res.body.length.should.equal(3);
+            done();
+          })
+        })
+      })
+    })
   });
 
-  describe('#delete()', function () {
-    it('should delete without error', function (done) {
-      // Create the coupon.
-      request(url).post('/coupons').send(couponOne).end(function (err, res) {
+  describe('delete', function () {
+    it('should delete correctly', function (done) {
+
+      // Create the coupon
+      request(url).post('/coupons').send(testCoupons[0]).end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
         var id = res.body._id;
 
-        // Delete that coupon.
+        // Delete that coupon
         request(url).del('/coupons/' + id).end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(200);
 
-          // It should be deleted
+          // It should be deleted (404 on get by id)
           request(url).get('/coupons/' + id).end(function (err, res) {
             should.not.exist(err);
-            console.log(res.body)
             res.should.have.status(404);
             done();
           });
@@ -213,18 +228,17 @@ describe('Coupons Model', function() {
     });
   });
   
-  describe('#update()', function () {
+  describe('update', function () {
     it('should update correctly', function (done) {
       
       // Create the coupon
-      request(url).post('/coupons').send(couponOne).end(function (err, res) {
+      request(url).post('/coupons').send(testCoupons[0]).end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
-        
-        // Update that coupon
         var id = res.body._id;
         
-        request(url).put('/coupons/' + id).send(couponTwo).end(function (err, res) {
+        // Update that coupon
+        request(url).put('/coupons/' + id).send(testCoupons[1]).end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(200);
           
@@ -232,7 +246,7 @@ describe('Coupons Model', function() {
           request(url).get('/coupons/' + id).end(function (err, res) {
             should.not.exist(err);
             res.should.have.status(200);
-            couponsShouldBeSame(res.body, couponTwo);
+            couponsShouldBeSame(res.body, testCoupons[1]);
             done();
           });
         });   

@@ -78,7 +78,37 @@ var voteTwelve = {
   userId: 99,
   productId: 98,
   rating: 0
-}
+};
+
+var voteThirteen = {
+  userId: 99,
+  productId: 98,
+  rating: 2
+};
+
+var voteFourteen = {
+  userId: 99,
+  productId: 98,
+  rating: 7.7
+};
+
+var voteFifteen = {
+  userId: 99,
+  productId: 43,
+  rating: 89
+};
+
+var voteSixteen = {
+  userId: 45,
+  productId: 100,
+  rating: -5
+};
+
+var voteSeventeen = {
+  userId: 32,
+  productId: 12344,
+  rating: 2.65
+};
 
 describe('Votes Model', function(){
 
@@ -592,6 +622,68 @@ describe('Votes Controller', function(){
         })
       })
     })
+
+    it('should return three votes, two with active = false and one with active = true', function (done) {
+      // Create two votes.
+      async.series([
+        function(){
+          request(url).post('/votes').send(voteTwelve).end(function (err, res) {
+            if (err) throw err;
+            res.should.have.status(201);
+            done();
+          })
+        },
+        function(){
+          request(url).post('/votes').send(voteThirteen).end(function (err, res) {
+            if (err) throw err;
+            res.should.have.status(201);
+            done();
+          })
+        },
+        function(){          
+          // Get the inactive vote
+          request(url).get('/votes?userId=99&productId=98&active=false').end(function (err, res) {
+            if (err) throw err;
+            res.should.have.status(200);
+            res.body.length.should.equal(1);
+            done();
+          })
+        },
+        function (){
+          // Get the active vote
+          request(url).get('/votes?userId=99&productId=98&active=true').end(function (err, res) {
+            if (err) throw err;
+            res.should.have.status(200);
+            res.body.length.should.equal(1);
+            done();
+          })
+        },
+        function(){
+          // Create a third vote for this product and user
+          request(url).post('/votes').send(voteFourteen).end(function (err, res) {
+            if (err) throw err;
+            res.should.have.status(201);
+            done();
+          })
+        },
+        function(){
+          //Get the two inactive votes
+          request(url).get('/votes?userId=99&productId=98&active=false').end(function (err, res) {
+            if (err) throw err;
+            res.should.shave.status(200);
+            res.body.length.should.equal(2);
+          })
+        },
+        function(){
+          //Get the active vote
+          request(url).get('/votes?userId=99&productId=98&active=true').end(function (err, res) {
+            if (err) throw err;
+            res.should.shave.status(200);
+            res.body.length.should.equal(1);
+          })
+        }
+      ]);
+    })
   })
 
   describe('#create()', function () {
@@ -602,13 +694,39 @@ describe('Votes Controller', function(){
         done();
       })
     })
+
     it('should assign all properties on creation, including an _id', function (done) {
       request(url).post('/votes').send(voteOne).end(function (err, res) {
         if (err) throw err;
         res.body.userId.should.equal(1);
         res.body.productId.should.equal(32);
         res.body.rating.should.equal(8);
-        Object.keys(res.body).length.should.equal(5);
+        res.body.active.should.equal(true);
+        Object.keys(res.body).length.should.equal(7);
+        done();
+      })
+    })
+
+    it('should reject a rating higher than 10', function (done) {
+      request(url).post('/votes').send(voteFifteen).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(400);
+        done();
+      })
+    })
+
+    it('should reject a rating lower than 0', function (done) {
+      request(url).post('/votes').send(voteSixteen).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(400);
+        done();
+      })
+    })
+
+    it('should allow ratings that aren\'t a whole number', function (done) {
+      request(url).post('/votes').send(voteSeventeen).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
         done();
       })
     })
