@@ -19,15 +19,13 @@ $(function(){
       $("#side-nav").animate({"width": "hide"});
       $("#side-nav-toggle").animate({"width": "7px"});
       $("#toggle-caret").text("");
-      $("#main-content").addClass("span11");
-      $("#main-content").removeClass("span10");
+      $("#main-content").animate({"margin-left":"1.75%", "width": "95%"})
       sideNavShown = false;
     } else {
       $("#side-nav").animate({"width": "show"});
       $("#side-nav-toggle").animate({"width": "7px"});
       $("#toggle-caret").text("");
-      $("#main-content").addClass("span10");
-      $("#main-content").removeClass("span11");
+      $("#main-content").animate({"margin-left":"17%", "width": "82%"})
       sideNavShown = true;
     }
     
