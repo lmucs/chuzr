@@ -4,6 +4,7 @@ var should = require('should');
 var request = require('supertest');  
 var Coupon = require('../models/coupon');
 var url = require('../config/config').test.url;
+var async = require('async');
 
 
 var couponOne = {
@@ -317,36 +318,26 @@ describe('Coupons Controller', function () {
       // Create the coupon.
       request(url).post('/coupons').send(couponOne).end(function (err, res) {
         if (err) throw err;
-        res.should.have.status(201);
-      
-        //Ensure correct coupon posted
-        request(url).get('/coupons').end(function (err, res) {
+        
+        //Update that coupon.
+        var id=res.body._id;
+        
+        request(url).put('/coupons/' + id).send(couponTwo).end(function (err, res2) {
           if (err) throw err;
-          res.should.have.status(200);
-          res.body[0].issuer.should.equal("target");
-          res.body[0].value.should.equal("Free TV");
-          res.body[0].promoCode.should.equal("XJSD32");
-          res.body[0].expirationDate.should.equal("2013-12-06T08:00:00.000Z");
-          res.body[0].imageURL.should.equal("http://opportunemployment.com/wp-content/uploads/2010/05/old-tv-set.jpg");
-
-          // Update that coupon.
-          request(url).put('/coupons/' + res.body[0]._id).send(couponTwo).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(200);
+          res2.should.have.status(200)
           
-            //Ensure coupon has new data
-            request(url).get('/coupons').end(function (err, res) {
-              if (err) throw err;
-              res.should.have.status(200)
-              res.body[0].issuer.should.equal("amazon");
-              res.body[0].value.should.equal("30% off Wii-U");
-              res.body[0].promoCode.should.equal("EFHS79");
-              res.body[0].expirationDate.should.equal("2013-10-31T07:00:00.000Z");
-              res.body[0].imageURL.should.equal("http://www.prlog.org/11992135-amazon-coupon-code-october-2012.jpg");
-              done();
-            })
-          })
-        })
+          //Ensure coupon has new data
+          request(url).get('/coupons/' + id).end(function (err, response) {
+            if (err) throw err;
+            response.should.have.status(200)
+            response.body.issuer.should.equal("amazon");
+            response.body.value.should.equal("30% off Wii-U");
+            response.body.promoCode.should.equal("EFHS79");
+            response.body.expirationDate.should.equal("2013-10-31T07:00:00.000Z");
+            response.body.imageURL.should.equal("http://www.prlog.org/11992135-amazon-coupon-code-october-2012.jpg");
+            done();
+          })  
+        })    
       })
     });
   });

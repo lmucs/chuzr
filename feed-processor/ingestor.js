@@ -11,7 +11,6 @@ var Ingestor = function () {
       res.on('end', function () {
         var result = parse(data);
         var productArray = result.products.product;
-        console.log('use chuzr_dev');
         for (p in productArray) {
             console.log('db.products.insert(' + JSON.stringify(productArray[p]) + ');');
         }

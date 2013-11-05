@@ -24,6 +24,7 @@ module.exports = function (app) {
   });
 
   app.post('/votes', function (req, res) {
+    // TODO: If vote for this product with this user already exists, just update
     Vote.create(req.body, function (err, vote) {
       if (err) res.send(400, err);
       res.send(201, vote);
@@ -43,8 +44,7 @@ module.exports = function (app) {
 
   app.put('/votes/:id', function (req, res) {
     var id = req.params.id;
-    console.log(req.body)
-    Product.update({_id: id}, req.body, function (err, numUpdated) {
+    Vote.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) res.json(400, err)
       res.json(200, {Updated: numUpdated});
     });
@@ -52,7 +52,7 @@ module.exports = function (app) {
 
   app.delete('/votes/:id', function (req, res) {
     var id = req.params.id;
-    Product.remove({_id: id}, function (err) {
+    Vote.remove({_id: id}, function (err) {
       if (err) res.json(400, err)
       res.json(200, {Deleted: id});
     });
