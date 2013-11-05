@@ -28,6 +28,9 @@ $(function(){
       $("#main-content").animate({"margin-left":"17%", "width": "82%"})
       sideNavShown = true;
     }
-    
+  });
+
+  $("#social-tab").hover(function(){
+    $(".social-nav").animate("display":"show")});
   });
 });
