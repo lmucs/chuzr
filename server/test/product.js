@@ -5,33 +5,34 @@ var request = require('supertest');
 var Product = require('../models/product');
 var url = require('../config/config').test.url;
 
-var productOne = {
-  name : "Kindle Fire HDX",
-  description : "Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras",
-  url : "http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg",
-  categoryId: 93,
-  images : ["http://placehold.it/400x400", "http://placehold.it/200x200"],
-  shopzillaId : 300,
-  price : {min: 379.99, max: 700},
-  related : [16, 22, 888]
-};
-
-var productTwo = {
-  name : "Shake-Weight",
-  description : "Suggestive workout machine",
-  url : "NSFW",
-  categoryId: 22,
-  images : ["http://placehold.it/350x350"],
-  categoryId: 85,
-  shopzillaId : 3123,
-  price : {min: 9.95, max: 12.47},
-  related : [3]
-};
+var testProducts = [
+  {
+    name : "Kindle Fire HDX",
+    description : "Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras",
+    url : "http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg",
+    categoryId: 93,
+    images : ["http://placehold.it/400x400", "http://placehold.it/200x200"],
+    shopzillaId : 300,
+    price : {min: 379.99, max: 700},
+    related : [16, 22, 888]
+  },
+  {
+    name : "Shake-Weight",
+    description : "Suggestive workout machine",
+    url : "NSFW",
+    categoryId: 22,
+    images : ["http://placehold.it/350x350"],
+    categoryId: 85,
+    shopzillaId : 3123,
+    price : {min: 9.95, max: 12.47},
+    related : [3]
+  }
+];
 
 /*
- * Asserts that two product representations are the same. The coupons can be either
+ * Asserts that two product representations are the same. The products can be either
  * (1) actual product model objects, (2) plain JavaScript objects with product properties,
- * or (3) JSON representations returned from the API.  Because coupons from mongo can
+ * or (3) JSON representations returned from the API.  Because products from mongo can
  * have extra properties like _id and _v, we only compare the basic product properties.
  */
 function productsShouldBeSame(product, other) {
@@ -60,15 +61,15 @@ describe('Products Model', function () {
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      Product.create(productOne, function (err) {
+      Product.create(testProducts[0], function (err) {
         should.not.exist(err);
         done();
       });
     });
     it('should assign all properties on creation', function (done) {
-      Product.create(productOne, function (err, product) {
+      Product.create(testProducts[0], function (err, product) {
         should.not.exist(err);
-        productsShouldBeSame(product, productOne);
+        productsShouldBeSame(product, testProducts[0]);
         done();
       });
     });
@@ -92,7 +93,7 @@ describe('Products Controller', function () {
   describe('#retrieve()', function () {
     it('should get by id correctly', function (done) {
       // Create the coupon.
-      request(url).post('/products').send(productOne).end(function (err, res) {
+      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
         res.should.be.json;
@@ -110,16 +111,16 @@ describe('Products Controller', function () {
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      request(url).post('/products').send(productOne).end(function (err, res) {
+      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
         done();
       })
     })
     it('should assign all properties on creation, including an _id', function (done) {
-      request(url).post('/products').send(productOne).end(function (err, res) {
+      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
         should.not.exist(err);
-        productsShouldBeSame(res.body, productOne);
+        productsShouldBeSame(res.body, testProducts[0]);
         done();
       })
     })
@@ -128,7 +129,7 @@ describe('Products Controller', function () {
   describe('#delete()', function () {
     it('should delete without error', function (done) {
       // Create the product.
-      request(url).post('/products').send(productOne).end(function (err, res) {
+      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
         var id = res.body._id;
@@ -152,13 +153,13 @@ describe('Products Controller', function () {
   describe('#update()', function () {
     it('should update without error', function (done) {
       // Create the product.
-      request(url).post('/products').send(productOne).end(function (err, res) {
+      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
        should.not.exist(err);
       
         //Update that product.
         var id = res.body._id;
         
-        request(url).put('/products/' + id).send(productTwo).end(function (err, res) {
+        request(url).put('/products/' + id).send(testProducts[1]).end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(200);
         
@@ -166,7 +167,7 @@ describe('Products Controller', function () {
           request(url).get('/products/' + id).end(function (err, res) {
             should.not.exist(err);
             res.should.have.status(200);
-            productsShouldBeSame(res.body, productTwo);
+            productsShouldBeSame(res.body, testProducts[1]);
             done();
           });  
         });    
