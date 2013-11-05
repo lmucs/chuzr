@@ -1,14 +1,27 @@
 extends layout
 
 block content
-  div(id = 'user-profile')
-    img(id='user-photo', src='')
-    span(id='user-info')
-      h2(id='user-name')
-      p(id='user-email')
-      p(id='user-login')
-      p(id='user-password')
-      p(id='user-rep')
-      p(id='user-socialHandle')
-
+  div(class='row', id = 'user-profile')
+    div(class='span4 offset1', id='profile-picture')
+      img(src='http://i.imgur.com/MZnxvWl.png', class='img-polaroid')
+    div(class='span3', id='profile-information')
+      h1(id='user-name')
+      table(class='table table-condensed')
+        tr
+          td(class='right-label'): strong Email
+          td(id='user-email')
+        tr
+          td(class='right-label'): strong Login
+          td(id='user-login')
+        tr
+          td(class='right-label'): strong Password
+          td(id='user-password')
+        tr
+          td(class='right-label'): strong Reputaion
+          td(id='user-rep')
+        tr
+          td: strong Social Handle
+          td(id='user-socialHandle')
+  div(id = 'user-likes')
+    h2 Likes
   script(src='/js/profile.js')
