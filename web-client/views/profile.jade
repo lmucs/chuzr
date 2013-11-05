@@ -2,10 +2,9 @@ extends layout
 
 block content
   div(class='row', id = 'user-profile')
-    div(class='span4 offset1', id='profile-picture')
-      img(src='http://i.imgur.com/MZnxvWl.png', class='img-polaroid')
-    div(class='span3', id='profile-information')
-      h1(id='user-name')
+    
+    div(class='span3 offset4', id='profile-information')
+      h1(id='user-name', align="right")
       table(class='table table-condensed')
         tr
           td(class='right-label'): strong Email
@@ -22,6 +21,20 @@ block content
         tr
           td: strong Social Handle
           td(id='user-socialHandle')
-  div(id = 'user-likes')
-    h2 Likes
+    div(class='span4 ', id='profile-picture')
+      img(src='http://i.imgur.com/MZnxvWl.png', class='img-polaroid')
+  div(class="accordion", id="accordion2")
+  div(class="accordion-group")
+    div(class="accordion-heading")
+      a(class="accordion-toggle", data-toggle="collapse", data-parent="#accordion2", href="#collapseOne") Likes
+    div(id="collapseOne", class="accordion-body collapse in")
+      div(class="accordion-inner")
+        p Liked Stuff
+  div(class="accordion", id="accordion1")
+  div(class="accordion-group")
+    div(class="accordion-heading")
+      a(class="accordion-toggle", data-toggle="collapse", data-parent="#accordion1", href="#collapseOne2") Achievements
+    div(id="collapseOne2", class="accordion-body collapse in")
+      div(class="accordion-inner")
+        p Achievement Stuff
   script(src='/js/profile.js')
