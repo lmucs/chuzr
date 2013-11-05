@@ -12,6 +12,7 @@
     "json2csv": "2.1.0",
     "supertest": "latest",
     "cors": "latest",
-    "mocha": "latest"
+    "mocha": "latest",
+    "async": "latest"
   }
 }
