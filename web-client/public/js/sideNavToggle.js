@@ -1,5 +1,8 @@
 $(function(){
   var sideNavShown = true;
+  $(".social-nav").hide();
+  $(".browse-nav").hide();
+
   $("#side-nav-toggle").hover(
       function(){
         $("#side-nav-toggle").animate({"width": "25px"}, 200);
@@ -31,6 +34,10 @@ $(function(){
   });
 
   $("#social-tab").hover(function(){
-    $(".social-nav").animate("display":"show")});
+    $(".social-nav").show();
+  });
+
+  $("#browse-tab").hover(function(){
+    $(".browse-nav").show();
   });
 });

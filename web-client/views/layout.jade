@@ -38,19 +38,20 @@ html
          ul(class='nav nav-tabs nav-list nav-stacked', id='side-nav-links')
             li: a(href='/home') Home 
             li: a(href='/play') Play 
-            li: a(href='/browse') Browse       
+            li(id='browse-tab'): a(href='/browse') Browse       
+            li(class='sub-nav browse-nav'): a(href='/trends') Trends
+            li(class='sub-nav browse-nav'): a(href='#') Most Popular
             li(class='divider')
             li: a(href='/stuff') Stuff
             li(id='social-tab'): a(href='/social') Social
-            li(class='social-nav'): a(href='#') Profile
-            li(class='social-nav'): a(href='#') Friends
-            li(class='social-nav'): a(href='#') Compare
-            li: a(href='/trends') Trends
+            li(class='sub-nav social-nav'): a(href='#') Profile
+            li(class='sub-nav social-nav'): a(href='#') Friends
+            li(class='sub-nav social-nav'): a(href='#') Compare
+            
             li(class='divider')
             li: a(href='/settings') Settings
 
         div(class='span1',id='side-nav-toggle')
-          h4(id='toggle-caret')
  
         div(class='span10', id='main-content')
           block content
