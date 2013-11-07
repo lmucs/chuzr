@@ -1,14 +1,40 @@
 extends layout
 
 block content
-  div(id = 'user-profile')
-    img(id='user-photo', src='')
-    span(id='user-info')
-      h2(id='user-name')
-      p(id='user-email')
-      p(id='user-login')
-      p(id='user-password')
-      p(id='user-rep')
-      p(id='user-socialHandle')
-
+  div(class='row', id = 'user-profile')
+    
+    div(class='span3 offset4', id='profile-information')
+      h1(id='user-name', align="right")
+      table(class='table table-condensed')
+        tr
+          td(class='right-label'): strong Email
+          td(id='user-email')
+        tr
+          td(class='right-label'): strong Login
+          td(id='user-login')
+        tr
+          td(class='right-label'): strong Password
+          td(id='user-password')
+        tr
+          td(class='right-label'): strong Reputaion
+          td(id='user-rep')
+        tr
+          td(class='right-label'): strong Social Handle
+          td(id='user-socialHandle')
+    div(class='span4 ', id='profile-picture')
+      img(src='http://i.imgur.com/MZnxvWl.png', class='img-polaroid')
+  div(class="accordion", id="accordion2")
+  div(class="accordion-group")
+    div(class="accordion-heading")
+      a(class="accordion-toggle", data-toggle="collapse", data-parent="#accordion2", href="#collapseOne") Likes
+    div(id="collapseOne", class="accordion-body collapse in")
+      div(class="accordion-inner")
+        p Liked Stuff
+  div(class="accordion", id="accordion1")
+  div(class="accordion-group")
+    div(class="accordion-heading")
+      a(class="accordion-toggle", data-toggle="collapse", data-parent="#accordion1", href="#collapseOne2") Achievements
+    div(id="collapseOne2", class="accordion-body collapse in")
+      div(class="accordion-inner")
+        p Achievement Stuff
   script(src='/js/profile.js')

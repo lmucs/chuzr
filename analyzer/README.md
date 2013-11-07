@@ -13,6 +13,7 @@
   * Categories of products heirarchy and their rating
       --(also partially implemented, circle pack)
   * Categories of users who vote most
+      --(implemented with tree map)
   * Quantity of categories of users and products on site
   * Product rating by price?
   * product ratings vs sales?

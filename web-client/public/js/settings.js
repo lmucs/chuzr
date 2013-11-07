@@ -12,12 +12,12 @@ $(function(){
       password = '';
 
   $.ajax({
-    url:"http://localhost:3000/products/526024925d503660ea5a69be",
+    url:"http://localhost:3000/users",
     cache: false
   })  
     .done(function(user){
-      console.log("ajax retrieved" );
-      console.log(user);
+      console.log("ajax retrieved");
+      console.log(user[4]);
       
       displayName = user.displayName;
       name = user.name;

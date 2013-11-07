@@ -1,7 +1,11 @@
 analyzer/.DS_Store
+feed-processor/config/api.js
 node_modules
 web-client/public/stylesheets/*.css
 .project
 .settings/org.eclipse.core.resources.prefs
 .DS_Store
 web-client/npm-debug.log
+analyzer/sampleDataFormats/CSV/file.csv
+npm-debug.log
+server/test/npm-debug.log

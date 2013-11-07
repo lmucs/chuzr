@@ -28,7 +28,7 @@ module.exports = function (app) {
 
   app.post('/products', auth, function (req, res) {
     Product.create(req.body, function (err, product) {
-      if (err) res.json(400, err)
+      if (err) res.json(400, err);
       res.send(201, product);
     });
   });

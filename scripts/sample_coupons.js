@@ -10,6 +10,6 @@ var rand = function (x) {
 }
 
 for (i = 0; i < 1000; i++) {
-        var p = {"issuer": issuers[rand(10)], "value": values[rand(10)], "promoCode": promoCodes[rand(10)], "expirationDate": expirationDates[rand(5)], "imageURL": imageURLs[rand(4)]};
-        db.products.insert(p)
+        var coupon = {"issuer": issuers[rand(10)], "value": values[rand(10)], "promoCode": promoCodes[rand(10)], "expirationDate": expirationDates[rand(5)], "imageURL": imageURLs[rand(4)]};
+        db.coupons.insert(coupon)
 }
