@@ -1,4 +1,5 @@
 analyzer/.DS_Store
+feed-processor/config/api.js
 node_modules
 web-client/public/stylesheets/*.css
 .project
