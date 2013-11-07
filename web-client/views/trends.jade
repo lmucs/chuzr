@@ -1,6 +1,13 @@
 extend layout
 
-
 block content
     h1= title
     p Welcome to #{title}
+    #contentBox
+      .columnLeft
+        h2(class='underline') Trending Up
+        p These items are trending up!
+      .columnRight
+        h2(class='underline') Trending Down
+        p These items are trending down!
+        
