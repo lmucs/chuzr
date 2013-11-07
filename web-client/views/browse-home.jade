@@ -2,4 +2,15 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  div(class='input-prepend')
+    div(class='btn-group')
+      select(class='span12')
+        option: 'Name'
+        option: 'Type'
+    input(class='span9', id=prependDropdownButton, type='text')
+    div(button id="find-products" class="btn btn-mini" type="button")
+      p go
+
+  div(id='results')
+
+  script(src='/js/browse.js')
