@@ -33,11 +33,20 @@ $(function(){
     }
   });
 
-  $("#social-tab").hover(function(){
-    $(".social-nav").show();
+  $("#browse-tab").hover(function(){
+    $(".browse-nav").slideDown();
+    $(".social-nav").slideUp();
+  }, function(){
+    $(".browse-nav").slideUp();
   });
 
-  $("#browse-tab").hover(function(){
-    $(".browse-nav").show();
+  $("#social-tab").hover(function(){
+    $(".social-nav").slideDown();
+    $(".browse-nav").slideUp();
+  }, function(){
+    $(".social-nav").slideUp();
+  
   });
+
+
 });
