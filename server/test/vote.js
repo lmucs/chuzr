@@ -11,103 +11,134 @@ var async = require('async');
 var voteOne = {
   userId: 1,
   productId: 32,
+  ratingType: "numeric",
   rating: 8
 };
 
 var voteTwo = {
   userId: 0,
   productId: 32,
+  ratingType: "numeric",
   rating: 4
 };
 
 var voteThree = {
   userId: 0,
   productId: 15,
+  ratingType: "numeric",
   rating: 9
 };
 
 var voteFour = {
   userId: 2,
   productId: 4,
+  ratingType: "numeric",
   rating: 10
 };
 
 var voteFive = {
   userId: 1,
   productId: 2,
+  ratingType: "numeric",
   rating: 3
 };
 
 var voteSix = {
   userId: 1,
   productId: 44,
+  ratingType: "numeric",
   rating: 8
 };
 
 var voteSeven = {
   userId: 12,
   productId: 9,
+  ratingType: "numeric",
   rating: 10
 };
 
 var voteEight = {
   userId: 8,
   productId: 8,
+  ratingType: "numeric",
   rating: 8
 };
 
 var voteNine = {
   userId: 123,
   productId: 456,
+  ratingType: "numeric",
   rating: 7
 };
 
 var voteTen = {
   userId: 288,
   productId: 46,
+  ratingType: "numeric",
   rating: 6
 };
 
 var voteEleven = {
   userId: 65,
   productId: 789,
+  ratingType: "numeric",
   rating: 1
 };
 
 var voteTwelve = {
   userId: 99,
   productId: 98,
+  ratingType: "numeric",
   rating: 0
 };
 
 var voteThirteen = {
   userId: 99,
   productId: 98,
+  ratingType: "numeric",
   rating: 2
 };
 
 var voteFourteen = {
   userId: 99,
   productId: 98,
+  ratingType: "numeric",
   rating: 7.7
 };
 
 var voteFifteen = {
   userId: 99,
   productId: 43,
+  ratingType: "numeric",
   rating: 89
 };
 
 var voteSixteen = {
   userId: 45,
   productId: 100,
+  ratingType: "numeric",
   rating: -5
 };
 
 var voteSeventeen = {
   userId: 32,
   productId: 12344,
+  ratingType: "numeric",
   rating: 2.65
+};
+
+var voteEighteen = {
+  userId: 48,
+  productId: 32,
+  ratingType: "comparison",
+  rating: 3
+};
+
+var voteNineteen = {
+  userId: 54,
+  productId: 432,
+  ratingType: "trashType",
+  rating: 4
 };
 
 describe('Votes Model', function(){
@@ -684,6 +715,21 @@ describe('Votes Controller', function(){
         }
       ]);
     })
+
+    it('should return one vote with ratingType = "comparison"', function (done) {
+      // Create the vote.
+      request(url).post('/votes').send(voteEighteen).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+
+        // Search for the vote.
+        request(url).get('/votes?ratingType=comparison').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+          done();
+        })
+      })
+    })
   })
 
   describe('#create()', function () {
@@ -702,7 +748,7 @@ describe('Votes Controller', function(){
         res.body.productId.should.equal(32);
         res.body.rating.should.equal(8);
         res.body.active.should.equal(true);
-        Object.keys(res.body).length.should.equal(7);
+        Object.keys(res.body).length.should.equal(8);
         done();
       })
     })
@@ -727,6 +773,14 @@ describe('Votes Controller', function(){
       request(url).post('/votes').send(voteSeventeen).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
+        done();
+      })
+    })
+    
+    it('should reject a ratingType not in ["numeric", "comparison", "upDown"]', function (done) {
+      request(url).post('/votes').send(voteNineteen).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(400);
         done();
       })
     })
