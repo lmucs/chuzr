@@ -1,34 +1,33 @@
 $(function(){
 
   $("#find-products").click(function () {
-    var name = '',
+    var productId = 4,
+        name = '',
+        brand = '',
         description = '',
-        rating = '',
-        imageURL = '',
-        categories = '',
-        price = '',
+        images = '',
+        url = '',
+        price = [],
+        rating = 10,
+        shopzillaId = 0,
+        categoryId = 0,
         related = '';
     $.ajax({
-      url:"http://localhost:3000/products?limit=5",
+      url:"http://localhost:3000/products?limit=1",
       cache: false
     }).done(function (products) {
       products.forEach(function (product) {
-        $("#results").append(JSON.stringify(product));
-
-      var productResult = productResult.products,
-          name = productResult.name;
-          description = productResult.description;
-          rating = productResult.rating;
-          categories = productResult.categories;
-          price = productResult.price;
-          related = productResult.related;
-      
-      $("#product-name").text(name);
-      $("#product-description").text(description);
-      $("#product-rating").text(rating);
-      $("#product-categories").text(categories);
-      $("#product-price").text(price);
-      $("#product-related").text(related);
+        $("#results").append(JSON.stringify(product, null, 4));
+        $("#product-name").text(name);
+        $("#product-brand").text(brand);
+        $("#product-description").text(description);
+        $("#product-images").text(images);
+        $("product-url").text(url);
+        $("#product-price").text(price);
+        $("#product-rating").text(rating);
+        $("#product-shopzillaId").text(shopzillaId);
+        $("#product-categoryId").text(categoryId);
+        $("#product-related").text(related);
 
       })
     })
