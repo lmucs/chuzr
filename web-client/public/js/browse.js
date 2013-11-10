@@ -1,6 +1,7 @@
 $(function(){
 
   $("#find-products").click(function () {
+    
     var productId = 4,
         name = '',
         brand = '',
@@ -17,18 +18,13 @@ $(function(){
       cache: false
     }).done(function (products) {
       products.forEach(function (product) {
-        $("#results").append(JSON.stringify(product, null, 4));
-        $("#product-name").text(name);
-        $("#product-brand").text(brand);
-        $("#product-description").text(description);
-        $("#product-images").text(images);
-        $("product-url").text(url);
-        $("#product-price").text(price);
-        $("#product-rating").text(rating);
-        $("#product-shopzillaId").text(shopzillaId);
-        $("#product-categoryId").text(categoryId);
-        $("#product-related").text(related);
-
+        $("#results").append(JSON.stringify(product.name, null, 4));
+        $("#product-name").text(product.name);
+        $("#product-brand").text(product.brand);
+        $("#product-description").text(product.description);
+        document.getElementById('product-images').setAttribute('src', product.images[0]);
+        $("product-url").text(product.url);
+        $("#product-price").text(product.price);
       })
     })
   })
