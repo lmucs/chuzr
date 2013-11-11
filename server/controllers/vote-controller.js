@@ -19,6 +19,9 @@ module.exports = function (app) {
     if (req.query.active) {
       search["active"] = req.query.active;
     }
+    if (req.query.ratingType) {
+      search["ratingType"] = req.query.ratingType;
+    }
     Vote.find(search, null, pagination(req), function (err, votes) {
       if (err) res.json(500, err);
       res.json(200, votes);
@@ -27,6 +30,10 @@ module.exports = function (app) {
   });
 
   app.post('/votes', function (req, res) {
+    if (req.body.ratingType !== "numeric" &&
+      req.body.ratingType !== "upDown" &&
+      req.body.ratingType !== "comparison") res.json(400, "Bad ratingType");
+
     var user = req.body.userId,
         product = req.body.productId;
     // Auto generate the timestamp and active elements
