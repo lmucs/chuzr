@@ -2,31 +2,27 @@ $(function(){
 
   $("#find-products").click(function () {
     
-    var productId = 4,
-        name = '',
-        brand = '',
-        description = '',
-        images = '',
-        url = '',
-        price = [],
-        rating = 10,
-        shopzillaId = 0,
-        categoryId = 0,
-        related = '';
+    var newContent='';
+    
     $.ajax({
-      url:"http://localhost:3000/products?limit=1",
+      url:"http://localhost:3000/products?limit=6",
       cache: false
     }).done(function (products) {
       products.forEach(function (product) {
-        $("#results").append(JSON.stringify(product.name, null, 4));
-        $("#product-name").text(product.name);
-        $("#product-brand").text(product.brand);
-        $("#product-description").text(product.description);
-        document.getElementById('product-images').setAttribute('src', product.images[0]);
-        $("product-url").text(product.url);
-        $("#product-price").text(product.price);
+        newContent += '<div class="product-capsule">';
+        newContent += '<div class="capsule-top">';
+        newContent += '<a href="http://localhost:3001/play">' + product.name
+        newContent += '</a>';
+        newContent += '</div>';
+        newContent += '<div class="capsule-image">';
+        newContent += '<img src="' + product.images[0] + '">';
+        newContent += '</img>';
+        newContent += '</div>';
+        newContent += '<div class="capsule-bottom">';
+        newContent += '</div>';
+        newContent += '</div>';
       })
-    })
+    $("#main-content").append(newContent);   
+   })
   })
-
 });
