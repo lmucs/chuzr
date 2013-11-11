@@ -27,8 +27,8 @@ var rand = function (x) {
 
 for (i = 0; i < 5; i++) {
   var p = {"name": names[i], "brand" : brand[i], "description": descriptions[i], "images": images[i][0], "url" : urls[i],
-           "rating": ratings[i], "price": { "max" : maxprices[i], "min" : minprices[i] }, "shopzillaId" : shopzillaIds[rand(3)],
-           "categoryId" : categoryIds[rand(8)], "related": related[rand(3)]};
+           "rating": ratings[i], "price": { "max" : maxprices[i], "min" : minprices[i] }, "shopzillaId" : shopzillaIds[i],
+           "categoryId" : categoryIds[i], "related": related[rand(3)]};
   $.ajax({
     type: "POST",
     url: "http://localhost:3000/products",
