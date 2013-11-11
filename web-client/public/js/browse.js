@@ -2,10 +2,12 @@ $(function(){
 
   $("#find-products").click(function () {
     
+    $( ".product-capsule" ).remove();
     var newContent='';
+    var searchTerm = document.getElementById('prependDropdownButton').value;
     
     $.ajax({
-      url:"http://localhost:3000/products?limit=6",
+      url:"http://localhost:3000/products?search=" + searchTerm,
       cache: false
     }).done(function (products) {
       products.forEach(function (product) {
