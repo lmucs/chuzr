@@ -28,10 +28,10 @@
       <div id="dropdown-1" class="dropdown dropdown-tip">
       <div class="dropdown-panel" id = "item-buttons">
         <div class="btn-group-vertical">
-          <button type="button" class="btn btn-default" id = "products">Products</button>
-          <button type="button" class="btn btn-default" id = "votes">Votes</button>
-          <button type="button" class="btn btn-default" id = "users">Users</button>
-          <button type="button" class="btn btn-default" id = "coupons">Coupons</button>
+          <button type="button" class="btn btn-default" id = "PRODUCTS">Products</button>
+          <button type="button" class="btn btn-default" id = "VOTES">Votes</button>
+          <button type="button" class="btn btn-default" id = "USERS">Users</button>
+          <button type="button" class="btn btn-default" id = "COUPONS">Coupons</button>
 
         </div>
       </div>
@@ -40,24 +40,23 @@
     <div id="dropdown-2" class="dropdown dropdown-tip">
       <div class="dropdown-panel" id = "format-buttons">
         <div class="btn-group-vertical">
-          <button type="button" class="btn btn-default" id="html">HTML</button>
-          <button type="button" class="btn btn-default" id="json">JSON</button>
-          <button type="button" class="btn btn-default" id="csv">CSV</button>
+          <button type="button" class="btn btn-default" id="HTML">HTML</button>
+          <button type="button" class="btn btn-default" id="JSON">JSON</button>
+          <button type="button" class="btn btn-default" id="CSV">CSV</button>
           <li role="presentation" class="divider"></li>
           <li role="presentation" class="dropdown-header">D3</li>
-          <button type="button" class="btn btn-default" id="treemap">Tree Map</button>
-          <button type="button" class="btn btn-default" id="circlepack">Circle Pack</button>
+          <button type="button" class="btn btn-default" id="TREEMAP">Tree Map</button>
+          <button type="button" class="btn btn-default" id="CIRCLEPACK">Circle Pack</button>
          
         </div>
         </div>
       </div>
 
       <p> I want to see <a href="#" data-dropdown="#dropdown-1" id = "item">[item]</a> in <a href="#" data-dropdown="#dropdown-2" id="format">[format]</a>
-        <div class="btn-group">
           <button type="button" data-loading-text="Loading..." class="btn btn-primary" id="test1">
-           Loading state
+           Go!
           </button>
-        </div>
+        
 
       <br>
 
@@ -97,80 +96,63 @@
           
       });
 
-      $("#products").click(function() {
-          item = "products";
-          $("#item").html('Products');
-          $("#dropdown-1").css('display', 'none');
-          $(document).find('.dropdown-open').removeClass('dropdown-open');
+      $("#PRODUCTS").click(function() {
+          selectedButtonItem("PRODUCTS");
 
       });
-      $("#coupons").click(function() {
-          item = "coupons";
-          $("#item").html('Coupons');
-          $("#dropdown-1").css('display', 'none');
-          $(document).find('.dropdown-open').removeClass('dropdown-open');
+      $("#COUPONS").click(function() {
+          selectedButtonItem("COUPONS");
 
       });
 
-      $("#users").click(function() {
-          item = "users";
-          $("#item").html('Users');
-          $("#dropdown-1").css('display', 'none');
-          $(document).find('.dropdown-open').removeClass('dropdown-open');
+      $("#USERS").click(function() {
+          selectedButtonItem("USERS");
 
       });
 
-      $("#votes").click(function() {
-          item = "votes";
-          $("#item").html('Votes');
-          $("#dropdown-1").css('display', 'none');
-          $(document).find('.dropdown-open').removeClass('dropdown-open');
+      $("#VOTES").click(function() {
+        selectedButtonItem("VOTES");
 
       });
 
 
-      $("#json").click(function() {
-          format = "json";
-          $("#format").html('JSON');
-          $("#dropdown-2").css('display', 'none');
-          $(document).find('.dropdown-open').removeClass('dropdown-open');
+      $("#JSON").click(function() {
+          selectedButtonFormat("JSON");
 
       });
 
-      $("#csv").click(function() {
-          format = "csv";
-          $("#format").html('CSV');
-          $("#dropdown-2").css('display', 'none');
-          $(document).find('.dropdown-open').removeClass('dropdown-open');
+      $("#CSV").click(function() {
+          selectedButtonFormat("HTML");
 
       });
 
-      $("#treemap").click(function() {
-          format = "treemap";
-          $("#format").html('Tree Map');
-          $("#dropdown-2").css('display', 'none');
-          $(document).find('.dropdown-open').removeClass('dropdown-open');
+      $("#TREEMAP").click(function() {
+         selectedButtonFormat("TREEMAP");
 
       });
 
-      $("#circlepack").click(function() {
-          format = "circlepack";
-          $("#format").html('Circle Pack');
-          $("#dropdown-2").css('display', 'none');
-          $(document).find('.dropdown-open').removeClass('dropdown-open');
+      $("#CIRCLEPACK").click(function() {
+          selectedButtonFormat("CIRCLEPACK");
 
       });
 
-      $("#html").click(function() {
-          format = "html";
-          $("#format").html('HTML');
-          $("#dropdown-2").css('display', 'none');
-          $(document).find('.dropdown-open').removeClass('dropdown-open');
+      $("#HTML").click(function() {
+          selectedButtonFormat("HTML");
       });
 
-      var selectedButton = function(type, value){
-        [type] = value;
+      var selectedButtonFormat = function(value){
+        format = value;
+        $("#format").html(value);
+        $("#dropdown-2").css('display', 'none');
+        $(document).find('.dropdown-open').removeClass('dropdown-open');
       };
+
+      var selectedButtonItem = function(value){
+        item = value;
+        $("#item").html(value);
+        $("#dropdown-1").css('display', 'none');
+        $(document).find('.dropdown-open').removeClass('dropdown-open');
+      }
 
       $("#format").click(function(event, dropdownData) {
         
