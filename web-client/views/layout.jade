@@ -5,15 +5,21 @@ html
     meta(name ='viewport', content='width=device-width, initial-scale=1.0')
     link(href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css", rel="stylesheet")
     link(href='/stylesheets/chuzr.css', rel='stylesheet')
-    link(href='assets/css/bootstrap-responsive.css', rel='stylesheet')
-
+    script(src='/js/user.js')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script(src='//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js')
+    script(src='/js/sideNavToggle.js')
+    block css
+      
   body
     div(id='wrap')
-      div(class='navbar', id='nav-bar')
+      div(class='navbar navbar-default', id='nav-bar')
         div(class='navbar-inner')
-          a(class='brand', href='/home') Chuzr
           ul(class='nav')
-            li: a(href='/play') Play
+            li:  a(href='/home')
+              img(src="/images/chuzr-logo.png", height='50', width='50')
+            li: a(href='/play') 
+              img(src="/images/play-button.png", height='25', width='25')
             li: a(href='/social') Social    
           ul(class='nav pull-right')
             form(class='navbar-search')
@@ -21,40 +27,43 @@ html
             li(class='dropdown'): a(href='#', class='dropdown-toggle', data-toggle='dropdown') Account
               b(class='caret')
               ul(class='dropdown-menu')
+                li: a(href='/profile') Profile
                 li: a(href='/settings') Settings
                 li: a(href='/logout') Logout
 
       div(class='row-fluid', id='content')
-        div(class='span2', id='side-nav')
+        div(class='span1', id='side-nav')
          a(href='/home')
            img(src="/images/chuzr-logo.png", height='128', width='232')
          br
          ul(class='nav nav-tabs nav-list nav-stacked', id='side-nav-links')
             li: a(href='/home') Home 
             li: a(href='/play') Play 
-            li: a(href='/browse') Browse       
+            li(id='browse-tab'): a(href='/browse') Browse       
+            li(class='sub-nav browse-nav'): a(href='/trends') Trends
+            li(class='sub-nav browse-nav'): a(href='#') Most Popular
             li(class='divider')
             li: a(href='/stuff') Stuff
-            li: a(href='/social') Social
-            li: a(href='/trends') Trends
+            li(id='social-tab'): a(href='/social') Social
+            li(class='sub-nav social-nav'): a(href='#') Profile
+            li(class='sub-nav social-nav'): a(href='#') Friends
+            li(class='sub-nav social-nav'): a(href='#') Compare
+            
             li(class='divider')
             li: a(href='/settings') Settings
 
         div(class='span1',id='side-nav-toggle')
-          h4(id='toggle-caret')
  
-        div(class='span9', id='main-content')
+        div(class='span10', id='main-content')
           block content
       
-      div(class='navbar navbar-fixed-bottom',id='footer-nav')
-        div(class='navbar-inner')
-          ul(class='nav pull-right', id='footer-links')
-            li: a(href='/about') about 
-            li: a(href='/contact') contact 
-            li: a(href='/FAQ') FAQ 
-            li: a(href='/feedback') feedback 
-            li: a(href='/privacy') privacy
+    div(class='navbar navbar-fixed-bottom',id='footer-nav')
+      div(class='navbar-inner')
+        ul(class='nav pull-right', id='footer-links')
+          li: a(href='/about') about 
+          li: a(href='/contact') contact 
+          li: a(href='/FAQ') FAQ 
+          li: a(href='/feedback') feedback 
+          li: a(href='/privacy') privacy
       
-    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-    script(src='//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js')
-    script(src='/js/sideNavToggle.js')
+    

@@ -17,7 +17,7 @@ module.exports = function (app) {
   });
   
   app.get('/browse', function(req, res) {
-    res.render('browse-home', {title: 'Browse Chuzr'});
+    res.render('browse-home', {title: 'Browse'});
   });
 
   app.get('/stuff', function(req, res) {
@@ -28,6 +28,9 @@ module.exports = function (app) {
     res.render('trends', {title: 'Trends'});
   });
 
+  app.get('/profile', function(req, res) {
+    res.render('profile', {title: 'profile'});
+  });
 
   app.get('/settings', function(req, res) {
     res.render('settings', {title: 'Settings'});
@@ -55,5 +58,9 @@ module.exports = function (app) {
 
   app.get('/privacy', function(req, res) {
     res.render('privacy', {title: 'Privacy'});
+  });
+
+  app.get('/game', function(req, res) {
+    res.render('game', {title: 'The Super Awesome Game'});
   });
 }
