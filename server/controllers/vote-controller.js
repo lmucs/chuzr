@@ -35,14 +35,16 @@ module.exports = function (app) {
       req.body.ratingType !== "comparison") res.json(400, "Bad ratingType");
 
     var user = req.body.userId,
-        product = req.body.productId;
+        product = req.body.productId,
+        ratingType = req.body.ratingType;
+
     // Auto generate the timestamp and active elements
     req.body.timestamp = Date.now();
     req.body.active = true;
 
     // Update last active vote to inactive
     Vote.findOne(
-      {"userId": user, "productId": product, "active": true}, null, function (err, vote) {
+      {"userId": user, "productId": product, "ratingType": ratingType, "active": true}, null, function (err, vote) {
       if (err) res.json(500, err);
       if (vote) Vote.update({"_id": vote._id}, {$set: {"active": false}}, function (err, numberUpdated) {
         if (err) res.json(400, err);

@@ -128,8 +128,8 @@ var voteSeventeen = {
 };
 
 var voteEighteen = {
-  userId: 48,
-  productId: 32,
+  userId: 99,
+  productId: 98,
   ratingType: "comparison",
   rating: 3
 };
@@ -698,19 +698,27 @@ describe('Votes Controller', function(){
           })
         },
         function(){
+          // Create a fourth vote for this product and user, but with a different ratingType
+          request(url).post('/votes').send(voteEighteen).end(function (err, res) {
+            if (err) throw err;
+            res.should.have.status(201);
+            done();
+          })
+        },
+        function(){
           //Get the two inactive votes
           request(url).get('/votes?userId=99&productId=98&active=false').end(function (err, res) {
             if (err) throw err;
-            res.should.shave.status(200);
+            res.should.have.status(200);
             res.body.length.should.equal(2);
           })
         },
         function(){
-          //Get the active vote
+          //Get the two active votes
           request(url).get('/votes?userId=99&productId=98&active=true').end(function (err, res) {
             if (err) throw err;
-            res.should.shave.status(200);
-            res.body.length.should.equal(1);
+            res.should.have.status(200);
+            res.body.length.should.equal(2);
           })
         }
       ]);
