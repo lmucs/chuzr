@@ -45,8 +45,8 @@
           <button type="button" class="btn btn-default" id="csv">CSV</button>
           <li role="presentation" class="divider"></li>
           <li role="presentation" class="dropdown-header">D3</li>
-          <button type="button" class="btn btn-default" id="treemap">Treemap</button>
-          <button type="button" class="btn btn-default" id="circlepack">CirclePack</button>
+          <button type="button" class="btn btn-default" id="treemap">Tree Map</button>
+          <button type="button" class="btn btn-default" id="circlepack">Circle Pack</button>
          
         </div>
         </div>
@@ -82,15 +82,98 @@
     <script type="text/javascript">
       var item = null;
       var format = null;
+      //when submitted
       $("#test1").click( function() {
-          alert("hi");
+        if(item === null){
+          alert("please select an item you want to see.");
+        }
+        if(format === null){
+          alert("please select a format you want to see.");
+        }
+
+        if(item !== null && format !== null){
+          window.location = "http://google.com";
+        }
+          
+      });
+
+      $("#products").click(function() {
+          item = "products";
+          $("#item").html('Products');
+          $("#dropdown-1").css('display', 'none');
+          $(document).find('.dropdown-open').removeClass('dropdown-open');
+
+      });
+      $("#coupons").click(function() {
+          item = "coupons";
+          $("#item").html('Coupons');
+          $("#dropdown-1").css('display', 'none');
+          $(document).find('.dropdown-open').removeClass('dropdown-open');
+
+      });
+
+      $("#users").click(function() {
+          item = "users";
+          $("#item").html('Users');
+          $("#dropdown-1").css('display', 'none');
+          $(document).find('.dropdown-open').removeClass('dropdown-open');
+
+      });
+
+      $("#votes").click(function() {
+          item = "votes";
+          $("#item").html('Votes');
+          $("#dropdown-1").css('display', 'none');
+          $(document).find('.dropdown-open').removeClass('dropdown-open');
+
+      });
+
+
+      $("#json").click(function() {
+          format = "json";
+          $("#format").html('JSON');
+          $("#dropdown-2").css('display', 'none');
+          $(document).find('.dropdown-open').removeClass('dropdown-open');
+
+      });
+
+      $("#csv").click(function() {
+          format = "csv";
+          $("#format").html('CSV');
+          $("#dropdown-2").css('display', 'none');
+          $(document).find('.dropdown-open').removeClass('dropdown-open');
+
+      });
+
+      $("#treemap").click(function() {
+          format = "treemap";
+          $("#format").html('Tree Map');
+          $("#dropdown-2").css('display', 'none');
+          $(document).find('.dropdown-open').removeClass('dropdown-open');
+
+      });
+
+      $("#circlepack").click(function() {
+          format = "circlepack";
+          $("#format").html('Circle Pack');
+          $("#dropdown-2").css('display', 'none');
+          $(document).find('.dropdown-open').removeClass('dropdown-open');
+
       });
 
       $("#html").click(function() {
-          alert("yo");
-          item = "html";
-          $("#format").html('html');
+          format = "html";
+          $("#format").html('HTML');
+          $("#dropdown-2").css('display', 'none');
+          $(document).find('.dropdown-open').removeClass('dropdown-open');
+      });
 
+      var selectedButton = function(type, value){
+        [type] = value;
+      };
+
+      $("#format").click(function(event, dropdownData) {
+        
       });
     </script>
   </body>
