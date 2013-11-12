@@ -91,7 +91,12 @@
         }
 
         if(item !== null && format !== null){
-          window.location = "http://google.com";
+          if(format === "HTML"){
+            window.location = "http://localhost:8000/json2html.html";
+          }
+          else if(format === "JSON"){
+            window.location = ""
+          }
         }
           
       });
@@ -122,7 +127,7 @@
       });
 
       $("#CSV").click(function() {
-          selectedButtonFormat("HTML");
+          selectedButtonFormat("CSV");
 
       });
 
