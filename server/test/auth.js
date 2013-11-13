@@ -20,11 +20,12 @@ var userOne = {
 var productOne = {
   name : "Kindle Fire HDX",
   description : "Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras",
-  imageURL : "http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg",
-  rating : 8,
-  categories : ["tablet", "HD"],
-  price : 379.99,
-  related : ["iPad", "iPad Mini", "Microsoft Surface"]
+  url : "http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg",
+  categoryId: 93,
+  images : ["http://placehold.it/400x400", "http://placehold.it/200x200"],
+  shopzillaId : 300,
+  price : {min: 379.99, max: 700},
+  related : [16, 22, 888]
 };
 
 var couponOne = {
@@ -320,34 +321,6 @@ describe('Vote Authentication', function() {
         done();
       })
     })
-    it('should return 200 while trying to put', function (done) {
-      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/votes').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).put('/votes/' + res.body[0]._id).auth('testUser', 'testPass').send({rating: 6}).end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(200);
-          done();
-        })
-      })
-    })
-    it('should return 201 while trying to delete', function (done) {
-      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/votes').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).del('/votes/' + res.body[0]._id).auth('testUser', 'testPass').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(200);
-          done();
-        })
-      })
-    })
   });
   describe('#denied', function () {
     it('should return 401 while trying to post', function (done) {
@@ -355,33 +328,6 @@ describe('Vote Authentication', function() {
         if (err) throw err;
         res.should.have.status(401);
         done();
-      })
-    })
-    it('should return 401 while trying to put', function (done) {
-      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-      });
-      request(url).get('/votes').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).put('/votes/' + res.body[0]._id).send({rating: 5}).auth('testUsers', 'testpAss').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(401);
-          done();
-        })
-      })
-    })
-    it('should return 401 while trying to delete', function (done) {
-      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/votes').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).del('/votes/' + res.body[0]._id).auth('users34', 'testP4ss').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(401);
-          done();
-        })
       })      
     })
   });
