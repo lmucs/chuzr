@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>Chuzr Data Analysis</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="boot/css/bootstrap.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="jquery.dropdown.css" />
+   
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="masthead">
+        <h3 class="text-muted">Chuzr Data Analysis</h3>
+      </div>
+      <br>
+
+      <div id="dropdown-1" class="dropdown dropdown-tip">
+      <div class="dropdown-panel" id = "item-buttons">
+        <div class="btn-group-vertical">
+          <button type="button" class="btn btn-default" id = "PRODUCTS">Products</button>
+          <button type="button" class="btn btn-default" id = "VOTES">Votes</button>
+          <button type="button" class="btn btn-default" id = "USERS">Users</button>
+          <button type="button" class="btn btn-default" id = "COUPONS">Coupons</button>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="dropdown-2" class="dropdown dropdown-tip">
+      <div class="dropdown-panel" id = "format-buttons">
+        <div class="btn-group-vertical">
+          <button type="button" class="btn btn-default" id="HTML">HTML</button>
+          <button type="button" class="btn btn-default" id="JSON">JSON</button>
+          <button type="button" class="btn btn-default" id="CSV">CSV</button>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation" class="dropdown-header">D3</li>
+          <button type="button" class="btn btn-default" id="TREEMAP">Tree Map</button>
+          <button type="button" class="btn btn-default" id="CIRCLEPACK">Circle Pack</button>
+         
+        </div>
+        </div>
+      </div>
+
+      <p> I want to see <a href="#" data-dropdown="#dropdown-1" id = "item">[item]</a> in <a href="#" data-dropdown="#dropdown-2" id="format">[format]</a>
+          <button type="button" data-loading-text="Loading..." class="btn btn-primary" id="test1">
+           Go!
+          </button>
+        
+
+      <br>
+
+      <!-- Site footer -->
+      <div class="footer">
+        <p>&copy; Chuzr 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="boot/js/bootstrap.min.js"></script>
+    <script src="boot/js/bootstrap.js"></script>
+    <script type="text/javascript" src="jquery.dropdown.js"></script>
+    <script type="text/javascript">
+      var item = null;
+      var format = null;
+      //when submitted
+      $("#test1").click( function() {
+        if(item === null){
+          alert("please select an item you want to see.");
+        }
+        if(format === null){
+          alert("please select a format you want to see.");
+        }
+
+        if(item !== null && format !== null){
+          window.location = "http://google.com";
+        }
+          
+      });
+
+      $("#PRODUCTS").click(function() {
+          selectedButtonItem("PRODUCTS");
+
+      });
+      $("#COUPONS").click(function() {
+          selectedButtonItem("COUPONS");
+
+      });
+
+      $("#USERS").click(function() {
+          selectedButtonItem("USERS");
+
+      });
+
+      $("#VOTES").click(function() {
+        selectedButtonItem("VOTES");
+
+      });
+
+
+      $("#JSON").click(function() {
+          selectedButtonFormat("JSON");
+
+      });
+
+      $("#CSV").click(function() {
+          selectedButtonFormat("HTML");
+
+      });
+
+      $("#TREEMAP").click(function() {
+         selectedButtonFormat("TREEMAP");
+
+      });
+
+      $("#CIRCLEPACK").click(function() {
+          selectedButtonFormat("CIRCLEPACK");
+
+      });
+
+      $("#HTML").click(function() {
+          selectedButtonFormat("HTML");
+      });
+
+      var selectedButtonFormat = function(value){
+        format = value;
+        $("#format").html(value);
+        $("#dropdown-2").css('display', 'none');
+        $(document).find('.dropdown-open').removeClass('dropdown-open');
+      };
+
+      var selectedButtonItem = function(value){
+        item = value;
+        $("#item").html(value);
+        $("#dropdown-1").css('display', 'none');
+        $(document).find('.dropdown-open').removeClass('dropdown-open');
+      }
+
+      $("#format").click(function(event, dropdownData) {
+        
+      });
+    </script>
+  </body>
+</html>
