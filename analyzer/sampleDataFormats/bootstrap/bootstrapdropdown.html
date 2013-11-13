@@ -60,6 +60,9 @@
 
       <br>
 
+     <div id="iframe"> <iframe src="http://www.lmu.edu" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0" >
+    </iframe></div>
+
       <!-- Site footer -->
       <div class="footer">
         <p>&copy; Chuzr 2013</p>
@@ -83,6 +86,7 @@
       var format = null;
       //when submitted
       $("#test1").click( function() {
+        $("#iframe").attr('src','http://www.yahoo.com');
         if(item === null){
           alert("please select an item you want to see.");
         }
@@ -91,7 +95,12 @@
         }
 
         if(item !== null && format !== null){
-          window.location = "http://google.com";
+          if(format === "HTML"){
+            window.location = "http://localhost:8000/json2html.html";
+          }
+          else if(format === "JSON"){
+            window.location = "";
+          }
         }
           
       });
@@ -122,7 +131,7 @@
       });
 
       $("#CSV").click(function() {
-          selectedButtonFormat("HTML");
+          selectedButtonFormat("CSV");
 
       });
 
