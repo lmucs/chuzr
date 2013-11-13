@@ -11,7 +11,11 @@ var salts = []
 
 
 for (i = 0; i < 10; i++) {
-        var user = {"name.first": nameFirsts[i], "name.last": nameLasts[i], "email": emails[i], "login": logins[i], "hashedPassword": hashedPasswords[i],
-                 "avatarURL": avatarURLs[i], "reputation": reputations[i], "socialHandle": socialHandles[i]};
-        db.users.insert(user)
+  var user = {"name.first": nameFirsts[i], "name.last": nameLasts[i], "email": emails[i], "login": logins[i], "hashedPassword": hashedPasswords[i],
+              "avatarURL": avatarURLs[i], "reputation": reputations[i], "socialHandle": socialHandles[i]};
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:3000/users",
+    data: p
+  });
 }
