@@ -15,7 +15,7 @@ var userOne = {
   reputation: 1000,
   socialHandle: 'lunabar',
   avatarURL: 'http://i.lunabar.com/luna.png',
-  hashedPassword: 'qiyh4XPJGsOZ2MEAyLkfWqeQ'
+  hashedPassword: 'm00n'
 };
 
 var userTwo = {
@@ -37,7 +37,7 @@ var userThree = {
   reputation: 15,
   socialHandle: 'candybar',
   avatarURL: 'http://i.candybar.com/candy.png',
-  hashedPassword: 'aoeihg9984jh19we'
+  hashedPassword: 'w0nk4'
 };
 
 describe('Users Model', function(){
@@ -57,7 +57,10 @@ describe('Users Model', function(){
         user.email.should.equal('lunabar@example.com')
         user.login.should.equal('lunaluna')
         user.reputation.should.equal(1000)
-        user.hashedPassword.should.equal('qiyh4XPJGsOZ2MEAyLkfWqeQ')
+        user.checkPassword('m00n', function (err, isMatch) {
+          if (err) throw err;
+          isMatch.should.be.true;
+        });
         user.avatarURL.should.equal('http://i.lunabar.com/luna.png')
         done();
       })
@@ -109,7 +112,10 @@ describe('Users Controller', function () {
         res.body.email.should.equal('lunabar@example.com')
         res.body.login.should.equal('lunaluna')
         res.body.reputation.should.equal(1000)
-        res.body.hashedPassword.should.equal('qiyh4XPJGsOZ2MEAyLkfWqeQ')
+        user.checkPassword('w0nk4', function (err, isMatch) {
+          if (err) throw err;
+          isMatch.should.be.true;
+        });
         res.body.avatarURL.should.equal('http://i.lunabar.com/luna.png')
         Object.keys(res.body).length.should.equal(9);
         done();
@@ -156,7 +162,10 @@ describe('Users Controller', function () {
             response.body.email.should.equal('candybar@example.com')
             response.body.login.should.equal('candycandy')
             response.body.reputation.should.equal(15)
-            response.body.hashedPassword.should.equal('aoeihg9984jh19we')
+            user.checkPassword('w0nk4', function (err, isMatch) {
+              if (err) throw err;
+              isMatch.should.be.true;
+            });
             response.body.avatarURL.should.equal('http://i.candybar.com/candy.png')
             done();
           })  
