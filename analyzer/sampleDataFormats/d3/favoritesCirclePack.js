@@ -28,4 +28,4 @@ data.objects.forEach(function (product) {
     }
 });
     
-createCirclePack(parsedData);
+createCirclePack(parsedData, "body");
