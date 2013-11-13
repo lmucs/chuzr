@@ -79,7 +79,7 @@ describe('Users Controller', function () {
     })
     it('should get by id without error', function (done) {
       // Create the user.
-      request(url).post('/users').send(userOne).end(function (err, res) {
+      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
 
@@ -95,14 +95,14 @@ describe('Users Controller', function () {
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      request(url).post('/users').send(userOne).end(function (err, res) {
+      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
         done();
       })
     })
     it('should assign all properties on creation, including an _id', function (done) {
-      request(url).post('/users').send(userOne).end(function (err, res) {
+      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.body.name.first.should.equal('Luna')
         res.body.name.last.should.equal('Bar')
@@ -120,12 +120,12 @@ describe('Users Controller', function () {
   describe('#delete()', function () {
     it('should delete without error', function (done) {
       // Create the user.
-      request(url).post('/users').send(userOne).end(function (err, res) {
+      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
 
         // Delete that user.
-        request(url).del('/users/' + res.body._id).end(function (err, res) {
+        request(url).del('/users/' + res.body._id).auth("testUser", "testPass").end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
           done();
@@ -137,13 +137,13 @@ describe('Users Controller', function () {
   describe('#update()', function () {
     it('should update without error', function (done) {
       // Create the user.
-      request(url).post('/users').send(userOne).end(function (err, res) {
+      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         
         //Update that user.
         var id=res.body._id;
         
-        request(url).put('/users/' + id).send(userThree).end(function (err, res2) {
+        request(url).put('/users/' + id).send(userThree).auth("testUser", "testPass").end(function (err, res2) {
           if (err) throw err;
           res2.should.have.status(200);
         
