@@ -49,8 +49,8 @@
           <button type="button" class="btn btn-default" id="CIRCLEPACK">Circle Pack</button>
          
         </div>
-        </div>
       </div>
+    </div>
 
       <p> I want to see <a href="#" data-dropdown="#dropdown-1" id = "item">[item]</a> in <a href="#" data-dropdown="#dropdown-2" id="format">[format]</a>
           <button type="button" data-loading-text="Loading..." class="btn btn-primary" id="test1">
@@ -60,8 +60,13 @@
 
       <br>
 
-     <div id="iframe"> <iframe src="http://www.lmu.edu" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0" >
-    </iframe></div>
+      <div id="visiContainer">
+        <h3>Select a data type and visualization to see</h3>
+      </div>
+
+      <div id="iframe">
+        <iframe src="http://www.lmu.edu" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0" ></iframe>
+      </div>
 
       <!-- Site footer -->
       <div class="footer">
@@ -81,91 +86,25 @@
     <script src="boot/js/bootstrap.min.js"></script>
     <script src="boot/js/bootstrap.js"></script>
     <script type="text/javascript" src="jquery.dropdown.js"></script>
-    <script type="text/javascript">
-      var item = null;
-      var format = null;
-      //when submitted
-      $("#test1").click( function() {
-        $("#iframe").attr('src','http://www.yahoo.com');
-        if(item === null){
-          alert("please select an item you want to see.");
-        }
-        if(format === null){
-          alert("please select a format you want to see.");
-        }
-
-        if(item !== null && format !== null){
-          if(format === "HTML"){
-            window.location = "../json2html.html";
-          }
-          else if(format === "JSON"){
-            window.location = "";
-          }
-        }
-          
-      });
-
-      $("#PRODUCTS").click(function() {
-          selectedButtonItem("PRODUCTS");
-
-      });
-      $("#COUPONS").click(function() {
-          selectedButtonItem("COUPONS");
-
-      });
-
-      $("#USERS").click(function() {
-          selectedButtonItem("USERS");
-
-      });
-
-      $("#VOTES").click(function() {
-        selectedButtonItem("VOTES");
-
-      });
-
-
-      $("#JSON").click(function() {
-          selectedButtonFormat("JSON");
-
-      });
-
-      $("#CSV").click(function() {
-          selectedButtonFormat("CSV");
-
-      });
-
-      $("#TREEMAP").click(function() {
-         selectedButtonFormat("TREEMAP");
-
-      });
-
-      $("#CIRCLEPACK").click(function() {
-          selectedButtonFormat("CIRCLEPACK");
-
-      });
-
-      $("#HTML").click(function() {
-          selectedButtonFormat("HTML");
-      });
-
-      var selectedButtonFormat = function(value){
-        format = value;
-        $("#format").html(value);
-        $("#dropdown-2").css('display', 'none');
-        $(document).find('.dropdown-open').removeClass('dropdown-open');
-      };
-
-      var selectedButtonItem = function(value){
-        item = value;
-        $("#item").html(value);
-        $("#dropdown-1").css('display', 'none');
-        $(document).find('.dropdown-open').removeClass('dropdown-open');
-      }
-
-      $("#format").click(function(event, dropdownData) {
-        
-      });
-    </script>
+    <script type="text/javascript" src="bootstrapdropdown.js"></script>
+    <script type="text/javascript" src="../json2html.js"></script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
