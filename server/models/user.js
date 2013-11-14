@@ -19,6 +19,7 @@ var userSchema = new Schema({
   , reputation      : Number
   , socialHandle    : String
   , salt            : String
+  , isAdmin         : Boolean
 });
 
 // A pre hook to hash the password on save.
