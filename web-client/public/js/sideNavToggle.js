@@ -37,15 +37,22 @@ $(function(){
     $(".browse-nav").slideDown();
     $(".social-nav").slideUp();
   }, function(){
-    $(".browse-nav").slideUp();
+      if(!($("#side-nav-toggle").hover())){
+        $(".browse-nav").slideUp();
+      } else {
+        $(".browse-nav").slideDown();
+      };
   });
 
   $("#social-tab").hover(function(){
     $(".social-nav").slideDown();
     $(".browse-nav").slideUp();
   }, function(){
-    $(".social-nav").slideUp();
-  
+      if(!sideNavShown){
+        $(".social-nav").slideUp();
+      } else {
+        $(".social-nav").slideDown();
+      };
   });
 
 
