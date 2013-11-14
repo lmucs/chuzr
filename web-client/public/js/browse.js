@@ -25,6 +25,11 @@ $(function(){
         newContent += '</div>';
       })
     $("#main-content").append(newContent);   
-   })
+    })
   })
+  $("#prependDropdownButton").keypress(function(e){
+    if(e.which == 13){
+      $("#find-products").click();
+    }
+  });
 });
