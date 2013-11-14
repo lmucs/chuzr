@@ -50,6 +50,9 @@ module.exports = function (app) {
 
   app.put('/users/:id', auth, function (req, res) {
     var id = req.params.id;
+    User.findOne({login: req.user}, function (err, user) {
+      if ((user._id != id) & !user.isAdmin) res.json(403, {message: "You may only modify your own account."});
+    });
     console.log(req.body)
     User.update({_id: id}, req.body, function (err, doc) {
       if (err) res.json(400, err)
