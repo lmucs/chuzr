@@ -59,4 +59,8 @@ module.exports = function (app) {
   app.get('/privacy', function(req, res) {
     res.render('privacy', {title: 'Privacy'});
   });
+
+  app.get('/game', function(req, res) {
+    res.render('game', {title: 'The Super Awesome Game'});
+  });
 }

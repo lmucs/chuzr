@@ -1,10 +1,6 @@
 var createTreemap = function(containerId, selectOptions, data) {
     var conceptTree = data,
-        // Done with preprocessing, so now we render.
-        // TODO clean up the code below
         w = 1200 - 80,
-        // Height is based on the number of rows in the cube.
-        // TODO Again still hacky.
         h = 800 - 180,
         x = d3.scale.linear().range([0, w]),
         y = d3.scale.linear().range([0, h]),

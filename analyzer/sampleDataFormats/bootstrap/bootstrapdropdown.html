@@ -15,6 +15,8 @@
     <link type="text/css" rel="stylesheet" href="jquery.dropdown.css" />
     <link href="bootstrapdropdown.css" rel="stylesheet">
 
+    <link href="../d3/circlePackVisualization.css" rel="stylesheet">
+
    
   </head>
 
@@ -51,8 +53,8 @@
           <button type="button" class="btn btn-default" id="CIRCLEPACK">Circle Pack</button>
          
         </div>
-        </div>
       </div>
+    </div>
 
       <p> I want to see <a href="#" data-dropdown="#dropdown-1" id = "item">[item]</a> in <a href="#" data-dropdown="#dropdown-2" id="format">[format]</a>
           <button type="button" data-loading-text="Loading..." class="btn btn-primary" id="test1">
@@ -62,8 +64,13 @@
 
       <br>
 
-     <div id="iframe"> <iframe src="http://www.lmu.edu" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0" >
-    </iframe></div>
+      <div id="visiContainer">
+        <h3>Select a data type and visualization to see</h3>
+      </div>
+
+      <div id="iframe">
+        <iframe src="http://www.lmu.edu" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0" ></iframe>
+      </div>
 
       <!-- Site footer -->
       <div class="footer">
@@ -82,7 +89,35 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="boot/js/bootstrap.min.js"></script>
     <script src="boot/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://mbostock.github.io/d3/talk/20111116/d3/d3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://mbostock.github.io/d3/talk/20111116/d3/d3.layout.js" charset="utf-8"></script>
     <script type="text/javascript" src="jquery.dropdown.js"></script>
     <script type="text/javascript" src="bootstrapdropdown.js"></script>
+<<<<<<< HEAD
   </body>
 </html>
+=======
+    <script type="text/javascript" src="../json2html.js"></script>
+    <script type="text/javascript" src="../d3/createCirclePack.js"></script>
+    <script type="text/javascript" src="../d3/getJSONs.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> f82470d56e0acabd7f9625c27c9a8a66751cec17
