@@ -70,6 +70,11 @@ $("#test1").click( function() {
                 
             createCirclePack(parsedData, "#visiContainer");
         }
+        else if(format === "JSON"){
+          $("#visiContainer").append(
+                httpGet("http://localhost:3000/" + item.toLowerCase())
+            );
+        }
     }
     
 });
@@ -133,5 +138,15 @@ var selectedButtonItem = function(value){
 $("#format").click(function(event, dropdownData) {
   
 });
+
+function httpGet(theUrl)
+{
+    var xmlHttp = null;
+
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false );
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
 
 
