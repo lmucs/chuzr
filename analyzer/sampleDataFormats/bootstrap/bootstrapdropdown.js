@@ -71,9 +71,15 @@ $("#test1").click( function() {
             createCirclePack(parsedData, "#visiContainer");
         }
         else if(format === "JSON"){
-          $("#visiContainer").append(
-                httpGet("http://localhost:3000/" + item.toLowerCase())
-            );
+          var json = "";
+          var dataJSON = httpGet("http://localhost:3000/" + item.toLowerCase());
+          dataJSON = dataJSON.split("_id");
+          var json = JSON.stringify(dataJSON, null, 4);
+          console.log(json);
+
+             
+          
+          $("#visiContainer").append(json);
         }
     }
     
