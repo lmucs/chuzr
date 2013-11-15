@@ -72,12 +72,10 @@ $("#test1").click( function() {
         }
         else if(format === "JSON"){
           var json = "";
-          var dataJSON = httpGet("http://localhost:3000/" + item.toLowerCase());
-          dataJSON = dataJSON.split("_id");
-          var json = JSON.stringify(dataJSON, null, 4);
-          console.log(json);
-
-             
+          var dataJSON = jQuery.parseJSON(httpGet("http://localhost:3000/" + item.toLowerCase()));
+          dataJSON.forEach(function(thing){
+            json += JSON.stringify(thing) + "\n \n";
+          })
           
           $("#visiContainer").append(json);
         }
