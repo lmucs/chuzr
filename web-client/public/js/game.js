@@ -1,7 +1,9 @@
 //game.js
 
 $(function() {
-	var httpGet = function(theUrl) {
+	var product1Index = Math.floor(Math.random()*products.length),
+		product2Index = Math.floor(Math.random()*products.length - 1),
+		httpGet = function(theUrl) {
 		    var xmlHttp = null;
 
 		    xmlHttp = new XMLHttpRequest();
@@ -23,18 +25,43 @@ $(function() {
 			"http://oyster.ignimgs.com/mediawiki/apis.ign.com/pokemon-blue-version/4/4a/Blastoise.gif",
 			"http://www.asianweek.com/wp-content/uploads/2012/08/ping_pong_paddle.jpg",
 			"http://olympicdistancetriathlons.com/wp-content/uploads/2012/06/CarbonFiberTriathlonBike.jpg"
-		];
+		],
+		createChuzOff = function() {
+			product1Index = Math.floor(Math.random()*products.length);
+			product2Index = Math.floor(Math.random()*products.length - 1);
 
+			if(product2Index >= product1Index) {
+				product2Index++;
+			}
+
+			$("#productImgLeft").attr("src", products[product1Index].imageLink);
+			$("#leftTitle").text(products[product1Index].name);
+
+			$("#productImgRight").attr("src", products[product2Index].imageLink);
+			$("#rightTitle").text(products[product2Index].name);
+
+		};
+
+	if(product2Index >= product1Index) {
+		product2Index++;
+	}
 
 	console.log(products);
 
 	//the product image links dont acutally work right now so insert fake ones
 	products.forEach(function(product, i) {
 		product.imageLink = testImages[i];
+		product.chuzOffs = 0;
+		product.chuzOffsWins = 0;
 	});
 
 
-	$("#productImgLeft").attr("src", products[0].imageLink);
-	$("#productImgRight").attr("src", products[1].imageLink);
+	$("#productImgLeft").attr("src", products[product1Index].imageLink);
+	$("#leftTitle").text(products[product1Index].name);
+
+	$("#productImgRight").attr("src", products[product2Index].imageLink);
+	$("#rightTitle").text(products[product2Index].name);
+
+
 
 })
