@@ -154,24 +154,30 @@ $("#test1").click( function() {
     
 });
 
-$("#PRODUCTS").click(function() {
-    selectedButtonItem("PRODUCTS");
+["PRODUCTS", "COUPONS", "USERS", "VOTES"].forEach(function (type) {
+    $("#" + type).click(function() {
+        selectedButtonItem(type);
+    });
+});]
 
-});
-$("#COUPONS").click(function() {
-    selectedButtonItem("COUPONS");
+// $("#PRODUCTS").click(function() {
+//     selectedButtonItem("PRODUCTS");
 
-});
+// });
+// $("#COUPONS").click(function() {
+//     selectedButtonItem("COUPONS");
 
-$("#USERS").click(function() {
-    selectedButtonItem("USERS");
+// });
 
-});
+// $("#USERS").click(function() {
+//     selectedButtonItem("USERS");
 
-$("#VOTES").click(function() {
-  selectedButtonItem("VOTES");
+// });
 
-});
+// $("#VOTES").click(function() {
+//   selectedButtonItem("VOTES");
+
+// });
 
 ["JSON", "CSV", "TREEMAP", "CIRCLEPACK", "HTML"].forEach(function (type) {
     $("#" + type).click(function() {
