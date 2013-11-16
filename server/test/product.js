@@ -5,25 +5,47 @@ var request = require('supertest');
 var Product = require('../models/product');
 var url = require('../config/config').test.url;
 
-var productOne = {
-  name : "Kindle Fire HDX",
-  description : "Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras",
-  imageURL : "http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg",
-  rating : 8,
-  categories : ["tablet", "HD"],
-  price : 379.99,
-  related : ["iPad", "iPad Mini", "Microsoft Surface"]
-};
+var testProducts = [
+  {
+    name : "Kindle Fire HDX",
+    description : "Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras",
+    url : "http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg",
+    categoryId: 93,
+    images : ["http://placehold.it/400x400", "http://placehold.it/200x200"],
+    shopzillaId : 300,
+    price : {min: 379.99, max: 700},
+    related : [16, 22, 888]
+  },
+  {
+    name : "Shake-Weight",
+    description : "Suggestive workout machine",
+    url : "NSFW",
+    categoryId: 22,
+    images : ["http://placehold.it/350x350"],
+    categoryId: 85,
+    shopzillaId : 3123,
+    price : {min: 9.95, max: 12.47},
+    related : [3]
+  }
+];
 
-var productTwo = {
-  name : "Shake-Weight",
-  description : "Suggestive workout machine",
-  imageURL : "NSFW",
-  rating : 10,
-  categories : ["infomercial", "exercise"],
-  price : 9.99,
-  related : ["Sketchers ShapeUps"]
-};
+/*
+ * Asserts that two product representations are the same. The products can be either
+ * (1) actual product model objects, (2) plain JavaScript objects with product properties,
+ * or (3) JSON representations returned from the API.  Because products from mongo can
+ * have extra properties like _id and _v, we only compare the basic product properties.
+ */
+function productsShouldBeSame(product, other) {
+  product.name.should.equal(other.name);
+  product.description.should.equal(other.description);
+  product.url.should.equal(other.url);
+  product.categoryId.should.eql(other.categoryId);
+  product.shopzillaId.should.eql(other.shopzillaId);
+  product.images.join('').should.eql(other.images.join(''));
+  product.price.min.should.eql(other.price.min);
+  product.price.max.should.eql(other.price.max);
+  product.related.join('').should.eql(other.related.join(''));
+}
 
 describe('Products Model', function () {
 
@@ -33,31 +55,25 @@ describe('Products Model', function () {
         should.not.exist(err);
         product.should.eql([]);
         done();
-      })
-    })
-  })
+      });
+    });
+  });
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      Product.create(productOne, function (err) {
+      Product.create(testProducts[0], function (err) {
         should.not.exist(err);
         done();
-      })
-    })
+      });
+    });
     it('should assign all properties on creation', function (done) {
-      Product.create(productOne, function (err, product) {
+      Product.create(testProducts[0], function (err, product) {
         should.not.exist(err);
-        product.name.should.equal("Kindle Fire HDX")
-        product.description.should.equal("Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras")
-        product.imageURL.should.equal("http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg")
-        product.rating.should.equal(8)
-        product.price.should.equal(379.99)
-        product.categories.join().should.equal("tablet,HD")
-        product.related.join().should.equal("iPad,iPad Mini,Microsoft Surface")
+        productsShouldBeSame(product, testProducts[0]);
         done();
-      })
-    })
-  })
+      });
+    });
+  });
 
 });
 
@@ -66,47 +82,45 @@ describe('Products Controller', function () {
   describe('#search()', function () {
     it('should return an empty list when no products', function (done) {
       request(url).get('/products').end(function (err, res) {
-        if (err) throw err;
+        should.not.exist(err);
         res.should.have.status(200);
         res.body.should.eql([]);
         done();
-      })
-    })
-    it('should get by id without error', function (done) {
-      // Create the product.
-      request(url).post('/products').send(productOne).end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
+      });
+    });
+  });  
 
-        // Get that product by id.
+  describe('#retrieve()', function () {
+    it('should get by id correctly', function (done) {
+      // Create the coupon.
+      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+        should.not.exist(err);
+        res.should.have.status(201);
+        res.should.be.json;
+
+        // Get that coupon by id.
         request(url).get('/products/' + res.body._id).end(function (err, res) {
-          if (err) throw err;
+          should.not.exist(err);
           res.should.have.status(200);
+          res.should.be.json;
           done();
-        })
-      })
-    })
-  })
+        });
+      });
+    });
+  });
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      request(url).post('/products').send(productOne).end(function (err, res) {
-        if (err) throw err;
+      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+        should.not.exist(err);
         res.should.have.status(201);
         done();
       })
     })
     it('should assign all properties on creation, including an _id', function (done) {
-      request(url).post('/products').send(productOne).end(function (err, res) {
-        if (err) throw err;
-        res.body.name.should.equal("Kindle Fire HDX");
-        res.body.description.should.equal("Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras");
-        res.body.imageURL.should.equal("http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg");
-        res.body.rating.should.equal(8);
-        res.body.price.should.equal(379.99);
-        res.body.categories.join().should.equal("tablet,HD");
-        res.body.related.join().should.equal("iPad,iPad Mini,Microsoft Surface");
-        Object.keys(res.body).length.should.equal(9);
+      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+        should.not.exist(err);
+        productsShouldBeSame(res.body, testProducts[0]);
         done();
       })
     })
@@ -115,48 +129,49 @@ describe('Products Controller', function () {
   describe('#delete()', function () {
     it('should delete without error', function (done) {
       // Create the product.
-      request(url).post('/products').send(productOne).end(function (err, res) {
-        if (err) throw err;
+      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+        should.not.exist(err);
         res.should.have.status(201);
+        var id = res.body._id;
 
         // Delete that product.
-        request(url).del('/products/' + res.body._id).end(function (err, res) {
-          if (err) throw err;
+        request(url).del('/products/' + id).end(function (err, res) {
+          should.not.exist(err);
           res.should.have.status(200);
-          done();
-        })
-      })
-    })
-  })
+
+          // It should be deleted
+          request(url).get('/products/' + id).end(function (err, res) {
+            should.not.exist(err);
+            res.should.have.status(404);
+            done();
+          });
+        });
+      });
+    });
+  });
   
   describe('#update()', function () {
     it('should update without error', function (done) {
       // Create the product.
-      request(url).post('/products').send(productOne).end(function (err, res) {
-        if (err) throw err;
-        
+      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+       should.not.exist(err);
+      
         //Update that product.
-        var id=res.body._id;
+        var id = res.body._id;
         
-        request(url).put('/products/' + id).send(productTwo).end(function (err, res2) {
-          if (err) throw err;
-          res2.should.have.status(200);
+        request(url).put('/products/' + id).send(testProducts[1]).end(function (err, res) {
+          should.not.exist(err);
+          res.should.have.status(200);
         
           //Ensure product has new data
-          request(url).get('/products/' + id).end(function (err, response) {
-            if (err) throw err;
-            response.should.have.status(200);
-            response.body.name.should.equal("Shake-Weight");
-            response.body.description.should.equal("Suggestive workout machine");
-            response.body.imageURL.should.equal("NSFW");
-            response.body.rating.should.equal(10);
-            response.body.price.should.equal(9.99);
-            response.body.categories.join().should.equal("infomercial,exercise");
-            response.body.related.join().should.equal("Sketchers ShapeUps");
+          request(url).get('/products/' + id).end(function (err, res) {
+            should.not.exist(err);
+            res.should.have.status(200);
+            productsShouldBeSame(res.body, testProducts[1]);
             done();
-          })  
-        })    
-      })
+          });  
+        });    
+      });
     });
   });
 });
