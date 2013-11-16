@@ -173,30 +173,35 @@ $("#VOTES").click(function() {
 
 });
 
-
-$("#JSON").click(function() {
-    selectedButtonFormat("JSON");
-
+["JSON", "CSV", "TREEMAP", "CIRCLEPACK", "HTML"].forEach(function (type) {
+    $("#" + type).click(function() {
+        selectedButtonFormat(type);
+    });
 });
 
-$("#CSV").click(function() {
-    selectedButtonFormat("CSV");
+// $("#JSON").click(function() {
+//     selectedButtonFormat("JSON");
 
-});
+// });
 
-$("#TREEMAP").click(function() {
-   selectedButtonFormat("TREEMAP");
+// $("#CSV").click(function() {
+//     selectedButtonFormat("CSV");
 
-});
+// });
 
-$("#CIRCLEPACK").click(function() {
-    selectedButtonFormat("CIRCLEPACK");
+// $("#TREEMAP").click(function() {
+//    selectedButtonFormat("TREEMAP");
 
-});
+// });
 
-$("#HTML").click(function() {
-    selectedButtonFormat("HTML");
-});
+// $("#CIRCLEPACK").click(function() {
+//     selectedButtonFormat("CIRCLEPACK");
+
+// });
+
+// $("#HTML").click(function() {
+//     selectedButtonFormat("HTML");
+// });
 
 var selectedButtonFormat = function(value){
     $("#format").html(value);
