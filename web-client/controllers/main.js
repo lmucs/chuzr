@@ -48,6 +48,10 @@ module.exports = function (app) {
     res.render('chuzoff', {title: 'The ChuzOff'});
   });
 
+  app.get('/rateme', function(req, res) {
+    res.render('rateme', {title: 'Rate Me'});
+  });
+
   app.get('/about', function(req, res) {
     res.render('about', {title: 'About Chuzr'});
   });
