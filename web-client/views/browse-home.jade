@@ -4,9 +4,9 @@ block content
   h1= title
   div(class='input-prepend')
     div(class='btn-group')
-      select(class='span12')
-        option: 'Name'
-        option: 'Type'
+      select(id='search-menu', class='span12')
+        option(value='name') Name
+        option(value='brand') Brand
     input(class='span9', id='prependDropdownButton', type='search')
     div(button id="find-products" class="btn btn-mini" type="button")
       p go

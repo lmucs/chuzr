@@ -5,9 +5,16 @@ $(function(){
     $( ".product-capsule" ).remove();
     var newContent='';
     var searchTerm = document.getElementById('prependDropdownButton').value;
+    var url = "";
+    if (document.getElementById('search-menu').value == 'name') {
+       url = "http://localhost:3000/products?name=";
+    }
+    if (document.getElementById('search-menu').value == 'brand') {
+       url = "http://localhost:3000/products?brand=";
+    }
     
     $.ajax({
-      url:"http://localhost:3000/products?search=" + searchTerm,
+      url: url + searchTerm,
       cache: false
     }).done(function (products) {
       products.forEach(function (product) {

@@ -3,16 +3,22 @@ Product = require('../models/product')
 module.exports = function (app) {
 
   function pagination(req) {
-    return {skip: +req.query.skip || 0, limit: +req.query.limit || 10}
+    return {skip: +req.query.skip || 0, limit: +req.query.limit || 20}
   }
 
   app.get('/products', function (req, res) {
     search = {}
+    if (req.query.name) {
+      search['name'] = {'$regex': req.query.name, '$options': 'i'};
+    }
+    if (req.query.brand) {
+      search['brand'] = {'$regex': req.query.brand, '$options': 'i'};
+    }
     if (req.query.search) {
       search = {
         '$or': [
           {name: {'$regex': '^' + req.query.search, '$options': 'i'}},
-          {categories: {'$in': [req.query.search]}}
+          {brand: {'$in': [req.query.search]}}
         ]
       }
     }
@@ -22,7 +28,7 @@ module.exports = function (app) {
       res.json(docs);
     });
   });
-
+  
   app.post('/products', function (req, res) {
     Product.create(req.body, function (err, product) {
       if (err) res.json(400, err);
