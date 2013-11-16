@@ -29,9 +29,21 @@ $(function(){
         newContent += '</div>';
         newContent += '<div class="capsule-bottom">';
         newContent += '</div>';
+        newContent += '<div class="capsule-hover">';
+        newContent += '<p>' + product.description;
+        newContent += '</p>';
+        newContent += '</div>';
         newContent += '</div>';
       })
-    $("#main-content").append(newContent);   
+    $("#main-content").append(newContent);
+    $(".product-capsule").hover(
+      function() {
+        $(this).find(".capsule-hover").css("display","block");
+      },
+      function() {
+        $(this).find(".capsule-hover").css("display","none");
+      }
+    );
     })
   })
   $("#prependDropdownButton").keypress(function(e){
