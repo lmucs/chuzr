@@ -1,23 +1,23 @@
-var api = require('./config/api'),
-    filter = require('./filters/filter'),
-    product = require('./filters/product'),
-    format = require('./filters/format');
+var product = require('./config/shopzilla/product'),
+    category = require('./config/shopzilla/category');
 
 var Url = function () {
 
-  var home = 'http://catalog.bizrate.com/services/catalog/v1/us/',
-      filterQueries = [
-        api,
-        product,
-        format
-      ].map(filter.query).join('&');
+  var _joinFilters = function (filters) {
+    var result = [];
+    for (k in filters) {
+      result.push(k + '=' + filters[k]);
+    }
+    return result.join('&');
+  };
 
-  var _generate = function () {
-    return home + 'product?' + filterQueries;
+  var _generate = function (item, itemName) {
+    return item.home + itemName + '?' + _joinFilters(item.filters);
   };
 
   return {
-    generate : _generate
+    shopzillaProduct: _generate(product, 'product'),
+    shopzillaCategory: _generate(category, 'category')
   };
 
 }();
