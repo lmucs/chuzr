@@ -158,56 +158,13 @@ $("#test1").click( function() {
     $("#" + type).click(function() {
         selectedButtonItem(type);
     });
-});]
-
-// $("#PRODUCTS").click(function() {
-//     selectedButtonItem("PRODUCTS");
-
-// });
-// $("#COUPONS").click(function() {
-//     selectedButtonItem("COUPONS");
-
-// });
-
-// $("#USERS").click(function() {
-//     selectedButtonItem("USERS");
-
-// });
-
-// $("#VOTES").click(function() {
-//   selectedButtonItem("VOTES");
-
-// });
+});
 
 ["JSON", "CSV", "TREEMAP", "CIRCLEPACK", "HTML"].forEach(function (type) {
     $("#" + type).click(function() {
         selectedButtonFormat(type);
     });
 });
-
-// $("#JSON").click(function() {
-//     selectedButtonFormat("JSON");
-
-// });
-
-// $("#CSV").click(function() {
-//     selectedButtonFormat("CSV");
-
-// });
-
-// $("#TREEMAP").click(function() {
-//    selectedButtonFormat("TREEMAP");
-
-// });
-
-// $("#CIRCLEPACK").click(function() {
-//     selectedButtonFormat("CIRCLEPACK");
-
-// });
-
-// $("#HTML").click(function() {
-//     selectedButtonFormat("HTML");
-// });
 
 var selectedButtonFormat = function(value){
     $("#format").html(value);
