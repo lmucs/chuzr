@@ -1,9 +1,7 @@
 //game.js
 
 $(function() {
-	var product1Index = Math.floor(Math.random()*products.length),
-		product2Index = Math.floor(Math.random()*products.length - 1),
-		httpGet = function(theUrl) {
+	var httpGet = function(theUrl) {
 		    var xmlHttp = null;
 
 		    xmlHttp = new XMLHttpRequest();
@@ -40,7 +38,9 @@ $(function() {
 			$("#productImgRight").attr("src", products[product2Index].imageLink);
 			$("#rightTitle").text(products[product2Index].name);
 
-		};
+		},
+		product1Index = Math.floor(Math.random()*products.length),
+		product2Index = Math.floor(Math.random()*products.length - 1);
 
 	if(product2Index >= product1Index) {
 		product2Index++;
@@ -52,7 +52,7 @@ $(function() {
 	products.forEach(function(product, i) {
 		product.imageLink = testImages[i];
 		product.chuzOffs = 0;
-		product.chuzOffsWins = 0;
+		product.chuzOffWins = 0;
 	});
 
 
@@ -62,6 +62,17 @@ $(function() {
 	$("#productImgRight").attr("src", products[product2Index].imageLink);
 	$("#rightTitle").text(products[product2Index].name);
 
+	$(".highlight").click(function() {
+		products[product1Index].chuzOffs++;
+		products[product2Index].chuzOffs++;
 
+		console.log($(this).attr("id"));
+		if($(this).attr("id") === "leftHighlight") {
+			products[product1Index].chuzOffWins++;
+		} else {
+			products[product2Index].chuzOffWins++;			
+		}
 
+		createChuzOff();
+	});
 })
