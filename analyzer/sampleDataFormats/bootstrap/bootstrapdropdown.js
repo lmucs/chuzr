@@ -44,8 +44,8 @@ $("#test1").click( function() {
                     {"tag":"li","html": "description: ${description}"},
                     {"tag":"li","html": "url: ${url} "},
                     {"tag":"li","html": "rating: ${rating} "},
-                    {"tag":"li","html": "shopzillaID: ${shopzillaID} "},
-                    {"tag":"li","html": "categoryID: ${categoryID} "},
+                    {"tag":"li","html": "shopzillaID: ${shopzillaId} "},
+                    {"tag":"li","html": "categoryID: ${categoryId} "},
                     {"tag":"li","html": "related: ${related} "},
                     {"tag":"li","html": "price"},
                     {"tag":"ul","children":[
@@ -56,7 +56,31 @@ $("#test1").click( function() {
                   ]}
               ];
 
-            };
+            }
+            else if(item === "VOTES"){
+               transform = [
+                {"tag":"li","html": "${userId}, ${productID}"},
+                {"tag":"ul","children":[
+                    {"tag":"li","html": "rating: ${rating}"},
+                    {"tag":"li","html": "timestamp: ${timestamp} "},
+                    {"tag":"li","html": "active: ${active}"},
+                   
+                  ]}
+              ];
+            }
+            else if(item === "COUPONS"){
+               transform = [
+                {"tag":"li","html": "${issuer}, ${value}"},
+                {"tag":"ul","children":[
+                    {"tag":"li","html": "promoCode: ${promoCode}"},
+                    {"tag":"li","html": "exprationDate: ${expirationDate} "},
+                    {"tag":"li","html": "imageURL: ${imageURL}"},
+                   
+                  ]}
+              ];
+            }
+
+
 
             //TODO get data from a Get call and extract desired classes to denormalize
                 
