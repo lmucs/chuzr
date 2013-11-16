@@ -10,12 +10,21 @@ block content
     div(class='product' id='leftProduct')
       div(id='productContainerLeft')
         div(id='leftBanner')
-        img(class='productImg', src='http://www.thenoisecast.com/wp-content/uploads/2011/02/shake-weight.png')
+        img(class='productImg' id='productImgLeft' src='http://www.thenoisecast.com/wp-content/uploads/2011/02/shake-weight.png')
         div(id='leftTitle') Shake Weight
-        div(class='highlight')
+        div(class='highlight' id="leftHighlight")
     div(class='product' id='rightProduct')
       div(id='productContainerRight')
         div(id='rightBanner')
-        img(class='productImg', src='http://info.roosterbank.com/blog/wp-content/uploads/2012/10/Furby2012Purple.jpg')
+        img(class='productImg' id='productImgRight' src='http://info.roosterbank.com/blog/wp-content/uploads/2012/10/Furby2012Purple.jpg')
         div(id='rightTitle') Furby
-        div(class='highlight')
+        div(class='highlight'  id="rightHighlight")
+
+  div(id="results")
+    h3 Standings
+    table(id="standings")
+      th Product
+      th Chuz Offs
+      th Chuz Off Wins
+      th Winning Percent
+  script(src='/js/game.js')
