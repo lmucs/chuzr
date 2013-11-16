@@ -27,9 +27,12 @@ $(function() {
 	//the product image links dont acutally work right now so insert fake ones
 	products.forEach(function(product, i) {
 		product.imageLink = testImages[i%testImages.length];
-		$("#productsContainer").append($("<div></div>")
+		$("#productSpace").append($("<div></div>")
 			.attr("class", "productNode")
-			.append($("<h6></h6>").text(product.name))
+			.append($("<div></div>")
+				.text(product.name)
+				.css("width", "100px")
+			)
 			.append($("<img></img>")
 				.attr("src", product.imageLink)
 				.attr("width", "100px")
