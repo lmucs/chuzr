@@ -128,11 +128,20 @@ $("#test1").click( function() {
                 };
 
             $("#visiContainer")
-                .append('<select id="dataType">' +
-                '<option value="products">Products</option>' +
-                '<option value="users">Users</option>' +
-              '</select>')
-                .append('<div id="treemap"></div>');
+                .append($("<select></select>")
+                    .attr("id", "dataType")
+                    .append($('<option></option>')
+                        .attr("value", "products")
+                        .text("Products")
+                    )
+                    .append($('<option></option>')
+                        .attr("value", "users")
+                        .text("Users")
+                    )
+                )
+                .append($('<div></div>')
+                    .attr("id", "treemap")
+                );
             
             $("#dataType").change(function() {
                 $("#treemap").empty();
