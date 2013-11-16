@@ -75,7 +75,7 @@ $(function() {
 
 	//the product image links dont acutally work right now so insert fake ones
 	products.forEach(function(product, i) {
-		product.imageLink = testImages[i];
+		product.imageLink = testImages[i%testImages.length];
 		product.chuzOffs = 0;
 		product.chuzOffWins = 0;
 		product.winPercent = 0;
