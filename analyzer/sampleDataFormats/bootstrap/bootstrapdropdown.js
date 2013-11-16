@@ -64,7 +64,7 @@ $("#test1").click( function() {
 
             document.getElementById('list').innerHTML = json2html.transform(dataJSON,transform);
         }
-        else if(format === "CIRCLEPACK"){
+        else if(format === "CIRCLEPACK") {
             //Modify favorites data for circle pack visualization
             var data = getFavorites(),
                 parsedData = {
@@ -96,8 +96,7 @@ $("#test1").click( function() {
             });
                 
             createCirclePack(parsedData, "#visiContainer");
-        }
-        else if(format === "JSON"){
+        } else if(format === "JSON"){
           var json = "";
           
           dataJSON.forEach(function(thing){
@@ -105,6 +104,42 @@ $("#test1").click( function() {
           })
           
           $("#visiContainer").append(json);
+        } else if (format === "TREEMAP") {
+            var data,
+                selectOptions,
+                renderTreemap = function (dataType) {
+                    if (dataType === "users") { 
+                        data = getTestData();
+                        selectOptions = [
+                            {name: 'Votes', val: 'votes'},
+                            {name: 'Purchases', val: 'purchases'},
+                            {name: 'Posts', val: 'posts'},
+                            {name: 'Category Size', val: 'category'}
+                        ];
+                        createTreemap("treemap", selectOptions, data);
+                    } else if (dataType === "products") {
+                        data = createTestData();
+                        selectOptions = [
+                            {name: 'Size', val: 'size'},
+                            {name: 'Rating', val: 'rating'}
+                        ];
+                        createTreemap("treemap", selectOptions, data);
+                    }
+                };
+
+            $("#visiContainer")
+                .append('<select id="dataType">' +
+                '<option value="products">Products</option>' +
+                '<option value="users">Users</option>' +
+              '</select>')
+                .append('<div id="treemap"></div>');
+            
+            $("#dataType").change(function() {
+                $("#treemap").empty();
+                renderTreemap($("#dataType").val());
+            });
+            
+            renderTreemap($("#dataType").val());  
         }
     }
     
