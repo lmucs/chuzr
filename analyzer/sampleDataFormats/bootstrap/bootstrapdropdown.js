@@ -108,7 +108,7 @@ $("#test1").click( function() {
             var data,
                 selectOptions,
                 renderTreemap = function (dataType) {
-                    if (dataType === "users") { 
+                    if (dataType === "USERS") { 
                         data = getTestData();
                         selectOptions = [
                             {name: 'Votes', val: 'votes'},
@@ -116,39 +116,18 @@ $("#test1").click( function() {
                             {name: 'Posts', val: 'posts'},
                             {name: 'Category Size', val: 'category'}
                         ];
-                        createTreemap("treemap", selectOptions, data);
-                    } else if (dataType === "products") {
+                        createTreemap("visiContainer", selectOptions, data);
+                    } else if (dataType === "PRODUCTS") {
                         data = createTestData();
                         selectOptions = [
                             {name: 'Size', val: 'size'},
                             {name: 'Rating', val: 'rating'}
                         ];
-                        createTreemap("treemap", selectOptions, data);
+                        createTreemap("visiContainer", selectOptions, data);
                     }
                 };
-
-            $("#visiContainer")
-                .append($("<select></select>")
-                    .attr("id", "dataType")
-                    .append($('<option></option>')
-                        .attr("value", "products")
-                        .text("Products")
-                    )
-                    .append($('<option></option>')
-                        .attr("value", "users")
-                        .text("Users")
-                    )
-                )
-                .append($('<div></div>')
-                    .attr("id", "treemap")
-                );
             
-            $("#dataType").change(function() {
-                $("#treemap").empty();
-                renderTreemap($("#dataType").val());
-            });
-            
-            renderTreemap($("#dataType").val());  
+            renderTreemap(item);  
         }
     }
     
