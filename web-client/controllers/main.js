@@ -44,6 +44,10 @@ module.exports = function (app) {
     res.render('contact', {title: 'Contact'});
   });
 
+  app.get('/chuzoff', function(req, res) {
+    res.render('chuzoff', {title: 'The ChuzOff'});
+  });
+
   app.get('/about', function(req, res) {
     res.render('about', {title: 'About Chuzr'});
   });
