@@ -63,4 +63,8 @@ module.exports = function (app) {
   app.get('/game', function(req, res) {
     res.render('game', {title: 'The Super Awesome Game'});
   });
+
+  app.get('/categorygame', function(req, res) {
+    res.render('categoryGame', {title: 'Chuz where they Go'});
+  });
 }
