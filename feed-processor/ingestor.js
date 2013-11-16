@@ -1,8 +1,10 @@
-var http = require('http');
+var http = require('http'),
+    massage = require('./massager'),
+    parser = require('./parser');
 
 var Ingestor = function () {
 
-  var _retrieveData = function (url, parse) {
+  var _retrieveData = function (url, parse, massage) {
     var data = '';
     http.get(url, function (res) {
       res.on('data', function (chunk) {
@@ -10,23 +12,22 @@ var Ingestor = function () {
       });
       res.on('end', function () {
         var result = parse(data);
-        var productArray = result.products.product;
-        for (p in productArray) {
-            console.log('db.products.insert(' + JSON.stringify(productArray[p]) + ');');
-        }
+        massage(result);
       });
     }).on('error', function (err) {
     });
   };
 
-  var _json = function (url) {
-    _retrieveData(url, function (data) {
-      return JSON.parse(data);
-    });
+  var _generateIngestionProcess = function (massageTree) {
+    return function (url, parseFormat) {
+      var parse = parser.generate(parseFormat);
+      _retrieveData(url, parse, massageTree);
+    };
   };
 
   return {
-    json : _json
+    shopzillaProduct : _generateIngestionProcess(massage.shopzillaProduct),
+    shopzillaCategory : _generateIngestionProcess(massage.shopzillaCategory)
   };
 }();
 
