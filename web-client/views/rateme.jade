@@ -1,0 +1,14 @@
+extends layout
+
+block css
+  link(href='/stylesheets/game.css', rel='stylesheet')
+
+block content
+  div(id="header")
+    h3 Rate Me:
+  div(id='chuzOff')
+    div(class='product highlight')
+      img(class='productImg thumbnail' src='http://placehold.it/200x300')
+      div(id='leftTitle') Shake Weight
+
+  script(src='/js/game.js')
