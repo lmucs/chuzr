@@ -26,16 +26,20 @@ $(function() {
 		],
 		createChuzOff = function() {
 			product1Index = Math.floor(Math.random()*products.length);
-			product2Index = Math.floor(Math.random()*products.length - 1);
+			product2Index = Math.floor(Math.random()*(products.length - 1));
 
 			if(product2Index >= product1Index) {
 				product2Index++;
 			}
 
-			$("#productImgLeft").attr("src", products[product1Index].imageLink);
+			$("#productImgLeft")
+				.attr("src", "")
+				.attr("src", products[product1Index].imageLink);
 			$("#leftTitle").text(products[product1Index].name);
 
-			$("#productImgRight").attr("src", products[product2Index].imageLink);
+			$("#productImgRight")
+				.attr("src", "")
+				.attr("src", products[product2Index].imageLink);
 			$("#rightTitle").text(products[product2Index].name);
 
 		},
