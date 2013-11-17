@@ -1,5 +1,6 @@
 $(function() {
 	var categories = ["electronics", "apparel", "recreation", "tools"],
+		initialLoc,
 		httpGet = function(theUrl) {
 		    var xmlHttp = null;
 
@@ -41,12 +42,48 @@ $(function() {
 			.draggable()
 		)
 	});
-	
+
 	categories.forEach(function(category){
 		$("#categoryTable").append($("<tr></tr>")
 			.append($("<td></td>")
-				.text(category)
+				.text("Place " + category + " here")
+			)
+			.append($("<td></td>")
+				.text("Item List")
 			)
 		)
 	});
-})
+
+	$(".productNode").mousedown(function(e) {
+		console.log("down");
+		initialLoc = $(this).position();
+	});
+
+
+	$(".productNode").mouseup(function(e) {
+		var $productNode = $(this),
+			placed = false;
+		$("tr").forEach(function() {
+			if ($productNode.position.left >= $(this).position().left &&
+				$productNode.position.top >= $(this).position().top &&
+				$productNode.position.top < ($(this).position().top + +$(this).height())
+				) {
+				placed = true;
+				console.log(placed);
+			}
+		});
+
+		if(!placed) {
+			console.log("not placed");
+			$productNode.position(initialLoc);
+		}
+	});
+
+
+
+
+});
+
+
+
+
