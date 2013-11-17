@@ -56,7 +56,6 @@ $(function() {
 	});
 
 	$(".productNode").mousedown(function(e) {
-		console.log("down");
 		initialLoc = $(this).offset();
 	});
 
@@ -85,7 +84,6 @@ $(function() {
 		});
 
 		if(!placed) {
-			console.log("not placed");
 			$productNode.offset(initialLoc);
 		}
 	});
