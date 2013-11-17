@@ -49,6 +49,7 @@ $(function() {
 				.text("Place " + category + " here")
 			)
 			.append($("<td></td>")
+				.attr("class", "list")
 				.text("Item List")
 			)
 		)
@@ -56,26 +57,36 @@ $(function() {
 
 	$(".productNode").mousedown(function(e) {
 		console.log("down");
-		initialLoc = $(this).position();
+		initialLoc = $(this).offset();
 	});
 
 
 	$(".productNode").mouseup(function(e) {
 		var $productNode = $(this),
 			placed = false;
-		$("tr").forEach(function() {
-			if ($productNode.position.left >= $(this).position().left &&
-				$productNode.position.top >= $(this).position().top &&
-				$productNode.position.top < ($(this).position().top + +$(this).height())
+		$("tr").each(function() {
+			if ($productNode.offset().left >= $(this).offset().left &&
+				$productNode.offset().top >= $(this).offset().top &&
+				$productNode.offset().top < ($(this).offset().top + +$(this).height())
 				) {
 				placed = true;
-				console.log(placed);
+				$productNode.offset({
+					top: $(this).offset().top + 30,
+					left: $(this).offset().left + 10 + $(this).find("div").length * 100
+				})
+
+				$(this).find(".list")
+					.append(
+						$("<div></div")
+							.text($productNode.find("div").text())
+					);
+
 			}
 		});
 
 		if(!placed) {
 			console.log("not placed");
-			$productNode.position(initialLoc);
+			$productNode.offset(initialLoc);
 		}
 	});
 
