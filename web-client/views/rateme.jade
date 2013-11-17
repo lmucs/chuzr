@@ -1,0 +1,25 @@
+extends layout
+
+block css
+  link(href='/stylesheets/game.css', rel='stylesheet')
+  link(href='/stylesheets/slider.css', rel='stylesheet')
+
+block content
+  div(id="header")
+    h3 Rate Me:
+  div(id='rateMe')
+    div(id="product" class='pull-left')
+      img(class='productImg thumbnail' src='http://placehold.it/200x300')
+      p
+    div(id="rating-info" class="pull-right")
+      div(id="rate-slider")
+        input(class="slider" value="" id="slider" data-slider-orientation="horizontal" data-slider-tooltip="hide")
+      div(id="rating")
+        h1 0
+      div(id="rate-button pull-left")
+        button(id="rate" class="btn btn-success") Rate me
+
+
+
+  script(src='/js/bootstrap-slider.js')
+  script(src='/js/rateme.js')
