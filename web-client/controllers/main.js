@@ -63,4 +63,8 @@ module.exports = function (app) {
   app.get('/game', function(req, res) {
     res.render('game', {title: 'The Super Awesome Game'});
   });
+  
+  app.get('/product/:id', function(req, res) {
+    res.render('product', {title: 'Product Profile', id: req.params.id});
+  });
 }
