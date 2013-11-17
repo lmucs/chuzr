@@ -6,7 +6,7 @@ module.exports = {
   filters: {
     "publisherId": api.publisherId,
     "apiKey": api.apiKey,
-    "keyword": "shoes",
+    "categoryId": 10110000, //shoes
     "results": "10",
     "format": "json"
   }
