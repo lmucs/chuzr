@@ -2,7 +2,8 @@ require('./utils')
 
 var should = require('should'),
     request = require('supertest'),  
-    url = require('../config/config').test.url;
+    url = require('../config/config').test.url,
+    User = require('../models/user');
     
 var userOne = {
   name: {
@@ -14,7 +15,8 @@ var userOne = {
   reputation: 1000,
   socialHandle: 'lunabar',
   avatarURL: 'http://i.lunabar.com/luna.png',
-  hashedPassword: 'qiyh4XPJGsOZ2MEAyLkfWqeQ'
+  hashedPassword: 'qiyh4XPJGsOZ2MEAyLkfWqeQ',
+  isAdmin: false
 };
 
 var productOne = {
@@ -42,9 +44,26 @@ var voteOne = {
   rating: 8
 };
 
+var admin = {
+  name: {
+    first: 'Addy',
+    last: 'Ministrator'
+  },
+  email: 'admin@example.com',
+  login: 'testUser',
+  reputation: 9001,
+  socialHandle: 'Admin',
+  avatarURL: 'http://i.powertrip.com/iamadmin.jpg',
+  hashedPassword: 'testPass',
+  isAdmin: true
+};
+
 describe('User Authentication', function(){
   describe('#accepted', function () {
     it('should return 201 while trying to post', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -52,6 +71,9 @@ describe('User Authentication', function(){
       })
     })
     it('should return 200 while trying to put', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -66,6 +88,9 @@ describe('User Authentication', function(){
       })
     })
     it('should return 201 while trying to delete', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -83,6 +108,9 @@ describe('User Authentication', function(){
   
   describe('#denied', function () {
     it('should return 401 response code while trying to post', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/users').auth('testUser', 'testPast').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(401);
@@ -90,6 +118,9 @@ describe('User Authentication', function(){
       })
     })
     it('should return 401 while trying to put', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
       });
@@ -103,6 +134,9 @@ describe('User Authentication', function(){
       })
     })
     it('should return 401 while trying to delete', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -120,6 +154,9 @@ describe('User Authentication', function(){
   
   describe('#persistence', function() {
     it('should return 401 after the first authentication', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -136,6 +173,9 @@ describe('User Authentication', function(){
 describe('Product Authentication', function() {
   describe('#accepted', function () {
     it('should return 201 while trying to post', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -143,6 +183,9 @@ describe('Product Authentication', function() {
       })
     })
     it('should return 200 while trying to put', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -157,6 +200,9 @@ describe('Product Authentication', function() {
       })
     })
     it('should return 201 while trying to delete', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -180,6 +226,9 @@ describe('Product Authentication', function() {
       })
     })
     it('should return 401 while trying to put', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
       });
@@ -193,6 +242,9 @@ describe('Product Authentication', function() {
       })
     })
     it('should return 401 while trying to delete', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -210,6 +262,9 @@ describe('Product Authentication', function() {
   
   describe('#persistence', function() {
     it('should return 401 after the first authentication', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -226,6 +281,9 @@ describe('Product Authentication', function() {
 describe('Coupon Authentication', function() {
   describe('#accepted', function () {
     it('should return 201 while trying to post', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -233,6 +291,9 @@ describe('Coupon Authentication', function() {
       })
     })
     it('should return 200 while trying to put', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -247,6 +308,9 @@ describe('Coupon Authentication', function() {
       })
     })
     it('should return 201 while trying to delete', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -270,6 +334,9 @@ describe('Coupon Authentication', function() {
       })
     })
     it('should return 401 while trying to put', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
       });
@@ -283,6 +350,9 @@ describe('Coupon Authentication', function() {
       })
     })
     it('should return 401 while trying to delete', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -299,6 +369,9 @@ describe('Coupon Authentication', function() {
   });
   describe('#persistence', function() {
     it('should return 401 after the first authentication', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -315,6 +388,9 @@ describe('Coupon Authentication', function() {
 describe('Vote Authentication', function() {
   describe('#accepted', function () {
     it('should return 201 while trying to post', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
@@ -333,6 +409,9 @@ describe('Vote Authentication', function() {
   });
   describe('#persistence', function() {
     it('should return 401 after the first authentication', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
