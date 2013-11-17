@@ -205,20 +205,6 @@ describe('Users Controller', function () {
       })
     });
   });
-
-  describe('#noAdmin', function () {
-    it('should return 403 while trying to post without admin status', function (done) {
-      admin.isAdmin = false;
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(403);
-        done();
-      })
-    });
-  });
 });
 
 
