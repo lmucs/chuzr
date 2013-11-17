@@ -57,34 +57,39 @@ $(function() {
 
 	$(".productNode").mousedown(function(e) {
 		initialLoc = $(this).offset();
+		$(this).addClass("held");
 	});
 
 
 	$(".productNode").mouseup(function(e) {
-		var $productNode = $(this),
-			placed = false;
-		$("tr").each(function() {
-			if ($productNode.offset().left >= $(this).offset().left &&
-				$productNode.offset().top >= $(this).offset().top &&
-				$productNode.offset().top < ($(this).offset().top + +$(this).height())
+		if($(this).hasClass("held")) {
+			var $productNode = $(this),
+				placed = false;
+			$("tr").each(function() {
+				if (
+					$productNode.offset().left >= $(this).offset().left &&
+					$productNode.offset().top >= $(this).offset().top &&
+					$productNode.offset().top < ($(this).offset().top + +$(this).height())
 				) {
-				placed = true;
-				$productNode.offset({
-					top: $(this).offset().top + 30,
-					left: $(this).offset().left + 10 + $(this).find("div").length * 100
-				})
+					placed = true;
+					$productNode.offset({
+						top: $(this).offset().top + 30,
+						left: $(this).offset().left + 10 + $(this).find("div").length * 100
+					})
 
-				$(this).find(".list")
-					.append(
-						$("<div></div")
-							.text($productNode.find("div").text())
-					);
+					$(this).find(".list")
+						.append(
+							$("<div></div")
+								.text($productNode.find("div").text())
+						);
 
+				}
+			});
+
+			if(!placed) {
+				$productNode.offset(initialLoc);
 			}
-		});
-
-		if(!placed) {
-			$productNode.offset(initialLoc);
+			$(this).removeClass("held");
 		}
 	});
 
