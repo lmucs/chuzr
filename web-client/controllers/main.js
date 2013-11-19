@@ -74,6 +74,7 @@ module.exports = function (app) {
 
   app.get('/product/:id', function(req, res) {
     res.render('product', {title: 'Product Profile', id: req.params.id});
+  });
 
   app.get('/categorygame', function(req, res) {
     res.render('categoryGame', {title: 'Chuz where they Go'});
