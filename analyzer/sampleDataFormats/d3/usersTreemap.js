@@ -5,7 +5,7 @@ $(function () {
             {name: 'Rating', val: 'rating'}
         ];
     console.log(data);
-	createTreemap("treemap", selectOptions, data);
+	  createTreemap("treemap", selectOptions, data);
 });
 
 function getTestData() {

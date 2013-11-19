@@ -13,6 +13,11 @@
     <!-- Bootstrap core CSS -->
     <link href="boot/css/bootstrap.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="jquery.dropdown.css" />
+    <link href="bootstrapdropdown.css" rel="stylesheet">
+
+    <link href="../d3/circlePackVisualization.css" rel="stylesheet">
+    <link href="../d3/usersTreemap.css" rel="stylesheet">
+
    
   </head>
 
@@ -49,8 +54,8 @@
           <button type="button" class="btn btn-default" id="CIRCLEPACK">Circle Pack</button>
          
         </div>
-        </div>
       </div>
+    </div>
 
       <p> I want to see <a href="#" data-dropdown="#dropdown-1" id = "item">[item]</a> in <a href="#" data-dropdown="#dropdown-2" id="format">[format]</a>
           <button type="button" data-loading-text="Loading..." class="btn btn-primary" id="test1">
@@ -59,6 +64,10 @@
         
 
       <br>
+
+      <div id="visiContainer">
+        <h3>Select a data type and visualization to see</h3>
+      </div>
 
       <!-- Site footer -->
       <div class="footer">
@@ -77,86 +86,16 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="boot/js/bootstrap.min.js"></script>
     <script src="boot/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://mbostock.github.io/d3/talk/20111116/d3/d3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://mbostock.github.io/d3/talk/20111116/d3/d3.layout.js" charset="utf-8"></script>
     <script type="text/javascript" src="jquery.dropdown.js"></script>
-    <script type="text/javascript">
-      var item = null;
-      var format = null;
-      //when submitted
-      $("#test1").click( function() {
-        if(item === null){
-          alert("please select an item you want to see.");
-        }
-        if(format === null){
-          alert("please select a format you want to see.");
-        }
-
-        if(item !== null && format !== null){
-          window.location = "http://google.com";
-        }
-          
-      });
-
-      $("#PRODUCTS").click(function() {
-          selectedButtonItem("PRODUCTS");
-
-      });
-      $("#COUPONS").click(function() {
-          selectedButtonItem("COUPONS");
-
-      });
-
-      $("#USERS").click(function() {
-          selectedButtonItem("USERS");
-
-      });
-
-      $("#VOTES").click(function() {
-        selectedButtonItem("VOTES");
-
-      });
-
-
-      $("#JSON").click(function() {
-          selectedButtonFormat("JSON");
-
-      });
-
-      $("#CSV").click(function() {
-          selectedButtonFormat("HTML");
-
-      });
-
-      $("#TREEMAP").click(function() {
-         selectedButtonFormat("TREEMAP");
-
-      });
-
-      $("#CIRCLEPACK").click(function() {
-          selectedButtonFormat("CIRCLEPACK");
-
-      });
-
-      $("#HTML").click(function() {
-          selectedButtonFormat("HTML");
-      });
-
-      var selectedButtonFormat = function(value){
-        format = value;
-        $("#format").html(value);
-        $("#dropdown-2").css('display', 'none');
-        $(document).find('.dropdown-open').removeClass('dropdown-open');
-      };
-
-      var selectedButtonItem = function(value){
-        item = value;
-        $("#item").html(value);
-        $("#dropdown-1").css('display', 'none');
-        $(document).find('.dropdown-open').removeClass('dropdown-open');
-      }
-
-      $("#format").click(function(event, dropdownData) {
-        
-      });
-    </script>
+    <script type="text/javascript" src="bootstrapdropdown.js"></script>
+    <script type="text/javascript" src="../json2html.js"></script>
+    <script type="text/javascript" src="../d3/createCirclePack.js"></script>
+    <script type="text/javascript" src="../d3/createTreemap.js"></script>
+    <script type="text/javascript" src="../d3/productsTreemap.js"></script>
+    <script type="text/javascript" src="../d3/getJSONs.js"></script>
   </body>
 </html>
+
+
