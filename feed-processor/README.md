@@ -5,11 +5,10 @@ The chuzr feed processor ingests data from a remote location and
 updates the data store accordingly.  Images and other media  are
 stored separately from the simple product data.
 
-First, `cd feed-processor/`
 
 ### API Key Business
 
-Your developer's api key should be stored in config/api.js as shown below,
+Your developer's api key should be stored in feed-processor/config/api.js as shown below,
 where both values are strings:
 
 
@@ -29,6 +28,5 @@ where both values are strings:
 (Very soon) a script that will do an initial seeding/bootstrap
 and then a cronjob that will update daily. To run:
 
-    cd feed-processor/
     scripts/chuzr-bootstrap.sh
     scripts/chuzr-update-cron.sh
