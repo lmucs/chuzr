@@ -1,8 +1,12 @@
 //when submitted
+var loc = $(location).attr('href');
+var changeSpot = loc.lastIndexOf('8000');
+var apiPort = '3000/'
+
 $("#test1").click( function() {
     var item = $("#item").text(),
         format = $("#format").text();
-        var dataJSON = jQuery.parseJSON(httpGet("http://localhost:3000/" + item.toLowerCase()));
+        var dataJSON = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase()));
     $("#iframe").attr('src','http://www.yahoo.com');
     if(item === "[item]"){
         alert("please select an item you want to see.");
