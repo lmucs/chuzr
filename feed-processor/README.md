@@ -21,9 +21,8 @@ where both values are strings:
 
 (Currently) To run:
 
-    cd feed-processor/
-    node ingest-categories.js
-    node ingest-products.js
+    cd scripts/
+    bash chuzr-bootstrap.sh
 
 (Very soon) a script that will do an initial seeding/bootstrap
 and then a cronjob that will update daily. To run:
