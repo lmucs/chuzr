@@ -17,10 +17,11 @@ $(function() {
 		    console.log("http://localhost:3000/products/" + productId);
 		    console.log(product);
 		    $(".product-name").text(product.name);
-		    $(".product-image-rating img").attr('src', product.imageURL);
-		    $(".url-to-purchase a").attr('href', product.imageURL);
+		    $(".product-image-rating img").attr('src', product.images[0]);
+		    $(".url-to-purchase a").attr('href', product.url);
 		    $(".product-description .description").text(product.description);
 		    $(".current-product-rating .rating").text(product.rating);
+		    $(".current-product-rating a").attr('href', 'http://localhost:3001/rateme/' + productId);
         };
 	
 	populateData(product);
