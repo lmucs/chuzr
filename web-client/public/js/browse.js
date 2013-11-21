@@ -5,22 +5,23 @@ $(function(){
     $( ".product-capsule" ).remove();
     var newContent='';
     var searchTerm = document.getElementById('prependDropdownButton').value;
-    var url = "";
+    var searchUrl = "";
+
     if (document.getElementById('search-menu').value == 'name') {
-       url = "http://localhost:3000/products?name=";
+       searchUrl = "http://localhost:3000/products?name=";
     }
     if (document.getElementById('search-menu').value == 'brand') {
-       url = "http://localhost:3000/products?brand=";
+       searchUrl = "http://localhost:3000/products?brand=";
     }
     
     $.ajax({
-      url: url + searchTerm,
+      url: searchUrl + searchTerm,
       cache: false
     }).done(function (products) {
       products.forEach(function (product) {
         newContent += '<div class="product-capsule">';
         newContent += '<div class="capsule-top">';
-        newContent += '<a href="http://localhost:3001/play">' + product.name
+        newContent += '<a href="http://localhost:3001/product/' + product._id + '">' + product.name
         newContent += '</a>';
         newContent += '</div>';
         newContent += '<div class="capsule-image">';
