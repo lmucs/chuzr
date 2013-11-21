@@ -52,6 +52,10 @@ module.exports = function (app) {
     res.render('rateme', {title: 'Rate Me'});
   });
 
+  app.get('/rateme/:id', function(req, res) {
+    res.render('rateme', {title: 'Rate Me', id: req.params.id});
+  });
+
   app.get('/about', function(req, res) {
     res.render('about', {title: 'About Chuzr'});
   });

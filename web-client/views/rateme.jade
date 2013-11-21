@@ -1,23 +1,32 @@
 extends layout
 
 block css
-  link(href='/stylesheets/game.css', rel='stylesheet')
+  link(href='/stylesheets/product.css', rel='stylesheet')
   link(href='/stylesheets/slider.css', rel='stylesheet')
 
+
 block content
-  div(id="header")
-    h3 Rate Me:
-  div(id='rateMe')
-    div(id="product" class='pull-left')
-      img(class='productImg thumbnail' src='http://placehold.it/200x300')
-      p
-    div(id="rating-info" class="pull-right")
-      div(id="rate-slider")
-        input(class="slider" value="" id="slider" data-slider-orientation="horizontal" data-slider-tooltip="hide")
-      div(id="rating")
-        h1 0
-      div(id="rate-button pull-left")
-        button(id="rate" class="btn btn-success") Rate me
+  link(href='/stylesheets/product.css', rel='stylesheet')
+  script(src='/js/product.js')
+  h1(class='product-name' product-id=id)
+  br
+  div(class='product-image-rating row')
+    div(id="rate-slider")
+    input(class="slider" value="" id="slider" data-slider-orientation="horizontal" data-slider-tooltip="hide")
+    img(class='span8')
+    span(class='info-block current-product-rating span3') 
+      h3 Current Rating:
+      div(class='rating')
+      a(href='localhost:3001/rateme')
+        button(id='rate-button' class='btn btn-info') Rate this Product
+  div(class='url-to-purchase row')
+    a()
+      button(id='url-button' class='btn btn-info btn-block span7') Purchase this Product
+  div(class='info-block product-description row')
+    h3 Description:
+    div(class='description')
+  div(class='info-block similar-products row')
+    h3 Similar Products:
 
 
 

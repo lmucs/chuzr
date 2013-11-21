@@ -9,9 +9,9 @@ $(function() {
 		    xmlHttp.send( null );
 		    return xmlHttp.responseText;
 		},
-		products = jQuery.parseJSON(httpGet("http://localhost:3000/products")),
-		testImage = "http://www.placehold.it/200x300";
 
+		productId = $(".product-name").attr('product-id'),
+		product = jQuery.parseJSON(httpGet("http://localhost:3000/products/" + productId));
 
 
 	$('#rate').click(function() {
@@ -31,9 +31,22 @@ $(function() {
 		//    });
 	});
 
+	populateData = function (product) {
+	    console.log("http://localhost:3000/products/" + productId);
+	    console.log(product);
+	    $(".product-name").text(product.name);
+	    $(".product-image-rating img").attr('src', product.imageURL);
+	    $(".url-to-purchase a").attr('href', product.imageURL);
+	    $(".product-description .description").text(product.description);
+	    $(".current-product-rating .rating").text(product.rating);
+	};
+
+
 
 	$('.slider').slider('setValue', 0)
 		.on('slide', function(ev){
      		$('#rating > h1').text(ev.value);
      	});
+
+    populateData(product);
 })
