@@ -9,7 +9,8 @@ $(function() {
 		    xmlHttp.send( null );
 		    return xmlHttp.responseText;
 		},
-		products = jQuery.parseJSON(httpGet("http://localhost:3000/products")),
+		urlBase = "http://localhost:3000/",
+		products = jQuery.parseJSON(httpGet(urlBase + "products")),
 		testImage = "http://www.placehold.it/200x300",
 		createChuzOff = function(products) {
 			product1Index = Math.floor(Math.random()*products.length);

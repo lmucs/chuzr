@@ -1,0 +1,20 @@
+extends layout
+
+block css
+  link(href='/stylesheets/upDownGame.css', rel='stylesheet')
+
+block content
+  h1 UpDown Game
+
+  div(id='upDownGame' class='row')
+    div(id='product' class='span6')
+    div(id='upDown' class='span6')
+
+
+
+
+  div(id="results")
+    h3 Standings
+    table(id="standings" class="table table-hover table-condensed")
+
+  script(src='/js/upDownGame.js')
