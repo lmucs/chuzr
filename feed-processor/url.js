@@ -11,13 +11,12 @@ var Url = function () {
     return result.join('&');
   };
 
-  var _generate = function (item, itemName) {
-    return item.home + itemName + '?' + _joinFilters(item.filters);
+  var _generate = function (item) {
+    return item.home + item.service + '?' + _joinFilters(item.filters);
   };
 
   return {
-    shopzillaProduct: _generate(product, 'product'),
-    shopzillaCategory: _generate(category, 'taxonomy')
+    generate: _generate
   };
 
 }();

@@ -1,7 +1,6 @@
 var assert = require('assert'),
     url = require('../url'),
-    shopzillaProduct = require('../config/shopzilla/product'),
-    shopzillaCategory = require('../config/shopzilla/category');
+    shopzillaProduct = require('../config/shopzilla/product');
 
 var joinFilters = function (filters) {
     var result = [];
@@ -13,20 +12,11 @@ var joinFilters = function (filters) {
 
 describe('Url', function () {
 
-  describe('#shopzillaProduct', function () {
+  describe('#generate', function () {
 
     it('should generate a url based on the config file', function () {
       var urlString = shopzillaProduct.home + 'product?' + joinFilters(shopzillaProduct.filters);
-      assert.equal(urlString, url.shopzillaProduct);
-    })
-
-  });
-
-  describe('#shopzillaCategory', function () {
-
-    it('should generate a url based on the config file', function () {
-      var urlString = shopzillaCategory.home + 'category?' + joinFilters(shopzillaCategory.filters);
-      assert.equal(urlString, url.shopzillaCategory);
+      assert.equal(urlString, url.generate(shopzillaProduct));
     })
 
   });
