@@ -29,6 +29,20 @@ var testProducts = [
   }
 ];
 
+var admin = {
+  name: {
+    first: 'Addy',
+    last: 'Ministrator'
+  },
+  email: 'admin@example.com',
+  login: 'testUser',
+  reputation: 9001,
+  socialHandle: 'Admin',
+  avatarURL: 'http://i.powertrip.com/iamadmin.jpg',
+  hashedPassword: 'testPass',
+  isAdmin: true
+};
+
 /*
  * Asserts that two product representations are the same. The products can be either
  * (1) actual product model objects, (2) plain JavaScript objects with product properties,

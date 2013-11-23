@@ -699,7 +699,7 @@ describe('Votes Controller', function(){
         },
         function(){
           // Create a fourth vote for this product and user, but with a different ratingType
-          request(url).post('/votes').send(voteEighteen).end(function (err, res) {
+          request(url).post('/votes').send(voteEighteen).auth('testUser', 'testPass').end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -726,7 +726,7 @@ describe('Votes Controller', function(){
 
     it('should return one vote with ratingType = "comparison"', function (done) {
       // Create the vote.
-      request(url).post('/votes').send(voteEighteen).end(function (err, res) {
+      request(url).post('/votes').send(voteEighteen).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
 
@@ -786,7 +786,7 @@ describe('Votes Controller', function(){
     })
     
     it('should reject a ratingType not in ["numeric", "comparison", "upDown"]', function (done) {
-      request(url).post('/votes').send(voteNineteen).end(function (err, res) {
+      request(url).post('/votes').send(voteNineteen).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(400);
         done();

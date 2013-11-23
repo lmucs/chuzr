@@ -29,7 +29,7 @@ module.exports = function (app) {
 
   app.post('/products', auth, function (req, res) {
     User.findOne({login: req.user}, function (err, user) {
-      if (!user.isAdmin) res.json(403, {message: "You must be an admin to create a user."}); 
+      if (!user.isAdmin) res.json(403, {message: "You must be an admin to create a product."}); 
     });
     Product.create(req.body, function (err, product) {
       if (err) res.json(400, err);
@@ -48,7 +48,7 @@ module.exports = function (app) {
 
   app.put('/products/:id', auth, function (req, res) {
     User.findOne({login: req.user}, function (err, user) {
-      if (!user.isAdmin) res.json(403, {message: "You must be an admin to create a user."}); 
+      if (!user.isAdmin) res.json(403, {message: "You must be an admin to edit a product."}); 
     });
     var id = req.params.id;
     console.log(req.body)
@@ -60,7 +60,7 @@ module.exports = function (app) {
 
   app.delete('/products/:id', auth, function (req, res) {
     User.findOne({login: req.user}, function (err, user) {
-      if (!user.isAdmin) res.json(403, {message: "You must be an admin to create a user."}); 
+      if (!user.isAdmin) res.json(403, {message: "You must be an admin to create a product."}); 
     });
     var id = req.params.id;
     Product.remove({_id: id}, function (err) {
