@@ -41,6 +41,7 @@ var couponOne = {
 var voteOne = {
   userId: 1,
   productId: 32,
+  ratingType: "numeric",
   rating: 8
 };
 
