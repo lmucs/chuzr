@@ -3,7 +3,7 @@ module.exports = Massager;
 var Massager = function () {
 
     var _massageProduct = function (shopzillaProduct) {
-    return  {
+      return  {
         "name" : shopzillaProduct.title,
         "brand" : shopzillaProduct.brand.name,
         "description" : shopzillaProduct.description,
@@ -12,23 +12,23 @@ var Massager = function () {
         "price" : {
             "max" : shopzillaProduct.priceSet.maxPrice.value,
             "min" : shopzillaProduct.priceSet.minPrice.value
-        },       
+        },
         "shopzillaId" : shopzillaProduct.id,
-        "categoryId" : shopzillaProduct.categoryId    
+        "categoryId" : shopzillaProduct.categoryId
+      };
     };
-};
 
     var _massageCategory = function (shopzillaCategory) {
-        return {
-            "categoryName" : shopzillaCategory.taxonomy.categories.category[categrory.length-1].name,
-            "categoryId" : shopzillaCategory.taxonomy.categories.category[categrory.length-1].id
-
-         };
+      return {
+        "categoryName" : shopzillaCategory.taxonomy.categories.category[categrory.length-1].name,
+        "categoryId" : shopzillaCategory.taxonomy.categories.category[categrory.length-1].id
+      };
     };
 
     return {
-        massageCategory : _massageCategory,
-        massageProduct : _massageProduct
+      massageCategory : _massageCategory,
+      massageProduct : _massageProduct
     };
+
 }();
 
