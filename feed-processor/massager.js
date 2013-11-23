@@ -8,7 +8,7 @@ var Massager = function () {
         "brand" : shopzillaProduct.brand.name,
         "description" : shopzillaProduct.description,
         "image" : shopzillaProduct.images.image[image.length-1],
-        "url" : shopzillaProduct.url,
+        "url" : shopzillaProduct.url.value,
         "price" : {
             "max" : shopzillaProduct.priceSet.maxPrice.value,
             "min" : shopzillaProduct.priceSet.minPrice.value
