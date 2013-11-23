@@ -6,10 +6,14 @@ var expirationDates = [new Date(2014, 1, 15), new Date(2012, 4, 23), new Date (2
 var imageURLs = ["http://i.google.com/12.png", "http://i.reddit.com/42.png", "http://i.facebook.com/332.png", "http://i.thoughtcatalog.com/12.png"]
 
 var rand = function (x) {
-        return Math.floor(Math.random() * x)
+  return Math.floor(Math.random() * x)
 }
 
 for (i = 0; i < 1000; i++) {
-        var coupon = {"issuer": issuers[rand(10)], "value": values[rand(10)], "promoCode": promoCodes[rand(10)], "expirationDate": expirationDates[rand(5)], "imageURL": imageURLs[rand(4)]};
-        db.coupons.insert(coupon)
+  var coupon = {"issuer": issuers[rand(10)], "value": values[rand(10)], "promoCode": promoCodes[rand(10)], "expirationDate": expirationDates[rand(5)], "imageURL": imageURLs[rand(4)]};
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:3000/coupons",
+    data: p
+  });
 }

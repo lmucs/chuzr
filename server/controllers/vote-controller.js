@@ -20,6 +20,9 @@ module.exports = function (app) {
     if (req.query.active) {
       search["active"] = req.query.active;
     }
+    if (req.query.ratingType) {
+      search["ratingType"] = req.query.ratingType;
+    }
     Vote.find(search, null, pagination(req), function (err, votes) {
       if (err) res.json(500, err);
       res.json(200, votes);
@@ -28,15 +31,21 @@ module.exports = function (app) {
   });
 
   app.post('/votes', auth, function (req, res) {
+    if (req.body.ratingType !== "numeric" &&
+      req.body.ratingType !== "upDown" &&
+      req.body.ratingType !== "comparison") res.json(400, "Bad ratingType");
+
     var user = req.body.userId,
-        product = req.body.productId;
+        product = req.body.productId,
+        ratingType = req.body.ratingType;
+
     // Auto generate the timestamp and active elements
     req.body.timestamp = Date.now();
     req.body.active = true;
 
     // Update last active vote to inactive
     Vote.findOne(
-      {"userId": user, "productId": product, "active": true}, null, function (err, vote) {
+      {"userId": user, "productId": product, "ratingType": ratingType, "active": true}, null, function (err, vote) {
       if (err) res.json(500, err);
       if (vote) Vote.update({"_id": vote._id}, {$set: {"active": false}}, function (err, numberUpdated) {
         if (err) res.json(400, err);

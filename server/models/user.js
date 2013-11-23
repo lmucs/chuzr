@@ -18,7 +18,12 @@ var userSchema = new Schema({
   , avatarURL       : String
   , reputation      : Number
   , socialHandle    : String
-  , salt            : String
+  , dateOfBirth     : Date
+  , location        : {
+            city    : String
+          , state   : String
+    }
+  , friends         : [ObjectId]
   , isAdmin         : Boolean
 });
 

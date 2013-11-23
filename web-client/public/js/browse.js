@@ -1,37 +1,30 @@
 $(function(){
 
   $("#find-products").click(function () {
-    var name = '',
-        description = '',
-        rating = '',
-        imageURL = '',
-        categories = '',
-        price = '',
-        related = '';
+    
+    $( ".product-capsule" ).remove();
+    var newContent='';
+    var searchTerm = document.getElementById('prependDropdownButton').value;
+    
     $.ajax({
-      url:"http://localhost:3000/products?limit=5",
+      url:"http://localhost:3000/products?search=" + searchTerm,
       cache: false
     }).done(function (products) {
       products.forEach(function (product) {
-        $("#results").append(JSON.stringify(product));
-
-      var productResult = productResult.products,
-          name = productResult.name;
-          description = productResult.description;
-          rating = productResult.rating;
-          categories = productResult.categories;
-          price = productResult.price;
-          related = productResult.related;
-      
-      $("#product-name").text(name);
-      $("#product-description").text(description);
-      $("#product-rating").text(rating);
-      $("#product-categories").text(categories);
-      $("#product-price").text(price);
-      $("#product-related").text(related);
-
+        newContent += '<div class="product-capsule">';
+        newContent += '<div class="capsule-top">';
+        newContent += '<a href="http://localhost:3001/play">' + product.name
+        newContent += '</a>';
+        newContent += '</div>';
+        newContent += '<div class="capsule-image">';
+        newContent += '<img src="' + product.images[0] + '">';
+        newContent += '</img>';
+        newContent += '</div>';
+        newContent += '<div class="capsule-bottom">';
+        newContent += '</div>';
+        newContent += '</div>';
       })
-    })
+    $("#main-content").append(newContent);   
+   })
   })
-
 });
