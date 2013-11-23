@@ -2,9 +2,10 @@ var env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env],
     ingest = require('./ingestor'),
     url = require('./url'),
-    categoryUrl = url.category;
+    category = require('./config/shopzilla/category'),
+    categoryUrl = url.generate(category, 'taxonomy');
 
 
 console.log('use ' + config.db);
 
-ingest.category(categoryUrl, "json");
+ingest.category(categoryUrl, 'json');
