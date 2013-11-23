@@ -6,8 +6,10 @@ module.exports = {
   filters: {
     "publisherId": api.publisherId,
     "apiKey": api.apiKey,
-    "categoryId": 10110000, //shoes
-    "results": "10",
-    "format": "json"
+    "categoryId": 1,
+    "results": "250", //max product pull
+    "format": "json",
+    "minPrice": 0,
+    "imageOnly": true
   }
 };
