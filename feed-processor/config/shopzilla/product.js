@@ -7,7 +7,6 @@ module.exports = {
   filters: {
     "publisherId": api.publisherId,
     "apiKey": api.apiKey,
-    "categoryId": 1,
     "results": "250", //max product pull
     "format": "json",
     "minPrice": 0,
