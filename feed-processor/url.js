@@ -17,7 +17,7 @@ var Url = function () {
 
   return {
     shopzillaProduct: _generate(product, 'product'),
-    shopzillaCategory: _generate(category, 'category')
+    shopzillaCategory: _generate(category, 'taxonomy')
   };
 
 }();
