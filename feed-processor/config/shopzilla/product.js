@@ -3,6 +3,7 @@ var api = require('./api'),
 
 module.exports = {
   home: shopzillaHome,
+  service: "product",
   filters: {
     "publisherId": api.publisherId,
     "apiKey": api.apiKey,
