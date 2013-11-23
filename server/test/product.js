@@ -4,6 +4,7 @@ var should = require('should');
 var request = require('supertest');  
 var Product = require('../models/product');
 var url = require('../config/config').test.url;
+var User = require('../models/user');
 
 var testProducts = [
   {
@@ -106,6 +107,9 @@ describe('Products Controller', function () {
 
   describe('#retrieve()', function () {
     it('should get by id correctly', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       // Create the coupon.
       request(url).post('/products').send(testProducts[0]).auth("testUser", "testPass").end(function (err, res) {
         should.not.exist(err);
@@ -125,6 +129,9 @@ describe('Products Controller', function () {
 
   describe('#create()', function () {
     it('should create without error', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/products').send(testProducts[0]).auth("testUser", "testPass").end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
@@ -132,6 +139,9 @@ describe('Products Controller', function () {
       })
     })
     it('should assign all properties on creation, including an _id', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       request(url).post('/products').send(testProducts[0]).auth("testUser", "testPass").end(function (err, res) {
         should.not.exist(err);
         productsShouldBeSame(res.body, testProducts[0]);
@@ -142,6 +152,9 @@ describe('Products Controller', function () {
 
   describe('#delete()', function () {
     it('should delete without error', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       // Create the product.
       request(url).post('/products').send(testProducts[0]).auth("testUser", "testPass").end(function (err, res) {
         should.not.exist(err);
@@ -166,6 +179,9 @@ describe('Products Controller', function () {
   
   describe('#update()', function () {
     it('should update without error', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       // Create the product.
       request(url).post('/products').send(testProducts[0]).auth("testUser", "testPass").end(function (err, res) {
        should.not.exist(err);

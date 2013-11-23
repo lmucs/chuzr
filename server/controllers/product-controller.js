@@ -60,7 +60,7 @@ module.exports = function (app) {
 
   app.delete('/products/:id', auth, function (req, res) {
     User.findOne({login: req.user}, function (err, user) {
-      if (!user.isAdmin) res.json(403, {message: "You must be an admin to create a product."}); 
+      if (!user.isAdmin) res.json(403, {message: "You must be an admin to delete a product."}); 
     });
     var id = req.params.id;
     Product.remove({_id: id}, function (err) {
