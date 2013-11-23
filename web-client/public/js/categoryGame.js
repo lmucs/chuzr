@@ -58,6 +58,7 @@ $(function() {
 	$(".productNode").mousedown(function(e) {
 		initialLoc = $(this).offset();
 		$(this).addClass("held");
+		$(this).css("z-index", "100");
 	});
 
 
@@ -90,6 +91,7 @@ $(function() {
 				$productNode.offset(initialLoc);
 			}
 			$(this).removeClass("held");
+			$(this).css("z-index", "10");
 		}
 	});
 
