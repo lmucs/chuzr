@@ -31,7 +31,7 @@ userData.forEach(function (s, i) {
     login: user[3],
     hashedPassword: user[4],
     avatarURL: user[5],
-    repuation: Math.floor(Math.pow(1.3, Math.random() * 40)),
+    reputation: Math.floor(Math.pow(1.3, Math.random() * 40)),
     socialHandles: 'http://www/facebook.com/' + i,
     dateOfBirth: new Date(Math.random() * 1000000000000),
     isAdmin: i === 0
