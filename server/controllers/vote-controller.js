@@ -1,13 +1,12 @@
 var Vote = require('../models/vote');
 var auth = require('../authentication/auth-controller').auth;
 var pagination = require('../utils/pagination');
+var validator = require('../utils/validator');
 
 module.exports = function (app) {
 
-  // Get all the votes or get votes by userId and/or productId and/or active state
   app.get('/votes', function (req, res) {
     var search = {};
-
     if (req.query.userId) {
       search["userId"] = req.query.userId;
     }
@@ -24,29 +23,29 @@ module.exports = function (app) {
       if (err) res.json(500, err);
       res.json(200, votes);
     });
-
   });
 
   app.post('/votes', auth, function (req, res) {
-    if (req.body.ratingType !== "numeric" &&
-      req.body.ratingType !== "upDown" &&
-      req.body.ratingType !== "comparison") res.json(400, "Bad ratingType");
-
-    var user = req.body.userId,
-        product = req.body.productId,
-        ratingType = req.body.ratingType;
+    validator.mustHaveLegalRatingType(req, res);
 
     // Auto generate the timestamp and active elements
     req.body.timestamp = Date.now();
     req.body.active = true;
 
-    // Update last active vote to inactive
-    Vote.findOne(
-      {"userId": user, "productId": product, "ratingType": ratingType, "active": true}, null, function (err, vote) {
+    // If this is a re-vote, update the old one to inactive
+    var revoteSearch = {
+      userId: req.body.userId,
+      productId: req.body.productId,
+      ratingType: req.body.ratingType,
+      active: true
+    };
+    Vote.findOne(revoteSearch, null, function (err, vote) {
       if (err) res.json(500, err);
-      if (vote) Vote.update({"_id": vote._id}, {$set: {"active": false}}, function (err, numberUpdated) {
-        if (err) res.json(400, err);
-      });
+      if (vote) {
+        Vote.update({"_id": vote._id}, {"$set": {"active": false}}, function (err, num) {
+          if (err) res.json(400, err);
+        });
+      }
     });
 
     Vote.create(req.body, function (err, vote) {
@@ -55,12 +54,11 @@ module.exports = function (app) {
     })
   });
 
-  // Get a vote by its id
   app.get('/votes/:id', function (req, res) {
     var id = req.params.id;
     Vote.findById(id, null, function (err, vote) {
       if (err) res.json(404, err);
-      if (vote === null) res.json(404, {"No such id": id});
+      if (vote === null) res.json(404, {"No such vote": id});
       res.json(vote);
     });
   });

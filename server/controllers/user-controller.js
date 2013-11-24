@@ -4,14 +4,6 @@ var auth = require('../authentication/auth-controller').auth;
 var pagination = require('../utils/pagination');
 
 module.exports = function (app) {
-
-  // TODO: Needs to be an HTTP 400 eventually.  Actually consider middleware validator.
-  function validateUserId(id) {
-    if (/\D/.test(id)) {
-      throw Error('Illegal id');
-    }
-  return id;
-  };
   
   app.get('/users', function (req, res) {
     search = {};
@@ -34,10 +26,9 @@ module.exports = function (app) {
 
   app.get('/users/:id', function (req, res) {
     var id = req.params.id;
-    User.findById(id, null, function (err, user) {
+    User.findById(id, function (err, user) {
       if (err) res.json(400, err)
-      if (user === null) res.json(404, {"No such id": id})
-
+      if (user === null) res.json(404, {"No such user": id})
       res.json(user)
     });
   });
@@ -46,13 +37,15 @@ module.exports = function (app) {
     var id = req.params.id;
     User.findOne({login: req.user}, function (err, user) {
       if (user._id != id) {
-        if (!user.isAdmin) res.json(403, {message: "You may only modify your own account."});
+        if (!user.isAdmin) {
+          res.json(403, {message: "You may only modify your own account."});
+        }
       }
     });
     console.log(req.body)
-    User.update({_id: id}, req.body, function (err, doc) {
+    User.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) res.json(400, err)
-      res.json(200, {Updated: doc});
+      res.json(200, {'Number updated': numUpdated});
     });
   });
 

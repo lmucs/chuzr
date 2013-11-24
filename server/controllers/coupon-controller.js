@@ -10,12 +10,10 @@ module.exports = function (app) {
       search['issuer'] = {'$regex': req.query.issuer, '$options': 'i'};
     }
     if (req.query.status === 'active') {
-      var currentDate = new Date();
-      search['expirationDate'] = {'$gte': currentDate};
+      search['expirationDate'] = {'$gte': new Date()};
     }
     if (req.query.status === 'expired') {
-      var currentDate = new Date();
-      search['expirationDate'] = {'$lt': currentDate};
+      search['expirationDate'] = {'$lt': new Date()};
     }
     console.log("Searching Coupons: %j", search);
     Coupon.find(search, null, pagination(req), function (err, docs) {
@@ -33,7 +31,7 @@ module.exports = function (app) {
 
   app.get('/coupons/:id', function (req, res) {
     var id = req.params.id;
-    Coupon.findById(id, null, function (err, coupon) {
+    Coupon.findById(id, function (err, coupon) {
       if (err) res.json(400, err);
       if (coupon === null) res.json(404, {'No such coupon': id});
       res.json(coupon);
