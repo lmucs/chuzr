@@ -8,4 +8,4 @@ var env = process.env.NODE_ENV || 'development',
 
 console.log('use ' + config.db);
 
-ingest.category(categoryUrl, 'json');
+ingest.category(categoryUrl, category.filters["format"]);
