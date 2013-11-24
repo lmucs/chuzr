@@ -13,6 +13,8 @@
     "supertest": "latest",
     "cors": "latest",
     "mocha": "latest",
+    "bcrypt-nodejs": "latest",
     "async": "latest"
+
   }
 }

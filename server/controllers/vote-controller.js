@@ -1,4 +1,5 @@
 Vote = require('../models/vote')
+auth = require('../authentication/auth-controller').auth
 
 module.exports = function (app) {
 
@@ -29,7 +30,7 @@ module.exports = function (app) {
 
   });
 
-  app.post('/votes', function (req, res) {
+  app.post('/votes', auth, function (req, res) {
     if (req.body.ratingType !== "numeric" &&
       req.body.ratingType !== "upDown" &&
       req.body.ratingType !== "comparison") res.json(400, "Bad ratingType");

@@ -1,4 +1,8 @@
 Product = require('../models/product')
+User = require('../models/user')
+var express = require('express'),
+auth = require('../authentication/auth-controller').auth ;
+
 
 module.exports = function (app) {
 
@@ -23,7 +27,10 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/products', function (req, res) {
+  app.post('/products', auth, function (req, res) {
+    User.findOne({login: req.user}, function (err, user) {
+      if (!user.isAdmin) res.json(403, {message: "You must be an admin to create a product."}); 
+    });
     Product.create(req.body, function (err, product) {
       if (err) res.json(400, err);
       res.send(201, product);
@@ -39,7 +46,10 @@ module.exports = function (app) {
     });
   });
 
-  app.put('/products/:id', function (req, res) {
+  app.put('/products/:id', auth, function (req, res) {
+    User.findOne({login: req.user}, function (err, user) {
+      if (!user.isAdmin) res.json(403, {message: "You must be an admin to edit a product."}); 
+    });
     var id = req.params.id;
     console.log(req.body)
     Product.update({_id: id}, req.body, function (err, numUpdated) {
@@ -48,7 +58,10 @@ module.exports = function (app) {
     });
   });
 
-  app.delete('/products/:id', function (req, res) {
+  app.delete('/products/:id', auth, function (req, res) {
+    User.findOne({login: req.user}, function (err, user) {
+      if (!user.isAdmin) res.json(403, {message: "You must be an admin to delete a product."}); 
+    });
     var id = req.params.id;
     Product.remove({_id: id}, function (err) {
       if (err) res.json(400, err)

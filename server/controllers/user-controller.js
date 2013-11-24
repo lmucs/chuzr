@@ -1,5 +1,6 @@
 User = require('../models/user')
-var express = require('express');
+var express = require('express'),
+auth = require('../authentication/auth-controller').auth;
 
 module.exports = function (app) {
 
@@ -27,7 +28,7 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/users', function (req, res) {
+  app.post('/users', auth, function (req, res) {
     User.create(req.body, function(err, user) {
       if (err) res.json(400, err)
       res.send(201, user);
@@ -38,13 +39,19 @@ module.exports = function (app) {
     var id = req.params.id;
     User.findById(id, null, function (err, user) {
       if (err) res.json(400, err)
-      if (user === null) res.json(404)
+      if (user === null) res.json(404, {"No such id": id})
+
       res.json(user)
     });
   });
 
-  app.put('/users/:id', function (req, res) {
+  app.put('/users/:id', auth, function (req, res) {
     var id = req.params.id;
+    User.findOne({login: req.user}, function (err, user) {
+      if (user._id != id) {
+        if (!user.isAdmin) res.json(403, {message: "You may only modify your own account."});
+      }
+    });
     console.log(req.body)
     User.update({_id: id}, req.body, function (err, doc) {
       if (err) res.json(400, err)
@@ -52,7 +59,7 @@ module.exports = function (app) {
     });
   });
 
-  app.delete('/users/:id', function (req, res) {
+  app.delete('/users/:id', auth, function (req, res) {
     var id = req.params.id;
     User.remove({_id: id}, function (err) {
       if (err) res.json(400, err)

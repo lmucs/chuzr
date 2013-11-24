@@ -4,6 +4,7 @@ var should = require('should');
 var request = require('supertest');  
 var Product = require('../models/product');
 var url = require('../config/config').test.url;
+var User = require('../models/user');
 
 var testProducts = [
   {
@@ -28,6 +29,20 @@ var testProducts = [
     related : [3]
   }
 ];
+
+var admin = {
+  name: {
+    first: 'Addy',
+    last: 'Ministrator'
+  },
+  email: 'admin@example.com',
+  login: 'testUser',
+  reputation: 9001,
+  socialHandle: 'Admin',
+  avatarURL: 'http://i.powertrip.com/iamadmin.jpg',
+  hashedPassword: 'testPass',
+  isAdmin: true
+};
 
 /*
  * Asserts that two product representations are the same. The products can be either
@@ -92,8 +107,11 @@ describe('Products Controller', function () {
 
   describe('#retrieve()', function () {
     it('should get by id correctly', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       // Create the coupon.
-      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+      request(url).post('/products').send(testProducts[0]).auth("testUser", "testPass").end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
         res.should.be.json;
@@ -111,14 +129,20 @@ describe('Products Controller', function () {
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
+      request(url).post('/products').send(testProducts[0]).auth("testUser", "testPass").end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
         done();
       })
     })
     it('should assign all properties on creation, including an _id', function (done) {
-      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
+      request(url).post('/products').send(testProducts[0]).auth("testUser", "testPass").end(function (err, res) {
         should.not.exist(err);
         productsShouldBeSame(res.body, testProducts[0]);
         done();
@@ -128,14 +152,17 @@ describe('Products Controller', function () {
 
   describe('#delete()', function () {
     it('should delete without error', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       // Create the product.
-      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+      request(url).post('/products').send(testProducts[0]).auth("testUser", "testPass").end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
         var id = res.body._id;
 
         // Delete that product.
-        request(url).del('/products/' + id).end(function (err, res) {
+        request(url).del('/products/' + id).auth("testUser", "testPass").end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(200);
 
@@ -152,14 +179,17 @@ describe('Products Controller', function () {
   
   describe('#update()', function () {
     it('should update without error', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       // Create the product.
-      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+      request(url).post('/products').send(testProducts[0]).auth("testUser", "testPass").end(function (err, res) {
        should.not.exist(err);
       
         //Update that product.
         var id = res.body._id;
         
-        request(url).put('/products/' + id).send(testProducts[1]).end(function (err, res) {
+        request(url).put('/products/' + id).send(testProducts[1]).auth("testUser", "testPass").end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(200);
         

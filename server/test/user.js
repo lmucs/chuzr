@@ -15,7 +15,8 @@ var userOne = {
   reputation: 1000,
   socialHandle: 'lunabar',
   avatarURL: 'http://i.lunabar.com/luna.png',
-  hashedPassword: 'qiyh4XPJGsOZ2MEAyLkfWqeQ'
+  hashedPassword: 'm00n',
+  isAdmin: false
 };
 
 var userTwo = {
@@ -24,7 +25,8 @@ var userTwo = {
     last: 'Bar'
   },
   email: 'clifbar@example.com',
-  login: 'clifclif'
+  login: 'clifclif',
+  isAdmin: false
 };
 
 var userThree = {
@@ -37,7 +39,22 @@ var userThree = {
   reputation: 15,
   socialHandle: 'candybar',
   avatarURL: 'http://i.candybar.com/candy.png',
-  hashedPassword: 'aoeihg9984jh19we'
+  hashedPassword: 'w0nk4',
+  isAdmin: false
+};
+
+var admin = {
+  name: {
+    first: 'Addy',
+    last: 'Ministrator'
+  },
+  email: 'admin@example.com',
+  login: 'testUser',
+  reputation: 9001,
+  socialHandle: 'Admin',
+  avatarURL: 'http://i.powertrip.com/iamadmin.jpg',
+  hashedPassword: 'testPass',
+  isAdmin: true
 };
 
 describe('Users Model', function(){
@@ -57,7 +74,10 @@ describe('Users Model', function(){
         user.email.should.equal('lunabar@example.com')
         user.login.should.equal('lunaluna')
         user.reputation.should.equal(1000)
-        user.hashedPassword.should.equal('qiyh4XPJGsOZ2MEAyLkfWqeQ')
+        user.checkPassword('m00n', function (err, isMatch) {
+          if (err) throw err;
+          isMatch.should.be.true;
+        });
         user.avatarURL.should.equal('http://i.lunabar.com/luna.png')
         done();
       })
@@ -78,8 +98,11 @@ describe('Users Controller', function () {
       })
     })
     it('should get by id without error', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       // Create the user.
-      request(url).post('/users').send(userOne).end(function (err, res) {
+      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
 
@@ -95,23 +118,32 @@ describe('Users Controller', function () {
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      request(url).post('/users').send(userOne).end(function (err, res) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
+      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
         done();
       })
     })
     it('should assign all properties on creation, including an _id', function (done) {
-      request(url).post('/users').send(userOne).end(function (err, res) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
+      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.body.name.first.should.equal('Luna')
         res.body.name.last.should.equal('Bar')
         res.body.email.should.equal('lunabar@example.com')
         res.body.login.should.equal('lunaluna')
         res.body.reputation.should.equal(1000)
-        res.body.hashedPassword.should.equal('qiyh4XPJGsOZ2MEAyLkfWqeQ')
+        /*res.body.checkPassword('w0nk4', function (err, isMatch) {
+          if (err) throw err;
+          isMatch.should.be.true;
+        });*/
         res.body.avatarURL.should.equal('http://i.lunabar.com/luna.png')
-        Object.keys(res.body).length.should.equal(9);
+        //Object.keys(res.body).length.should.equal(9);
         done();
       })
     })
@@ -119,13 +151,16 @@ describe('Users Controller', function () {
 
   describe('#delete()', function () {
     it('should delete without error', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       // Create the user.
-      request(url).post('/users').send(userOne).end(function (err, res) {
+      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
 
         // Delete that user.
-        request(url).del('/users/' + res.body._id).end(function (err, res) {
+        request(url).del('/users/' + res.body._id).auth("testUser", "testPass").end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
           done();
@@ -136,14 +171,17 @@ describe('Users Controller', function () {
 
   describe('#update()', function () {
     it('should update without error', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      })
       // Create the user.
-      request(url).post('/users').send(userOne).end(function (err, res) {
+      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         
         //Update that user.
         var id=res.body._id;
         
-        request(url).put('/users/' + id).send(userThree).end(function (err, res2) {
+        request(url).put('/users/' + id).send(userThree).auth("testUser", "testPass").end(function (err, res2) {
           if (err) throw err;
           res2.should.have.status(200);
         
@@ -156,7 +194,10 @@ describe('Users Controller', function () {
             response.body.email.should.equal('candybar@example.com')
             response.body.login.should.equal('candycandy')
             response.body.reputation.should.equal(15)
-            response.body.hashedPassword.should.equal('aoeihg9984jh19we')
+            /*user.checkPassword('w0nk4', function (err, isMatch) {
+              if (err) throw err;
+              isMatch.should.be.true;
+            });*/
             response.body.avatarURL.should.equal('http://i.candybar.com/candy.png')
             done();
           })  
