@@ -1,11 +1,8 @@
-Vote = require('../models/vote')
-auth = require('../authentication/auth-controller').auth
+var Vote = require('../models/vote');
+var auth = require('../authentication/auth-controller').auth;
+var pagination = require('../utils/pagination');
 
 module.exports = function (app) {
-
-  function pagination(req) {
-    return {skip: +req.query.skip || 0, limit: +req.query.limit || 10}
-  }
 
   // Get all the votes or get votes by userId and/or productId and/or active state
   app.get('/votes', function (req, res) {

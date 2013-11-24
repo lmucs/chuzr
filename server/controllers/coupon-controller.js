@@ -1,11 +1,8 @@
-Coupon = require('../models/coupon')
-auth = require('../authentication/auth-controller').auth
+var Coupon = require('../models/coupon');
+var auth = require('../authentication/auth-controller').auth;
+var pagination = require('../utils/pagination');
 
 module.exports = function (app) {
-
-  function pagination(req) {
-    return {skip: +req.query.skip || 0, limit: +req.query.limit || 10};
-  }
 
   app.get('/coupons', function (req, res) {
     search = {};

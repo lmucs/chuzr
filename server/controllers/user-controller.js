@@ -1,6 +1,7 @@
-User = require('../models/user')
-var express = require('express'),
-auth = require('../authentication/auth-controller').auth;
+var User = require('../models/user');
+var express = require('express');
+var auth = require('../authentication/auth-controller').auth;
+var pagination = require('../utils/pagination');
 
 module.exports = function (app) {
 
@@ -12,10 +13,6 @@ module.exports = function (app) {
   return id;
   };
   
-  function pagination (req) {
-    return {skip: +req.query.skip || 0, limit: +req.query.limit || 10 }
-  }
-
   app.get('/users', function (req, res) {
     search = {};
     if (req.query.name) {
