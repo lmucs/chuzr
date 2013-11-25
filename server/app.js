@@ -35,9 +35,6 @@ fs.readdirSync(__dirname + '/controllers').forEach(function (file) {
   }
 });
 
-console.log('Loading authenticator')
-require('./authentication/auth-controller');
-
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Chuzr API running on port %s, environment=%s', app.get('port'), env);
 });

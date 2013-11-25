@@ -1,6 +1,6 @@
 var User = require('../models/user');
 var express = require('express');
-var auth = require('../authentication/auth-controller').auth;
+var auth = require('../utils/authentication');
 var pagination = require('../utils/pagination');
 
 module.exports = function (app) {

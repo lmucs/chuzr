@@ -1,5 +1,5 @@
 var Vote = require('../models/vote');
-var auth = require('../authentication/auth-controller').auth;
+var auth = require('../utils/authentication');
 var pagination = require('../utils/pagination');
 var validator = require('../utils/validator');
 

@@ -8,6 +8,7 @@
 //     Model.find(query, fields, pagination(req), callback)
 //   });
 
+// TODO: Suggest defaultPageSize and minimumPageSize come from application conf
 var minimumPageSize = 1;
 var defaultPageSize = 10;
 var maximumPageSize = 100;

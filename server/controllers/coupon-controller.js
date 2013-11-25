@@ -1,5 +1,5 @@
 var Coupon = require('../models/coupon');
-var auth = require('../authentication/auth-controller').auth;
+var auth = require('../utils/authentication');
 var pagination = require('../utils/pagination');
 
 module.exports = function (app) {
