@@ -197,6 +197,6 @@ path.chord {
   display: none;
 }
 
-li {
+.instructions>li {
   font-size: 24px;
 }
