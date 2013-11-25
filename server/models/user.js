@@ -13,7 +13,10 @@ var userSchema = new Schema({
         }
     }
   , email           : String
-  , login           : String
+  , login           : {
+          type: String
+        , unique: true
+    }
   , hashedPassword  : String
   , avatarURL       : String
   , reputation      : Number
