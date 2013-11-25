@@ -1,3 +1,4 @@
-00 09,17  * * * ./chuzr/scripts/load_shopzilla_data.sh
-00 09,17 * * * ./chuzr/git pull
+00 09 * * * sh  ./chuzr/scripts/load_shopzilla_data.sh
+00 09 * * * sh ./chuzr/scripts/load_shopzilla_products.sh
+# 00 09,17 * * * ./chuzr/git pull
 
