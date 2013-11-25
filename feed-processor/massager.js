@@ -1,24 +1,30 @@
-module.exports = Massager;
-
 var Massager = function () {
 
-    var _massageProduct = function (shopzillaProduct) {
-      return  {
-        "name" : shopzillaProduct.title,
-        "brand" : shopzillaProduct.brand.name,
-        "description" : shopzillaProduct.description,
-        "image" : shopzillaProduct.images.image[image.length-1],
-        "url" : shopzillaProduct.url.value,
-        "price" : {
-            "max" : shopzillaProduct.priceSet.maxPrice.value,
-            "min" : shopzillaProduct.priceSet.minPrice.value
-        },
-        "shopzillaId" : shopzillaProduct.id,
-        "categoryId" : shopzillaProduct.categoryId
-      };
+    var _massageProduct = function (shopzillaObject) {
+        var productArray = shopzillaObject.products.product;
+        var chuzrArray = [];
+        for (var p = 0; p < productArray.length; p++) {
+            var biggestImage = productArray[p].images.image.length-1;
+            var chuzrProduct =  {
+                "name" : productArray[p].title,
+                "brand" : productArray[p].brand.name,
+                "description" : p.description,
+                "image" : productArray[p].images.image[biggestImage],
+                "url" : productArray[p].url.value,
+                "price" : {
+                    "max" : productArray[p].priceSet != undefined ? (productArray[p].priceSet.maxPrice.value) : (productArray[p].price.value),
+                    "min" : productArray[p].priceSet != undefined ? (productArray[p].priceSet.minPrice.value) : (productArray[p].price.value)
+                },
+                "shopzillaId" : productArray[p].id,
+                "categoryId" : productArray[p].categoryId
+            };
+            chuzrArray.push(chuzrProduct); 
+            console.log('db.products.insert(' + JSON.stringify(chuzrProduct) + ');');
+        };
+        return chuzrArray;
     };
-
-    var _massageCategory = function (shopzillaCategory) {
+    
+    var _massageCategory = function (shopzillaObject) {
       return {
         "categoryName" : shopzillaCategory.taxonomy.categories.category[categrory.length-1].name,
         "categoryId" : shopzillaCategory.taxonomy.categories.category[categrory.length-1].id
@@ -32,3 +38,4 @@ var Massager = function () {
 
 }();
 
+module.exports = Massager;
