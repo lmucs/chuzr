@@ -3,21 +3,24 @@
   <head>
     <meta charset="utf-8">
 
-    <link type="text/css" rel="stylesheet" href="d3/userProductVotes.css"/>
+    <link type="text/css" rel="stylesheet" href="userProductVotes.css"/>
   </head>
   <body>
     <title>Users and products related by votes</title>
 
     <h1>User product votes</h1>
-    <h3>User categories related to product categories by votes</h3>
-    <h3>The thickness of the lines represent number of votes</h3>
-    <h3>Mouse over a category to only see chords to it</h3>
+    <ul>
+      <li>User categories related to product categories by votes</li>
+      <li>The thickness of the lines represent number of votes</li>
+      <li>Mouse over a category to only see chords to it</li>
+    <ul>
 
     <div id="chordChartContainer"></div>
 
     <script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
-    <script src="d3/userAndProductData.js"></script>
-    <script src="d3/userProductVotes.js"></script>
+    <script src="userAndProductData.js"></script>
+    <script src="userProductVotes.js"></script>
   </body>
 </html>
