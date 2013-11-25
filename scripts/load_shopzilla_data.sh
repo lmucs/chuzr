@@ -1,1 +1,1 @@
-node ../feed-processor/app.js | mongo
+node ../feed-processor/ingest-products.js | mongo

@@ -6,6 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "mongoose": "3.x.x"
+    "mongoose": "3.x.x",
+    "mocha": "0.3.x"
   }
 }

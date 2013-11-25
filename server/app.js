@@ -17,12 +17,6 @@ if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// if(app.get('env') === 'test') {
-//   app.use(express.basicAuth(function(user, pass) {
-//     return user === 'testUser' && pass === 'testPass';
-//   }));
-// }
-
 console.log('Connecting to Mongo at %s', config.db)
 mongoose.connect(config.db);
 
@@ -37,6 +31,7 @@ console.log('Loading controllers')
 fs.readdirSync(__dirname + '/controllers').forEach(function (file) {
   if (file.match('.js$')) {
     require(__dirname + '/controllers/' + file)(app);
+    console.log(file);
   }
 });
 
