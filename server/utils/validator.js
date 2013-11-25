@@ -29,7 +29,7 @@ module.exports = {
   },
   
   mustBeUnique: function (req, res, operation) {
-    User.find({login: req.body.login}, function (err, user) {
+    User.findOne({login: req.body.login}, function (err, user) {
       if (user) {
         res.json(400, {
           error: "Duplicate login",

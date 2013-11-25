@@ -2,6 +2,7 @@ var User = require('../models/user');
 var express = require('express');
 var auth = require('../authentication/auth-controller').auth;
 var pagination = require('../utils/pagination');
+var validator = require('../utils/validator');
 
 module.exports = function (app) {
   
@@ -18,6 +19,7 @@ module.exports = function (app) {
   });
 
   app.post('/users', auth, function (req, res) {
+    validator.mustBeUnique(req, res, "Create a user");
     User.create(req.body, function(err, user) {
       if (err) res.json(400, err)
       res.send(201, user);

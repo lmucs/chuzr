@@ -55,7 +55,7 @@ var dupe = {
   socialHandle: 'copycat',
   avatarURL: 'http://i.generic.com/copy.png',
   hashedPassword: 'copied',
-  isAdmin: false;
+  isAdmin: false
 };
 
 var admin = {
