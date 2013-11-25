@@ -27,6 +27,17 @@ module.exports = {
       }
     });
   },
+  
+  mustBeUnique: function (req, res, operation) {
+    User.find({login: req.body.login}, function (err, user) {
+      if (user) {
+        res.json(400, {
+          error: "Duplicate login",
+          operation: operation
+        });
+      }
+    });
+  },
 
   mustHaveLegalRatingType: function (req, res) {
     if (["numeric","upDown","comparison"].indexOf(req.body.ratingType) === -1) {
