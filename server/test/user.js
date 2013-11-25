@@ -26,6 +26,7 @@ var userTwo = {
   },
   email: 'clifbar@example.com',
   login: 'clifclif',
+  hashedPassword: 'cl1f',
   isAdmin: false
 };
 
@@ -41,6 +42,20 @@ var userThree = {
   avatarURL: 'http://i.candybar.com/candy.png',
   hashedPassword: 'w0nk4',
   isAdmin: false
+};
+
+var dupe = {
+  name: {
+    first: 'Dupli',
+    last: 'Cate'
+  },
+  email: 'unoriginal@gmail.com',
+  login: 'lunaluna',
+  reputation: 0,
+  socialHandle: 'copycat',
+  avatarURL: 'http://i.generic.com/copy.png',
+  hashedPassword: 'copied',
+  isAdmin: false;
 };
 
 var admin = {
@@ -147,6 +162,20 @@ describe('Users Controller', function () {
         done();
       })
     })
+    it('should error if trying to create a user with a login that already exists', function (done) {
+      User.create(admin, function (err) {
+        if (err) throw err;
+      });
+      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(201);
+      });
+      request(url).post('/users').send(dupe).auth("testUser", "testPass").end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(400);
+        done();
+      });
+    });
   })
 
   describe('#delete()', function () {
