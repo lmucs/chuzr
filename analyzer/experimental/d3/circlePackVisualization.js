@@ -12,6 +12,7 @@ var pack = d3.layout.pack()
         return d.size;
     });
 
+
 var vis = d3.select("body").insert("svg:svg", "h2")
     .attr("width", w)
     .attr("height", h)

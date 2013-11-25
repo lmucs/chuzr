@@ -1,10 +1,6 @@
-body {
+svg {
   font: 300 36px "Helvetica Neue";
-  height: 640px;
-  margin: 80px 160px 80px 160px;
   overflow: scroll;
-  position: relative;
-  width: 960px;
 }
 
 a:link, a:visited {

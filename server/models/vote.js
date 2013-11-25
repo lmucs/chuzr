@@ -5,6 +5,7 @@ var mongoose = require('mongoose')
 var voteSchema = new Schema({
     userId         : Number        //ObjectId (will use later once functional)
   , productId      : Number        //ObjectTd
+  , ratingType     : String
   , rating         :
   {
       type: Number

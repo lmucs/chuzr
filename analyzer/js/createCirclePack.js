@@ -1,6 +1,6 @@
-var createCirclePack = function(parsedData) {
+var createCirclePack = function(parsedData, selector) {
     //Display categorizations in circle pack visualization
-    var w = 1280,
+    var w = 800,
         h = 800,
         r = 720,
         x = d3.scale.linear().range([0, r]),
@@ -14,11 +14,12 @@ var createCirclePack = function(parsedData) {
             return d.size;
         });
     
-    var vis = d3.select("body").insert("svg:svg", "h2")
+    var vis = d3.select(selector).insert("svg:svg", "h2")
         .attr("width", w)
         .attr("height", h)
         .append("svg:g")
-        .attr("transform", "translate(" + (w - r) / 2 + "," + (h - r) / 2 + ")");
+        //.attr("transform", "translate(" + (w - r) / 2 + "," + (h - r) / 2 + ")");
+        .attr("transform", "translate(0,0)");
     
     node = root = parsedData;
     var nodes = pack.nodes(root);
