@@ -8,8 +8,8 @@ var Massager = function () {
             var chuzrProduct =  {
                 "name" : productArray[p].title,
                 "brand" : productArray[p].brand.name,
-                "description" : p.description,
-                "image" : productArray[p].images.image[biggestImage],
+                "description" : productArray[p].description,
+                "image" : productArray[p].images.image[biggestImage].value,
                 "url" : productArray[p].url.value,
                 "price" : {
                     "max" : productArray[p].priceSet != undefined ? (productArray[p].priceSet.maxPrice.value) : (productArray[p].price.value),

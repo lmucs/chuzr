@@ -35,7 +35,7 @@ module.exports = [
             "max" : "$00.00",
             "min" : "$00.00"
         },
-        "shopzillaId" : 41,
-        "categoryId" : 41
+        "shopzillaId" : 4,
+        "categoryId" : 4
     }
 ]

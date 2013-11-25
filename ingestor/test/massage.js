@@ -3,7 +3,6 @@ var assert = require('assert'),
     shopzillaObjectGet = require('./testObjects/shopzillaGet'),
     chuzrProducts = require('./testObjects/chuzrProducts')
     
-   console.log(chuzrProducts); 
 describe('chuzrProducts', function () {
 
   describe('#massage', function () {
