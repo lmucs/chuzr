@@ -8,10 +8,10 @@ $(function(){
     var searchUrl = "";
 
     if (document.getElementById('search-menu').value == 'name') {
-       searchUrl = "http://localhost:3000/products?name=";
+       searchUrl = Chuzr.getChuzrHost() + ":3000/products?name=";
     }
     if (document.getElementById('search-menu').value == 'brand') {
-       searchUrl = "http://localhost:3000/products?brand=";
+       searchUrl = Chuzr.getChuzrHost() + ":3000/products?brand=";
     }
     
     $.ajax({
@@ -21,7 +21,7 @@ $(function(){
       products.forEach(function (product) {
         newContent += '<div class="product-capsule">';
         newContent += '<div class="capsule-top">';
-        newContent += '<a href="http://localhost:3001/product/' + product._id + '">' + product.name
+        newContent += '<a href="' + Chuzr.getChuzrHost() + ':3001/product/' + product._id + '">' + product.name
         newContent += '</a>';
         newContent += '</div>';
         newContent += '<div class="capsule-image">';

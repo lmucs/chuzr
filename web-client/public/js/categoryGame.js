@@ -9,7 +9,7 @@ $(function() {
 		    xmlHttp.send( null );
 		    return xmlHttp.responseText;
 		},
-		products = jQuery.parseJSON(httpGet("http://localhost:3000/products")),
+		products = jQuery.parseJSON(httpGet(Chuzr.getChuzrHost() + ":3000/products")),
 		testImages = [
 			"http://thementalshift.com/images/Products2.jpg",
 			"http://img4-3.myrecipes.timeinc.net/i/recipes/ck/11/05/peach-chicken-pizza-ck-l.jpg",

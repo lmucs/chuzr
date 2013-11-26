@@ -11,7 +11,7 @@ $(function() {
 		},
 
 		productId = $(".product-name").attr('product-id'),
-		product = jQuery.parseJSON(httpGet("http://localhost:3000/products/" + productId));
+		product = jQuery.parseJSON(httpGet(Chuzr.getChuzrHost() + ":3000/products/" + productId));
 
 
 	$('#rate').click(function() {
@@ -20,7 +20,7 @@ $(function() {
 
 		// $.ajax({
 		//        type: 'POST',
-		//        url: 'http://localhost:3000/votes',
+		//        url: Chuzr.getChuzrHost() + ':3000/votes',
 		//        data: JSON.stringify(),
 		//        contentType: 'application/json',
 		//        dataType: 'json',
@@ -32,7 +32,7 @@ $(function() {
 	});
 
 	populateData = function (product) {
-	    console.log("http://localhost:3000/products/" + productId);
+	    console.log(Chuzr.getChuzrHost() + ":3000/products/" + productId);
 	    console.log(product);
 	    $(".product-name").text(product.name);
 	    $(".product-image-rating img").attr('src', product.imageURL);

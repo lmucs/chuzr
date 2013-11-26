@@ -7,7 +7,7 @@ $(function () {
 	    xmlHttp.send( null );
 	    return xmlHttp.responseText;
 	},
-	urlBase = "http://localhost:3000/",
+	urlBase = Chuzr.getChuzrHost() + ":3000/",
 	products = jQuery.parseJSON(httpGet(urlBase + "products")),
 		testImage = "http://www.placehold.it/200x300",
 		updateStandings = function(products) {
