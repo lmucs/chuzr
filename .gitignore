@@ -1,5 +1,5 @@
 analyzer/.DS_Store
-ingestpr/config/api.js
+ingestor/config/api.js
 node_modules
 web-client/public/stylesheets/*.css
 .project
