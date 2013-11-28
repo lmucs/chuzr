@@ -18,22 +18,19 @@ var Massager = function () {
                 "shopzillaId" : productArray[p].id,
                 "categoryId" : productArray[p].categoryId
             };
-            chuzrArray.push(chuzrProduct); 
+            chuzrArray.push(chuzrProduct);
             console.log('db.products.insert(' + JSON.stringify(chuzrProduct) + ');');
         };
         return chuzrArray;
     };
-    
-    var _massageCategory = function (shopzillaObject) {
-      return {
-        "categoryName" : shopzillaCategory.taxonomy.categories.category[categrory.length-1].name,
-        "categoryId" : shopzillaCategory.taxonomy.categories.category[categrory.length-1].id
-      };
+
+    var _taxonomy = function (taxonomyTree) {
+      return 'db.taxonomy.insert(' + JSON.stringify(taxonomyTree) + ');';
     };
 
     return {
-      massageCategory : _massageCategory,
-      massageProduct : _massageProduct
+      massageProduct : _massageProduct,
+      taxonomy: _taxonomy
     };
 
 }();
