@@ -9,7 +9,6 @@ module.exports = {
     "apiKey": api.apiKey,
     "results": "250", //max product pull
     "format": "json",
-    "minPrice": 0,
     "imageOnly": true
   }
 };
