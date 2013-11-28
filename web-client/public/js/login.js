@@ -5,15 +5,15 @@ $(function(){
     var userID = userEmailLookup($("#inputEmail").val());
 
     $.ajax({
-      url: Chuzr.getChuzrHost() + ":3000/users" + userID,
+      url: Config.getApiBaseUrl() + "/users" + userID,
       cache: none
     })
       .done(function(user){
         if($("#inputPassword").val() === user.hashedPassword) {
           currentUser.userID = userID;
-          window.location.replace(Chuzr.getChuzrHost() + ":3001/home");
+          window.location.replace("/home");
         } else {
-          window.location.replace(Chuzr.getChuzrHost() + ":3001");
+          window.location.replace("/");
         }
 
       })

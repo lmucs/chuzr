@@ -12,7 +12,7 @@ $(function(){
       password = '';
 
   $.ajax({
-    url: Chuzr.getChuzrHost() + ":3000/users",
+    url: Config.getApiBaseUrl() + "/users",
     cache: false
   })  
     .done(function(user){
