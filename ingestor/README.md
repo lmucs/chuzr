@@ -1,14 +1,14 @@
 How to Ingestor
 ===============
 
-The chuzr feed processor ingests data from a remote location and
+The chuzr ingestor ingests data from a remote location and
 updates the data store accordingly.  Images and other media  are
 stored separately from the simple product data.
 
 
 ### API Key Business
 
-Your developer's api key should be stored in feed-processor/config/api.js as shown below,
+Your developer's api key should be stored in ingestor/config/api.js as shown below,
 where both values are strings:
 
 
