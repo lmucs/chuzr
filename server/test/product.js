@@ -12,7 +12,7 @@ var testProducts = [
     description : "Startlingly light large-screen tablet, with stunning HDX display, ultra-fast performance, and front and rear cameras",
     url : "http://a.abcnews.com/images/Technology/HT_Kindle_Fire_HDX_Mayday_nt_130924_16x9_992.jpg",
     categoryId: 93,
-    images : ["http://placehold.it/400x400", "http://placehold.it/200x200"],
+    images : {fourHundred: 'url1', oneSixty: 'url2'},
     shopzillaId : 300,
     price : {min: 379.99, max: 700},
     related : [16, 22, 888]
@@ -22,8 +22,7 @@ var testProducts = [
     description : "Suggestive workout machine",
     url : "NSFW",
     categoryId: 22,
-    images : ["http://placehold.it/350x350"],
-    categoryId: 85,
+    images : {fourHundred: 'url1', oneSixty: 'url2'},
     shopzillaId : 3123,
     price : {min: 9.95, max: 12.47},
     related : [3]
@@ -56,7 +55,11 @@ function productsShouldBeSame(product, other) {
   product.url.should.equal(other.url);
   product.categoryId.should.eql(other.categoryId);
   product.shopzillaId.should.eql(other.shopzillaId);
-  product.images.join('').should.eql(other.images.join(''));
+  if (product.images) {
+    ['fourHundred','oneSixty','oneHundred','sixty'].forEach(function (size) {
+      if (product[size]) product.images[size].should.equal(other.images[size])
+    })
+  }
   product.price.min.should.eql(other.price.min);
   product.price.max.should.eql(other.price.max);
   product.related.join('').should.eql(other.related.join(''));
