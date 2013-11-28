@@ -196,3 +196,7 @@ path.chord {
 #circle:hover path.fade {
   display: none;
 }
+
+.instructions>li {
+  font-size: 24px;
+}
