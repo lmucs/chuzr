@@ -12,22 +12,21 @@ var Ingestor = function () {
       });
       res.on('end', function () {
         var result = parse(data);
-        massage(result);
+        console.log(massage(result));
       });
     }).on('error', function (err) {
     });
   };
 
-  var _generateIngestionProcess = function (massageTree) {
-    return function (url, parseFormat) {
-      var parse = parser.generate(parseFormat);
-      _retrieveData(url, parse, massageTree);
+  var _generateIngestionProcess = function (massageProcess) {
+    return function (url) {
+      _retrieveData(url, parser["json"], massageProcess);
     };
   };
 
   return {
-    shopzillaProduct : _generateIngestionProcess(massage.shopzillaProduct),
-    shopzillaCategory : _generateIngestionProcess(massage.shopzillaCategory)
+    products: _generateIngestionProcess(massage.products),
+    taxonomy: _generateIngestionProcess(massage.taxonomy)
   };
 }();
 

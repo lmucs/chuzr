@@ -1,7 +1,21 @@
 var assert = require('assert'),
-    massage = require('../massager');
+    massage = require('../massager'),
+    shopzillaProducts = require('./testObjects/shopzillaProducts');
 
 describe('Massager', function () {
+
+  // describe('#products', function () {
+
+  //   it('should return an empty string when the query returns nothing', function () {
+  //     assert.equal("", massage.products(undefined));
+  //   });
+
+  //   it('should return a string of chuzr-style product loading commands', function () {
+  //     var commands = "";
+  //     assert.equal(commands, massage.products(shopzillaProducts));
+  //   });
+
+  // });
 
   describe('#taxonomy', function () {
 
