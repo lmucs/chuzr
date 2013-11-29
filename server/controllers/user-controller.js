@@ -23,6 +23,27 @@ module.exports = function (app) {
       res.send(201, user);
     });
   });
+  
+  app.post('/', function (req, res) {
+    //Inspired by Ktah.
+    var input = req.body,
+        email = input.inputEmail,
+        pass = input.inputPassword,
+        session = req.session;
+        
+    User.findOne({email: email}, function (err, user) {
+      user.checkPassword(pass, function (err, isMatch) {
+        if (err) res.json(500, err);
+        if (isMatch) {
+          session.isLoggedIn = true;
+          session.userInfo = user;
+          res.redirect('/home');
+        } else {
+          res.json(400, {message: "Invalid email/password combination"});
+        }
+      });
+    });
+  });
 
   app.get('/users/:id', function (req, res) {
     var id = req.params.id;
