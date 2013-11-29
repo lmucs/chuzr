@@ -12,9 +12,14 @@
 // response if the credentials are bad.
 
 var express = require('express');
+var User = require('../models/user');
 
 module.exports = express.basicAuth(function(user, pass) {
-    
-  // To be replaced with actual users and passes
-  return (user === 'testUser' && pass === 'testPass');
+  User.findOne({login: user}, function (err, user) {
+    if (err) throw err;
+    user.checkPassword(pass, function (err, isMatch) {
+      if (err) throw err;
+      return isMatch;
+    })
+  })
 });
