@@ -26,7 +26,7 @@ describe('Massager', function () {
         { "id" : 3, "name" : "handbags" }
       ]};
       var results = massage.taxonomy(fakeTaxonomy);
-      assert.equal(fakeTaxonomy, results);
+      assert.equal(results, fakeTaxonomy);
     });
 
   });
