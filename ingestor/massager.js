@@ -8,9 +8,9 @@ var Massager = function () {
             var biggestImage = shopzillaProducts[p].images.image.length-1;
             var chuzrProduct =  {
                 "name" : shopzillaProducts[p].title,
-                "brand" : shopzillaProducts[p].brand.name,
+                "brand" : (shopzillaProducts[p].brand) ? shopzillaProducts[p].brand.name : null,
                 "description" : shopzillaProducts[p].description,
-                "image" : (biggestImageIndex >= 0) ? shopzillaProducts[p].images.image[biggestImage].value : null,
+                "image" : (biggestImage >= 0) ? shopzillaProducts[p].images.image[biggestImage].value : null,
                 "url" : shopzillaProducts[p].url.value,
                 "price" : {
                     "max" : (shopzillaProducts[p].priceSet) ? (shopzillaProducts[p].priceSet.maxPrice.value) : (shopzillaProducts[p].price.value),
