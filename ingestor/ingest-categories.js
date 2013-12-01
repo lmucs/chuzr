@@ -7,4 +7,4 @@ var env = process.env.NODE_ENV || 'development',
     categoryUrl = url.generate(category);
 
 console.log('use ' + config.db);
-ingest.category(categoryUrl);
+ingest.taxonomy(categoryUrl);

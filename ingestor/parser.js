@@ -1,3 +1,3 @@
 module.exports = {
-    "json" : function (url) { return JSON.parse(data); }
+    "json" : function (url) { return JSON.parse(url); }
 };
