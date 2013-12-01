@@ -1,32 +1,32 @@
 var Massager = function () {
 
     var _products = function (shopzillaObject) {
-      var chuzrProducts = "";
+      var chuzrProducts = [];
       if (shopzillaObject) {
-        var productArray = shopzillaObject.products.product;
-        for (var p = 0; p < productArray.length; p++) {
-            var biggestImage = productArray[p].images.image.length-1;
+        var shopzillaProducts = shopzillaObject.products.product;
+        for (var p = 0; p < shopzillaProducts.length; p++) {
+            var biggestImage = shopzillaProducts[p].images.image.length-1;
             var chuzrProduct =  {
-                "name" : productArray[p].title,
-                "brand" : productArray[p].brand.name,
-                "description" : productArray[p].description,
-                "image" : (biggestImageIndex >= 0) ? productArray[p].images.image[biggestImage].value : null,
-                "url" : productArray[p].url.value,
+                "name" : shopzillaProducts[p].title,
+                "brand" : shopzillaProducts[p].brand.name,
+                "description" : shopzillaProducts[p].description,
+                "image" : (biggestImageIndex >= 0) ? shopzillaProducts[p].images.image[biggestImage].value : null,
+                "url" : shopzillaProducts[p].url.value,
                 "price" : {
-                    "max" : (productArray[p].priceSet) ? (productArray[p].priceSet.maxPrice.value) : (productArray[p].price.value),
-                    "min" : (productArray[p].priceSet) ? (productArray[p].priceSet.minPrice.value) : (productArray[p].price.value)
+                    "max" : (shopzillaProducts[p].priceSet) ? (shopzillaProducts[p].priceSet.maxPrice.value) : (shopzillaProducts[p].price.value),
+                    "min" : (shopzillaProducts[p].priceSet) ? (shopzillaProducts[p].priceSet.minPrice.value) : (shopzillaProducts[p].price.value)
                 },
-                "shopzillaId" : productArray[p].id,
-                "categoryId" : productArray[p].categoryId
+                "shopzillaId" : shopzillaProducts[p].id,
+                "categoryId" : shopzillaProducts[p].categoryId
             };
-            chuzrProducts = chuzrProducts + "db.products.insert(" + JSON.stringify(chuzrProduct) + ");";
+            chuzrProducts.push(chuzrProduct);
         };
       }
       return chuzrProducts;
   };
 
     var _taxonomy = function (taxonomyTree) {
-      return 'db.taxonomy.insert(' + JSON.stringify(taxonomyTree) + ');';
+      return taxonomyTree;
     };
 
     return {

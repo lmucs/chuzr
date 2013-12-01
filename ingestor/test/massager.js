@@ -19,17 +19,14 @@ describe('Massager', function () {
 
   describe('#taxonomy', function () {
 
-    it('should return the string that will load the taxonomy into the database', function () {
+    it('should return the taxonomy exactly the same', function () {
       var fakeTaxonomy = { "categories" : [
         { "id" : 1, "name" : "shoes" },
         { "id" : 2, "name" : "dresses" },
         { "id" : 3, "name" : "handbags" }
       ]};
       var results = massage.taxonomy(fakeTaxonomy);
-      assert.equal(
-        'db.taxonomy.insert(' + JSON.stringify(fakeTaxonomy) + ');',
-        results
-      );
+      assert.equal(fakeTaxonomy, results);
     });
 
   });
