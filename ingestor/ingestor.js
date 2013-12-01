@@ -36,10 +36,21 @@ var Ingestor = function () {
 
   var _taxonomy = function (url) {
     _retrieveData(url, function (data) {
+
       var result = parse(data),
           shopzillaTaxonomy = massage.taxonomy(result);
-      console.log('use ' + config.db);
-      console.log('db.taxonomy.insert(%j);', shopzillaTaxonomy);
+
+      MongoClient.connect(config.dbPath, function(err, db) {
+        if (err) throw err;
+        db.collection('taxonomy').drop();
+        var taxonomy = db.collection('taxonomy');
+        taxonomy.insert(shopzillaTaxonomy, function (err, result) {
+          if (err) throw err;
+          console.log('All your data-base belongs to us');
+          db.close();
+        });
+      });
+
     });
   };
 
