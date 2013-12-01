@@ -4,21 +4,14 @@ block content
   h1= title
   div(class='input-prepend')
     div(class='btn-group')
-      select(class='span12')
-        option: 'Name'
-        option: 'Type'
+      select(id='search-menu', class='span12')
+        option(value='name') Name
+        option(value='brand') Brand
     input(class='span9', id='prependDropdownButton', type='search')
     div(button id="find-products" class="btn btn-mini" type="button")
       p go
 
   div(id='results')
-    
-  div(class='product-capsule')
-    div(class='capsule-top')
-      a(href="http://localhost:3001/play") Fruit Plushes
-    div(class='capsule-image')
-      img(src="http://img1.etsystatic.com/011/0/6005933/il_340x270.437163685_l3qf.jpg")
-    div(class='capsule-bottom')
   
   script(src='/js/browse.js')
   

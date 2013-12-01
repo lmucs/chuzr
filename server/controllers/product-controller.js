@@ -7,11 +7,17 @@ module.exports = function (app) {
 
   app.get('/products', function (req, res) {
     search = {}
+    if (req.query.name) {
+      search['name'] = {'$regex': req.query.name, '$options': 'i'};
+    }
+    if (req.query.brand) {
+      search['brand'] = {'$regex': req.query.brand, '$options': 'i'};
+    }
     if (req.query.search) {
       search = {
         '$or': [
           {name: {'$regex': '^' + req.query.search, '$options': 'i'}},
-          {categories: {'$in': [req.query.search]}}
+          {brand: {'$in': [req.query.search]}}
         ]
       }
     }

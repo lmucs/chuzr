@@ -31,10 +31,14 @@ console.log('Loading controllers')
 fs.readdirSync(__dirname + '/controllers').forEach(function (file) {
   if (file.match('.js$')) {
     require(__dirname + '/controllers/' + file)(app);
-    console.log(file);
   }
 });
 
-http.createServer(app).listen(app.get('port'), function () {
-  console.log('Chuzr API running on port %s, environment=%s', app.get('port'), env);
-});
+// Start the server only if this is run as a command
+if (!module.parent) {
+  http.createServer(app).listen(app.get('port'), function () {
+    console.log('Chuzr API running on port %s, environment=%s', app.get('port'), env);
+  });
+} else {
+  module.exports = app;
+}

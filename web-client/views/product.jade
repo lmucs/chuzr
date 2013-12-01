@@ -1,0 +1,23 @@
+extends layout
+
+
+block content
+  link(href='/stylesheets/product.css', rel='stylesheet')
+  script(src='/js/product.js')
+  h1(class='product-name' product-id=id)
+  br
+  div(class='product-image-rating row')
+    img(class='span8')
+    span(class='info-block current-product-rating span3') 
+      h3 Current Rating:
+      div(class='rating')
+      a()
+        button(id='rate-button' class='btn btn-info') Rate this Product
+  div(class='url-to-purchase row')
+    a()
+      button(id='url-button' class='btn btn-info btn-block span7') Purchase this Product
+  div(class='info-block product-description row')
+    h3 Description:
+    div(class='description')
+  div(class='info-block similar-products row')
+    h3 Similar Products:
