@@ -27,10 +27,10 @@ describe('Massager', function () {
       ]};
       var results = massage.taxonomy(fakeTaxonomy);
       assert.equal(
-        'db.taxonomy.insert(' + JSON.stringify(fakeTaxonomy) + ');',
-        results
+        results,
+       'db.taxonomy.insert(' + JSON.stringify(fakeTaxonomy) + ');'
       );
-    });
+   });
 
   });
 
