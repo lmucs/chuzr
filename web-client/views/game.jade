@@ -1,21 +1,18 @@
 extends layout
 
-block css
-  link(href='/stylesheets/game.css', rel='stylesheet')
-
 block content
-  h1 Super Awesome Game
-  h3(id='header') The ChuzOff:
+  div(id="header")
+    h3 The ChuzOff:
   div(id='chuzOff')
-    div(class='product' id='leftProduct')
-      div(id='productContainerLeft')
-        div(id='leftBanner')
-        img(class='productImg', src='http://www.thenoisecast.com/wp-content/uploads/2011/02/shake-weight.png')
-        div(id='leftTitle') Shake Weight
-        div(class='highlight')
-    div(class='product' id='rightProduct')
-      div(id='productContainerRight')
-        div(id='rightBanner')
-        img(class='productImg', src='http://info.roosterbank.com/blog/wp-content/uploads/2012/10/Furby2012Purple.jpg')
-        div(id='rightTitle') Furby
-        div(class='highlight')
+    div(class='product highlight' id='leftProduct')
+      img(class='productImg thumbnail' id='productImgLeft' src='http://placehold.it/200x300')
+      div(id='leftTitle') Shake Weight
+    div(class='product highlight' id='rightProduct')
+      img(class='productImg thumbnail' id='productImgRight' src='http://placehold.it/200x300')
+      div(id='rightTitle') Furby
+
+  div(id="results")
+    h3 Standings
+    table(id="standings" class="table table-hover table-condensed")
+
+  script(src='/js/chuzoff.js')

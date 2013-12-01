@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "optimist": "latest",
+    "request": "latest"
+  }
+}

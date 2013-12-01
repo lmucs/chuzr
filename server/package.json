@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "mocha -R list"
   },
   "dependencies": {
     "express": "3.3.8",
@@ -13,6 +14,7 @@
     "supertest": "latest",
     "cors": "latest",
     "mocha": "latest",
+    "bcrypt-nodejs": "latest",
     "async": "latest"
   }
 }

@@ -1,10 +1,8 @@
-Coupon = require('../models/coupon')
+var Coupon = require('../models/coupon');
+var auth = require('../utils/authentication');
+var pagination = require('../utils/pagination');
 
 module.exports = function (app) {
-
-  function pagination(req) {
-    return {skip: +req.query.skip || 0, limit: +req.query.limit || 10};
-  }
 
   app.get('/coupons', function (req, res) {
     search = {};
@@ -12,12 +10,10 @@ module.exports = function (app) {
       search['issuer'] = {'$regex': req.query.issuer, '$options': 'i'};
     }
     if (req.query.status === 'active') {
-      var currentDate = new Date();
-      search['expirationDate'] = {'$gte': currentDate};
+      search['expirationDate'] = {'$gte': new Date()};
     }
     if (req.query.status === 'expired') {
-      var currentDate = new Date();
-      search['expirationDate'] = {'$lt': currentDate};
+      search['expirationDate'] = {'$lt': new Date()};
     }
     console.log("Searching Coupons: %j", search);
     Coupon.find(search, null, pagination(req), function (err, docs) {
@@ -26,7 +22,7 @@ module.exports = function (app) {
     });
   });
   
-  app.post('/coupons', function (req, res) {
+  app.post('/coupons', auth, function (req, res) {
     Coupon.create(req.body, function (err, coupon) {
       if (err) res.json(400, err);
       res.send(201, coupon);
@@ -35,14 +31,14 @@ module.exports = function (app) {
 
   app.get('/coupons/:id', function (req, res) {
     var id = req.params.id;
-    Coupon.findById(id, null, function (err, coupon) {
+    Coupon.findById(id, function (err, coupon) {
       if (err) res.json(400, err);
       if (coupon === null) res.json(404, {'No such coupon': id});
       res.json(coupon);
     });
   });
 
-  app.put('/coupons/:id', function (req, res) {
+  app.put('/coupons/:id', auth, function (req, res) {
     var id = req.params.id;
     Coupon.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) res.json(400, err);
@@ -50,7 +46,7 @@ module.exports = function (app) {
     });
   });
 
-  app.delete('/coupons/:id', function (req, res) {
+  app.delete('/coupons/:id', auth, function (req, res) {
     var id = req.params.id;
     Coupon.remove({_id: id}, function (err) {
       if (err) res.json(400, err);
