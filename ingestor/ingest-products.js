@@ -30,10 +30,10 @@ MongoClient.connect(config.dbPath, function(err, db) {
     function (err, results) {
       var categories = results[0].idsAndNames;
       for (c in categories) {
-        var categoryFilter = "&categoryId=" + categories[c].id;
-        var productUrl = productUrlRaw + categoryFilter;
-        console.log(productUrl);
-        ingest.shopzillaProduct(productUrl);
+        var category = categories[c],
+            categoryFilter = "&categoryId=" + category.id,
+            productUrl = productUrlRaw + categoryFilter;
+        ingest.products(productUrl, category);
       }
       db.close();
     }
