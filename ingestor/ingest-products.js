@@ -40,7 +40,6 @@ MongoClient.connect(config.dbPath, function(err, db) {
         
         ingest.products(productUrl, category, db);
       }
-      //db.close();
     }
   );
 

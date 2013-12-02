@@ -5,6 +5,7 @@
   "scripts": { },
   "dependencies": {
     "mongodb": "1.3.20",
-    "mocha": "0.3.x"
-  }
+    "mocha": "0.3.x",
+    "node-ftp": "latest"
+ }
 }

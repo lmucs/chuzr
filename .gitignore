@@ -1,5 +1,6 @@
 analyzer/.DS_Store
-ingestor/config/api.js
+ingestor/config/shopzilla/api.js
+ingestor/config/shopzilla/ftp.js
 node_modules
 web-client/public/stylesheets/*.css
 .project
