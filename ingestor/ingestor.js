@@ -22,24 +22,17 @@ var Ingestor = function () {
     });
   };
 
-  var _products = function (url, category) {
+  var _products = function (url, category, db) {
     _retrieveData(url, function (data) {
 
       var result = parse(data),
-          chuzrProducts = massage.products(result, category);
-
-      MongoClient.connect(config.dbPath, function(err, db) {
-        if (err) throw err;
-
-        db.collection('products').drop();
-        var products = db.collection('products');
+      chuzrProducts = massage.products(result, category),
+      products = db.collection('products');
 
         for (p in chuzrProducts) {
           var product = chuzrProducts[p];
           products.insert(product, function (err, res) { if (err) throw err; });
         }
-        db.close();
-      });
 
     });
   };

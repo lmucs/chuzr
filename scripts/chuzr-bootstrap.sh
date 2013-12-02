@@ -1,2 +1,2 @@
 node ../ingestor/ingest-categories.js
-node ../ingestor/ingest-products.js | mongo
+node ../ingestor/ingest-products.js
