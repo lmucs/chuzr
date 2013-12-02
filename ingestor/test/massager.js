@@ -4,6 +4,17 @@ var assert = require('assert'),
 
 describe('Massager', function () {
 
+  describe('#image', function () {
+
+    it('should return an empty object if there are no shopzilla images', function () {
+      var shopzillaImageObjectOne = { "image" : [] },
+          shopzillaImageObjectTwo = {};
+      assert.deepEqual({}, massage.images(shopzillaImageObjectOne));
+      assert.deepEqual({}, massage.images(shopzillaImageObjectTwo));
+    });
+
+  });
+
   // describe('#products', function () {
 
   //   it('should return an empty string when the query returns nothing', function () {
