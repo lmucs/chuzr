@@ -13,26 +13,26 @@ var Massager = function () {
   };
 
   var _images = function (imageObject) {
-    var shopzillaImages = imageObject.images,
-        chuzrImages = {};
-
-    if (shopzillaImages !== undefined) {
-      for (i in shopzillaImages) {
-        var image = shopzillaImages[i];
-        chuzrImages[image.xsize] = image.value;
+    var chuzrImages = {};
+    if (imageObject) {
+      var shopzillaImages = imageObject.image;
+      if (shopzillaImages) {
+        for (i in shopzillaImages) {
+          var image = shopzillaImages[i];
+          chuzrImages[image.xsize] = image.value;
+        }
       }
     }
-
     return chuzrImages;
   };
 
   var _product = function (shopzillaProduct, category) {
     var chuzrProduct =  {
-        "name" : shopzillaProduct.title,
-        "brand" : (shopzillaProduct.brand) ? shopzillaProducts[p].brand.name : null,
-        "description" : shopzillaProduct.description,
-        "images" : massageImages(shopzillaProduct.images),
-        "url" : shopzillaProduct.url.value,
+        "name" : shopzillaProduct.title || null,
+        "brand" : (shopzillaProduct.brand) ? shopzillaProduct.brand.name : null,
+        "description" : shopzillaProduct.description || null,
+        "images" : _images(shopzillaProduct.images),
+        "url" : shopzillaProduct.url.value || null,
         "price" : {
             "max" : (shopzillaProduct.priceSet) ? (shopzillaProduct.priceSet.maxPrice.value) : (shopzillaProduct.price.value),
             "min" : (shopzillaProduct.priceSet) ? (shopzillaProduct.priceSet.minPrice.value) : (shopzillaProduct.price.value)
