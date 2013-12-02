@@ -28,11 +28,16 @@ MongoClient.connect(config.dbPath, function(err, db) {
       }
     }],
     function (err, results) {
+
+      if(err) throw err;
+
       var categories = results[0].idsAndNames;
       for (c in categories) {
-        var categoryFilter = "&categoryId=" + categories[c].id;
-        productUrl = productUrlRaw + categoryFilter;
-        ingest.products(productUrl);
+        var category = categories[c],
+            categoryFilter = "&categoryId=" + category.id,
+            productUrl = productUrlRaw + categoryFilter;
+        
+        ingest.products(productUrl, category);
       }
       db.close();
     }

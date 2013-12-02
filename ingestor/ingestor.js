@@ -28,8 +28,7 @@ var Ingestor = function () {
       var result = parse(data),
           chuzrProducts = massage.products(result, category);
 
-      MongoClient.connect(config.dbPath, function (err, db) {
-
+      MongoClient.connect(config.dbPath, function(err, db) {
         if (err) throw err;
 
         db.collection('products').drop();
@@ -39,9 +38,7 @@ var Ingestor = function () {
           var product = chuzrProducts[p];
           products.insert(product, function (err, res) { if (err) throw err; });
         }
-
         db.close();
-
       });
 
     });
