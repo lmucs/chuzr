@@ -5,8 +5,8 @@ var env = process.env.NODE_ENV || 'development',
     ingest = require('./ingestor'),
     url = require('./url'),
     product = require('./config/shopzilla/product'),
-    productUrlRaw = url.generate(product);
-
+    productUrlRaw = url.generate(product),
+    productUrl = '';
 
 MongoClient.connect(config.dbPath, function(err, db) {
 
@@ -31,9 +31,8 @@ MongoClient.connect(config.dbPath, function(err, db) {
       var categories = results[0].idsAndNames;
       for (c in categories) {
         var categoryFilter = "&categoryId=" + categories[c].id;
-        var productUrl = productUrlRaw + categoryFilter;
-        console.log(productUrl);
-        ingest.shopzillaProduct(productUrl);
+        productUrl = productUrlRaw + categoryFilter;
+        ingest.products(productUrl);
       }
       db.close();
     }
