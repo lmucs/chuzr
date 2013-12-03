@@ -6,12 +6,7 @@ var productSchema = new Schema({
   	name 			     : String
   , brand 			   : String
   , description 	 : String
-  , images			   : {
-        fourHundred   : String, 
-        oneSixty      : String,  
-        oneHundred    : String,
-        sixty         : String
-    }
+  , images			   : [String]
   , url 			     : String
   , price			      : {
   		  max		 : Number
