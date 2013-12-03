@@ -1,7 +1,7 @@
 var http = require('http'),
+    parse = require('./parser')["json"],
     massage = require('./massager'),
-    parser = require('./parser'),
-    parse = parser["json"],
+    load = require('./loader'),
 
     env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env],
@@ -22,38 +22,19 @@ var Ingestor = function () {
     });
   };
 
-  var _products = function (url, category, db) {
+  var _products = function (url, category) {
     _retrieveData(url, function (data) {
-
       var result = parse(data),
-      chuzrProducts = massage.products(result, category),
-      products = db.collection('products');
-
-        for (p in chuzrProducts) {
-          var product = chuzrProducts[p];
-          products.insert(product, function (err, res) { if (err) throw err; });
-        }
-
+          chuzrProducts = massage.products(result, category);
+      load.products(chuzrProducts);
     });
   };
 
   var _taxonomy = function (url) {
     _retrieveData(url, function (data) {
-
       var result = parse(data),
           shopzillaTaxonomy = massage.taxonomy(result);
-
-      MongoClient.connect(config.dbPath, function(err, db) {
-        if (err) throw err;
-        db.collection('taxonomy').drop();
-        var taxonomy = db.collection('taxonomy');
-        taxonomy.insert(shopzillaTaxonomy, function (err, result) {
-          if (err) throw err;
-          console.log('All your data-base belongs to us');
-          db.close();
-        });
-      });
-
+      load.taxonomy(shopzillaTaxonomy);
     });
   };
 
