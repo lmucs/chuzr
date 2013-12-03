@@ -22,11 +22,12 @@ var Ingestor = function () {
     });
   };
 
-  var _products = function (url, category) {
+  var _products = function (url, category, db) {
     _retrieveData(url, function (data) {
       var result = parse(data),
           chuzrProducts = massage.products(result, category);
-      load.products(chuzrProducts);
+      console.log("Loading products from: " + category.name);
+      load.products(chuzrProducts, db);
     });
   };
 

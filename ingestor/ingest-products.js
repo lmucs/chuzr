@@ -1,6 +1,6 @@
 var env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env],
-    MongoClient = require('mongodb').MongoClient;
+    MongoClient = require('mongodb').MongoClient,
 
     ingest = require('./ingestor'),
     url = require('./url'),
@@ -12,6 +12,8 @@ MongoClient.connect(config.dbPath, function(err, db) {
 
   if (err) throw err;
 
+  console.log("Connected to database\n");
+  db.collection('products').drop();
   var taxonomy = db.collection('taxonomy');
   taxonomy.aggregate([
     { $unwind : "$taxonomy.categories.category" },
@@ -28,20 +30,19 @@ MongoClient.connect(config.dbPath, function(err, db) {
       }
     }],
     function (err, results) {
+
       if(err) throw err;
 
       var categories = results[0].idsAndNames;
-     
-      db.collection('products').drop(); 
+
+      console.log("Product ingestion beginning\n");
       for (c in categories) {
         var category = categories[c],
             categoryFilter = "&categoryId=" + category.id,
             productUrl = productUrlRaw + categoryFilter;
-        
         ingest.products(productUrl, category, db);
       }
-      //db.close();
-    }
-  );
+
+  });
 
 });
