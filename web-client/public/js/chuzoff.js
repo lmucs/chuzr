@@ -81,7 +81,7 @@ $(function() {
         products[product1Index].chuzOffs++;
         products[product2Index].chuzOffs++;
 
-        if($(this).attr("id") === "leftHighlight") {
+        if($(this).attr("id") === "leftProduct") {
             products[product1Index].chuzOffWins++;
         } else {
             products[product2Index].chuzOffWins++;            
