@@ -1,33 +1,47 @@
 var http = require('http'),
+    parse = require('./parser')["json"],
     massage = require('./massager'),
-    parser = require('./parser');
+    load = require('./loader'),
+
+    env = process.env.NODE_ENV || 'development',
+    config = require('./config/config')[env],
+    MongoClient = require('mongodb').MongoClient;
 
 var Ingestor = function () {
 
-  var _retrieveData = function (url, parse, massage) {
+  var _retrieveData = function (url, process) {
     var data = '';
     http.get(url, function (res) {
       res.on('data', function (chunk) {
         data += chunk;
       });
       res.on('end', function () {
-        var result = parse(data);
-        massage(result);
+        process(data);
       });
     }).on('error', function (err) {
     });
   };
 
-  var _generateIngestionProcess = function (massageTree) {
-    return function (url, parseFormat) {
-      var parse = parser.generate(parseFormat);
-      _retrieveData(url, parse, massageTree);
-    };
+  var _products = function (url, category, db) {
+    _retrieveData(url, function (data) {
+      var result = parse(data),
+          chuzrProducts = massage.products(result, category);
+      console.log("Loading products from: " + category.name);
+      load.products(chuzrProducts, db);
+    });
+  };
+
+  var _taxonomy = function (url) {
+    _retrieveData(url, function (data) {
+      var result = parse(data),
+          shopzillaTaxonomy = massage.taxonomy(result);
+      load.taxonomy(shopzillaTaxonomy);
+    });
   };
 
   return {
-    shopzillaProduct : _generateIngestionProcess(massage.shopzillaProduct),
-    shopzillaCategory : _generateIngestionProcess(massage.shopzillaCategory)
+    products: _products,
+    taxonomy: _taxonomy
   };
 }();
 

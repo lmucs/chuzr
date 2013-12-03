@@ -2,11 +2,10 @@
   "name": "chuzr-feed-processor",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
+  "scripts": { },
   "dependencies": {
-    "mongoose": "3.x.x",
-    "mocha": "0.3.x"
-  }
+    "mongodb": "1.3.20",
+    "mocha": "0.3.x",
+    "node-ftp": "latest"
+ }
 }
