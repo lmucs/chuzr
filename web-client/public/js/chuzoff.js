@@ -61,7 +61,7 @@ $(function() {
     }
 
     products.forEach(function(product, i) {
-        product.imageLink = product.images[160];
+        product.imageLink = product.images[400];
         product.chuzOffs = 0;
         product.chuzOffWins = 0;
         product.winPercent = 0;
