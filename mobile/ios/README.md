@@ -1,0 +1,1 @@
+An iOS client for Chuzr

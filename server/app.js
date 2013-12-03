@@ -17,12 +17,6 @@ if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// if(app.get('env') === 'test') {
-//   app.use(express.basicAuth(function(user, pass) {
-//     return user === 'testUser' && pass === 'testPass';
-//   }));
-// }
-
 console.log('Connecting to Mongo at %s', config.db)
 mongoose.connect(config.db);
 
@@ -40,6 +34,11 @@ fs.readdirSync(__dirname + '/controllers').forEach(function (file) {
   }
 });
 
-http.createServer(app).listen(app.get('port'), function () {
-  console.log('Chuzr API running on port %s, environment=%s', app.get('port'), env);
-});
+// Start the server only if this is run as a command
+if (!module.parent) {
+  http.createServer(app).listen(app.get('port'), function () {
+    console.log('Chuzr API running on port %s, environment=%s', app.get('port'), env);
+  });
+} else {
+  module.exports = app;
+}

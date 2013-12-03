@@ -1,20 +1,10 @@
-User = require('../models/user')
+var User = require('../models/user');
 var express = require('express');
+var auth = require('../utils/authentication');
+var pagination = require('../utils/pagination');
 
 module.exports = function (app) {
-
-  // TODO: Needs to be an HTTP 400 eventually.  Actually consider middleware validator.
-  function validateUserId(id) {
-    if (/\D/.test(id)) {
-      throw Error('Illegal id');
-    }
-  return id;
-  };
   
-  function pagination (req) {
-    return {skip: +req.query.skip || 0, limit: +req.query.limit || 10 }
-  }
-
   app.get('/users', function (req, res) {
     search = {};
     if (req.query.name) {
@@ -27,7 +17,7 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/users', function (req, res) {
+  app.post('/users', auth, function (req, res) {
     User.create(req.body, function(err, user) {
       if (err) res.json(400, err)
       res.send(201, user);
@@ -36,23 +26,30 @@ module.exports = function (app) {
 
   app.get('/users/:id', function (req, res) {
     var id = req.params.id;
-    User.findById(id, null, function (err, user) {
+    User.findById(id, function (err, user) {
       if (err) res.json(400, err)
-      if (user === null) res.json(404)
+      if (user === null) res.json(404, {"No such user": id})
       res.json(user)
     });
   });
 
-  app.put('/users/:id', function (req, res) {
+  app.put('/users/:id', auth, function (req, res) {
     var id = req.params.id;
+    User.findOne({login: req.user}, function (err, user) {
+      if (user._id != id) {
+        if (!user.isAdmin) {
+          res.json(403, {message: "You may only modify your own account."});
+        }
+      }
+    });
     console.log(req.body)
-    User.update({_id: id}, req.body, function (err, doc) {
+    User.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) res.json(400, err)
-      res.json(200, {Updated: doc});
+      res.json(200, {'Number updated': numUpdated});
     });
   });
 
-  app.delete('/users/:id', function (req, res) {
+  app.delete('/users/:id', auth, function (req, res) {
     var id = req.params.id;
     User.remove({_id: id}, function (err) {
       if (err) res.json(400, err)

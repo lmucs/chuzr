@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  link(rel="stylesheets", href="login.styl")
+  div(class='row-fluid')
+    div(class='span7 hero-unit', id ='login')
+      h1(class="text-center") Welcome to Chuzr
+      hr
+      center(id='login-content')
+        button(class='btn btn-large btn-primary',href='#') Log-in with Facebook
+        br
+        h4 or 
+        h3 Sign-in
+        form(class='form-vertical')
+          input(type='text', id='inputEmail', placeholder='Email')
+          br
+          input(type='password', id='inputPassword', placeholder='Password')
+          br
+          button(type='submit', class='btn', id='signin') Sign In

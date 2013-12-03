@@ -175,7 +175,7 @@ describe('Votes Controller', function(){
     })
     it('should get by id without error', function (done) {
       // Create the vote.
-      request(url).post('/votes').send(voteOne).end(function (err, res) {
+      request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
 
@@ -191,21 +191,21 @@ describe('Votes Controller', function(){
       async.series([
         function(){
           // Create 3 votes.
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
+          request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
+          request(url).post('/votes').send(voteTwo).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
+          request(url).post('/votes').send(voteThree).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -227,28 +227,28 @@ describe('Votes Controller', function(){
       // Create 4 votes.
       async.series([
         function(){
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
+          request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
+          request(url).post('/votes').send(voteTwo).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
+          request(url).post('/votes').send(voteThree).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){  
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
+          request(url).post('/votes').send(voteFour).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -270,28 +270,28 @@ describe('Votes Controller', function(){
       async.series([
         function(){
           // Create 4 votes.
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
+          request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
+          request(url).post('/votes').send(voteTwo).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
+          request(url).post('/votes').send(voteThree).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
+          request(url).post('/votes').send(voteFour).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -313,28 +313,28 @@ describe('Votes Controller', function(){
       async.series([
         function(){
           // Create 4 votes.
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
+          request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
+          request(url).post('/votes').send(voteTwo).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
+          request(url).post('/votes').send(voteThree).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
+          request(url).post('/votes').send(voteFour).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -358,77 +358,77 @@ describe('Votes Controller', function(){
       async.series([
         function(){
           // Create 11 votes
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
+          request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
+          request(url).post('/votes').send(voteTwo).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
+          request(url).post('/votes').send(voteThree).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
+          request(url).post('/votes').send(voteFour).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFive).end(function (err, res) {
+          request(url).post('/votes').send(voteFive).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteSix).end(function (err, res) {
+          request(url).post('/votes').send(voteSix).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteSeven).end(function (err, res) {
+          request(url).post('/votes').send(voteSeven).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteEight).end(function (err, res) {
+          request(url).post('/votes').send(voteEight).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteNine).end(function (err, res) {
+          request(url).post('/votes').send(voteNine).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTen).end(function (err, res) {
+          request(url).post('/votes').send(voteTen).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteEleven).end(function (err, res) {
+          request(url).post('/votes').send(voteEleven).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -450,28 +450,28 @@ describe('Votes Controller', function(){
       async.series([
         function(){
           // Create 4 votes
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
+          request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
+          request(url).post('/votes').send(voteTwo).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
+          request(url).post('/votes').send(voteThree).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
+          request(url).post('/votes').send(voteFour).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -494,84 +494,84 @@ describe('Votes Controller', function(){
       async.series([
         function(){
           // Create 12 votes
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
+          request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
+          request(url).post('/votes').send(voteTwo).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
+          request(url).post('/votes').send(voteThree).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
+          request(url).post('/votes').send(voteFour).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFive).end(function (err, res) {
+          request(url).post('/votes').send(voteFive).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteSix).end(function (err, res) {
+          request(url).post('/votes').send(voteSix).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteSeven).end(function (err, res) {
+          request(url).post('/votes').send(voteSeven).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteEight).end(function (err, res) {
+          request(url).post('/votes').send(voteEight).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteNine).end(function (err, res) {
+          request(url).post('/votes').send(voteNine).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTen).end(function (err, res) {
+          request(url).post('/votes').send(voteTen).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteEleven).end(function (err, res) {
+          request(url).post('/votes').send(voteEleven).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwelve).end(function (err, res) {
+          request(url).post('/votes').send(voteTwelve).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -593,35 +593,35 @@ describe('Votes Controller', function(){
       async.series([
         function(){
           // Create 5 votes
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
+          request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
+          request(url).post('/votes').send(voteTwo).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
+          request(url).post('/votes').send(voteThree).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
+          request(url).post('/votes').send(voteFour).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFive).end(function (err, res) {
+          request(url).post('/votes').send(voteFive).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -641,7 +641,7 @@ describe('Votes Controller', function(){
     
     it('should return a 404 when looking for a vote that doesn\'t exist', function (done) {
       // Create the vote.
-      request(url).post('/votes').send(voteOne).end(function (err, res) {
+      request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
 
@@ -658,14 +658,14 @@ describe('Votes Controller', function(){
       // Create two votes.
       async.series([
         function(){
-          request(url).post('/votes').send(voteTwelve).end(function (err, res) {
+          request(url).post('/votes').send(voteTwelve).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThirteen).end(function (err, res) {
+          request(url).post('/votes').send(voteThirteen).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -691,7 +691,7 @@ describe('Votes Controller', function(){
         },
         function(){
           // Create a third vote for this product and user
-          request(url).post('/votes').send(voteFourteen).end(function (err, res) {
+          request(url).post('/votes').send(voteFourteen).auth("testUser", "testPass").end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -699,7 +699,7 @@ describe('Votes Controller', function(){
         },
         function(){
           // Create a fourth vote for this product and user, but with a different ratingType
-          request(url).post('/votes').send(voteEighteen).end(function (err, res) {
+          request(url).post('/votes').send(voteEighteen).auth('testUser', 'testPass').end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -726,7 +726,7 @@ describe('Votes Controller', function(){
 
     it('should return one vote with ratingType = "comparison"', function (done) {
       // Create the vote.
-      request(url).post('/votes').send(voteEighteen).end(function (err, res) {
+      request(url).post('/votes').send(voteEighteen).auth('testUser', 'testPass').end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
 
@@ -742,7 +742,7 @@ describe('Votes Controller', function(){
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      request(url).post('/votes').send(voteOne).end(function (err, res) {
+      request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
         done();
@@ -750,7 +750,7 @@ describe('Votes Controller', function(){
     })
 
     it('should assign all properties on creation, including an _id', function (done) {
-      request(url).post('/votes').send(voteOne).end(function (err, res) {
+      request(url).post('/votes').send(voteOne).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.body.userId.should.equal(1);
         res.body.productId.should.equal(32);
@@ -762,7 +762,7 @@ describe('Votes Controller', function(){
     })
 
     it('should reject a rating higher than 10', function (done) {
-      request(url).post('/votes').send(voteFifteen).end(function (err, res) {
+      request(url).post('/votes').send(voteFifteen).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(400);
         done();
@@ -770,7 +770,7 @@ describe('Votes Controller', function(){
     })
 
     it('should reject a rating lower than 0', function (done) {
-      request(url).post('/votes').send(voteSixteen).end(function (err, res) {
+      request(url).post('/votes').send(voteSixteen).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(400);
         done();
@@ -778,7 +778,7 @@ describe('Votes Controller', function(){
     })
 
     it('should allow ratings that aren\'t a whole number', function (done) {
-      request(url).post('/votes').send(voteSeventeen).end(function (err, res) {
+      request(url).post('/votes').send(voteSeventeen).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
         done();
@@ -786,7 +786,7 @@ describe('Votes Controller', function(){
     })
     
     it('should reject a ratingType not in ["numeric", "comparison", "upDown"]', function (done) {
-      request(url).post('/votes').send(voteNineteen).end(function (err, res) {
+      request(url).post('/votes').send(voteNineteen).auth("testUser", "testPass").end(function (err, res) {
         if (err) throw err;
         res.should.have.status(400);
         done();

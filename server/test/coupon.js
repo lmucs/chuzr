@@ -68,7 +68,7 @@ function insertCoupons(coupons, callback) {
   var couponsRemaining = coupons.length;
   if (couponsRemaining === 0) callback();
   for (var i = 0; i < coupons.length; i++) {
-    request(url).post('/coupons').send(coupons[i]).end(function (err, res) {
+    request(url).post('/coupons').send(coupons[i]).auth("testUser", "testPass").end(function (err, res) {
       should.not.exist(err);
       res.should.have.status(201);
       if (--couponsRemaining === 0) callback();
@@ -103,7 +103,7 @@ describe('Coupon Controller', function() {
 
     it('should get by id correctly', function (done) {
       // Create the coupon.
-      request(url).post('/coupons').send(testCoupons[0]).end(function (err, res) {
+      request(url).post('/coupons').send(testCoupons[0]).auth("testUser", "testPass").end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
         res.should.be.json;
@@ -207,13 +207,13 @@ describe('Coupon Controller', function() {
     it('should delete correctly', function (done) {
 
       // Create the coupon
-      request(url).post('/coupons').send(testCoupons[0]).end(function (err, res) {
+      request(url).post('/coupons').send(testCoupons[0]).auth("testUser", "testPass").end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
         var id = res.body._id;
 
         // Delete that coupon
-        request(url).del('/coupons/' + id).end(function (err, res) {
+        request(url).del('/coupons/' + id).auth("testUser", "testPass").end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(200);
 
@@ -232,13 +232,13 @@ describe('Coupon Controller', function() {
     it('should update correctly', function (done) {
       
       // Create the coupon
-      request(url).post('/coupons').send(testCoupons[0]).end(function (err, res) {
+      request(url).post('/coupons').send(testCoupons[0]).auth("testUser", "testPass").end(function (err, res) {
         should.not.exist(err);
         res.should.have.status(201);
         var id = res.body._id;
         
         // Update that coupon
-        request(url).put('/coupons/' + id).send(testCoupons[1]).end(function (err, res) {
+        request(url).put('/coupons/' + id).send(testCoupons[1]).auth("testUser", "testPass").end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(200);
           

@@ -7,8 +7,24 @@
 
 var config = require('../config/config');
 var mongoose = require('mongoose');
+var http = require('http');
 
 process.env.NODE_ENV = 'test';
+process.env.PORT = 3000;
+var app = require('../app.js');
+var server = http.createServer(app);
+
+before(function (done) {
+  server.listen(app.get('port'), function (err) {
+    if (err) done(err);
+    console.log('Chuzr API running on port %s, environment=%s', app.get('port'), app.get('env'));
+    done();
+  });
+})
+
+after(function (done) {
+  server.close(done);
+});
 
 beforeEach(function (done) {
 
