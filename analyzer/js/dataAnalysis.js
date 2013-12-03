@@ -156,6 +156,16 @@ $("#test1").click( function() {
                 };
             
             renderTreemap(item);  
+        } else if(format === "CSV") {
+                // Need to implement code for actual download button.
+                // $('#test1').click(function(){})
+                $('#test1').click(function(){
+                    var data = dataJSON;
+                    if(data == '')
+                        return;
+                    
+                    JSONToCSV(data, item, true);
+                });
         }
     }
     
