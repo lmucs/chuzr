@@ -6,6 +6,27 @@ var pagination = require('../utils/pagination');
 module.exports = function (app) {
   
   app.get('/users', function (req, res) {
+    if (req.query.email && req.query.pass) {
+      User.findOne({email: req.query.email}, function (err, user) {
+        if (err) res.json(500, err);
+        if (!user) {
+          res.json(404, {message: 'No such user'});
+          return;
+        }
+        user.checkPassword(req.query.pass, function (err, isMatch) {
+          if (err) res.json(500, err);
+          if (isMatch) {
+            req.session.isLoggedIn = true;
+            req.session.userInfo = user;
+            res.json(200, user);
+          } else {
+            res.json(404, {message: "Invalid email/password combination"});
+          }
+        });
+      });
+      return;
+    }
+
     search = {};
     if (req.query.name) {
       search['name'] = {'$regex': '^' + req.query.name, '$options': 'i'}
@@ -17,31 +38,10 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/users', auth, function (req, res) {
+  app.post('/users', function (req, res) {
     User.create(req.body, function(err, user) {
       if (err) res.json(400, err)
       res.send(201, user);
-    });
-  });
-  
-  app.post('/', function (req, res) {
-    //Inspired by Ktah.
-    var input = req.body,
-        email = input.inputEmail,
-        pass = input.inputPassword,
-        session = req.session;
-        
-    User.findOne({email: email}, function (err, user) {
-      user.checkPassword(pass, function (err, isMatch) {
-        if (err) res.json(500, err);
-        if (isMatch) {
-          session.isLoggedIn = true;
-          session.userInfo = user;
-          res.redirect('/home');
-        } else {
-          res.json(400, {message: "Invalid email/password combination"});
-        }
-      });
     });
   });
 
@@ -78,4 +78,3 @@ module.exports = function (app) {
     });
   });
 }
-
