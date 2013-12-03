@@ -42,7 +42,7 @@ MongoClient.connect(config.dbPath, function(err, db) {
             productUrl = productUrlRaw + categoryFilter;
         ingest.products(productUrl, category, db);
       }
-
-  });
+    }
+  );
 
 });
