@@ -19,11 +19,11 @@ var Loader = function () {
   var _taxonomy = function (shopzillaTaxonomy) {
     MongoClient.connect(config.dbPath, function(err, db) {
       if (err) throw err;
-      db.collection('taxonomy').drop();
       var taxonomy = db.collection('taxonomy');
+      taxonomy.drop();
       taxonomy.insert(shopzillaTaxonomy, function (err, result) {
         if (err) throw err;
-        console.log('All your data-base belongs to us\n');
+        console.log('All your taxonomy data-base belongs to us\n');
         db.close();
       });
     });
