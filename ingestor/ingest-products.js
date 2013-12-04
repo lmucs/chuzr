@@ -1,6 +1,7 @@
 var env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env],
     MongoClient = require('mongodb').MongoClient,
+    async = require('async'),
 
     ingest = require('./ingestor'),
     url = require('./url'),
@@ -31,17 +32,29 @@ MongoClient.connect(config.dbPath, function(err, db) {
     }],
     function (err, results) {
 
-      if(err) throw err;
+      if (err) throw err;
 
-      var categories = results[0].idsAndNames;
+      var categories = results[0].idsAndNames,
+          ingestionProcesses = [];
 
       console.log("Product ingestion beginning\n");
       for (c in categories) {
         var category = categories[c],
             categoryFilter = "&categoryId=" + category.id,
             productUrl = productUrlRaw + categoryFilter;
-        ingest.products(productUrl, category, db);
+
+        ingestionProcesses.push(function (u, c) {
+          return function (callback) {
+            ingest.products(u, c, db);
+            callback();
+          };
+        }(productUrl, category));
       }
+
+      async.parallel(ingestionProcesses, function (res) {
+        db.close();
+      });
+
     }
   );
 
