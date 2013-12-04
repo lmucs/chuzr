@@ -24,12 +24,12 @@ MongoClient.connect(config.dbPath, function(err, db) {
     c.on('ready', function () {
     c.list('./xml-delta-1.0/', function(err, list) {
         for (var i = 0; i < list.length; i++ ) {
-          if (+list[i].name > +currentFtpValue){
-          console.log(+list[i].name);
+          if (+list[i].name > +currentFtpValue) {
           currentFtpValue++;
-          c.get(list[i].name + '/publisher_all_updates.xml', function(err, stream) {
+          c.get('./xml-delta-1.0/' + list[i].name + '/publisher_all_updates.xml.gz', function(err, stream) {
             if(err) throw err;
             var updates = stream.read();
+            console.log(updates);
             deltas.insert(updates, function(err, result) {
                 if (err) throw err;
                 console.log('updates inserted into deltas collection');
