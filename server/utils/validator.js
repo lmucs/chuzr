@@ -17,15 +17,16 @@ var User = require('../models/user');
 
 module.exports = {
 
-  mustBeAdmin: function (req, res, operation) {
-    User.findOne({login: req.user}, function (err, user) {
-      if (!user.isAdmin) {
-        res.json(403, {
-          error: "Admin role required",
-          operation: operation
-        }); 
-      }
-    });
+  adminCheck: function (req, res, operation) {
+    if (!req.session.userInfo && !req.session.userInfo.isAdmin) {
+      res.json(403, {
+        error: "Admin role required",
+        operation: operation
+      });
+      return false; 
+    } else {
+      return true;
+    }
   },
 
   mustHaveLegalRatingType: function (req, res) {

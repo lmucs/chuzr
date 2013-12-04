@@ -19,7 +19,8 @@ module.exports = {
     root: rootPath,
     app: {
       name: 'Chuzr'
-    }
+    },
+    secret: 'zombie feynman'
   },
 
   production: { }

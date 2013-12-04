@@ -1,5 +1,4 @@
 var Coupon = require('../models/coupon');
-var auth = require('../utils/authentication');
 var pagination = require('../utils/pagination');
 
 module.exports = function (app) {
@@ -22,7 +21,8 @@ module.exports = function (app) {
     });
   });
   
-  app.post('/coupons', auth, function (req, res) {
+  app.post('/coupons', function (req, res) {
+    // TODO Admin auth
     Coupon.create(req.body, function (err, coupon) {
       if (err) res.json(400, err);
       res.send(201, coupon);
@@ -38,7 +38,8 @@ module.exports = function (app) {
     });
   });
 
-  app.put('/coupons/:id', auth, function (req, res) {
+  app.put('/coupons/:id', function (req, res) {
+    // TODO Admin Auth
     var id = req.params.id;
     Coupon.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) res.json(400, err);
@@ -46,7 +47,8 @@ module.exports = function (app) {
     });
   });
 
-  app.delete('/coupons/:id', auth, function (req, res) {
+  app.delete('/coupons/:id', function (req, res) {
+    // TODO Admin auth
     var id = req.params.id;
     Coupon.remove({_id: id}, function (err) {
       if (err) res.json(400, err);

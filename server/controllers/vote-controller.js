@@ -1,5 +1,4 @@
 var Vote = require('../models/vote');
-var auth = require('../utils/authentication');
 var pagination = require('../utils/pagination');
 var validator = require('../utils/validator');
 
@@ -25,7 +24,8 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/votes', auth, function (req, res) {
+  app.post('/votes', function (req, res) {
+    // TODO must be logged in
     validator.mustHaveLegalRatingType(req, res);
 
     // Auto generate the timestamp and active elements
@@ -40,18 +40,18 @@ module.exports = function (app) {
       active: true
     };
     Vote.findOne(revoteSearch, null, function (err, vote) {
-      if (err) res.json(500, err);
+      if (err) return res.json(500, err);
       if (vote) {
         Vote.update({"_id": vote._id}, {"$set": {"active": false}}, function (err, num) {
-          if (err) res.json(400, err);
+          if (err) return res.json(400, err);
         });
+      } else {
+        Vote.create(req.body, function (err, vote) {
+          if (err) return res.send(400, err);
+          res.send(201, vote);
+        })
       }
     });
-
-    Vote.create(req.body, function (err, vote) {
-      if (err) res.send(400, err);
-      res.send(201, vote);
-    })
   });
 
   app.get('/votes/:id', function (req, res) {

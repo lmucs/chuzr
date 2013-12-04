@@ -59,369 +59,369 @@ var admin = {
   isAdmin: true
 };
 
-describe('User Authentication', function(){
-  describe('#accepted', function () {
-    it('should return 201 while trying to post', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-        done();
-      })
-    })
-    it('should return 200 while trying to put', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/users').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).put('/users/' + res.body[0]._id).auth('testUser', 'testPass').send({reputation: 1001}).end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(200);
-          done();
-        })
-      })
-    })
-    it('should return 201 while trying to delete', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/users').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).del('/users/' + res.body[0]._id).auth('testUser', 'testPass').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(200);
-          done();
-        })
-      })
-    })
-  });
+// describe('User Authentication', function(){
+//   describe('#accepted', function () {
+//     it('should return 201 while trying to post', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//         done();
+//       })
+//     })
+//     it('should return 200 while trying to put', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       });
+//       request(url).get('/users').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).put('/users/' + res.body[0]._id).auth('testUser', 'testPass').send({reputation: 1001}).end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(200);
+//           done();
+//         })
+//       })
+//     })
+//     it('should return 201 while trying to delete', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       });
+//       request(url).get('/users').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).del('/users/' + res.body[0]._id).auth('testUser', 'testPass').end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(200);
+//           done();
+//         })
+//       })
+//     })
+//   });
   
-  describe('#denied', function () {
-    it('should return 401 response code while trying to post', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/users').auth('testUser', 'testPast').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(401);
-        done();
-      })
-    })
-    it('should return 401 while trying to put', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-      });
-      request(url).get('/users').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).put('/users/' + res.body[0]._id).send({reputation: 1001}).auth('testUsers', 'letmein').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(401);
-          done();
-        })
-      })
-    })
-    it('should return 401 while trying to delete', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/users').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).del('/users/' + res.body[0]._id).auth('iAmGeneric', '12345').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(401);
-          done();
-        })
-      })      
-    })
-  });
+//   describe('#denied', function () {
+//     it('should return 401 response code while trying to post', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/users').auth('testUser', 'testPast').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(401);
+//         done();
+//       })
+//     })
+//     it('should return 401 while trying to put', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//       });
+//       request(url).get('/users').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).put('/users/' + res.body[0]._id).send({reputation: 1001}).auth('testUsers', 'letmein').end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(401);
+//           done();
+//         })
+//       })
+//     })
+//     it('should return 401 while trying to delete', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       });
+//       request(url).get('/users').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).del('/users/' + res.body[0]._id).auth('iAmGeneric', '12345').end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(401);
+//           done();
+//         })
+//       })      
+//     })
+//   });
   
-  describe('#persistence', function() {
-    it('should return 401 after the first authentication', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      })
-      request(url).post('/users').send(userOne).end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(401);
-        done();
-      })
-    })
-  });
-});
+//   describe('#persistence', function() {
+//     it('should return 401 after the first authentication', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/users').send(userOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       })
+//       request(url).post('/users').send(userOne).end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(401);
+//         done();
+//       })
+//     })
+//   });
+// });
 
-describe('Product Authentication', function() {
-  describe('#accepted', function () {
-    it('should return 201 while trying to post', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-        done();
-      })
-    })
-    it('should return 200 while trying to put', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/products').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).put('/products/' + res.body[0]._id).auth('testUser', 'testPass').send({price: 400.00}).end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(200);
-          done();
-        })
-      })
-    })
-    it('should return 201 while trying to delete', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/products').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).del('/products/' + res.body[0]._id).auth('testUser', 'testPass').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(200);
-          done();
-        })
-      })
-    })
-  });
-  describe('#denied', function () {
-    it('should return 401 while trying to post', function (done) {
-      request(url).post('/products').send(productOne).end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(401);
-        done();
-      })
-    })
-    it('should return 401 while trying to put', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-      });
-      request(url).get('/products').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).put('/products/' + res.body[0]._id).send({price: 400.00}).auth('testUsers', 'password').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(401);
-          done();
-        })
-      })
-    })
-    it('should return 401 while trying to delete', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/products').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).del('/products/' + res.body[0]._id).auth('bob', 'testPass').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(401);
-          done();
-        })
-      })      
-    })
-  });
+// describe('Product Authentication', function() {
+//   describe('#accepted', function () {
+//     it('should return 201 while trying to post', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//         done();
+//       })
+//     })
+//     it('should return 200 while trying to put', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       });
+//       request(url).get('/products').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).put('/products/' + res.body[0]._id).auth('testUser', 'testPass').send({price: 400.00}).end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(200);
+//           done();
+//         })
+//       })
+//     })
+//     it('should return 201 while trying to delete', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       });
+//       request(url).get('/products').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).del('/products/' + res.body[0]._id).auth('testUser', 'testPass').end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(200);
+//           done();
+//         })
+//       })
+//     })
+//   });
+//   describe('#denied', function () {
+//     it('should return 401 while trying to post', function (done) {
+//       request(url).post('/products').send(productOne).end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(401);
+//         done();
+//       })
+//     })
+//     it('should return 401 while trying to put', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//       });
+//       request(url).get('/products').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).put('/products/' + res.body[0]._id).send({price: 400.00}).auth('testUsers', 'password').end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(401);
+//           done();
+//         })
+//       })
+//     })
+//     it('should return 401 while trying to delete', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       });
+//       request(url).get('/products').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).del('/products/' + res.body[0]._id).auth('bob', 'testPass').end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(401);
+//           done();
+//         })
+//       })      
+//     })
+//   });
   
-  describe('#persistence', function() {
-    it('should return 401 after the first authentication', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      })
-      request(url).post('/products').send(productOne).end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(401);
-        done();
-      })
-    })
-  });
-});  
+//   describe('#persistence', function() {
+//     it('should return 401 after the first authentication', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/products').send(productOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       })
+//       request(url).post('/products').send(productOne).end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(401);
+//         done();
+//       })
+//     })
+//   });
+// });  
 
-describe('Coupon Authentication', function() {
-  describe('#accepted', function () {
-    it('should return 201 while trying to post', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-        done();
-      })
-    })
-    it('should return 200 while trying to put', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).put('/coupons/' + res.body[0]._id).auth('testUser', 'testPass').send({issuer: "walmart"}).end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(200);
-          done();
-        })
-      })
-    })
-    it('should return 201 while trying to delete', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).del('/coupons/' + res.body[0]._id).auth('testUser', 'testPass').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(200);
-          done();
-        })
-      })
-    })
-  });
-  describe('#denied', function () {
-    it('should return 401 while trying to post', function (done) {
-      request(url).post('/coupons').send(couponOne).end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(401);
-        done();
-      })
-    })
-    it('should return 401 while trying to put', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-      });
-      request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).put('/coupons/' + res.body[0]._id).send({price: 400.00}).auth('testUsers', 'testpass').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(401);
-          done();
-        })
-      })
-    })
-    it('should return 401 while trying to delete', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      });
-      request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        request(url).del('/coupons/' + res.body[0]._id).auth('user', 'testPass').end(function (err, res) {
-          if (err) throw err;
-          res.should.have.status(401);
-          done();
-        })
-      })      
-    })
-  });
-  describe('#persistence', function() {
-    it('should return 401 after the first authentication', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      })
-      request(url).post('/coupons').send(couponOne).end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(401);
-        done();
-      })
-    })
-  });  
-});
+// describe('Coupon Authentication', function() {
+//   describe('#accepted', function () {
+//     it('should return 201 while trying to post', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//         done();
+//       })
+//     })
+//     it('should return 200 while trying to put', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       });
+//       request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).put('/coupons/' + res.body[0]._id).auth('testUser', 'testPass').send({issuer: "walmart"}).end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(200);
+//           done();
+//         })
+//       })
+//     })
+//     it('should return 201 while trying to delete', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       });
+//       request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).del('/coupons/' + res.body[0]._id).auth('testUser', 'testPass').end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(200);
+//           done();
+//         })
+//       })
+//     })
+//   });
+//   describe('#denied', function () {
+//     it('should return 401 while trying to post', function (done) {
+//       request(url).post('/coupons').send(couponOne).end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(401);
+//         done();
+//       })
+//     })
+//     it('should return 401 while trying to put', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//       });
+//       request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).put('/coupons/' + res.body[0]._id).send({price: 400.00}).auth('testUsers', 'testpass').end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(401);
+//           done();
+//         })
+//       })
+//     })
+//     it('should return 401 while trying to delete', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       });
+//       request(url).get('/coupons').auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         request(url).del('/coupons/' + res.body[0]._id).auth('user', 'testPass').end(function (err, res) {
+//           if (err) throw err;
+//           res.should.have.status(401);
+//           done();
+//         })
+//       })      
+//     })
+//   });
+//   describe('#persistence', function() {
+//     it('should return 401 after the first authentication', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/coupons').send(couponOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       })
+//       request(url).post('/coupons').send(couponOne).end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(401);
+//         done();
+//       })
+//     })
+//   });  
+// });
 
-describe('Vote Authentication', function() {
-  describe('#accepted', function () {
-    it('should return 201 while trying to post', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-        done();
-      })
-    })
-  });
-  describe('#denied', function () {
-    it('should return 401 while trying to post', function (done) {
-      request(url).post('/votes').send(voteOne).end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(401);
-        done();
-      })      
-    })
-  });
-  describe('#persistence', function() {
-    it('should return 401 after the first authentication', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-      })
-      request(url).post('/votes').send(voteOne).end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(401);
-        done();
-      })
-    })
-  });  
-});
+// describe('Vote Authentication', function() {
+//   describe('#accepted', function () {
+//     it('should return 201 while trying to post', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//         done();
+//       })
+//     })
+//   });
+//   describe('#denied', function () {
+//     it('should return 401 while trying to post', function (done) {
+//       request(url).post('/votes').send(voteOne).end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(401);
+//         done();
+//       })      
+//     })
+//   });
+//   describe('#persistence', function() {
+//     it('should return 401 after the first authentication', function (done) {
+//       User.create(admin, function (err) {
+//         if (err) throw err;
+//       })
+//       request(url).post('/votes').send(voteOne).auth('testUser', 'testPass').end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(201);
+//       })
+//       request(url).post('/votes').send(voteOne).end(function (err, res) {
+//         if (err) throw err;
+//         res.should.have.status(401);
+//         done();
+//       })
+//     })
+//   });  
+// });

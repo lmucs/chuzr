@@ -1,5 +1,4 @@
 var Product = require('../models/product');
-var auth = require('../utils/authentication');
 var pagination = require('../utils/pagination');
 var validator = require('../utils/validator');
 
@@ -28,8 +27,8 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/products', auth, function (req, res) {
-    validator.mustBeAdmin(req, res, 'create a product');
+  app.post('/products', function (req, res) {
+    // TODO Admin Auth
     Product.create(req.body, function (err, product) {
       if (err) res.json(400, err);
       res.send(201, product);
@@ -39,14 +38,14 @@ module.exports = function (app) {
   app.get('/products/:id', function (req, res) {
     var id = req.params.id;
     Product.findById(id, function (err, product) {
-      if (err) res.json(400, err);
-      if (product === null) res.json(404, {'No such product': id});
+      if (err) return res.json(400, err);
+      if (product === null) return res.json(404, {'No such product': id});
       res.json(product);
     });
   });
 
-  app.put('/products/:id', auth, function (req, res) {
-    validator.mustBeAdmin(req, res, 'edit a product');
+  app.put('/products/:id', function (req, res) {
+    // TODO Admin Auth
     var id = req.params.id;
     Product.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) res.json(400, err);
@@ -54,8 +53,8 @@ module.exports = function (app) {
     });
   });
 
-  app.delete('/products/:id', auth, function (req, res) {
-    validator.mustBeAdmin(req, res, 'delete a product');
+  app.delete('/products/:id', function (req, res) {
+    // TODO Admin Auth
     var id = req.params.id;
     Product.remove({_id: id}, function (err) {
       if (err) res.json(400, err);
