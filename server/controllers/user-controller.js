@@ -17,6 +17,9 @@ module.exports = function (app) {
   });
 
   app.post('/users', function (req, res) {
+    if (req.body.isAdmin && !req.session.userInfo.isAdmin) {
+      return res.json(401, {message: "Only admins may create other admins."})
+    }
     User.create(req.body, function(err, user) {
       if (err) return res.json(400, err)
       res.send(201, user);
