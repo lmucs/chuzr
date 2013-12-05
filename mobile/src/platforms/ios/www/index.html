@@ -1,104 +1,71 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <script src='//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js'></script>
-        <script type="text/javascript" src="phonegap.js"></script>
-         <script type="text/javascript" src="js/index.js"></script>
-         <script type="text/javascript" charset="utf-8">
-            document.addEventListener("deviceready", onDeviceReady, false);
-            function onDeviceReady() {
-            }
-         </script>
-         <script type="text/javascript">
-            app.initialize();
-         </script>
-        <title>Chuzr iOS Application</title>
-    </head>
-    
+            <link href="boot/css/bootstrap.min.css" rel="stylesheet">
+                <link href="/stylesheets/chuzr.css" rel="stylesheet">
+                    <script src="js/chuzrModule.js"></script>
+                    <script src="js/user.js"></script>
+                    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+                    <script src="boot/js/bootstrap.min.js"></script>
+                    <script src="js/sideNavToggle.js"></script>
+                    </head>
     <body>
         <div id="wrap">
             <div id="nav-bar" class="navbar navbar-default">
                 <div class="navbar-inner">
                     <ul class="nav">
-                        <li><a href="/home"><img src="/images/chuzr-logo.png" height="50" width="50"></a>
-                        </li>
-                        <li><a href="/play"> <img src="/images/play-button.png" height="25" width="25"></a>
-                        </li>
-                        <li><a href="/social">Social    </a>
-                        </li>
+                        <li><a href="/home"><img src="img/chuzr-logo.png" height="50" width="50"></a></li>
+                        <li><a href="/play"> <img src="img/play-button.png" height="25" width="25"></a></li>
+                        <li><a href="/social">Social    </a></li>
                     </ul>
                     <ul class="nav pull-right">
                         <form class="navbar-search">
                             <input type="text" placeholder="Search" class="search-query">
-                        </form>
+                                </form>
                         <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Account<b class="caret"></b>
-                <ul class="dropdown-menu">
-                  <li><a href="/profile">Profile</a>
-                        </li>
-                        <li><a href="/settings">Settings</a>
-                        </li>
-                        <li><a href="/logout">Logout</a>
-                        </li>
-                    </ul>
-                    </a>
-                    </li>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">Profile</a></li>
+                                <li><a href="/settings">Settings</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul></a></li>
                     </ul>
                 </div>
             </div>
             <div id="content" class="row-fluid">
-                <div id="side-nav" class="span1"><a href="/home"><img src="/images/chuzr-logo.png" height="50" width="104"></a>
-                    <br>
+                <div id="side-nav" class="span1"><a href="/home"><img src="img/chuzr-logo.png" height="128" width="232"></a><br>
                     <ul id="side-nav-links" class="nav nav-tabs nav-list nav-stacked">
-                        <li><a href="/home">Home </a>
-                        </li>
-                        <li><a href="/play">Play </a>
-                        </li>
-                        <li id="browse-tab"><a href="/browse">Browse       </a>
-                        </li>
-                        <li class="sub-nav browse-nav"><a href="/trends">Trends</a>
-                        </li>
-                        <li class="sub-nav browse-nav"><a href="#">Most Popular</a>
-                        </li>
+                        <li><a href="/home">Home </a></li>
+                        <li><a href="/play">Play </a></li>
+                        <li id="browse-tab"><a href="/browse">Browse       </a></li>
+                        <li class="sub-nav browse-nav"><a href="/trends">Trends</a></li>
+                        <li class="sub-nav browse-nav"><a href="#">Most Popular</a></li>
                         <li class="divider"></li>
-                        <li><a href="/stuff">Stuff</a>
-                        </li>
-                        <li id="social-tab"><a href="/social">Social</a>
-                        </li>
-                        <li class="sub-nav social-nav"><a href="#">Profile</a>
-                        </li>
-                        <li class="sub-nav social-nav"><a href="#">Friends</a>
-                        </li>
-                        <li class="sub-nav social-nav"><a href="#">Compare</a>
-                        </li>
+                        <li><a href="/stuff">Stuff</a></li>
+                        <li id="social-tab"><a href="/social">Social</a></li>
+                        <li class="sub-nav social-nav"><a href="#">Profile</a></li>
+                        <li class="sub-nav social-nav"><a href="#">Friends</a></li>
+                        <li class="sub-nav social-nav"><a href="#">Compare</a></li>
                         <li class="divider"></li>
-                        <li><a href="/settings">Settings</a>
-                        </li>
+                        <li><a href="/settings">Settings</a></li>
                     </ul>
                 </div>
                 <div id="side-nav-toggle" class="span1"></div>
-                <div id="main-content" class="span10"></div>
+                <div id="main-content" class="span10">
+                </div>
             </div>
         </div>
         <div id="footer-nav" class="navbar navbar-fixed-bottom">
             <div class="navbar-inner">
                 <ul id="footer-links" class="nav pull-right">
-                    <li><a href="/about">about </a>
-                    </li>
-                    <li><a href="/contact">contact </a>
-                    </li>
-                    <li><a href="/FAQ">FAQ </a>
-                    </li>
-                    <li><a href="/feedback">feedback </a>
-                    </li>
-                    <li><a href="/privacy">privacy</a>
-                    </li>
+                    <li><a href="/about">about </a></li>
+                    <li><a href="/contact">contact </a></li>
+                    <li><a href="/FAQ">FAQ </a></li>
+                    <li><a href="/feedback">feedback </a></li>
+                    <li><a href="/privacy">privacy</a></li>
                 </ul>
             </div>
         </div>
     </body>
-
 </html>
