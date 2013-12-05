@@ -237,5 +237,26 @@ describe('Users Controller', function () {
         })    
       })
     });
+    it('should allow admins to update anyone', function (done) {
+      request(url).post('/users').send(userOne).end(function (err, res) {
+        if (err) throw err;
+        var id = res.body._id;
+        User.create(admin, function (err) {
+          request(url).post('/sessions').type('form').send({email: admin.email, pass: admin.hashedPassword}).end(function (err, res) {
+            if (err) throw err;
+            var cookies = res.headers['set-cookie'].pop().split(';')[0];
+            req = request(url).put('/users/' + id);
+            req.cookies = cookies;
+            req.send(userThree).end(function (err, res2) {
+              if (err) throw err;
+              res2.should.have.status(200);
+              done();
+            })
+          })
+        })
+      })
+
+      
+    })
   });
 });
