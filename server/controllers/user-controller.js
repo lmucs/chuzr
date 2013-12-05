@@ -1,6 +1,7 @@
 var User = require('../models/user');
 var express = require('express');
 var pagination = require('../utils/pagination');
+var auth = require('../utils/authentication');
 
 module.exports = function (app) {
   
@@ -31,8 +32,7 @@ module.exports = function (app) {
     });
   });
 
-  app.put('/users/:id', function (req, res) {
-    if (!req.session.userInfo) return res.json(401, {message: 'Not logged in'});
+  app.put('/users/:id', auth.loginRequired(function (req, res) {
     var id = req.params.id;
     User.findById(id, function (err, user) {
       if (err) return res.json(400, err)
@@ -49,17 +49,15 @@ module.exports = function (app) {
         res.json(200, {'Number updated': numUpdated});
       });
     });
-  });
+  }));
 
-  app.delete('/users/:id', function (req, res) {
-    if (!req.session.userInfo) return res.json(401, {message: 'Not logged in'});
-    if (!req.session.userInfo.isAdmin) return res.json(403, {message: 'Must be admin to delete user'});
+  app.delete('/users/:id', auth.adminRequired(function (req, res) {
     var id = req.params.id;
     User.remove({_id: id}, function (err) {
       if (err) return res.json(400, err)
       res.json(200, {Deleted: id});
     });
-  });
+  }));
 
   app.post('/sessions', function (req, res) {
     User.findOne({email: req.body.email}, function (err, user) {
