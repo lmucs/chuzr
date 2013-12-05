@@ -17,3 +17,7 @@ As of 11/24/13, all reports can be seen on the page `index.html`.
 All resources for this page are in the `js`, `css`, and `lib` directories. The remaining test pages are found in the experimental `directory`.
 
 _In order for the analyzer to work. The API url should be up and running on port 3000. Information for this should be on the wiki_
+
+## Running Mobile iOS Application
+
+In order to run the mobile iOS application, in the analyzer directory
