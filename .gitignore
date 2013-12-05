@@ -9,3 +9,5 @@ web-client/npm-debug.log
 analyzer/sampleDataFormats/CSV/file.csv
 npm-debug.log
 server/test/npm-debug.log
+analyzer-mobileapp/platforms/ios/ChuzrAnalyzerApp.xcodeproj/project.xcworkspace/xcuserdata/TMoore.xcuserdatad/UserInterfaceState.xcuserstate
+analyzer-mobileapp/platforms/ios/ChuzrAnalyzerApp.xcodeproj/xcuserdata/TMoore.xcuserdatad/xcschemes/HelloWorld.xcscheme
