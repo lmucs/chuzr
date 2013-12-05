@@ -112,21 +112,20 @@ describe('Products Controller', function () {
     it('should get by id correctly', function (done) {
       User.create(admin, function (err) {
         if (err) throw err;
-      })
-      // Create the coupon.
-      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
-        should.not.exist(err);
-        res.should.have.status(201);
-        res.should.be.json;
-
-        // Get that coupon by id.
-        request(url).get('/products/' + res.body._id).end(function (err, res) {
+        request(url).post('/products').send(testProducts[0]).end(function (err, res) {
           should.not.exist(err);
-          res.should.have.status(200);
+          res.should.have.status(201);
           res.should.be.json;
-          done();
+
+          // Get that product by id.
+          request(url).get('/products/' + res.body._id).end(function (err, res) {
+            should.not.exist(err);
+            res.should.have.status(200);
+            res.should.be.json;
+            done();
+          });
         });
-      });
+      })     
     });
   });
 
@@ -134,21 +133,21 @@ describe('Products Controller', function () {
     it('should create without error', function (done) {
       User.create(admin, function (err) {
         if (err) throw err;
-      })
-      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
-        should.not.exist(err);
-        res.should.have.status(201);
-        done();
-      })
+        request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+          should.not.exist(err);
+          res.should.have.status(201);
+          done();
+        })
+      })   
     })
     it('should assign all properties on creation, including an _id', function (done) {
       User.create(admin, function (err) {
         if (err) throw err;
-      })
-      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
-        should.not.exist(err);
-        productsShouldBeSame(res.body, testProducts[0]);
-        done();
+        request(url).post('/products').send(testProducts[0]).end(function (err, res) {
+          should.not.exist(err);
+          productsShouldBeSame(res.body, testProducts[0]);
+          done();
+        })
       })
     })
   })
@@ -157,26 +156,25 @@ describe('Products Controller', function () {
     it('should delete without error', function (done) {
       User.create(admin, function (err) {
         if (err) throw err;
-      })
-      // Create the product.
-      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
-        should.not.exist(err);
-        res.should.have.status(201);
-        var id = res.body._id;
-
-        // Delete that product.
-        request(url).del('/products/' + id).end(function (err, res) {
+        request(url).post('/products').send(testProducts[0]).end(function (err, res) {
           should.not.exist(err);
-          res.should.have.status(200);
+          res.should.have.status(201);
+          var id = res.body._id;
 
-          // It should be deleted
-          request(url).get('/products/' + id).end(function (err, res) {
+          // Delete that product.
+          request(url).del('/products/' + id).end(function (err, res) {
             should.not.exist(err);
-            res.should.have.status(404);
-            done();
+            res.should.have.status(200);
+
+            // It should be deleted
+            request(url).get('/products/' + id).end(function (err, res) {
+              should.not.exist(err);
+              res.should.have.status(404);
+              done();
+            });
           });
         });
-      });
+      }); 
     });
   });
   
@@ -184,27 +182,27 @@ describe('Products Controller', function () {
     it('should update without error', function (done) {
       User.create(admin, function (err) {
         if (err) throw err;
-      })
-      // Create the product.
-      request(url).post('/products').send(testProducts[0]).end(function (err, res) {
-       should.not.exist(err);
-      
-        //Update that product.
-        var id = res.body._id;
-        
-        request(url).put('/products/' + id).send(testProducts[1]).end(function (err, res) {
+        // Create the product.
+        request(url).post('/products').send(testProducts[0]).end(function (err, res) {
           should.not.exist(err);
-          res.should.have.status(200);
+      
+          //Update that product.
+          var id = res.body._id;
         
-          //Ensure product has new data
-          request(url).get('/products/' + id).end(function (err, res) {
+          request(url).put('/products/' + id).send(testProducts[1]).end(function (err, res) {
             should.not.exist(err);
             res.should.have.status(200);
-            productsShouldBeSame(res.body, testProducts[1]);
-            done();
-          });  
-        });    
-      });
+        
+            //Ensure product has new data
+            request(url).get('/products/' + id).end(function (err, res) {
+              should.not.exist(err);
+              res.should.have.status(200);
+              productsShouldBeSame(res.body, testProducts[1]);
+              done();
+            });  
+          });    
+        });
+      })
     });
   });
 });

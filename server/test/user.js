@@ -254,9 +254,7 @@ describe('Users Controller', function () {
             })
           })
         })
-      })
-
-      
+      })  
     })
   });
 });
