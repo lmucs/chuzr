@@ -1,6 +1,7 @@
 var Product = require('../models/product');
 var pagination = require('../utils/pagination');
 var validator = require('../utils/validator');
+var auth = require('../utils/authentication');
 
 module.exports = function (app) {
 
@@ -27,13 +28,13 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/products', function (req, res) {
-    // TODO Admin Auth
+  app.post('/products', auth.adminRequired(function (req, res) {
+    // Tests needed
     Product.create(req.body, function (err, product) {
       if (err) return res.json(400, err);
       res.send(201, product);
     });
-  });
+  }));
 
   app.get('/products/:id', function (req, res) {
     var id = req.params.id;
@@ -44,21 +45,21 @@ module.exports = function (app) {
     });
   });
 
-  app.put('/products/:id', function (req, res) {
-    // TODO Admin Auth
+  app.put('/products/:id', auth.adminRequired(function (req, res) {
+    // Tests needed
     var id = req.params.id;
     Product.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) return res.json(400, err);
       res.json(200, {'Number updated': numUpdated});
     });
-  });
+  }));
 
-  app.delete('/products/:id', function (req, res) {
-    // TODO Admin Auth
+  app.delete('/products/:id', auth.adminRequired(function (req, res) {
+    // Tests needed
     var id = req.params.id;
     Product.remove({_id: id}, function (err) {
       if (err) return res.json(400, err);
       res.json(200, {Deleted: id});
     });
-  });
+  }));
 }
