@@ -15,8 +15,8 @@ html, body {
 }
 
 #wrap {
-    height: 100%;
-    width: 100%;
+    height: 960px;
+    width: 640px;
 }
 
 a:hover {
@@ -24,8 +24,8 @@ a:hover {
 }
 
 #content {
-    height:100%;
-    width:100%;
+    height:960px;
+    width:640px;
     background-image:url('../img/texture3.png');
 }
 
