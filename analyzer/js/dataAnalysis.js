@@ -8,13 +8,13 @@ $("#test1").click( function() {
         format = $("#format").text(),
         search = $("#filter").val();
 
-        var query = "";
+     var query = "";
 
-        if(search !== ""){
-            query = "?name=" + search;
-        }
+    if(search !== ""){
+         query = "?name=" + search;
+    }
 
-        var dataJSON = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + query));
+    var dataJSON = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + query));
     $("#iframe").attr('src','http://www.yahoo.com');
     if(item === "[item]"){
         alert("please select an item you want to see.");
@@ -165,6 +165,7 @@ $("#test1").click( function() {
                 // Need to implement code for actual download button.
                 // $('#test1').click(function(){})
                 $('#test1').click(function(){
+                    console.log("csv");
                     var data = dataJSON;
                     if(data == '')
                         return;
