@@ -1,14 +1,14 @@
 html, body {
     font: 16px "Lucida Grande", Helvetica, Arial, sans-serif ;
-    height: 100%;
-    width: 100%;
+    height: 960px;
+    width: 640px;
     overflow: hidden;
 }
 
-.navbar {
+.navbar 
     background-color: rgba(136, 159, 151, .5);
     margin-bottom: 0;
-}
+
 
 .table td {
     border-top: none;
