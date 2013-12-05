@@ -18,6 +18,6 @@ All resources for this page are in the `js`, `css`, and `lib` directories. The r
 
 _In order for the analyzer to work. The API url should be up and running on port 3000. Information for this should be on the wiki_
 
-## Running Mobile Analyzer iOS Application
+## Running Analyzer As iPhone Application
 
 In order to run the mobile iOS application, in the analyzer directory
