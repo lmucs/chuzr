@@ -51,4 +51,10 @@ userSchema.methods.checkPassword = function (entry, callback) {
   });
 };
 
+userSchema.methods.toJSON = function () {
+  obj = this.toObject();
+  delete obj.hashedPassword;
+  return obj;
+};
+
 module.exports = mongoose.model('User', userSchema);
