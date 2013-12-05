@@ -9,22 +9,20 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>icon.png</string>
+	<string>chuzr-logo.png</string>
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>chuzr-logo</string>
-				<string>chuzr-logo</string>
-				<string>chuzr-logo</string>
-				<string>chuzr-logo</string>
-				<string>chuzr-logo</string>
-				<string>chuzr-logo</string>
-				<string>chuzr-logo</string>
-				<string>chuzr-logo</string>
-				<string>chuzr-logo</string>
+                <string>chuzr-logo</string>
+                <string>chuzr-logo</string>
+                <string>chuzr-logo</string>
+                <string>chuzr-logo</string>
+                <string>chuzr-logo</string>
+                <string>chuzr-logo</string>
+                <string>chuzr-logo</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<false/>
@@ -68,6 +66,8 @@
 	<string></string>
 	<key>NSMainNibFile~ipad</key>
 	<string></string>
+	<key>UILaunchImageFile</key>
+	<string>chuzr-logo</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
