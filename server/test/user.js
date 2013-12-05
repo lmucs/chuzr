@@ -140,9 +140,6 @@ describe('Users Controller', function () {
       })
     })
     it('should assign all properties on creation, including an _id', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
       request(url).post('/users').send(userOne).end(function (err, res) {
         if (err) throw err;
         res.body.name.first.should.equal('Luna')
@@ -165,12 +162,18 @@ describe('Users Controller', function () {
         done();
       });
     });
+    it('should return unauthorized while trying to create an admin while not an admin', function (done) {
+      request(url).post('/users').send(admin).end(function (err, res) {
+        if (err) throw err;
+        res.should.have.status(401);
+      })
+    })
   })
 
   describe('#delete()', function () {
     it('should delete if current user is an admin', function (done) {
 
-      request(url).post('/users').send(admin).end(function (err, res) {
+      User.create(admin, function (err) {
         if (err) throw err;
 
         request(url).post('/sessions').type("form").send({email: admin.email, pass: admin.hashedPassword}).end(function (err, res) {
