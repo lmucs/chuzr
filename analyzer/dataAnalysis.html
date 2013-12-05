@@ -11,12 +11,13 @@
     <title>Chuzr Data Analysis</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="lib/boot/css/bootstrap.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="lib/jquery.dropdown.css" />
+    <link href="lib/boot/css/bootstrap.min.css" rel="stylesheet">
     <link href="lib/boot/css/bootstrapdropdown.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="lib/jquery.dropdown.css" />
 
     <link href="css/circlePackVisualization.css" rel="stylesheet">
     <link href="css/usersTreemap.css" rel="stylesheet">
+    <link href="css/downloadButton.css" rel="stylesheet">
 
    
   </head>
@@ -57,7 +58,7 @@
       </div>
     </div>
 
-      <p> I want to see <a href="#" data-dropdown="#dropdown-1" id = "item">[item]</a> in <a href="#" data-dropdown="#dropdown-2" id="format">[format]</a>
+      <p> I want to see <a href="#" data-dropdown="#dropdown-1" id = "item">[item]</a> in <a href="#" data-dropdown="#dropdown-2" id="format">[format]</a> <input type="text" class="input-medium" style="margin: 5px;" placeholder="Filter By Name" id="filter">
           <button type="button" data-loading-text="Loading..." class="btn btn-primary" id="test1">
            Go!
           </button>
@@ -91,6 +92,7 @@
     <script type="text/javascript" src="js/jquery.dropdown.js"></script>
     <script type="text/javascript" src="js/dataAnalysis.js"></script>
     <script type="text/javascript" src="js/json2html.js"></script>
+    <script type="text/javascript" src="js/json2csv.js"></script>
     <script type="text/javascript" src="js/createCirclePack.js"></script>
     <script type="text/javascript" src="js/createTreemap.js"></script>
     <script type="text/javascript" src="js/productsTreemap.js"></script>

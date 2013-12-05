@@ -27,6 +27,7 @@ module.exports = {
     } else {
       return true;
     }
+
   },
 
   mustHaveLegalRatingType: function (req, res) {
