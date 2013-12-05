@@ -26,7 +26,7 @@ module.exports = function (app) {
     var id = req.params.id;
     User.findById(id, function (err, user) {
       if (err) return res.json(400, err)
-      if (user === null) return res.json(404, {"No such user": id})
+      if (!user) return res.json(404, {"No such user": id})
       res.json(user)
     });
   });
@@ -44,7 +44,6 @@ module.exports = function (app) {
         // Prevent a user from making itself an admin
         req.body.isAdmin = false;
       }
-      console.log(req.body)
       User.update({_id: id}, req.body, function (err, numUpdated) {
         if (err) return res.json(400, err)
         res.json(200, {'Number updated': numUpdated});

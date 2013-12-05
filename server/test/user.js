@@ -98,7 +98,6 @@ describe('Users Model', function(){
       })
     })
   })
-
 });
 
 describe('Users Controller', function () {
@@ -151,12 +150,7 @@ describe('Users Controller', function () {
         res.body.email.should.equal('lunabar@example.com')
         res.body.login.should.equal('lunaluna')
         res.body.reputation.should.equal(1000)
-        /*res.body.checkPassword('w0nk4', function (err, isMatch) {
-          if (err) throw err;
-          isMatch.should.be.true;
-        });*/
         res.body.avatarURL.should.equal('http://i.lunabar.com/luna.png')
-        //Object.keys(res.body).length.should.equal(9);
         done();
       })
     })
@@ -178,23 +172,19 @@ describe('Users Controller', function () {
 
       request(url).post('/users').send(admin).end(function (err, res) {
         if (err) throw err;
-        console.log("Created admin user")
 
         request(url).post('/sessions').type("form").send({email: admin.email, pass: admin.hashedPassword}).end(function (err, res) {
           if (err) throw err;
           var cookies = res.headers['set-cookie'].pop().split(';')[0];
-          console.log("Logged in admin user %j with cookies %j", res.body, cookies);
 
           request(url).post('/users').send(userOne).end(function (err, res) {
             if (err) throw err;
-            console.log("Created user 1")
             res.should.have.status(201);
 
             req = request(url).del('/users/' + res.body._id)
             req.cookies = cookies;
             req.end(function (err, res) {
               if (err) throw err;
-              console.log("Deleted user 1")
               res.should.have.status(200);
               done();
             })
@@ -213,18 +203,17 @@ describe('Users Controller', function () {
   describe('update()', function () {
     it('should allow updating of yourself', function (done) {
 
-      // Create and login the user.
+      // Create and login the user
       request(url).post('/users').send(userOne).end(function (err, res) {
         if (err) throw err;
-          var id = res.body._id;
-          request(url).post('/sessions').type("form").send({email: userOne.email, pass: userOne.hashedPassword}).end(function (err, res) {
+        var id = res.body._id;
+        request(url).post('/sessions').type('form').send({email: userOne.email, pass: userOne.hashedPassword}).end(function (err, res) {
           if (err) throw err;
           var cookies = res.headers['set-cookie'].pop().split(';')[0];
 
-          //Update that user.
+          //Update that user
           req = request(url).put('/users/' + id);
           req.cookies = cookies;
-          console.log('Cookies for user update are %j', req.cookies)
           req.send(userThree).end(function (err, res2) {
             if (err) throw err;
             res2.should.have.status(200);
@@ -247,6 +236,3 @@ describe('Users Controller', function () {
     });
   });
 });
-
-
-
