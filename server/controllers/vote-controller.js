@@ -19,7 +19,7 @@ module.exports = function (app) {
       search["ratingType"] = req.query.ratingType;
     }
     Vote.find(search, null, pagination(req), function (err, votes) {
-      if (err) res.json(500, err);
+      if (err) return res.json(500, err);
       res.json(200, votes);
     });
   });
@@ -57,8 +57,8 @@ module.exports = function (app) {
   app.get('/votes/:id', function (req, res) {
     var id = req.params.id;
     Vote.findById(id, null, function (err, vote) {
-      if (err) res.json(404, err);
-      if (vote === null) res.json(404, {"No such vote": id});
+      if (err) return res.json(404, err);
+      if (!vote) return res.json(404, {"No such vote": id});
       res.json(vote);
     });
   });
