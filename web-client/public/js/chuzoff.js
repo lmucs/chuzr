@@ -14,7 +14,6 @@ $(function() {
         createChuzOff = function(products) {
             product1Index = Math.floor(Math.random()*products.length);
             product2Index = Math.floor(Math.random()*(products.length - 1));
-
             if(product2Index >= product1Index) {
                 product2Index++;
             }
