@@ -23,7 +23,7 @@ $(function () {
                 return b.rating-a.rating;
             }).forEach(function(product) {
                 $("#standings")
-                    .append($("<tr></tr>").addClass(successRate)
+                    .append($("<tr></tr>")
                         .append($("<td></td>").text(product.name))
                         .append($("<td></td>").text(product.rating))
                     );
@@ -61,16 +61,22 @@ $(function () {
     renderProduct(products);
 
     $("#upDown")
+        //up
         .append($("<img></img>")
             .addClass("arrow")
             .attr("src", "http://i.imgur.com/PdJs3Zv.png")
-            .click(vote)
+            .click(function () {
+                vote(1);
+            })
 
         )
+        //down
         .append($("<img></img>")
             .addClass("arrow")
             .attr("src", "http://wp.iosfans.com/wp-content/uploads/2013/02/Down-vote-arrow-237x250.png")
-            .click(vote)
+            .click(function () {
+                vote(-1);
+            })
         );
 
 
