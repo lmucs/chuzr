@@ -5,8 +5,16 @@ var apiPort = '3000/'
 
 $("#test1").click( function() {
     var item = $("#item").text(),
-        format = $("#format").text();
-        var dataJSON = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase()));
+        format = $("#format").text(),
+        search = $("#filter").val();
+
+        var query = "";
+
+        if(search !== ""){
+            query = "?name=" + search;
+        }
+
+        var dataJSON = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + query));
     $("#iframe").attr('src','http://www.yahoo.com');
     if(item === "[item]"){
         alert("please select an item you want to see.");
@@ -41,22 +49,19 @@ $("#test1").click( function() {
             }
             else if (item === "PRODUCTS") {
               transform = [
-                {"tag":"li","html": "${_id}"},
+                {"tag":"li","html": "${name}"},
                 {"tag":"ul","children":[
-                    {"tag":"li","html": "name: ${name}"},
                     {"tag":"li","html": "brand: ${brand} "},
                     {"tag":"li","html": "description: ${description}"},
                     {"tag":"li","html": "url: ${url} "},
-                    {"tag":"li","html": "rating: ${rating} "},
                     {"tag":"li","html": "shopzillaID: ${shopzillaId} "},
-                    {"tag":"li","html": "categoryID: ${categoryId} "},
-                    {"tag":"li","html": "related: ${related} "},
-                    {"tag":"li","html": "price"},
+                    {"tag":"li","html": "category"},
                     {"tag":"ul","children":[
-                    {"tag":"li","html": "min: ${price.min}"},
-                    {"tag":"li","html": "max: ${price.max}"}
+                        {"tag":"li","html": "name: ${category.name}"},
+                        {"tag":"li","html": "id: ${category.id}"}
                     ]},
-                    {"tag":"li","html": "images: ${images} "}
+                    {"tag":"li","html": "_id: ${_id} "},
+                    {"tag":"li","html": "related: ${related}"},
                   ]}
               ];
 
@@ -208,5 +213,4 @@ function httpGet(theUrl)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
-
 
