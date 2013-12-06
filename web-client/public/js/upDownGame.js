@@ -1,14 +1,14 @@
 $(function () {
     var httpGet = function(theUrl) {
-        var xmlHttp = null;
+            var xmlHttp = null;
 
-        xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", theUrl, false );
-        xmlHttp.send( null );
-        return xmlHttp.responseText;
-    },
-    urlBase = Config.getApiBaseUrl() + "/",
-    products = jQuery.parseJSON(httpGet(urlBase + "products")),
+            xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", theUrl, false );
+            xmlHttp.send( null );
+            return xmlHttp.responseText;
+        },
+        urlBase = Config.getApiBaseUrl() + "/",
+        products = jQuery.parseJSON(httpGet(urlBase + "products")),
         testImage = "http://www.placehold.it/200x300",
         updateStandings = function(products) {
             $("#standings")
@@ -35,4 +35,6 @@ $(function () {
         product.imageLink = testImage;
         product.rating = 0;
     });
+
+    
 })
