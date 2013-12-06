@@ -10,6 +10,7 @@ $(function () {
         urlBase = Config.getApiBaseUrl() + "/",
         products = jQuery.parseJSON(httpGet(urlBase + "products")),
         testImage = "http://www.placehold.it/200x300",
+        productIndex,
         updateStandings = function(products) {
             $("#standings")
                 .empty()
@@ -30,7 +31,7 @@ $(function () {
             
         },
         renderProduct = function(products) {
-            var productIndex = Math.floor(Math.random()*products.length);
+            productIndex = Math.floor(Math.random()*products.length);
             $("#product")
                 .empty()
                 .append($("<img></img>")
@@ -42,6 +43,11 @@ $(function () {
                 );
 
 
+        },
+        vote = function(value) {
+            products[productIndex].rating += value;
+            updateStandings(products);
+            renderProduct(products);
         };
 
     //the product image links dont acutally work right now so insert fake ones
@@ -53,9 +59,18 @@ $(function () {
     console.log(products);
     renderProduct(products);
 
-    $("#upDown").append($("<div></div>")
-        .addClass("arrow")
-        .css("background-position", "-63px -796px")
+    $("#upDown")
+        .append($("<img></img>")
+            .addClass("arrow")
+            .attr("src", "http://i.imgur.com/PdJs3Zv.png")
+            .click(vote)
 
-    );
+        )
+        .append($("<img></img>")
+            .addClass("arrow")
+            .attr("src", "http://wp.iosfans.com/wp-content/uploads/2013/02/Down-vote-arrow-237x250.png")
+            .click(vote)
+        );
+
+
 })
