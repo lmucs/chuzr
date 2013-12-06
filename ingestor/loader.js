@@ -1,11 +1,7 @@
-var env = process.env.NODE_ENV || 'development',
-    config = require('./config/config')[env],
-    MongoClient = require('mongodb').MongoClient;
-
 var Loader = function () {
 
 
-  var _products = function (chuzrProducts, db) {
+  var _products = function (chuzrProducts, db, callback) {
     var products = db.collection('products');
     for (p in chuzrProducts) {
       var product = chuzrProducts[p];
@@ -13,19 +9,15 @@ var Loader = function () {
         if (err) throw err;
       });
     }
+    callback();
   };
 
 
-  var _taxonomy = function (shopzillaTaxonomy) {
-    MongoClient.connect(config.dbPath, function(err, db) {
+  var _taxonomy = function (shopzillaTaxonomy, db, callback) {
+    var taxonomy = db.collection('taxonomy');
+    taxonomy.insert(shopzillaTaxonomy, function (err, result) {
       if (err) throw err;
-      db.collection('taxonomy').drop();
-      var taxonomy = db.collection('taxonomy');
-      taxonomy.insert(shopzillaTaxonomy, function (err, result) {
-        if (err) throw err;
-        console.log('All your data-base belongs to us\n');
-        db.close();
-      });
+      callback();
     });
   };
 
