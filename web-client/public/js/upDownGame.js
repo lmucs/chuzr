@@ -52,7 +52,8 @@ $(function () {
 
     //the product image links dont acutally work right now so insert fake ones
     products.forEach(function(product, i) {
-        product.imageLink = testImage;
+        product.imageLink = 
+            (product.images && product.images[400]) ? product.images[400] : testImage;
         product.rating = 0;
     });
 
