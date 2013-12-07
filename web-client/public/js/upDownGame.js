@@ -57,7 +57,6 @@ $(function () {
         product.rating = 0;
     });
 
-    console.log(products);
     renderProduct(products);
 
     $("#upDown")
@@ -70,6 +69,7 @@ $(function () {
             })
 
         )
+        .append("<br>")
         //down
         .append($("<img></img>")
             .addClass("arrow")
