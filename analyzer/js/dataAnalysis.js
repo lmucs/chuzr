@@ -6,6 +6,26 @@ var transform = [];
 var skipCount = 0;
 var itemsPerPage = 10;
 
+function checkButton(){
+    console.log($("#item").text() !=="[item]" && $("#format").text() !=="[format]" && ($("#items-per-page").val() === "" || $("#items-per-page").val()%1 ===0) );
+    if($("#item").text() !=="[item]" && $("#format").text() !=="[format]" && ($("#items-per-page").val() === "" || $("#items-per-page").val()%1 ===0) ){
+        $('#test1').prop('disabled', false);
+    }
+    else{
+        $('#test1').prop('disabled', true);
+    }
+
+    if($("#format").text() !== "HTML" && $("#format").text() !== "CSV" && $("#format").text() !== "JSON"){
+        $("#items-per-page").css('display', 'none');
+    }
+    else{
+        $("#items-per-page").css('display', 'inline');
+    }
+}
+
+checkButton();
+
+
 $("#test1").click( function() {
     var item = $("#item").text(),
         format = $("#format").text(),
@@ -128,7 +148,6 @@ $("#test1").click( function() {
                 $("#list").append(json2html.transform(data,transform));
                 console.log(skipCount);
                 $("html, body").animate({ scrollTop: 0 }, "slow");
-
                 
             });
         }
@@ -247,12 +266,14 @@ var selectedButtonFormat = function(value){
     $("#format").html(value);
     $("#dropdown-2").css('display', 'none');
     $(document).find('.dropdown-open').removeClass('dropdown-open');
+    checkButton();
 };
 
 var selectedButtonItem = function(value){
     $("#item").html(value);
     $("#dropdown-1").css('display', 'none');
     $(document).find('.dropdown-open').removeClass('dropdown-open');
+    checkButton();
 }
 
 $("#format").click(function(event, dropdownData) {
