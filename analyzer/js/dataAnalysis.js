@@ -168,14 +168,14 @@ $("#test1").click( function() {
 
             data = [];
             console.log(loc.substring(0,changeSpot) + 
-                apiPort + item.toLowerCase() + "?limit=" + maxPerQuery);
+                apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery);
             page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
-                apiPort + item.toLowerCase() + "?limit=" + maxPerQuery));
+                apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery));
 
             while (page.length !== 0) {
                 data = data.concat(page);
                 page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
-                    apiPort + item.toLowerCase() + "?limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
+                    apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
             }
 
             console.log(data);
