@@ -9,44 +9,42 @@ $(function() {
             xmlHttp.send( null );
             return xmlHttp.responseText;
         },
+        productCounter = 0,
+        skipCount = 0;
+        products = jQuery.parseJSON(httpGet(Config.getApiBaseUrl() + "/products/"));
 
-        productId = $(".product-name").attr('product-id'),
-        product = jQuery.parseJSON(httpGet(Config.getApiBaseUrl() + "/products/" + productId));
-
-
-    $('#rate').click(function() {
-        $("#rating > h1").text("0");
-        $("#slider").slider("setValue", 0);
-
-        // $.ajax({
-        //        type: 'POST',
-        //        url: Config.getApiBaseUrl() + '/votes',
-        //        data: JSON.stringify(),
-        //        contentType: 'application/json',
-        //        dataType: 'json',
-        //        accept: 'application/json',
-        //        complete: function (jqXHR, textStatus) {   
-
-        //        }
-        //    });
-    });
 
     populateData = function (product) {
-        console.log(Config.getApiBaseUrl() + "/products/" + productId);
-        console.log(product);
         $(".product-name").text(product.name);
-        $(".product-image-rating img").attr('src', product.imageURL);
-        $(".url-to-purchase a").attr('href', product.imageURL);
+        $(".product-image-rating img").attr('src', product.images[400]);
+        $(".url-to-purchase a").attr('href', product.url);
         $(".product-description .description").text(product.description);
-        $(".current-product-rating .rating").text(product.rating);
+        $(".current-product-rating #current-rating").text((product.rating == null) ? "--" : product.rating);
     };
 
+    $('#product-rating').on('change', function() {
+        $("#current-rating").text($("#product-rating").val());
+    });
 
+    $('#rate-button').click(function() {
+        if (productCounter == (products.length - 1)) {
+            skipCount += 10;
+            products = jQuery.parseJSON(httpGet(Config.getApiBaseUrl() + "/products?skip=" + skipCount));
+            productCounter = 0;
+        } else {
+            productCounter++;
+        }
 
-    $('.slider').slider('setValue', 0)
-        .on('slide', function(ev){
-             $('#rating > h1').text(ev.value);
-         });
+        // The vote.
+        var vote = {
+            userId: 100,
+            productId: products[productCounter]._id,
+            ratingType: "numeric",
+            rating: $("#product-rating").val()
+        }
 
-    populateData(product);
+        populateData(products[productCounter]);
+    });
+
+    populateData(products[productCounter]);
 })

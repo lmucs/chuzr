@@ -2,23 +2,20 @@ extends layout
 
 block css
   link(href='/stylesheets/product.css', rel='stylesheet')
-  link(href='/stylesheets/slider.css', rel='stylesheet')
 
 
 block content
-  link(href='/stylesheets/product.css', rel='stylesheet')
-  script(src='/js/product.js')
+  script(src='/js/rateme.js')
   h1(class='product-name' product-id=id)
   br
   div(class='product-image-rating row')
-    div(id="rate-slider")
-    input(class="slider" value="" id="slider" data-slider-orientation="horizontal" data-slider-tooltip="hide")
     img(class='span8')
     span(class='info-block current-product-rating span3') 
       h3 Current Rating:
-      div(class='rating')
-      a(href='/rateme')
-        button(id='rate-button' class='btn btn-info') Rate this Product
+      input(type="range" id="product-rating" name="product-rating" min="1" max="10")
+      div(id='current-rating')
+      
+      button(id='rate-button' class='btn btn-info') Rate this Product
   div(class='url-to-purchase row')
     a()
       button(id='url-button' class='btn btn-info btn-block span7') Purchase this Product
@@ -30,5 +27,3 @@ block content
 
 
 
-  script(src='/js/bootstrap-slider.js')
-  script(src='/js/rateme.js')
