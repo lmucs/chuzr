@@ -139,7 +139,7 @@ $("#test1").click( function() {
             var data = getFavorites(),
                 maxPerQuery = 100,
                 parsedData = {
-                    "name": "Favorites",
+                    "name": "Products",
                     "children": [],
                     "size": 0
                 },
@@ -163,26 +163,43 @@ $("#test1").click( function() {
 
             console.log(data);
 
+            // data.objects.forEach(function (product) {
+            //   parsedData.size++;
+            //     if (categories[product.categoryName] !== undefined) {
+            //         parsedData.children[categories[product.categoryName]].size++;
+            //         parsedData.children[categories[product.categoryName]].children.push({
+            //             "name": product.title,
+            //             "size": 1
+            //         });
+            //     } else {
+            //       categories[product.categoryName] = parsedData.children.length;
+            //       parsedData.children.push({
+            //           "name": product.categoryName,
+            //           "children": [{
+            //             "name": product.title,
+            //             "size": 1
+            //           }],
+            //           "size": 1
+            //       });
+            //     }
+            // });
+
+            // console.log(parsedData);
+
             data.forEach(function (product) {
-            //data.objects.forEach(function (product) {
               parsedData.size++;
-                if (categories[product.category.name]) {
-                // if (categories[product.categoryName]) {
-                    // parsedData.children[categories[product.categoryName]].size++;
-                    // parsedData.children[categories[product.categoryName]].children.push({
+                if (categories[product.category.name] !== undefined) {
                     parsedData.children[categories[product.category.name]].size++;
                     parsedData.children[categories[product.category.name]].children.push({
-                        "name": product.title,
+                        "name": product.name,
                         "size": 1
                     });
                 } else {
-                  //categories[product.categoryName] = parsedData.children.length;
                   categories[product.category.name] = parsedData.children.length;
                   parsedData.children.push({
-                      //"name": product.categoryName,
                       "name": product.category.name,
                       "children": [{
-                        "name": product.title,
+                        "name": product.name,
                         "size": 1
                       }],
                       "size": 1
