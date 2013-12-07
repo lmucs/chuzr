@@ -35,8 +35,8 @@ $("#test1").click( function() {
         if(format === "HTML"){
             $("#visiContainer").append(
                 $("<ul></ul>").attr("id", "list"),
-                $("<button type='button' >Next Page</button>").attr("id","next-page"),
-                $("<button type='button' >Previous Page</button>").attr("id","last-page")
+                $("<button type='button' >Previous Page</button>").attr("id","last-page"),
+                $("<button type='button' >Next Page</button>").attr("id","next-page")
                 
             );
             
@@ -103,10 +103,28 @@ $("#test1").click( function() {
             $("#next-page").click( function() {
                 skipCount += itemsPerPage;
                 var data = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + "?" + query + "&skip=" + skipCount));
+                if(data.length === 0){
+                    skipCount -= itemsPerPage;
+                    alert("End of data! Go backwards!");
+                 }
                 $("#list").empty();
                 $("#list").append(json2html.transform(data,transform));
                 console.log(skipCount);
                  $("html, body").animate({ scrollTop: 0 }, "slow");
+
+            });
+            $("#last-page").click( function() {
+                skipCount -= itemsPerPage;
+                var data = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + "?" + query + "&skip=" + skipCount));
+                if(skipCount < 0){
+                    skipCount += itemsPerPage;
+                    alert("Beginning of data! Go forwards!");
+                }
+                $("#list").empty();
+                $("#list").append(json2html.transform(data,transform));
+                console.log(skipCount);
+                 $("html, body").animate({ scrollTop: 0 }, "slow");
+
                 
             });
         }
