@@ -43,6 +43,19 @@ $(function() {
             rating: $("#product-rating").val()
         }
 
+        // POST the vote.
+        $.ajax({
+            type: 'POST',
+            url: Config.getApiBaseUrl() + "/votes",
+            data: JSON.stringify(vote),
+            contentType: 'application/json',
+            dataType: 'json',
+            accept: 'application/json',
+            complete: function (jqXHR, textStatus) {   
+                console.log("added vote")
+            }
+        });
+
         populateData(products[productCounter]);
     });
 
