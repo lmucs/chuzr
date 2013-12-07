@@ -9,4 +9,8 @@ web-client/npm-debug.log
 analyzer/sampleDataFormats/CSV/file.csv
 npm-debug.log
 server/test/npm-debug.log
+.cordova
 *.xcuserstate
+
+
+analyzer/analyzer-mobileapp/**

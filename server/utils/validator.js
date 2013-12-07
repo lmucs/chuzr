@@ -19,7 +19,7 @@ module.exports = {
 
   mustBeAdmin: function (req, res, operation) {
     User.findOne({login: req.user}, function (err, user) {
-      if (!user.isAdmin) {
+      if (!user || !user.isAdmin) {
         res.json(403, {
           error: "Admin role required",
           operation: operation
