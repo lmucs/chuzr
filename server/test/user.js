@@ -163,12 +163,22 @@ describe('Users Controller', function () {
       });
     });
     it('should return unauthorized while trying to create an admin while not an admin', function (done) {
-      request(url).post('/users').send(admin).end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(401);
-      })
-    })
-  })
+      User.create(userOne, function (err, res) {
+        request(url).post('/sessions').type("form").send({email:userOne.email, pass: userOne.hashedPassword}).end(function (err, res) {
+          if (err) throw err;
+          var cookies = res.headers['set-cookie'].pop().split(';')[0];
+          
+          req = request(url).post('/users');
+          req.cookies = cookies;
+          req.send(admin).end(function (err, res) {
+            if (err) throw err;
+            res.should.have.status(401);
+            done();
+          });
+        });
+      });
+    });
+  });
 
   describe('#delete()', function () {
     it('should delete if current user is an admin', function (done) {
