@@ -12,6 +12,10 @@ module.exports = function (app) {
     res.render('index', {title: 'Chuzr Home'});
   });
 
+  app.get('/signup', function(req, res) {
+    res.render('signup', {title: 'Sign up'});
+  });
+
   app.get('/play', function(req, res) {
     res.render('play-home', {title: 'Play'});
   });
