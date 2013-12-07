@@ -9,7 +9,8 @@ var itemsPerPage = 10;
 $("#test1").click( function() {
     var item = $("#item").text(),
         format = $("#format").text(),
-        search = $("#filter").val();
+        search = $("#filter").val(),
+        perPage = $("#items-per-page").val();
 
      
      skipCount = 0;
@@ -19,18 +20,23 @@ $("#test1").click( function() {
          query = "name=" + search;
     }
 
-    var dataJSON = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + "?" +  query));
-    $("#iframe").attr('src','http://www.yahoo.com');
+    if(perPage !== "" && perPage%1 ===0){
+        itemsPerPage = Number(perPage);
+
+    }
+
     if(item === "[item]"){
         alert("please select an item you want to see.");
     }
     if(format === "[format]"){
         alert("please select a format you want to see.");
     }
-    
+     
 
     $("#visiContainer").empty();
     if(item !== null && format !== null){
+        var dataJSON = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + "?" +  query + "&limit=" + itemsPerPage));
+   
 
         if(format === "HTML"){
             $("#visiContainer").append(
@@ -101,10 +107,10 @@ $("#test1").click( function() {
 
             $("#list").append(json2html.transform(dataJSON,transform));
             $("#next-page").click( function() {
-                skipCount += itemsPerPage;
-                var data = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + "?" + query + "&skip=" + skipCount));
+                skipCount += Number(itemsPerPage);
+                var data = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + "?" + query + "&skip=" + skipCount+ "&limit=" + itemsPerPage));
                 if(data.length === 0){
-                    skipCount -= itemsPerPage;
+                    skipCount -= Number(itemsPerPage);
                     alert("End of data! Go backwards!");
                  }
                 $("#list").empty();
@@ -114,10 +120,10 @@ $("#test1").click( function() {
 
             });
             $("#last-page").click( function() {
-                skipCount -= itemsPerPage;
-                var data = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + "?" + query + "&skip=" + skipCount));
+                skipCount -= Number(itemsPerPage);
+                var data = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + "?" + query + "&skip=" + skipCount+ "&limit=" + itemsPerPage));
                 if(skipCount < 0){
-                    skipCount += itemsPerPage;
+                    skipCount += Number(itemsPerPage);
                     alert("Beginning of data! Go forwards!");
                 }
                 $("#list").empty();
