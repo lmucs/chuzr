@@ -112,17 +112,23 @@ describe('Products Controller', function () {
     it('should get by id correctly', function (done) {
       User.create(admin, function (err) {
         if (err) throw err;
-        request(url).post('/products').send(testProducts[0]).end(function (err, res) {
-          should.not.exist(err);
-          res.should.have.status(201);
-          res.should.be.json;
-
-          // Get that product by id.
-          request(url).get('/products/' + res.body._id).end(function (err, res) {
+        request(url).post('/sessions').type("form").send({email: admin.email, pass: admin.hashedPassword}).end(function (err, res) {
+          if (err) throw err;
+          var cookies = res.headers['set-cookie'].pop().split(';')[0];
+          req = request(url).post('/products');
+          req.cookies = cookies;
+          req.send(testProducts[0]).end(function (err, res) {
             should.not.exist(err);
-            res.should.have.status(200);
+            res.should.have.status(201);
             res.should.be.json;
-            done();
+            
+            // Get that product by id.
+            request(url).get('/products/' + res.body._id).end(function (err, res) {
+              should.not.exist(err);
+              res.should.have.status(200);
+              res.should.be.json;
+              done();
+            });
           });
         });
       })     
