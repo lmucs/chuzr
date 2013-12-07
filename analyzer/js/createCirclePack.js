@@ -30,7 +30,7 @@ var createCirclePack = function(parsedData, selector) {
         .attr("class", function(d) { return d.children ? "parent" : "child"; })
         .attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; })
-        .attr("r", function(d) { return d.r; })
+        //.attr("r", function(d) { return d.r; })
         .on("click", function(d) { return zoom(node == d ? root : d); });
     
     vis.selectAll("text")
