@@ -2,7 +2,8 @@ var express = require('express'),
     http = require('http'),
     fs = require('fs'),
     mongoose = require('mongoose'),
-    cors = require('cors');
+    cors = require('cors'),
+    MongoStore = require('connect-mongo')(express);
 
 console.log('Configuring the Chuzr API');
 var env = process.env.NODE_ENV || 'development',
@@ -12,6 +13,13 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(express.cookieParser());
+app.use(express.session({
+  store: new MongoStore({
+    url: config.db
+  }),
+  secret: config.secret
+}));
 app.use(cors());
 if ('development' === app.get('env')) {
   app.use(express.errorHandler());

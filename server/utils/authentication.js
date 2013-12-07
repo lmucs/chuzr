@@ -1,20 +1,35 @@
-// API Authentication
+// API Authentication Utilities
 //
 // Usage:
 //
 //   var auth = require('./path/to/this/module');
-//   app.post(url, auth, function (req, res) {
+//   app.post(url, adminRequired(function (req, res) {
 //     ...
-//   });
+//   }));
 //
-// Simply supplying the auth object as the second parameter to your express
-// request methods will check the username and password and generate a 401
-// response if the credentials are bad.
+// Well, this is pretty close to middleware. It should probably be cleaned up to be
+// real middleware.
 
-var express = require('express');
+module.exports = {
 
-module.exports = express.basicAuth(function(user, pass) {
-    
-  // To be replaced with actual users and passes
-  return (user === 'testUser' && pass === 'testPass');
-});
+  adminRequired: function (callback) {
+    return function (req, res) {
+      if (!req.session.userInfo) {
+        return res.json(401, {message: 'Not logged in'});
+      }
+      if (!req.session.userInfo.isAdmin) {
+        return res.json(403, {message: 'Administrator role required'});
+      }
+      return callback(req, res);
+    };
+  },
+
+  loginRequired: function (callback) {
+    return function (req, res) {
+      if (!req.session.userInfo) {
+        return res.json(401, {message: 'Not logged in'});
+      }
+      return callback(req, res);
+    };
+  }
+};
