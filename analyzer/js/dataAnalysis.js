@@ -14,13 +14,17 @@ function checkButton(){
     else{
         $('#test1').prop('disabled', true);
     }
+
+    if($("#format").text() !== "HTML" && $("#format").text() !== "CSV" && $("#format").text() !== "JSON"){
+        $("#items-per-page").css('display', 'none');
+    }
+    else{
+        $("#items-per-page").css('display', 'inline');
+    }
 }
 
 checkButton();
 
-//$(".btn.btn-default").click(function(){
-//    checkButton();
-//});
 
 $("#test1").click( function() {
     var item = $("#item").text(),
@@ -131,7 +135,6 @@ $("#test1").click( function() {
                  }
                 $("#list").empty();
                 $("#list").append(json2html.transform(data,transform));
-                console.log(skipCount);
                  $("html, body").animate({ scrollTop: 0 }, "slow");
 
             });
@@ -144,7 +147,6 @@ $("#test1").click( function() {
                 }
                 $("#list").empty();
                 $("#list").append(json2html.transform(data,transform));
-                console.log(skipCount);
                  $("html, body").animate({ scrollTop: 0 }, "slow");
 
                 
