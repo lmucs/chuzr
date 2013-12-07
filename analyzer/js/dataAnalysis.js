@@ -42,11 +42,9 @@ $("#test1").click( function() {
             $("#visiContainer").append(
                 $("<ul></ul>").attr("id", "list"),
                 $("<button type='button' >Previous Page</button>").attr("id","last-page"),
-                $("<button type='button' >Next Page</button>").attr("id","next-page")
-                
+                $("<button type='button' >Next Page</button>").attr("id","next-page")    
             );
             
-
             transform = [];
 
             if(item === "USERS"){
@@ -116,7 +114,7 @@ $("#test1").click( function() {
                 $("#list").empty();
                 $("#list").append(json2html.transform(data,transform));
                 console.log(skipCount);
-                 $("html, body").animate({ scrollTop: 0 }, "slow");
+                $("html, body").animate({ scrollTop: 0 }, "slow");
 
             });
             $("#last-page").click( function() {
@@ -129,7 +127,7 @@ $("#test1").click( function() {
                 $("#list").empty();
                 $("#list").append(json2html.transform(data,transform));
                 console.log(skipCount);
-                 $("html, body").animate({ scrollTop: 0 }, "slow");
+                $("html, body").animate({ scrollTop: 0 }, "slow");
 
                 
             });
@@ -139,35 +137,53 @@ $("#test1").click( function() {
         else if(format === "CIRCLEPACK") {
             //Modify favorites data for circle pack visualization
             var data = getFavorites(),
+                maxPerQuery = 100,
                 parsedData = {
                     "name": "Favorites",
                     "children": [],
                     "size": 0
                 },
-                categories = {};
+                categories = {},
+                page
+                skip = 0;
 
-            data.objects.forEach(function (product) {
-              parsedData.size++;
-                if (categories[product.categoryName]) {
-                    parsedData.children[categories[product.categoryName]].size++;
-                    parsedData.children[categories[product.categoryName]].children.push({
-                        "name": product.title,
-                        "size": 1
-                    });
-                } else {
-                  categories[product.categoryName] = parsedData.children.length;
-                  parsedData.children.push({
-                      "name": product.categoryName,
-                      "children": [{
-                        "name": product.title,
-                        "size": 1
-                      }],
-                      "size": 1
-                  });
-                }
-            });
+            console.log(data);
+            data = [];
+            console.log(loc.substring(0,changeSpot) + 
+                apiPort + item.toLowerCase() + "?limit=" + maxPerQuery);
+            page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+                apiPort + item.toLowerCase() + "?limit=" + maxPerQuery));
+
+            while (page.length !== 0) {
+                data = data.concat(page);
+                page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+                    apiPort + item.toLowerCase() + "?limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
+            }
+
+            console.log(data);
+
+            // data.objects.forEach(function (product) {
+            //   parsedData.size++;
+            //     if (categories[product.categoryName]) {
+            //         parsedData.children[categories[product.categoryName]].size++;
+            //         parsedData.children[categories[product.categoryName]].children.push({
+            //             "name": product.title,
+            //             "size": 1
+            //         });
+            //     } else {
+            //       categories[product.categoryName] = parsedData.children.length;
+            //       parsedData.children.push({
+            //           "name": product.categoryName,
+            //           "children": [{
+            //             "name": product.title,
+            //             "size": 1
+            //           }],
+            //           "size": 1
+            //       });
+            //     }
+            // });
                 
-            createCirclePack(parsedData, "#visiContainer");
+            // createCirclePack(parsedData, "#visiContainer");
         } else if(format === "JSON"){
           var json = "";
           
