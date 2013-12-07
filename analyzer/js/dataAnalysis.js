@@ -136,7 +136,7 @@ $("#test1").click( function() {
 
         else if(format === "CIRCLEPACK") {
             //Modify favorites data for circle pack visualization
-            var data = getFavorites(),
+            var data = [],
                 maxPerQuery = 100,
                 parsedData = {
                     "name": "Products",
@@ -147,44 +147,19 @@ $("#test1").click( function() {
                 page
                 skip = 0;
 
-            console.log(data);
             data = [];
             console.log(loc.substring(0,changeSpot) + 
                 apiPort + item.toLowerCase() + "?limit=" + maxPerQuery);
             page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
                 apiPort + item.toLowerCase() + "?limit=" + maxPerQuery));
 
-            //while (page.length !== 0) {
-            while (skip<50) {
+            while (page.length !== 0) {
                 data = data.concat(page);
                 page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
                     apiPort + item.toLowerCase() + "?limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
             }
 
             console.log(data);
-
-            // data.objects.forEach(function (product) {
-            //   parsedData.size++;
-            //     if (categories[product.categoryName] !== undefined) {
-            //         parsedData.children[categories[product.categoryName]].size++;
-            //         parsedData.children[categories[product.categoryName]].children.push({
-            //             "name": product.title,
-            //             "size": 1
-            //         });
-            //     } else {
-            //       categories[product.categoryName] = parsedData.children.length;
-            //       parsedData.children.push({
-            //           "name": product.categoryName,
-            //           "children": [{
-            //             "name": product.title,
-            //             "size": 1
-            //           }],
-            //           "size": 1
-            //       });
-            //     }
-            // });
-
-            // console.log(parsedData);
 
             data.forEach(function (product) {
               parsedData.size++;
