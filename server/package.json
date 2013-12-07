@@ -15,6 +15,8 @@
     "cors": "latest",
     "mocha": "latest",
     "bcrypt-nodejs": "latest",
-    "async": "latest"
+    "async": "latest",
+    "ios-sim": "latest",
+    "phonegap": "latest"
   }
 }
