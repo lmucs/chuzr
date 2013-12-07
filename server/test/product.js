@@ -139,20 +139,30 @@ describe('Products Controller', function () {
     it('should create without error', function (done) {
       User.create(admin, function (err) {
         if (err) throw err;
-        request(url).post('/products').send(testProducts[0]).end(function (err, res) {
-          should.not.exist(err);
-          res.should.have.status(201);
-          done();
-        })
-      })   
-    })
+        request(url).post('/sessions').type("form").send({email: admin.email, pass: admin.hashedPassword}).end(function (err, res) {
+          var cookies = res.headers['set-cookie'].pop().split(';')[0];
+          req = request(url).post('/products');
+          req.cookies = cookies;
+          req.send(testProducts[0]).end(function (err, res) {
+            should.not.exist(err);
+            res.should.have.status(201);
+            done();
+          });
+        });  
+      }); 
+    });
     it('should assign all properties on creation, including an _id', function (done) {
       User.create(admin, function (err) {
         if (err) throw err;
-        request(url).post('/products').send(testProducts[0]).end(function (err, res) {
-          should.not.exist(err);
-          productsShouldBeSame(res.body, testProducts[0]);
-          done();
+        request(url).post('/sessions').type("form").send({email: admin.email, pass: admin.hashedPassword}).end(function (err, res) {
+          var cookies = res.headers['set-cookie'].pop().split(';')[0];
+          req = request(url).post('/products');
+          req.cookies = cookies;
+          req.send(testProducts[0]).end(function (err, res) {
+            should.not.exist(err);
+            productsShouldBeSame(res.body, testProducts[0]);
+            done();
+          })
         })
       })
     })
@@ -162,21 +172,28 @@ describe('Products Controller', function () {
     it('should delete without error', function (done) {
       User.create(admin, function (err) {
         if (err) throw err;
-        request(url).post('/products').send(testProducts[0]).end(function (err, res) {
-          should.not.exist(err);
-          res.should.have.status(201);
-          var id = res.body._id;
-
-          // Delete that product.
-          request(url).del('/products/' + id).end(function (err, res) {
+        request(url).post('/sessions').type("form").send({email: admin.email, pass: admin.hashedPassword}).end(function (err, res) {
+          var cookies = res.headers['set-cookie'].pop().split(';')[0];
+          req = request(url).post('/products');
+          req.cookies = cookies;
+          req.send(testProducts[0]).end(function (err, res) {
             should.not.exist(err);
-            res.should.have.status(200);
+            res.should.have.status(201);
+            var id = res.body._id;
 
-            // It should be deleted
-            request(url).get('/products/' + id).end(function (err, res) {
+            // Delete that product.
+            req = request(url).del('/products/' + id)
+            req.cookies = cookies;
+            req.end(function (err, res) {
               should.not.exist(err);
-              res.should.have.status(404);
-              done();
+              res.should.have.status(200);
+
+              // It should be deleted
+              request(url).get('/products/' + id).end(function (err, res) {
+                should.not.exist(err);
+                res.should.have.status(404);
+                done();
+              });
             });
           });
         });
@@ -189,22 +206,29 @@ describe('Products Controller', function () {
       User.create(admin, function (err) {
         if (err) throw err;
         // Create the product.
-        request(url).post('/products').send(testProducts[0]).end(function (err, res) {
-          should.not.exist(err);
-      
-          //Update that product.
-          var id = res.body._id;
-        
-          request(url).put('/products/' + id).send(testProducts[1]).end(function (err, res) {
+        request(url).post('/sessions').type("form").send({email: admin.email, pass: admin.hashedPassword}).end(function (err, res) {
+          var cookies = res.headers['set-cookie'].pop().split(';')[0];
+          req = request(url).post('/products')
+          req.cookies = cookies;
+          req.send(testProducts[0]).end(function (err, res) {
             should.not.exist(err);
-            res.should.have.status(200);
+      
+            //Update that product.
+            var id = res.body._id;
         
-            //Ensure product has new data
-            request(url).get('/products/' + id).end(function (err, res) {
+            req = request(url).put('/products/' + id)
+            req.cookies = cookies;
+            req.send(testProducts[1]).end(function (err, res) {
               should.not.exist(err);
               res.should.have.status(200);
-              productsShouldBeSame(res.body, testProducts[1]);
-              done();
+        
+              //Ensure product has new data
+              request(url).get('/products/' + id).end(function (err, res) {
+                should.not.exist(err);
+                res.should.have.status(200);
+                productsShouldBeSame(res.body, testProducts[1]);
+                done();
+              });
             });  
           });    
         });
