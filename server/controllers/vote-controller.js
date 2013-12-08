@@ -1,6 +1,7 @@
 var Vote = require('../models/vote');
 var pagination = require('../utils/pagination');
 var validator = require('../utils/validator');
+var auth = require('../utils/authentication');
 
 module.exports = function (app) {
 
@@ -24,8 +25,7 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/votes', function (req, res) {
-    // TODO must be logged in
+  app.post('/votes', auth.loginRequired(function (req, res) {
     validator.mustHaveLegalRatingType(req, res);
 
     // Auto generate the timestamp and active elements
@@ -52,7 +52,7 @@ module.exports = function (app) {
         })
       }
     });
-  });
+  }));
 
   app.get('/votes/:id', function (req, res) {
     var id = req.params.id;
