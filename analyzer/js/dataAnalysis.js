@@ -320,10 +320,25 @@ function usersAndVotes(){
 
   });
 
-  for(var key in allUsers){
-    console.log(key);
-  }
+  
   console.log(allUsers);
 
 };
-usersAndVotes();
+
+function productsAndVotes(){
+  var products = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + "products?&limit=1000"));
+  var allProducts = new Object();
+  products.forEach(function(entry){
+    if(allProducts[entry["_id"]] === undefined){
+        allProducts[entry["_id"]] = new Object();
+        allProducts[entry["_id"]].products = [];
+    }
+
+    allProducts[entry["_id"]].products.push(entry);
+
+  });
+
+  
+  console.log(allProducts);
+
+};
