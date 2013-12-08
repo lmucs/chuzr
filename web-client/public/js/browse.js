@@ -30,8 +30,6 @@ $(function(){
         newContent += '<img src="' + product.images[160] + '">';
         newContent += '</img>';
         newContent += '</div>';
-        newContent += '<div class="capsule-bottom">';
-        newContent += '</div>';
         newContent += '<div class="capsule-hover">';
         newContent += '<p>' + (product.description || "No description available");
         newContent += '</p>';
@@ -41,7 +39,7 @@ $(function(){
     $("#main-content").append(newContent);
     $(".product-capsule").hover(
       function() {
-        $(this).find(".capsule-hover").css("display","block");
+        $(this).find(".capsule-hover").css("display","inline");
       },
       function() {
         $(this).find(".capsule-hover").css("display","none");
