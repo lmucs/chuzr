@@ -27,6 +27,7 @@ Now, run `mongod` in another window to start up your mongo datbase
 
 To begin the ingestion bootstrap (from inside the ingestor directory still):
 
+    npm install
     ./chuzr-bootstrap.sh
 
 You should have lots of products in your database now :D
