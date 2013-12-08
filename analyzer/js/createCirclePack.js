@@ -82,7 +82,6 @@ var createCirclePack = function(parsedData, selector) {
         zoom(root); 
     });
     
-    
     function zoom(d, i) {
         var k = r / d.r / 2;
         x.domain([d.x - d.r, d.x + d.r]);

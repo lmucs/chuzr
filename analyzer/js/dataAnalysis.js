@@ -23,6 +23,22 @@ function checkButton(){
     }
 }
 
+function getAllTheProducts(query) {
+    var data = [],
+        skip = 0,
+        maxPerQuery = 100;
+        page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+            apiPort + "products?" + query + "&limit=" + maxPerQuery));
+
+    while (page.length !== 0) {
+        data = data.concat(page);
+        page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+            apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
+    }
+
+    return data;
+}
+
 checkButton();
 
 $("#test1").click( function() {
@@ -218,30 +234,26 @@ $("#test1").click( function() {
           
           $("#visiContainer").append(json);
         } else if (format === "TREEMAP") {
-            var data,
-                selectOptions,
-                renderTreemap = function (dataType) {
-                    if (dataType === "USERS") { 
-                        data = getTestData();
-                        selectOptions = [
-                            {name: 'Votes', val: 'votes'},
-                            {name: 'Purchases', val: 'purchases'},
-                            {name: 'Posts', val: 'posts'},
-                            {name: 'Category Size', val: 'category'}
-                        ];
-                        createTreemap("visiContainer", selectOptions, data);
-                    } else if (dataType === "PRODUCTS") {
-                        data = createTestData();
-                        console.log(data);
-                        selectOptions = [
-                            {name: 'Size', val: 'size'},
-                            {name: 'Rating', val: 'rating'}
-                        ];
-                        createTreemap("visiContainer", selectOptions, data);
-                    }
-                };
-            
-            renderTreemap(item);  
+            if (item === "USERS") {
+                var data = getTestData();
+                    selectOptions = [
+                        {name: 'Votes', val: 'votes'},
+                        {name: 'Purchases', val: 'purchases'},
+                        {name: 'Posts', val: 'posts'},
+                        {name: 'Category Size', val: 'category'}
+                    ];
+
+                createTreemap("visiContainer", selectOptions, data);
+            } else if (item === "PRODUCTS") {
+                var data = createTestData();
+                    console.log(data);
+                    selectOptions = [
+                        {name: 'Size', val: 'size'},
+                        {name: 'Rating', val: 'rating'}
+                    ];
+                createTreemap("visiContainer", selectOptions, data);
+            }
+ 
         } else if(format === "CSV") {
                 // Need to implement code for actual download button.
                 // $('#test1').click(function(){})
