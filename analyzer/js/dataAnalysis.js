@@ -321,7 +321,7 @@ function usersAndVotes(){
   });
 
   
-  console.log(allUsers);
+  return allUsers;
 
 };
 
@@ -339,6 +339,6 @@ function productsAndVotes(){
   });
 
   
-  console.log(allProducts);
+  return allProducts;
 
 };
