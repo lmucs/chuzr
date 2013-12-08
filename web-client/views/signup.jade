@@ -9,18 +9,15 @@ block content
       h1(class="text-center") Welcome to Chuzr
       hr
       center(id='login-content')
-        button(class='btn btn-large btn-primary',href='#') Log-in with Facebook
-        br
-        h4 or 
-        h3 Sign-in
+        h3 Sign up
         form(class='form-vertical')
           input(type='text', id='inputEmail', placeholder='Email')
           br
           input(type='password', id='inputPassword', placeholder='Password')
           br
-          button(type='submit', class='btn', id='signin') Sign In
-        h4 or
-        a(href='/signup')
-          h3 Sign up
-  script(src='/js/login.js')
+          input(type='password', id='reenterPassword', placeholder='Reenter password')
+          br
+          button(type='submit', class='btn', id='signup') Sign up
+
+  script(src='/js/signup.js')
 

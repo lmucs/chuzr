@@ -3,9 +3,14 @@ extends layout
 block css
   link(href='/stylesheets/play.css', rel='stylesheet')
 
+
+
+block pagetitle
+  div(class='page-title')
+    img(src="/images/chuzr-labels/png/play.png")
+
+
 block content
-  div(id="header")
-    h2 Play
   div(class='play' id='play-game')
     div(id='game1' class='game')
       a(href='/chuzoff')
