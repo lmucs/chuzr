@@ -305,3 +305,8 @@ $("#next-page").click( function() {
         console.log(skipCount);
     }
 });
+
+
+$("#items-per-page").keyup( function(){
+    checkButton();
+});
