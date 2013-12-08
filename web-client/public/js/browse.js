@@ -6,12 +6,14 @@ $(function(){
     var newContent='';
     var searchTerm = document.getElementById('prependDropdownButton').value;
     var searchUrl = "";
+    var apiUrl = "http://localhost:3000/";
+    var clientUrl = "http://localhost:3001/";
 
     if (document.getElementById('search-menu').value == 'name') {
-       searchUrl = Config.getApiBaseUrl() + "/products?name=";
+       searchUrl = apiUrl + "products?name=";
     }
     if (document.getElementById('search-menu').value == 'brand') {
-       searchUrl = Config.getApiBaseUrl() + "/products?brand=";
+       searchUrl = apiUrl + "products?brand=";
     }
     
     $.ajax({
@@ -21,7 +23,7 @@ $(function(){
       products.forEach(function (product) {
         newContent += '<div class="product-capsule">';
         newContent += '<div class="capsule-top">';
-        newContent += '<a href="/product/' + product._id + '">' + product.name
+        newContent += '<a href="' + clientUrl + 'product/' + product._id + '">' + product.name
         newContent += '</a>';
         newContent += '</div>';
         newContent += '<div class="capsule-image">';

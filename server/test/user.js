@@ -98,7 +98,6 @@ describe('Users Model', function(){
       })
     })
   })
-
 });
 
 describe('Users Controller', function () {
@@ -117,7 +116,7 @@ describe('Users Controller', function () {
         if (err) throw err;
       })
       // Create the user.
-      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
+      request(url).post('/users').send(userOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
 
@@ -133,10 +132,8 @@ describe('Users Controller', function () {
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
+
+      request(url).post('/users').send(userOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
         done();
@@ -146,31 +143,23 @@ describe('Users Controller', function () {
       User.create(admin, function (err) {
         if (err) throw err;
       })
-      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
+      request(url).post('/users').send(userOne).end(function (err, res) {
         if (err) throw err;
         res.body.name.first.should.equal('Luna')
         res.body.name.last.should.equal('Bar')
         res.body.email.should.equal('lunabar@example.com')
         res.body.login.should.equal('lunaluna')
         res.body.reputation.should.equal(1000)
-        /*res.body.checkPassword('w0nk4', function (err, isMatch) {
-          if (err) throw err;
-          isMatch.should.be.true;
-        });*/
         res.body.avatarURL.should.equal('http://i.lunabar.com/luna.png')
-        //Object.keys(res.body).length.should.equal(9);
         done();
       })
     })
     it('should error if trying to create a user with a login that already exists', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      });
-      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
+      request(url).post('/users').send(userOne).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
       });
-      request(url).post('/users').send(dupe).auth("testUser", "testPass").end(function (err, res) {
+      request(url).post('/users').send(dupe).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(400);
         done();
@@ -179,62 +168,71 @@ describe('Users Controller', function () {
   })
 
   describe('#delete()', function () {
-    it('should delete without error', function (done) {
-      User.create(admin, function (err) {
-        if (err) throw err;
-      })
-      // Create the user.
-      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
+    it('should delete if current user is an admin', function (done) {
 
-        // Delete that user.
-        request(url).del('/users/' + res.body._id).auth("testUser", "testPass").end(function (err, res) {
+      request(url).post('/users').send(admin).end(function (err, res) {
+        if (err) throw err;
+
+        request(url).post('/sessions').type("form").send({email: admin.email, pass: admin.hashedPassword}).end(function (err, res) {
           if (err) throw err;
-          res.should.have.status(200);
-          done();
+          var cookies = res.headers['set-cookie'].pop().split(';')[0];
+
+          request(url).post('/users').send(userOne).end(function (err, res) {
+            if (err) throw err;
+            res.should.have.status(201);
+
+            req = request(url).del('/users/' + res.body._id)
+            req.cookies = cookies;
+            req.end(function (err, res) {
+              if (err) throw err;
+              res.should.have.status(200);
+              done();
+            })
+          })
         })
-      })
+      });
     })
   }) 
 
-  describe('#update()', function () {
-    it('should update without error', function (done) {
-      User.create(admin, function (err) {
+  // TODO delete fails if not admin
+
+  // TODO update someone else if admin
+
+  // TODO nonadmins prevented from making themselves admins
+
+  describe('update()', function () {
+    it('should allow updating of yourself', function (done) {
+
+      // Create and login the user
+      request(url).post('/users').send(userOne).end(function (err, res) {
         if (err) throw err;
-      })
-      // Create the user.
-      request(url).post('/users').send(userOne).auth("testUser", "testPass").end(function (err, res) {
-        if (err) throw err;
-        
-        //Update that user.
-        var id=res.body._id;
-        
-        request(url).put('/users/' + id).send(userThree).auth("testUser", "testPass").end(function (err, res2) {
+        var id = res.body._id;
+        request(url).post('/sessions').type('form').send({email: userOne.email, pass: userOne.hashedPassword}).end(function (err, res) {
           if (err) throw err;
-          res2.should.have.status(200);
-        
-          //Ensure user has new data
-          request(url).get('/users/' + id).end(function (err, response) {
+          var cookies = res.headers['set-cookie'].pop().split(';')[0];
+
+          //Update that user
+          req = request(url).put('/users/' + id);
+          req.cookies = cookies;
+          req.send(userThree).end(function (err, res2) {
             if (err) throw err;
-            response.should.have.status(200);
-            response.body.name.first.should.equal('Candy')
-            response.body.name.last.should.equal('Bar')
-            response.body.email.should.equal('candybar@example.com')
-            response.body.login.should.equal('candycandy')
-            response.body.reputation.should.equal(15)
-            /*user.checkPassword('w0nk4', function (err, isMatch) {
+            res2.should.have.status(200);
+        
+            //Ensure user has new data
+            request(url).get('/users/' + id).end(function (err, response) {
               if (err) throw err;
-              isMatch.should.be.true;
-            });*/
-            response.body.avatarURL.should.equal('http://i.candybar.com/candy.png')
-            done();
+              response.should.have.status(200);
+              response.body.name.first.should.equal('Candy')
+              response.body.name.last.should.equal('Bar')
+              response.body.email.should.equal('candybar@example.com')
+              response.body.login.should.equal('candycandy')
+              response.body.reputation.should.equal(15)
+              response.body.avatarURL.should.equal('http://i.candybar.com/candy.png')
+              done();
+            })
           })  
         })    
       })
     });
   });
 });
-
-
-

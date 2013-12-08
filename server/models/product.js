@@ -7,10 +7,10 @@ var productSchema = new Schema({
   , brand 			   : String
   , description 	 : String
   , images			   : {
-        fourHundred   : String, 
-        oneSixty      : String,  
-        oneHundred    : String,
-        sixty         : String
+        "40"  : String,
+        "100" : String,
+        "160" : String,
+        "400" : String
     }
   , url 			     : String
   , price			      : {
