@@ -166,8 +166,6 @@ $("#test1").click( function() {
                 skip = 0;
 
             data = [];
-            console.log(loc.substring(0,changeSpot) + 
-                apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery);
             page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
                 apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery));
 
@@ -193,6 +191,7 @@ $("#test1").click( function() {
                     parsedData.children[categories[product.category.name]].size++;
                     parsedData.children[categories[product.category.name]].children.push({
                         "name": product.name,
+                        "rating": product.rating,
                         "size": 1
                     });
                 } else {
@@ -201,6 +200,7 @@ $("#test1").click( function() {
                       "name": product.category.name,
                       "children": [{
                         "name": product.name,
+                        "rating": product.rating,
                         "size": 1
                       }],
                       "size": 1

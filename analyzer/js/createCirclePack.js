@@ -15,7 +15,6 @@ var createCirclePack = function(parsedData, selector) {
         });
 
     var color = function(node) {
-        console.log(node);
         var rating = node.rating / 10,
             b = 0,
             r = 255*2*(1-rating),
