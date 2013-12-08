@@ -22,7 +22,8 @@ var createCirclePack = function(parsedData, selector) {
         .attr("transform", "translate(0,0)");
     
     node = root = parsedData;
-    var nodes = pack.nodes(root);
+    var nodes = pack.nodes(root),
+        minRadius = 100;
     
     vis.selectAll("circle")
         .data(nodes)
@@ -30,18 +31,34 @@ var createCirclePack = function(parsedData, selector) {
         .attr("class", function(d) { return d.children ? "parent" : "child"; })
         .attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; })
-        //.attr("r", function(d) { return d.r; })
-        .on("click", function(d) { return zoom(node == d ? root : d); });
-    
+        .attr("r", function(d) { return d.r; })
+        .on("click", function(d) { return zoom(node == d ? root : d); })
+        .on("mouseover", function (d) {
+            console.log(d);
+            if(d.r <= minRadius) {
+                $("#text_"+d.name.replace(/[ :.#,+&'"()\/-]/g, '')).css({opacity:1});
+            }
+        })
+        .on("mouseout", function (d) {
+            console.log(d);
+            if(d.r <= minRadius) {
+                console.log("#text_"+d.name.replace(/[ :.#,+&'"()\/-]/g, ''))
+                $("#text_"+d.name.replace(/[ :.#,+&'"()\/-]/g, '')).css({opacity:0});
+            }
+        });
+
     vis.selectAll("text")
         .data(nodes)
         .enter().append("svg:text")
         .attr("class", function(d) { return d.children ? "parent" : "child"; })
         .attr("x", function(d) { return d.x; })
         .attr("y", function(d) { return d.y; })
+        .attr("id", function(d) {return "text_" + d.name.replace(/[ :.#,+&'"()\/-]/g, '');})
         .attr("dy", ".35em")
         .attr("text-anchor", "middle")
-        .style("opacity", function(d) { return d.r > 20 ? 1 : 0; })
+        .style("opacity", function(d) { 
+            return d.r > minRadius ? 1 : 0; 
+        })
         .text(function(d) { return d.name; });
     
     d3.select(window).on("click", function() {
@@ -65,7 +82,7 @@ var createCirclePack = function(parsedData, selector) {
         t.selectAll("text")
             .attr("x", function(d) { return x(d.x); })
             .attr("y", function(d) { return y(d.y); })
-            .style("opacity", function(d) { return k * d.r > 20 ? 1 : 0; });
+            .style("opacity", function(d) { return k * d.r > minRadius ? 1 : 0; });
     
         node = d;
         d3.event.stopPropagation();

@@ -121,6 +121,6 @@ circle.parent:hover {
   stroke-width: .5px;
 }
 
-circle.child {
+/*circle.child {
   pointer-events: none;
-}
+}*/

@@ -178,8 +178,6 @@ $("#test1").click( function() {
                     apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
             }
 
-            console.log(data);
-
             data.forEach(function (product) {
               parsedData.size++;
                 if (categories[product.category.name] !== undefined) {
@@ -200,8 +198,6 @@ $("#test1").click( function() {
                   });
                 }
             });
-
-            console.log(parsedData);
                 
             createCirclePack(parsedData, "#visiContainer");
         } else if(format === "JSON"){
