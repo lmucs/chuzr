@@ -2,7 +2,6 @@
 
 var argv = require('optimist')
   .usage('Usage: node $0 --baseurl <apiroot> --user <apiuser> --pass <apipass>')
-  .demand(['user', 'pass'])
   .argv;
 
 var request = require('request');
@@ -46,7 +45,7 @@ userData.forEach(function (s, i) {
     isAdmin: i === 0
   };
   url = baseurl + '/users';
-  request.post({url: url, auth: auth, json: data}, function (err, res, body) {
+  request.post({url: url, json: data}, function (err, res, body) {
     if (err) throw err;
     console.log('Adding user %s, HTTP response: %d', data.login, res.statusCode);
   });
@@ -68,88 +67,8 @@ for (var i = 0; i < 500; i++) {
     imageURL: 'http://i.imgur.com' + choice(couponOptions.images) + '.png'
   }
   url = baseurl + '/coupons';
-  request.post({url: url, auth: auth, json: data}, function (err, res, body) {
+  request.post({url: url, json: data}, function (err, res, body) {
     if (err) throw err;
     console.log('Adding coupon, HTTP response: %d / %j', res.statusCode, body);
   });
 }
-
-var productInfo = {
-  names: [
-    "Red Ball", 
-    "Basketball", 
-    "Golf Club Set", 
-    "Silly Putty", 
-    "Dark Chocolate with Hazelnuts"
-  ],
-  brands: ["Target", "Spalding", "GolfPro", "Mattel", "Nestle Tollhouse"],
-  descriptions: [
-    "This ball bounces higher than any before it!", 
-    "Play like a pro with this NBA-standard basketball", 
-    "The set used by Tiger Woods", 
-    "There is nothign silly about the quality of this stuff!", 
-    "Roasted hazelnuts mixed with smooth and delicate dark chocolate"  
-  ],
-  images: [
-    {
-      fourHundred: "http://i94.photobucket.com/albums/l86/MythicRuler/chuzrsamplephotos/redball.jpg", 
-      oneSixty: "http://i.reddit.com/42.png"
-    }, 
-    {
-      fourHundred: "http://i94.photobucket.com/albums/l86/MythicRuler/chuzrsamplephotos/sampleiamge2.jpg"
-    },
-    {
-      fourHundred: "http://i94.photobucket.com/albums/l86/MythicRuler/chuzrsamplephotos/golfclubset.jpg", 
-      oneSixty: "http://i.reddit.com/42.png"
-    }, 
-    {
-      fourHundred: "http://i94.photobucket.com/albums/l86/MythicRuler/chuzrsamplephotos/sillyputty.jpg",
-      oneSixty: "http://i.thoughtcatalog.com/12.png"
-    },
-    {
-      fourHundred: "http://i94.photobucket.com/albums/l86/MythicRuler/chuzrsamplephotos/dkchoc.jpg", 
-      oneSixty: "http://i.reddit.com/42.png"
-    }, 
-    {
-      fourHundred: "http://i.facebook.com/332.png", 
-      oneSixty: "http://i.thoughtcatalog.com/12.png"
-    }
-  ],
-  urls: [
-    "http://www.google.com/products/best_product.html", 
-    "http://www.google.com/products/best_product.html",
-    "http://www.ebay.com/products/product.html",
-    "http://www.amazon.com/product.html", 
-    "http://shopzilla.com/products/favorite_product.html"
-  ],
-  ratings: [1, 9, 7, 5, 10],
-  minprices: [0.99, 1.00, 7.80, 5.95, 14.32],
-  maxprices: [100, 60.45, 30, 75, 80],
-  related: [[12643, 53342, 23566, 234453], [1, 346, 876], [98, 234, 65, 333, 23, 6]],
-  shopzillaIds: [12345, 6345234, 2345, 24, 22],
-  categoryIds: [77, 245, 2458475, 23423, 2222],
-};
-
-for (var i = 0; i < 5; i++) {
-  var data = {
-    name: productInfo.names[i], 
-    brand: productInfo.brands[i], 
-    description: productInfo.descriptions[i], 
-    images: productInfo.images[i],
-    url: productInfo.urls[i],
-    rating: productInfo.ratings[i], 
-    price: {max: productInfo.maxprices[i], min: productInfo.minprices[i]}, 
-    shopzillaId: productInfo.shopzillaIds[i],
-    categoryId: productInfo.categoryIds[i], 
-    related: productInfo.related[randomInt(3)]
-  }
-  url = baseurl + '/products';
-  request.post({url: url, auth: auth, json: data}, function (err, res, body) {
-    if (err) throw err;
-    console.log('Adding product, HTTP response: %d / %j', res.statusCode, body);
-  });
-}
-
-
-
-

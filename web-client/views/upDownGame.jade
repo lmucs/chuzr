@@ -1,19 +1,19 @@
 extends layout
 
 block css
-  link(href='/stylesheets/upDownGame.css', rel='stylesheet')
+  link(href='/stylesheets/game.css', rel='stylesheet')
 
 block content
   h1 UpDown Game
 
   div(id='upDownGame' class='row')
-    div(id='product' class='span6')
-    div(id='upDown' class='span6')
+    div(id='product' class='span4 offset1')
+    div(id='upDown' class='span4')
 
 
 
 
-  div(id="results")
+  div(id="resultsTable")
     h3 Standings
     table(id="standings" class="table table-hover table-condensed")
 

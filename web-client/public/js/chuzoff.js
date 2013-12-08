@@ -14,7 +14,6 @@ $(function() {
         createChuzOff = function(products) {
             product1Index = Math.floor(Math.random()*products.length);
             product2Index = Math.floor(Math.random()*(products.length - 1));
-
             if(product2Index >= product1Index) {
                 product2Index++;
             }
@@ -61,7 +60,8 @@ $(function() {
     }
 
     products.forEach(function(product, i) {
-        product.imageLink = product.images[400];
+        product.imageLink = 
+            (product.images && product.images[400]) ? product.images[400] : testImage;
         product.chuzOffs = 0;
         product.chuzOffWins = 0;
         product.winPercent = 0;
