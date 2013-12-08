@@ -178,9 +178,16 @@ $("#test1").click( function() {
             }
 
             data.forEach(function (product) {
+                var total=0;
                 parsedData.size++;
                 //get rating  
-                
+                votes = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+                    apiPort + "votes?productId=" + product._id + "&limit=" + maxPerQuery));
+
+                for(i in votes) {
+                    total += votes[i].rating;
+                }
+                product.rating = total/votes.length;
 
                 if (categories[product.category.name] !== undefined) {
                     parsedData.children[categories[product.category.name]].size++;

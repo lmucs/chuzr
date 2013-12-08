@@ -13,6 +13,24 @@ var createCirclePack = function(parsedData, selector) {
         .value(function(d) {
             return d.size;
         });
+
+    var color = function(node) {
+        console.log(node);
+        var rating = node.rating / 10,
+            b = 0,
+            r = 255*2*(1-rating),
+            g = 255*2*rating;
+            
+        if (r > 255) {
+            r = 255;
+        }
+        if (g > 255) {
+            g = 255;
+        }
+
+        return "rgb(" + Math.floor(r) + "," + Math.floor(g) + "," + Math.floor(b) + ")";
+    }
+
     
     var vis = d3.select(selector).insert("svg:svg", "h2")
         .attr("width", w)
@@ -31,7 +49,10 @@ var createCirclePack = function(parsedData, selector) {
         .attr("class", function(d) { return d.children ? "parent" : "child"; })
         .attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; })
-        .attr("r", function(d) { return d.r; })
+        .attr("r", function(d) { return d.r; })  
+        .style("fill", function(d) { 
+            return color(d);
+        }) 
         .on("click", function(d) { return zoom(node == d ? root : d); })
         .on("mouseover", function (d) {
             if(d.r <= minRadius) {
