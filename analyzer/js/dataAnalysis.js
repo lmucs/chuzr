@@ -25,7 +25,6 @@ function checkButton(){
 
 checkButton();
 
-
 $("#test1").click( function() {
     var item = $("#item").text(),
         format = $("#format").text(),
@@ -168,25 +167,32 @@ $("#test1").click( function() {
                 skip = 0;
 
             data = [];
-            console.log(loc.substring(0,changeSpot) + 
-                apiPort + item.toLowerCase() + "?limit=" + maxPerQuery);
             page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
-                apiPort + item.toLowerCase() + "?limit=" + maxPerQuery));
+                apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery));
 
             while (page.length !== 0) {
                 data = data.concat(page);
                 page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
-                    apiPort + item.toLowerCase() + "?limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
+                    apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
             }
 
-            console.log(data);
-
             data.forEach(function (product) {
-              parsedData.size++;
+                var total=0;
+                parsedData.size++;
+                //get rating  
+                votes = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+                    apiPort + "votes?productId=" + product._id + "&limit=" + maxPerQuery));
+
+                for(i in votes) {
+                    total += votes[i].rating;
+                }
+                product.rating = total/votes.length;
+
                 if (categories[product.category.name] !== undefined) {
                     parsedData.children[categories[product.category.name]].size++;
                     parsedData.children[categories[product.category.name]].children.push({
                         "name": product.name,
+                        "rating": product.rating,
                         "size": 1
                     });
                 } else {
@@ -195,14 +201,13 @@ $("#test1").click( function() {
                       "name": product.category.name,
                       "children": [{
                         "name": product.name,
+                        "rating": product.rating,
                         "size": 1
                       }],
                       "size": 1
                   });
                 }
             });
-
-            console.log(parsedData);
                 
             createCirclePack(parsedData, "#visiContainer");
         } else if(format === "JSON"){
@@ -228,6 +233,7 @@ $("#test1").click( function() {
                         createTreemap("visiContainer", selectOptions, data);
                     } else if (dataType === "PRODUCTS") {
                         data = createTestData();
+                        console.log(data);
                         selectOptions = [
                             {name: 'Size', val: 'size'},
                             {name: 'Rating', val: 'rating'}
