@@ -5,6 +5,7 @@ var apiPort = '3000/';
 var transform = [];
 var skipCount = 0;
 var itemsPerPage = 10;
+var maxPerQuery = 100;
 
 function checkButton(){
     console.log($("#item").text() !=="[item]" && $("#format").text() !=="[format]" && ($("#items-per-page").val() === "" || $("#items-per-page").val()%1 ===0) );
@@ -23,7 +24,7 @@ function checkButton(){
     }
 }
 
-function getAllTheProducts(query, maxPerQuery) {
+function getAllTheProducts(query) {
     var data = [],
         skip = 0,
         page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
@@ -180,8 +181,7 @@ $("#test1").click( function() {
 
         else if(format === "CIRCLEPACK") {
             //Modify favorites data for circle pack visualization
-            var  maxPerQuery = 100,
-                data = getAllTheProducts(query, maxPerQuery),
+            var data = getAllTheProducts(query),
                 parsedData = {
                     "name": "Products",
                     "children": [],
@@ -226,7 +226,7 @@ $("#test1").click( function() {
           $("#visiContainer").append(json);
         } else if (format === "TREEMAP") {
             if (item === "USERS") {
-                var data = getTestData();
+                var data = getTestData(),
                     selectOptions = [
                         {name: 'Votes', val: 'votes'},
                         {name: 'Purchases', val: 'purchases'},
@@ -236,13 +236,50 @@ $("#test1").click( function() {
 
                 createTreemap("visiContainer", selectOptions, data);
             } else if (item === "PRODUCTS") {
-                var data = createTestData();
-                    console.log(data);
+                var data = createTestData(),
+                    parsedData = {
+                        "name": "Products",
+                        "children": [],
+                        "size": 0
+                    },
+                    categories = {},
                     selectOptions = [
                         {name: 'Size', val: 'size'},
                         {name: 'Rating', val: 'rating'}
                     ];
-                createTreemap("visiContainer", selectOptions, data);
+
+
+                console.log(data);
+
+                console.log(query);
+                data = getAllTheProducts(query);
+
+                data.forEach(function (product) {
+                    var total=0;
+                    parsedData.size++;
+
+                    if (categories[product.category.name] !== undefined) {
+                        parsedData.children[categories[product.category.name]].size++;
+                        parsedData.children[categories[product.category.name]].children.push({
+                            "name": product.name,
+                            "size": 1
+                        });
+                    } else {
+                      categories[product.category.name] = parsedData.children.length;
+                      parsedData.children.push({
+                          "name": product.category.name,
+                          "children": [{
+                            "name": product.name,
+                            "size": 1
+                          }],
+                          "size": 1
+                      });
+                    }
+                });
+
+                console.log(parsedData);
+
+                createTreemap("visiContainer", selectOptions, parsedData);
             }
  
         } else if(format === "CSV") {
