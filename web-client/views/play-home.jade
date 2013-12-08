@@ -1,15 +1,23 @@
 extends layout
 
+block css
+  link(href='/stylesheets/play.css', rel='stylesheet')
+
+
+
+block pagetitle
+  div(class='page-title')
+    img(src="/images/chuzr-labels/png/play.png")
+
+
 block content
-  h1= title
-  br
   div(class='play' id='play-game')
-    div(class='game1' id='game1')
+    div(id='game1' class='game')
       a(href='/chuzoff')
         p The Chuzoff
-    div(class='game2' id='game2')
+    div(id='game2' class='game')
       a(href='/rateme')
         p Rate Me
-    div(class='game3' id='game3')
-      a(href='/game')
-        p game3
+    div(id='game3' class='game')
+      a(href='/categoryGame')
+        p Category Game

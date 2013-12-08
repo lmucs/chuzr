@@ -1,31 +1,30 @@
-var env = process.env.NODE_ENV || 'development',
-    config = require('./config/config')[env],
-    MongoClient = require('mongodb').MongoClient;
+var async = require('async');
 
 var Loader = function () {
 
 
-  var _products = function (chuzrProducts, db) {
+  var _products = function (chuzrProducts, db, callback) {
     var products = db.collection('products');
-    for (p in chuzrProducts) {
-      var product = chuzrProducts[p];
-      products.insert(product, function (err, res) {
+    async.each(
+      chuzrProducts,
+      function(item, asyncCallback) {
+        products.insert(item, function (err, res) {
+          var asyncErr = err || null;
+          asyncCallback(asyncErr);
+        });
+      },
+      function (err) {
         if (err) throw err;
+        callback();
       });
-    }
   };
 
 
-  var _taxonomy = function (shopzillaTaxonomy) {
-    MongoClient.connect(config.dbPath, function(err, db) {
+  var _taxonomy = function (shopzillaTaxonomy, db, callback) {
+    var taxonomy = db.collection('taxonomy');
+    taxonomy.insert(shopzillaTaxonomy, function (err, result) {
       if (err) throw err;
-      var taxonomy = db.collection('taxonomy');
-      taxonomy.drop();
-      taxonomy.insert(shopzillaTaxonomy, function (err, result) {
-        if (err) throw err;
-        console.log('All your taxonomy data-base belongs to us\n');
-        db.close();
-      });
+      callback();
     });
   };
 

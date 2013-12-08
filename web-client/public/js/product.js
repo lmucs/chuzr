@@ -17,10 +17,10 @@ $(function() {
 		    console.log(Config.getApiBaseUrl() + "/products/" + productId);
 		    console.log(product);
 		    $(".product-name").text(product.name);
-		    $(".product-image-rating img").attr('src', product.images[0]);
+		    $(".product-image-rating img").attr('src', product.images[400]);
 		    $(".url-to-purchase a").attr('href', product.url);
 		    $(".product-description .description").text(product.description);
-		    $(".current-product-rating .rating").text(product.rating);
+		    $(".current-product-rating .rating").text((product.rating == null) ? "--" : product.rating);
 		    $(".current-product-rating a").attr('href', '/rateme/' + productId);
         };
 	

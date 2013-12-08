@@ -1,5 +1,5 @@
-var path = require('path'),
-    rootPath = path.normalize(__dirname + '/..');
+var path = require('path');
+var rootPath = path.normalize(__dirname + '/..');
 
 module.exports = {
 
@@ -9,7 +9,8 @@ module.exports = {
     root: rootPath,
     app: {
       name: 'Chuzr'
-    }
+    },
+    secret: 'zombie feynman'
   },
 
   test: {
@@ -18,9 +19,9 @@ module.exports = {
     root: rootPath,
     app: {
       name: 'Chuzr'
-    }
+    },
+    secret: 'zombie feynman'
   },
 
   production: { }
-
 };
