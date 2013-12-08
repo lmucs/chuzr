@@ -1,5 +1,6 @@
 var Coupon = require('../models/coupon');
 var pagination = require('../utils/pagination');
+var auth = require('../utils/authentication');
 
 module.exports = function (app) {
 
@@ -21,7 +22,7 @@ module.exports = function (app) {
     });
   });
   
-  app.post('/coupons', auth.adminRequire(function (req, res) {
+  app.post('/coupons', auth.adminRequired(function (req, res) {
     // TODO Admin auth
     Coupon.create(req.body, function (err, coupon) {
       if (err) return res.json(400, err);
