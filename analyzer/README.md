@@ -22,6 +22,6 @@ _In order for the analyzer to work. The API url should be up and running on port
 
 In order to run the mobile iOS application, in the analyzer directory
 
-Make sure to `npm install` in server directory
+Make sure to `npm install` in server directory.
 
 Then, run the `phonegap run ios` in analyzer-mobile directory. 
