@@ -1,1 +1,3 @@
-node load_sample_data.js $@
+
+node load_sample_data.js 
+

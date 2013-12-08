@@ -1,5 +1,8 @@
 extends layout
 
+block css
+  link(href='/stylesheets/browse.css', rel='stylesheet')
+
 
 block pagetitle
   div(class='page-title')
@@ -16,6 +19,8 @@ block content
       p go
 
   div(id='results')
+
+  div(id='product-capsule')
   
   script(src='/js/browse.js')
   

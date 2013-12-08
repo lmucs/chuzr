@@ -27,13 +27,11 @@ $(function(){
         newContent += '</a>';
         newContent += '</div>';
         newContent += '<div class="capsule-image">';
-        newContent += '<img src="' + product.images[0] + '">';
+        newContent += '<img src="' + product.images[160] + '">';
         newContent += '</img>';
         newContent += '</div>';
-        newContent += '<div class="capsule-bottom">';
-        newContent += '</div>';
         newContent += '<div class="capsule-hover">';
-        newContent += '<p>' + product.description;
+        newContent += '<p>' + (product.description || "No description available");
         newContent += '</p>';
         newContent += '</div>';
         newContent += '</div>';
@@ -41,7 +39,7 @@ $(function(){
     $("#main-content").append(newContent);
     $(".product-capsule").hover(
       function() {
-        $(this).find(".capsule-hover").css("display","block");
+        $(this).find(".capsule-hover").css("display","inline");
       },
       function() {
         $(this).find(".capsule-hover").css("display","none");
@@ -49,9 +47,11 @@ $(function(){
     );
     })
   })
+
   $("#prependDropdownButton").keypress(function(e){
     if(e.which == 13){
       $("#find-products").click();
     }
   });
+
 });
