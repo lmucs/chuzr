@@ -1,15 +1,22 @@
+var async = require('async');
+
 var Loader = function () {
 
 
   var _products = function (chuzrProducts, db, callback) {
     var products = db.collection('products');
-    for (p in chuzrProducts) {
-      var product = chuzrProducts[p];
-      products.insert(product, function (err, res) {
+    async.each(
+      chuzrProducts,
+      function(item, asyncCallback) {
+        products.insert(item, function (err, res) {
+          var asyncErr = err || null;
+          asyncCallback(asyncErr);
+        });
+      },
+      function (err) {
         if (err) throw err;
+        callback();
       });
-    }
-    callback();
   };
 
 
