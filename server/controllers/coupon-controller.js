@@ -21,13 +21,13 @@ module.exports = function (app) {
     });
   });
   
-  app.post('/coupons', function (req, res) {
+  app.post('/coupons', auth.adminRequire(function (req, res) {
     // TODO Admin auth
     Coupon.create(req.body, function (err, coupon) {
       if (err) return res.json(400, err);
       res.send(201, coupon);
     });
-  });
+  }));
 
   app.get('/coupons/:id', function (req, res) {
     var id = req.params.id;
@@ -38,21 +38,21 @@ module.exports = function (app) {
     });
   });
 
-  app.put('/coupons/:id', function (req, res) {
+  app.put('/coupons/:id', auth.adminRequired( function (req, res) {
     // TODO Admin Auth
     var id = req.params.id;
     Coupon.update({_id: id}, req.body, function (err, numUpdated) {
       if (err) return res.json(400, err);
       res.json(200, {'Number updated': numUpdated});
     });
-  });
+  }));
 
-  app.delete('/coupons/:id', function (req, res) {
+  app.delete('/coupons/:id', auth.adminRequired( function (req, res) {
     // TODO Admin auth
     var id = req.params.id;
     Coupon.remove({_id: id}, function (err) {
       if (err) return res.json(400, err);
       res.json(200, {Deleted: id});
     });
-  });
+  }));
 }
