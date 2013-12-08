@@ -5,6 +5,7 @@ var apiPort = '3000/';
 var transform = [];
 var skipCount = 0;
 var itemsPerPage = 10;
+var maxPerQuery = 100;
 
 function checkButton(){
     console.log($("#item").text() !=="[item]" && $("#format").text() !=="[format]" && ($("#items-per-page").val() === "" || $("#items-per-page").val()%1 ===0) );
@@ -21,6 +22,32 @@ function checkButton(){
     else{
         $("#items-per-page").css('display', 'inline');
     }
+}
+
+function getAllTheProducts(query) {
+    var data = [],
+        skip = 0,
+        page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+            apiPort + "products?" + query + "&limit=" + maxPerQuery));
+
+    while (page.length !== 0) {
+        data = data.concat(page);
+        page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+            apiPort + "products?" + query + "&limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
+    }
+
+    return data;
+}
+
+function getRating(productId, maxPerQuery) {
+    var total = 0,
+        i,
+        votes = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+            apiPort + "votes?productId=" + productId + "&limit=" + maxPerQuery));
+    for(i in votes) {
+        total += votes[i].rating;
+    }
+    return total/votes.length;
 }
 
 checkButton();
@@ -154,38 +181,18 @@ $("#test1").click( function() {
 
         else if(format === "CIRCLEPACK") {
             //Modify favorites data for circle pack visualization
-            var data = [],
-                maxPerQuery = 100,
+            var data = getAllTheProducts(query),
                 parsedData = {
                     "name": "Products",
                     "children": [],
                     "size": 0
                 },
-                categories = {},
-                page
-                skip = 0;
-
-            data = [];
-            page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
-                apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery));
-
-            while (page.length !== 0) {
-                data = data.concat(page);
-                page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
-                    apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
-            }
+                categories = {};
 
             data.forEach(function (product) {
                 var total=0;
                 parsedData.size++;
-                //get rating  
-                votes = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
-                    apiPort + "votes?productId=" + product._id + "&limit=" + maxPerQuery));
-
-                for(i in votes) {
-                    total += votes[i].rating;
-                }
-                product.rating = total/votes.length;
+                product.rating = getRating(product._id, maxPerQuery);
 
                 if (categories[product.category.name] !== undefined) {
                     parsedData.children[categories[product.category.name]].size++;
@@ -218,30 +225,63 @@ $("#test1").click( function() {
           
           $("#visiContainer").append(json);
         } else if (format === "TREEMAP") {
-            var data,
-                selectOptions,
-                renderTreemap = function (dataType) {
-                    if (dataType === "USERS") { 
-                        data = getTestData();
-                        selectOptions = [
-                            {name: 'Votes', val: 'votes'},
-                            {name: 'Purchases', val: 'purchases'},
-                            {name: 'Posts', val: 'posts'},
-                            {name: 'Category Size', val: 'category'}
-                        ];
-                        createTreemap("visiContainer", selectOptions, data);
-                    } else if (dataType === "PRODUCTS") {
-                        data = createTestData();
-                        console.log(data);
-                        selectOptions = [
-                            {name: 'Size', val: 'size'},
-                            {name: 'Rating', val: 'rating'}
-                        ];
-                        createTreemap("visiContainer", selectOptions, data);
+            if (item === "USERS") {
+                var data = getTestData(),
+                    selectOptions = [
+                        {name: 'Votes', val: 'votes'},
+                        {name: 'Purchases', val: 'purchases'},
+                        {name: 'Posts', val: 'posts'},
+                        {name: 'Category Size', val: 'category'}
+                    ];
+
+                createTreemap("visiContainer", selectOptions, data);
+            } else if (item === "PRODUCTS") {
+                var data = createTestData(),
+                    parsedData = {
+                        "name": "Products",
+                        "children": [],
+                        "size": 0
+                    },
+                    categories = {},
+                    selectOptions = [
+                        {name: 'Size', val: 'size'},
+                        {name: 'Rating', val: 'rating'}
+                    ];
+
+
+                console.log(data);
+
+                console.log(query);
+                data = getAllTheProducts(query);
+
+                data.forEach(function (product) {
+                    var total=0;
+                    parsedData.size++;
+
+                    if (categories[product.category.name] !== undefined) {
+                        parsedData.children[categories[product.category.name]].size++;
+                        parsedData.children[categories[product.category.name]].children.push({
+                            "name": product.name,
+                            "size": 1
+                        });
+                    } else {
+                      categories[product.category.name] = parsedData.children.length;
+                      parsedData.children.push({
+                          "name": product.category.name,
+                          "children": [{
+                            "name": product.name,
+                            "size": 1
+                          }],
+                          "size": 1
+                      });
                     }
-                };
-            
-            renderTreemap(item);  
+                });
+
+                console.log(parsedData);
+
+                createTreemap("visiContainer", selectOptions, parsedData);
+            }
+ 
         } else if(format === "CSV") {
                 // Need to implement code for actual download button.
                 // $('#test1').click(function(){})
