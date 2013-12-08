@@ -102,11 +102,12 @@ $("#test1").click( function() {
             }
             else if(item === "VOTES"){
                transform = [
-                {"tag":"li","html": "${userId}, ${productID}"},
+                {"tag":"li","html": "UserID: ${userId}, productID:  ${_id}"},
                 {"tag":"ul","children":[
                     {"tag":"li","html": "rating: ${rating}"},
-                    {"tag":"li","html": "timestamp: ${timestamp} "},
-                    {"tag":"li","html": "active: ${active}"},
+                    {"tag":"li","html": "ratingType: ${ratingType}"},
+                    {"tag":"li","html": "timestamp: ${timeStamp}"},
+                    {"tag":"li","html": "active?: ${active}"},
                    
                   ]}
               ];
@@ -306,7 +307,23 @@ $("#next-page").click( function() {
     }
 });
 
+function usersAndVotes(){
+  var votes = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + "votes?&limit=1000"));
+  var allUsers = new Object();
+  votes.forEach(function(entry){
+    if(allUsers[entry.userId] === undefined){
+        allUsers[entry.userId] = new Object();
+        allUsers[entry.userId].votes = [];
+    }
 
-$("#items-per-page").keyup( function(){
-    checkButton();
-});
+    allUsers[entry.userId].votes.push(entry);
+
+  });
+
+  for(var key in allUsers){
+    console.log(key);
+  }
+  console.log(allUsers);
+
+};
+usersAndVotes();
