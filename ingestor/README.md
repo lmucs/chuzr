@@ -10,27 +10,23 @@ stored separately from the simple product data.
 
 You probably should pull the latest update from master. You should be in the master branch.
 
-Your developer's api key should be stored in ingestor/config/shopzilla/api.js as shown below,
-where both values are strings:
+Now, first thing, go into the ingestor directory (`cd ingestor/`).
 
+Your developer's api key should be stored in the file config/shopzilla/api.js as shown below,
+where both values are strings. If you don't have the apiKey and publisherId, you should get one
+or as your tech lead for one:
 
     module.exports = {
       apiKey: "xxx",
       publisherId: "xxx"
     };
 
-Also, you need to `npm install` from inside the ingestor/ directory, so you can get the 'mongodb' package.
-
 Now, run `mongod` in another window to start up your mongo datbase
 
-### How to do Ingesting
+### To Ingest
 
-(Currently) To run:
+To begin the ingestion bootstrap (from inside the ingestor directory still):
 
-Inside the central chuzr/ directory, there is a directory called scripts/ . You should:
+    ./chuzr-bootstrap.sh
 
-    cd scripts/
-    bash chuzr-bootstrap.sh
-
-After you see that it loads a bunch of products, check in your mongo console if there
-are around (or just under) 5000 products. Then you need to kill the bootstrap process manually.
+You should have lots of products in your database now :D
