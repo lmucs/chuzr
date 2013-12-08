@@ -3,6 +3,7 @@ require('./utils');
 var should = require('should');
 var request = require('supertest');  
 var Coupon = require('../models/coupon');
+var User = require('../models/coupon');
 var url = require('../config/config').test.url;
 
 
@@ -44,6 +45,20 @@ var testCoupons = [
   }
 ];
 
+var admin = {
+  name: {
+    first: 'Addy',
+    last: 'Ministrator'
+  },
+  email: 'admin@example.com',
+  login: 'testUser',
+  reputation: 9001,
+  socialHandle: 'Admin',
+  avatarURL: 'http://i.powertrip.com/iamadmin.jpg',
+  hashedPassword: 'testPass',
+  isAdmin: true
+};
+
 /*
  * Asserts that two coupon representations are the same. The coupons can be either
  * (1) actual coupon model objects, (2) plain JavaScript objects with coupon properties,
@@ -65,15 +80,24 @@ function couponsShouldBeSame(coupon, other) {
  * Inserts from an array then calls the callback AFTER all coupons are inserted.
  */
 function insertCoupons(coupons, callback) {
-  var couponsRemaining = coupons.length;
-  if (couponsRemaining === 0) callback();
-  for (var i = 0; i < coupons.length; i++) {
-    request(url).post('/coupons').send(coupons[i]).end(function (err, res) {
-      should.not.exist(err);
-      res.should.have.status(201);
-      if (--couponsRemaining === 0) callback();
+  User.create(admin, function (err, user) {
+    should.not.exist(err);
+    request(url).post('/sessions').type("form").send({email:userOne.email, pass: userOne.hashedPassword}).end(function (err, res) {
+      if (err) throw err;
+      var cookies = res.headers['set-cookie'].pop().split(';')[0];
+      var couponsRemaining = coupons.length;
+      if (couponsRemaining === 0) callback();
+      for (var i = 0; i < coupons.length; i++) {
+        req = request(url).post('/coupons');
+        req.cookies = cookies;
+        req.send(coupons[i]).end(function (err, res) {
+          should.not.exist(err);
+          res.should.have.status(201);
+          if (--couponsRemaining === 0) callback();
+        });
+      }
     });
-  }
+  });
 }
 
 describe('Coupon Model', function() {
