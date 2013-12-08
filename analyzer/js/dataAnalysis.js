@@ -23,10 +23,9 @@ function checkButton(){
     }
 }
 
-function getAllTheProducts(query) {
+function getAllTheProducts(query, maxPerQuery) {
     var data = [],
         skip = 0,
-        maxPerQuery = 100,
         page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
             apiPort + "products?" + query + "&limit=" + maxPerQuery));
 
@@ -37,6 +36,17 @@ function getAllTheProducts(query) {
     }
 
     return data;
+}
+
+function getRating(productId, maxPerQuery) {
+    var total = 0,
+        i,
+        votes = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+            apiPort + "votes?productId=" + productId + "&limit=" + maxPerQuery));
+    for(i in votes) {
+        total += votes[i].rating;
+    }
+    return total/votes.length;
 }
 
 checkButton();
@@ -170,26 +180,19 @@ $("#test1").click( function() {
 
         else if(format === "CIRCLEPACK") {
             //Modify favorites data for circle pack visualization
-            var data = getAllTheProducts(query),
+            var  maxPerQuery = 100,
+                data = getAllTheProducts(query, maxPerQuery),
                 parsedData = {
                     "name": "Products",
                     "children": [],
                     "size": 0
                 },
-                maxPerQuery = 100,
                 categories = {};
 
             data.forEach(function (product) {
                 var total=0;
                 parsedData.size++;
-                //get rating  
-                votes = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
-                    apiPort + "votes?productId=" + product._id + "&limit=" + maxPerQuery));
-
-                for(i in votes) {
-                    total += votes[i].rating;
-                }
-                product.rating = total/votes.length;
+                product.rating = getRating(product._id, maxPerQuery);
 
                 if (categories[product.category.name] !== undefined) {
                     parsedData.children[categories[product.category.name]].size++;
