@@ -80,15 +80,12 @@ var createTreemap = function(containerId, selectOptions, data) {
                 return d.dy;
             })
         .style("fill", function(d) { 
-            return color(d);
-        })
-        // .style("fill", function (d) {
-        //         if (d.color) {
-        //             return d.color;
-        //         } else {
-        //             return "red";
-        //         }
-        //     })        
+            if (d.color) {
+                return d.color;
+            } else {
+                return color(d);
+            }
+        })     
         .style("stroke", function (d) {
                 return "black";
             });
