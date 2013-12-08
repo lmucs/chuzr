@@ -25,7 +25,6 @@ function checkButton(){
 
 checkButton();
 
-
 $("#test1").click( function() {
     var item = $("#item").text(),
         format = $("#format").text(),
@@ -179,7 +178,10 @@ $("#test1").click( function() {
             }
 
             data.forEach(function (product) {
-              parsedData.size++;
+                parsedData.size++;
+                //get rating  
+                
+
                 if (categories[product.category.name] !== undefined) {
                     parsedData.children[categories[product.category.name]].size++;
                     parsedData.children[categories[product.category.name]].children.push({
@@ -223,6 +225,7 @@ $("#test1").click( function() {
                         createTreemap("visiContainer", selectOptions, data);
                     } else if (dataType === "PRODUCTS") {
                         data = createTestData();
+                        console.log(data);
                         selectOptions = [
                             {name: 'Size', val: 'size'},
                             {name: 'Rating', val: 'rating'}
