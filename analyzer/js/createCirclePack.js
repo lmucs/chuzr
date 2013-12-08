@@ -55,12 +55,12 @@ var createCirclePack = function(parsedData, selector) {
         .on("click", function(d) { return zoom(node == d ? root : d); })
         .on("mouseover", function (d) {
             if(d.r <= minRadius) {
-                $("#text_"+d.name.replace(/[ :.#,+&'"()\/-]/g, '')).css({opacity:1});
+                $("#text_"+d.name.replace(/[ :.#,+&'"()\/!-]/g, '')).css({opacity:1});
             }
         })
         .on("mouseout", function (d) {
             if(d.r <= minRadius) {
-                $("#text_"+d.name.replace(/[ :.#,+&'"()\/-]/g, '')).css({opacity:0});
+                $("#text_"+d.name.replace(/[ :.#,+&'"()\/!-]/g, '')).css({opacity:0});
             }
         });
 
@@ -70,7 +70,7 @@ var createCirclePack = function(parsedData, selector) {
         .attr("class", function(d) { return d.children ? "parent" : "child"; })
         .attr("x", function(d) { return d.x; })
         .attr("y", function(d) { return d.y; })
-        .attr("id", function(d) {return "text_" + d.name.replace(/[ :.#,+&'"()\/-]/g, '');})
+        .attr("id", function(d) {return "text_" + d.name.replace(/[ :.#,+&'"()\/!-]/g, '');})
         .attr("dy", ".35em")
         .attr("text-anchor", "middle")
         .style("opacity", function(d) { 
