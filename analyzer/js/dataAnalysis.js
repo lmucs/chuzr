@@ -39,7 +39,7 @@ function getAllTheProducts(query) {
     return data;
 }
 
-function getRating(productId, maxPerQuery) {
+function getRating(productId) {
     var total = 0,
         i,
         votes = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
@@ -192,7 +192,7 @@ $("#test1").click( function() {
             data.forEach(function (product) {
                 var total=0;
                 parsedData.size++;
-                product.rating = getRating(product._id, maxPerQuery);
+                product.rating = getRating(product._id);
 
                 if (categories[product.category.name] !== undefined) {
                     parsedData.children[categories[product.category.name]].size++;
@@ -246,7 +246,8 @@ $("#test1").click( function() {
                     selectOptions = [
                         {name: 'Size', val: 'size'},
                         {name: 'Rating', val: 'rating'}
-                    ];
+                    ],
+                    total = 0;
 
 
                 console.log(data);
@@ -255,27 +256,29 @@ $("#test1").click( function() {
                 data = getAllTheProducts(query);
 
                 data.forEach(function (product) {
-                    var total=0;
+                    total=0;
                     parsedData.size++;
 
                     if (categories[product.category.name] !== undefined) {
                         parsedData.children[categories[product.category.name]].size++;
-                        parsedData.children[categories[product.category.name]].children.push({
-                            "name": product.name,
-                            "size": 1
-                        });
+                        parsedData.children[categories[product.category.name]].productArray.push(getRating(product._id));
                     } else {
                       categories[product.category.name] = parsedData.children.length;
                       parsedData.children.push({
                           "name": product.category.name,
-                          "children": [{
-                            "name": product.name,
-                            "size": 1
-                          }],
+                          "productArray": [getRating(product._id)],
                           "size": 1
                       });
                     }
                 });
+
+                for(i in parsedData.children) {
+                    total = 0;
+                    for(j in parsedData.children[i].productArray) {
+                        total += parsedData.children[i].productArray[j];
+                    }
+                    parsedData.children[i].rating = total/parsedData.children[i].productArray.length;
+                }
 
                 console.log(parsedData);
 
