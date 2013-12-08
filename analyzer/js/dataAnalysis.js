@@ -62,11 +62,9 @@ $("#test1").click( function() {
             $("#visiContainer").append(
                 $("<ul></ul>").attr("id", "list"),
                 $("<button type='button' >Previous Page</button>").attr("id","last-page"),
-                $("<button type='button' >Next Page</button>").attr("id","next-page")
-                
+                $("<button type='button' >Next Page</button>").attr("id","next-page")    
             );
             
-
             transform = [];
 
             if(item === "USERS"){
@@ -135,7 +133,8 @@ $("#test1").click( function() {
                  }
                 $("#list").empty();
                 $("#list").append(json2html.transform(data,transform));
-                 $("html, body").animate({ scrollTop: 0 }, "slow");
+                console.log(skipCount);
+                $("html, body").animate({ scrollTop: 0 }, "slow");
 
             });
             $("#last-page").click( function() {
@@ -147,8 +146,8 @@ $("#test1").click( function() {
                 }
                 $("#list").empty();
                 $("#list").append(json2html.transform(data,transform));
-                 $("html, body").animate({ scrollTop: 0 }, "slow");
-
+                console.log(skipCount);
+                $("html, body").animate({ scrollTop: 0 }, "slow");
                 
             });
         }
@@ -156,34 +155,53 @@ $("#test1").click( function() {
 
         else if(format === "CIRCLEPACK") {
             //Modify favorites data for circle pack visualization
-            var data = getFavorites(),
+            var data = [],
+                maxPerQuery = 100,
                 parsedData = {
-                    "name": "Favorites",
+                    "name": "Products",
                     "children": [],
                     "size": 0
                 },
-                categories = {};
+                categories = {},
+                page
+                skip = 0;
 
-            data.objects.forEach(function (product) {
+            data = [];
+            console.log(loc.substring(0,changeSpot) + 
+                apiPort + item.toLowerCase() + "?limit=" + maxPerQuery);
+            page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+                apiPort + item.toLowerCase() + "?limit=" + maxPerQuery));
+
+            while (page.length !== 0) {
+                data = data.concat(page);
+                page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
+                    apiPort + item.toLowerCase() + "?limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
+            }
+
+            console.log(data);
+
+            data.forEach(function (product) {
               parsedData.size++;
-                if (categories[product.categoryName]) {
-                    parsedData.children[categories[product.categoryName]].size++;
-                    parsedData.children[categories[product.categoryName]].children.push({
-                        "name": product.title,
+                if (categories[product.category.name] !== undefined) {
+                    parsedData.children[categories[product.category.name]].size++;
+                    parsedData.children[categories[product.category.name]].children.push({
+                        "name": product.name,
                         "size": 1
                     });
                 } else {
-                  categories[product.categoryName] = parsedData.children.length;
+                  categories[product.category.name] = parsedData.children.length;
                   parsedData.children.push({
-                      "name": product.categoryName,
+                      "name": product.category.name,
                       "children": [{
-                        "name": product.title,
+                        "name": product.name,
                         "size": 1
                       }],
                       "size": 1
                   });
                 }
             });
+
+            console.log(parsedData);
                 
             createCirclePack(parsedData, "#visiContainer");
         } else if(format === "JSON"){
