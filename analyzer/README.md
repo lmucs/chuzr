@@ -25,3 +25,5 @@ In order to run the mobile iOS application, in the analyzer directory:
 Make sure to `npm install` in server directory.
 
 Then, run the `phonegap run ios` in analyzer-mobile directory. 
+
+After simulator comes up, for better views `cmd + ←, ↑ ,→ , ↓  ` .
