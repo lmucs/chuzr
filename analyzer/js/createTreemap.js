@@ -1,6 +1,6 @@
 var createTreemap = function(containerId, selectOptions, data) {
     var conceptTree = data,
-        w = 1200 - 80,
+        w = 1000 - 80,
         h = 800 - 180,
         x = d3.scale.linear().range([0, w]),
         y = d3.scale.linear().range([0, h]),
@@ -31,6 +31,27 @@ var createTreemap = function(containerId, selectOptions, data) {
                 //return !d.children;
             });
 
+    var color = function(node) {
+        var rating = node.rating / 10;
+
+        //increase contrast
+        rating = Math.pow((rating+.5),5)-0.5;
+
+        var b = 0,
+            r = 255*2*(1-rating),
+            g = 255*2*rating;
+            
+        if (r > 255) {
+            r = 255;
+        }
+        if (g > 255) {
+            g = 255;
+        }
+
+        return "rgb(" + Math.floor(r) + "," + Math.floor(g) + "," + Math.floor(b) + ")";
+    }
+
+
         var cell = svg.selectAll("g")
             .data(nodes)
             .enter().append("svg:g")
@@ -58,13 +79,16 @@ var createTreemap = function(containerId, selectOptions, data) {
         .attr("height", function (d) {
                 return d.dy;
             })
-        .style("fill", function (d) {
-                if (d.color) {
-                    return d.color;
-                } else {
-                    return "red";
-                }
-            })        
+        .style("fill", function(d) { 
+            return color(d);
+        })
+        // .style("fill", function (d) {
+        //         if (d.color) {
+        //             return d.color;
+        //         } else {
+        //             return "red";
+        //         }
+        //     })        
         .style("stroke", function (d) {
                 return "black";
             });
