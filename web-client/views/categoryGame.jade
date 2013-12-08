@@ -4,9 +4,11 @@ block css
   link(href='/stylesheets/categoryGame.css', rel='stylesheet')
   link(href='http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css', rel='stylesheet')
 
-block content
-  h1 Category Game
+block pagetitle
+  div(class='page-title')
+    img(src="/images/chuzr-labels/png/categories.png")
 
+block content
   div(class = "row")
     div(id="productSpace" class = "span3 offset1")
       h3 Products
