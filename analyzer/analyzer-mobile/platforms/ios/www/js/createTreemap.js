@@ -95,7 +95,6 @@ var createTreemap = function(containerId, selectOptions, data) {
         });
 
     d3.select("#sizeBy").on("change", function () {
-            console.log(this.value);
             treemap.value(accessors[this.value]).nodes(root);
             zoom(node);
         });

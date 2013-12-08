@@ -1,6 +1,5 @@
 analyzer/.DS_Store
-ingestor/config/shopzilla/api.js
-ingestor/config/shopzilla/ftp.js
+feed-processor/config/api.js
 node_modules
 web-client/public/stylesheets/*.css
 .project
@@ -12,6 +11,6 @@ npm-debug.log
 server/test/npm-debug.log
 .cordova
 *.xcuserstate
-
-
-analyzer/analyzer-mobileapp/**
+analyzer/analyzer-mobile/merges/**
+analyzer/analyzer-mobile/platforms/**
+analyzer/analyzer-mobile/plugins/**

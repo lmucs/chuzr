@@ -39,7 +39,7 @@ function getAllTheProducts(query) {
     return data;
 }
 
-function getRating(productId) {
+function getRating(productId, maxPerQuery) {
     var total = 0,
         i,
         votes = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
@@ -128,12 +128,11 @@ $("#test1").click( function() {
             }
             else if(item === "VOTES"){
                transform = [
-                {"tag":"li","html": "UserID: ${userId}, productID:  ${_id}"},
+                {"tag":"li","html": "${userId}, ${productID}"},
                 {"tag":"ul","children":[
                     {"tag":"li","html": "rating: ${rating}"},
-                    {"tag":"li","html": "ratingType: ${ratingType}"},
-                    {"tag":"li","html": "timestamp: ${timeStamp}"},
-                    {"tag":"li","html": "active?: ${active}"},
+                    {"tag":"li","html": "timestamp: ${timestamp} "},
+                    {"tag":"li","html": "active: ${active}"},
                    
                   ]}
               ];
@@ -193,7 +192,7 @@ $("#test1").click( function() {
             data.forEach(function (product) {
                 var total=0;
                 parsedData.size++;
-                product.rating = getRating(product._id);
+                product.rating = getRating(product._id, maxPerQuery);
 
                 if (categories[product.category.name] !== undefined) {
                     parsedData.children[categories[product.category.name]].size++;
@@ -247,8 +246,7 @@ $("#test1").click( function() {
                     selectOptions = [
                         {name: 'Size', val: 'size'},
                         {name: 'Rating', val: 'rating'}
-                    ],
-                    total = 0;
+                    ];
 
 
                 console.log(data);
@@ -257,29 +255,27 @@ $("#test1").click( function() {
                 data = getAllTheProducts(query);
 
                 data.forEach(function (product) {
-                    total=0;
+                    var total=0;
                     parsedData.size++;
 
                     if (categories[product.category.name] !== undefined) {
                         parsedData.children[categories[product.category.name]].size++;
-                        parsedData.children[categories[product.category.name]].productArray.push(getRating(product._id));
+                        parsedData.children[categories[product.category.name]].children.push({
+                            "name": product.name,
+                            "size": 1
+                        });
                     } else {
                       categories[product.category.name] = parsedData.children.length;
                       parsedData.children.push({
                           "name": product.category.name,
-                          "productArray": [getRating(product._id)],
+                          "children": [{
+                            "name": product.name,
+                            "size": 1
+                          }],
                           "size": 1
                       });
                     }
                 });
-
-                for(i in parsedData.children) {
-                    total = 0;
-                    for(j in parsedData.children[i].productArray) {
-                        total += parsedData.children[i].productArray[j];
-                    }
-                    parsedData.children[i].rating = total/parsedData.children[i].productArray.length;
-                }
 
                 console.log(parsedData);
 
@@ -355,39 +351,3 @@ $("#next-page").click( function() {
         console.log(skipCount);
     }
 });
-
-function usersAndVotes(){
-  var votes = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + "votes?&limit=1000"));
-  var allUsers = new Object();
-  votes.forEach(function(entry){
-    if(allUsers[entry.userId] === undefined){
-        allUsers[entry.userId] = new Object();
-        allUsers[entry.userId].votes = [];
-    }
-
-    allUsers[entry.userId].votes.push(entry);
-
-  });
-
-  
-  return allUsers;
-
-};
-
-function productsAndVotes(){
-  var products = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + "products?&limit=1000"));
-  var allProducts = new Object();
-  products.forEach(function(entry){
-    if(allProducts[entry["_id"]] === undefined){
-        allProducts[entry["_id"]] = new Object();
-        allProducts[entry["_id"]].products = [];
-    }
-
-    allProducts[entry["_id"]].products.push(entry);
-
-  });
-
-  
-  return allProducts;
-
-};
