@@ -26,14 +26,14 @@ function checkButton(){
 function getAllTheProducts(query) {
     var data = [],
         skip = 0,
-        maxPerQuery = 100;
+        maxPerQuery = 100,
         page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
             apiPort + "products?" + query + "&limit=" + maxPerQuery));
 
     while (page.length !== 0) {
         data = data.concat(page);
         page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
-            apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
+            apiPort + "products?" + query + "&limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
     }
 
     return data;
@@ -170,26 +170,14 @@ $("#test1").click( function() {
 
         else if(format === "CIRCLEPACK") {
             //Modify favorites data for circle pack visualization
-            var data = [],
-                maxPerQuery = 100,
+            var data = getAllTheProducts(query),
                 parsedData = {
                     "name": "Products",
                     "children": [],
                     "size": 0
                 },
-                categories = {},
-                page
-                skip = 0;
-
-            data = [];
-            page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
-                apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery));
-
-            while (page.length !== 0) {
-                data = data.concat(page);
-                page = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + 
-                    apiPort + item.toLowerCase() + "?" + query + "&limit=" + maxPerQuery + "&skip=" + maxPerQuery*++skip));
-            }
+                maxPerQuery = 100,
+                categories = {};
 
             data.forEach(function (product) {
                 var total=0;
