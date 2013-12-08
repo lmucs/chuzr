@@ -4,8 +4,7 @@ body{
 }
 
 #visiContainer{
-	background-color: white;
-	opacity: .8;
+	background-color: rgba(255,255,255,.8);
 	overflow:auto;
 	width: auto;
 }
