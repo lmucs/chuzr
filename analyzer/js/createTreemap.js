@@ -32,8 +32,12 @@ var createTreemap = function(containerId, selectOptions, data) {
             });
 
     var color = function(node) {
-        var rating = node.rating / 10,
-            b = 0,
+        var rating = node.rating / 10;
+
+        //increase contrast
+        rating = Math.pow((rating+.5),5)-0.5;
+
+        var b = 0,
             r = 255*2*(1-rating),
             g = 255*2*rating;
             
