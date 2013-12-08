@@ -162,7 +162,7 @@ describe('Users Controller', function () {
         done();
       });
     });
-    it('should return unauthorized while trying to create an admin while not an admin', function (done) {
+    it('should return unauthorized while trying to create an admin while logged in as a non-admin', function (done) {
       User.create(userOne, function (err, res) {
         request(url).post('/sessions').type("form").send({email:userOne.email, pass: userOne.hashedPassword}).end(function (err, res) {
           if (err) throw err;
