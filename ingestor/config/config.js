@@ -5,6 +5,7 @@ module.exports = {
 
   development: {
     db: 'chuzr_dev',
+    dbPath: 'mongodb://localhost/chuzr_dev',
     root: rootPath,
     app: {
       name: 'Chuzr Ingestor'
@@ -13,6 +14,7 @@ module.exports = {
 
   test: {
     db: 'chuzr_test',
+    dbPath: 'mongodb://localhost/chuzr_test',
     root: rootPath,
     app: {
       name: 'Chuzr Ingestor'

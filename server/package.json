@@ -15,6 +15,10 @@
     "cors": "latest",
     "mocha": "latest",
     "bcrypt-nodejs": "latest",
-    "async": "latest"
+    "async": "latest",
+    "connect-mongo": "0.3.x"
+    "ios-sim": "latest",
+    "phonegap": "latest"
+
   }
 }
