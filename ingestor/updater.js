@@ -19,24 +19,23 @@ var todaysDate = function() {
 
 var c = new ftpClient();
 c.connect(ftpConfig);
-if(!c.connected) {
-    throw 'Updater did not connect to the Shopzilla server';
-}
 
-c.on('error', function(err) {
-  console.log(err.code);
-})
+if(c.connected) {
+  console.log('connected to shopzilla')
+  c.on('error', function(err) {
+    console.log(err.code);
+  });
 
-c.on('close', function(hadErr) { 
-    if (hadErr) console.log('shopzilla connection closed with err');
-    if (!hadErr) console.log('shopzilla connection closed');
-})
+  c.on('close', function(hadErr) { 
+      if (hadErr) console.log('shopzilla connection closed with err');
+      if (!hadErr) console.log('shopzilla connection closed');
+  })
 
-c.on('end', function() {
-    console.log('shopzilla connection closed');
-})
+  c.on('end', function() {
+      console.log('shopzilla connection closed');
+  })
 
-c.on('ready', function () {
+  c.on('ready', function () {
     console.log('client is ready');
     c.list('./xml-delta-1.0/', function(err, list) {
         console.log('deltas exist');
@@ -58,12 +57,15 @@ c.on('ready', function () {
                 })
               });
             }
-          }
-          c.end(false);  
+          }  
         } 
         else {
           console.log('No changes to products');
-          c.end(true);
         }
+        c.end();
     });
   });
+} else {
+  console.log('No connection to shopzilla server')
+  c.destroy();
+}
