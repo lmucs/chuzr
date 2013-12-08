@@ -1,29 +1,73 @@
 //when submitted
 var loc = $(location).attr('href');
 var changeSpot = loc.lastIndexOf('8000');
-var apiPort = '3000/'
+var apiPort = '3000/';
+var transform = [];
+var skipCount = 0;
+var itemsPerPage = 10;
+
+function checkButton(){
+    console.log($("#item").text() !=="[item]" && $("#format").text() !=="[format]" && ($("#items-per-page").val() === "" || $("#items-per-page").val()%1 ===0) );
+    if($("#item").text() !=="[item]" && $("#format").text() !=="[format]" && ($("#items-per-page").val() === "" || $("#items-per-page").val()%1 ===0) ){
+        $('#test1').prop('disabled', false);
+    }
+    else{
+        $('#test1').prop('disabled', true);
+    }
+
+    if($("#format").text() !== "HTML" && $("#format").text() !== "CSV" && $("#format").text() !== "JSON"){
+        $("#items-per-page").css('display', 'none');
+    }
+    else{
+        $("#items-per-page").css('display', 'inline');
+    }
+}
+
+checkButton();
+
 
 $("#test1").click( function() {
     var item = $("#item").text(),
-        format = $("#format").text();
-        var dataJSON = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase()));
-    $("#iframe").attr('src','http://www.yahoo.com');
+        format = $("#format").text(),
+        search = $("#filter").val(),
+        perPage = $("#items-per-page").val();
+
+     
+     skipCount = 0;
+     var query = "";
+
+    if(search !== ""){
+         query = "name=" + search;
+    }
+
+    if(perPage !== "" && perPage%1 ===0){
+        itemsPerPage = Number(perPage);
+
+    }
+
     if(item === "[item]"){
         alert("please select an item you want to see.");
     }
     if(format === "[format]"){
         alert("please select a format you want to see.");
     }
-    
+     
+
     $("#visiContainer").empty();
     if(item !== null && format !== null){
+        var dataJSON = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + "?" +  query + "&limit=" + itemsPerPage));
+   
 
         if(format === "HTML"){
             $("#visiContainer").append(
-                $("<ul></ul>").attr("id", "list")
+                $("<ul></ul>").attr("id", "list"),
+                $("<button type='button' >Previous Page</button>").attr("id","last-page"),
+                $("<button type='button' >Next Page</button>").attr("id","next-page")
+                
             );
+            
 
-            var transform = [];
+            transform = [];
 
             if(item === "USERS"){
               transform = [
@@ -41,22 +85,19 @@ $("#test1").click( function() {
             }
             else if (item === "PRODUCTS") {
               transform = [
-                {"tag":"li","html": "${_id}"},
+                {"tag":"li","html": "${name}"},
                 {"tag":"ul","children":[
-                    {"tag":"li","html": "name: ${name}"},
                     {"tag":"li","html": "brand: ${brand} "},
                     {"tag":"li","html": "description: ${description}"},
                     {"tag":"li","html": "url: ${url} "},
-                    {"tag":"li","html": "rating: ${rating} "},
                     {"tag":"li","html": "shopzillaID: ${shopzillaId} "},
-                    {"tag":"li","html": "categoryID: ${categoryId} "},
-                    {"tag":"li","html": "related: ${related} "},
-                    {"tag":"li","html": "price"},
+                    {"tag":"li","html": "category"},
                     {"tag":"ul","children":[
-                    {"tag":"li","html": "min: ${price.min}"},
-                    {"tag":"li","html": "max: ${price.max}"}
+                        {"tag":"li","html": "name: ${category.name}"},
+                        {"tag":"li","html": "id: ${category.id}"}
                     ]},
-                    {"tag":"li","html": "images: ${images} "}
+                    {"tag":"li","html": "_id: ${_id} "},
+                    {"tag":"li","html": "related: ${related}"},
                   ]}
               ];
 
@@ -84,14 +125,35 @@ $("#test1").click( function() {
               ];
             }
 
+            $("#list").append(json2html.transform(dataJSON,transform));
+            $("#next-page").click( function() {
+                skipCount += Number(itemsPerPage);
+                var data = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + "?" + query + "&skip=" + skipCount+ "&limit=" + itemsPerPage));
+                if(data.length === 0){
+                    skipCount -= Number(itemsPerPage);
+                    alert("End of data! Go backwards!");
+                 }
+                $("#list").empty();
+                $("#list").append(json2html.transform(data,transform));
+                 $("html, body").animate({ scrollTop: 0 }, "slow");
 
+            });
+            $("#last-page").click( function() {
+                skipCount -= Number(itemsPerPage);
+                var data = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + item.toLowerCase() + "?" + query + "&skip=" + skipCount+ "&limit=" + itemsPerPage));
+                if(skipCount < 0){
+                    skipCount += Number(itemsPerPage);
+                    alert("Beginning of data! Go forwards!");
+                }
+                $("#list").empty();
+                $("#list").append(json2html.transform(data,transform));
+                 $("html, body").animate({ scrollTop: 0 }, "slow");
 
-            //TODO get data from a Get call and extract desired classes to denormalize
                 
-            var data = [{"id":32103036,"name":"Classic","nickname":"MrsClassic","userId":"0003e89c8f3a81fe4f3b8ef3cfef8eb33aae","image":"http://image13.beso-images.com/beso/personas/32103036_10.jpg","groupUserId":"000362d4ab33ac9249fc84b0705b69b8c499","label":"Theory, Reiss, Club Monaco","gender":"female","relations":[],"objectType":"ACCOUNT"},{"id":32102707,"name":"Polished Casual","nickname":"PolishedCasual","userId":"0003493035b612a04df7944cdd9b2e210e7a","image":"http://image10.beso-images.com/beso/personas/32102707_10.jpg","groupUserId":"0003434ed6f2fe444c738da4dd1477cce083","label":"J Brand, Madewell, Vince","gender":"female","relations":[],"objectType":"ACCOUNT"},{"id":32103408,"name":"Preppy","nickname":"MrsPreppy","userId":"0003ede96731bf484393bd5a0068f5e2fe07","image":"http://image14.beso-images.com/beso/personas/32103408_10.jpg","groupUserId":"0003f7b299e100e443dfa1f9bbc91e0902c8","label":"J. Crew, Chance, Lands' End Canvas","gender":"female","relations":[],"objectType":"ACCOUNT"},{"id":32103003,"name":"Romantic Feminine","nickname":"RomanticFeminine","userId":"00032d42a6ed91214ba0b34d1cefddee6c01","image":"http://image12.beso-images.com/beso/personas/32103003_10.jpg","groupUserId":"00033e78ad9d239f41d5a0da087b6c8a6ed6","label":"Temperley, Diane von Furstenberg, Milly","gender":"female","relations":[],"objectType":"ACCOUNT"},{"id":32103526,"name":"Glam","nickname":"MrsGlam","userId":"0003a83d9466a6d24f0c971bcd90701af1b3","image":"http://image12.beso-images.com/beso/personas/32103526_10.jpg","groupUserId":"00033f68501042c64c188e6fec78a4ec322e","label":"Herve Leger, Dolce & Gabanna, Forever 21","gender":"female","relations":[],"objectType":"ACCOUNT"},{"id":32103422,"name":"Bohemian","nickname":"MrsBohemian","userId":"0003ee0084197a5c46bd9ec70684ace241dd","image":"http://image10.beso-images.com/beso/personas/32103422_10.jpg","groupUserId":"000329f8aebc8eb74756bfffe8380a33202c","label":"Free People, Isabel Marant, Antik Batik","gender":"female","relations":[],"objectType":"ACCOUNT"},{"id":32103515,"name":"Rocker","nickname":"MrsRocker","userId":"0003806bcd73a99c4c2691b5e08f1943eaa5","image":"http://image11.beso-images.com/beso/personas/32103515_10.jpg","groupUserId":"0003c9b5560e3545462a977c55d3d4ab144b","label":"Rick Owens, Allsaints Spitalfields, Cheap Monday","gender":"female","relations":[],"objectType":"ACCOUNT"},{"id":32102957,"name":"Avant Garde","nickname":"Elisssseeeeeeee","userId":"0003273fa50e69ea44589fda79998c39187a","image":"http://image11.beso-images.com/beso/personas/32102957_10.jpg","groupUserId":"0003141587cc3c3e48c28639f2880978b048","label":"Suno, Zara, A Detacher","gender":"female","relations":[],"objectType":"ACCOUNT"},{"id":32104071,"name":"Beauty","nickname":"BeautyBeso","userId":"0003c2b3b70add554291b90c2fa4080515dc","image":"http://image10.beso-images.com/beso/personas/32104071_10.jpg","groupUserId":"0003db7bc8c542f34137834075c9aac8bb24","label":"Nars, Bobbi Brown, Aveda","relations":[],"objectType":"ACCOUNT"}];
-
-            document.getElementById('list').innerHTML = json2html.transform(dataJSON,transform);
+            });
         }
+
+
         else if(format === "CIRCLEPACK") {
             //Modify favorites data for circle pack visualization
             var data = getFavorites(),
@@ -159,13 +221,12 @@ $("#test1").click( function() {
         } else if(format === "CSV") {
                 // Need to implement code for actual download button.
                 // $('#test1').click(function(){})
-                $('#test1').click(function(){
+                    console.log("csv");
                     var data = dataJSON;
                     if(data == '')
                         return;
                     
                     JSONToCSV(data, item, true);
-                });
         }
     }
     
@@ -187,12 +248,14 @@ var selectedButtonFormat = function(value){
     $("#format").html(value);
     $("#dropdown-2").css('display', 'none');
     $(document).find('.dropdown-open').removeClass('dropdown-open');
+    checkButton();
 };
 
 var selectedButtonItem = function(value){
     $("#item").html(value);
     $("#dropdown-1").css('display', 'none');
     $(document).find('.dropdown-open').removeClass('dropdown-open');
+    checkButton();
 }
 
 $("#format").click(function(event, dropdownData) {
@@ -207,6 +270,20 @@ function httpGet(theUrl)
     xmlHttp.open( "GET", theUrl, false );
     xmlHttp.send( null );
     return xmlHttp.responseText;
-}
+};
 
 
+$("#next-page").click( function() {
+    alert("hi");
+    if(MAX_ITEMS  < skipCount + itemsPerPage){
+        alert("no more items to show");
+    }else{
+        skipCount += itemsPerPage;
+        var data = jQuery.parseJSON(httpGet(loc.substring(0,changeSpot) + apiPort + currentItem.toLowerCase() + query + "&skip=" + skipCount));
+        $("#list").append(json2html.transform(data,transform));
+        if(data.length === 0){
+            skipCount -= itemsPerPage;
+        }
+        console.log(skipCount);
+    }
+});

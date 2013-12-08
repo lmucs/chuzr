@@ -1,0 +1,16 @@
+body{
+	background-image:url('../../web-client/public/images/texture3.png');
+}
+
+#visiContainer{
+	background-color: white;
+	opacity: .8;
+	overflow:auto;
+	width: auto;
+}
+
+#logo{
+	float:right;
+}
+
+

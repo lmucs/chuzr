@@ -11,22 +11,18 @@ $(function() {
         },
         urlBase = Config.getApiBaseUrl() + "/",
         products = jQuery.parseJSON(httpGet(urlBase + "products")),
-        testImage = "http://www.placehold.it/200x300",
         createChuzOff = function(products) {
             product1Index = Math.floor(Math.random()*products.length);
             product2Index = Math.floor(Math.random()*(products.length - 1));
-
             if(product2Index >= product1Index) {
                 product2Index++;
             }
 
             $("#productImgLeft")
-                .attr("src", "")
                 .attr("src", products[product1Index].imageLink);
             $("#leftTitle").text(products[product1Index].name);
 
             $("#productImgRight")
-                .attr("src", "")
                 .attr("src", products[product2Index].imageLink);
             $("#rightTitle").text(products[product2Index].name);
         },
@@ -58,14 +54,14 @@ $(function() {
         product1Index = Math.floor(Math.random()*products.length),
         product2Index = Math.floor(Math.random()*products.length - 1);
 
+
     if(product2Index >= product1Index) {
         product2Index++;
     }
 
-    //the product image links dont acutally work right now so insert fake ones
     products.forEach(function(product, i) {
-
-        product.imageLink = testImage;
+        product.imageLink = 
+            (product.images && product.images[400]) ? product.images[400] : testImage;
         product.chuzOffs = 0;
         product.chuzOffWins = 0;
         product.winPercent = 0;
@@ -85,7 +81,7 @@ $(function() {
         products[product1Index].chuzOffs++;
         products[product2Index].chuzOffs++;
 
-        if($(this).attr("id") === "leftHighlight") {
+        if($(this).attr("id") === "leftProduct") {
             products[product1Index].chuzOffWins++;
         } else {
             products[product2Index].chuzOffWins++;            

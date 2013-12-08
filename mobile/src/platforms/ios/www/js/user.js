@@ -1,0 +1,3 @@
+var currentUser = {
+  userID:null
+}

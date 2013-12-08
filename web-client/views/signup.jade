@@ -1,0 +1,23 @@
+extends layout
+
+
+
+block content
+  link(rel='stylesheet', href='/stylesheets/login.css')
+  div(class='row-fluid')
+    div(class='span7 hero-unit', id ='login')
+      h1(class="text-center") Welcome to Chuzr
+      hr
+      center(id='login-content')
+        h3 Sign up
+        form(class='form-vertical')
+          input(type='text', id='inputEmail', placeholder='Email')
+          br
+          input(type='password', id='inputPassword', placeholder='Password')
+          br
+          input(type='password', id='reenterPassword', placeholder='Reenter password')
+          br
+          button(type='submit', class='btn', id='signup') Sign up
+
+  script(src='/js/signup.js')
+

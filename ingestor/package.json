@@ -4,7 +4,8 @@
   "private": true,
   "scripts": { },
   "dependencies": {
-    "mongodb": "1.3.20",
+    "async": "0.2.9",
+    "mongodb": "latest",
     "mocha": "0.3.x",
     "ftp": "latest"
  }
