@@ -4,6 +4,7 @@
   "private": true,
   "scripts": { },
   "dependencies": {
+    "async": "0.2.9",
     "mongodb": "latest",
     "mocha": "0.3.x",
     "ftp": "latest"

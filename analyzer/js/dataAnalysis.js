@@ -128,7 +128,7 @@ $("#test1").click( function() {
             }
             else if(item === "VOTES"){
                transform = [
-                {"tag":"li","html": "UserID: ${userId}, productID:  ${_id}"},
+                {"tag":"li","html": "UserID: ${userId}, productID:  ${productId}"},
                 {"tag":"ul","children":[
                     {"tag":"li","html": "rating: ${rating}"},
                     {"tag":"li","html": "ratingType: ${ratingType}"},

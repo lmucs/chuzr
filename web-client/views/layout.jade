@@ -18,16 +18,17 @@ html
         div(class='navbar-inner')
           ul(class='nav')
             li:  a(href='/home')
-              img(src="/images/chuzr-logo.png", height='50', width='50')
+              img(src="/images/chuzr-icons/png/home.png", height='30', width='30')
             li: a(href='/play') 
               img(src='/images/chuzr-icons/png/play.png', height='30',width='30')
             li: a(href='/social') 
               img(src='/images/chuzr-icons/png/social.png', height='30',width='30')
             li: a(href='/browse') 
-              img(src='/images/chuzr-icons/png/search.png', height='30',width='30')
+              img(src='/images/chuzr-icons/png/browse.png', height='30',width='30')
             li: a(href='/trends') 
               img(src='/images/chuzr-icons/png/trends.png', height='30',width='30')
-            
+            li: a(href='/stuff') 
+              img(src='/images/chuzr-icons/png/prize.png', height='30',width='30')
             
 
           ul(class='nav pull-right')
@@ -44,7 +45,8 @@ html
  
         div(class='span10', id='main-content')
           block pagetitle
-          block content
+          div(id='page-content')
+            block content
       
     div(class='navbar navbar-fixed-bottom',id='footer-nav')
       div(class='navbar-inner')
