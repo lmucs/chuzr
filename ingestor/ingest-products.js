@@ -45,8 +45,7 @@ MongoClient.connect(config.dbPath, function(err, db) {
 
         ingestionProcesses.push(function (u, c) {
           return function (callback) {
-            ingest.products(u, c, db);
-            callback();
+            ingest.products(u, c, db, callback);
           };
         }(productUrl, category));
       }
