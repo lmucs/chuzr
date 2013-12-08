@@ -34,15 +34,12 @@ var createCirclePack = function(parsedData, selector) {
         .attr("r", function(d) { return d.r; })
         .on("click", function(d) { return zoom(node == d ? root : d); })
         .on("mouseover", function (d) {
-            console.log(d);
             if(d.r <= minRadius) {
                 $("#text_"+d.name.replace(/[ :.#,+&'"()\/-]/g, '')).css({opacity:1});
             }
         })
         .on("mouseout", function (d) {
-            console.log(d);
             if(d.r <= minRadius) {
-                console.log("#text_"+d.name.replace(/[ :.#,+&'"()\/-]/g, ''))
                 $("#text_"+d.name.replace(/[ :.#,+&'"()\/-]/g, '')).css({opacity:0});
             }
         });
