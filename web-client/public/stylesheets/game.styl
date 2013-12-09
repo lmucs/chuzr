@@ -13,9 +13,15 @@
 
 // Chuzoff styles
 
+h3
+  color: orange
+
 .productImg
   width: 300px
   height: 300px
+  border: 1px solid #5bc0de
+  &:hover
+    border: 1px solid orange
 
 #leftProduct
   float: left
@@ -26,9 +32,10 @@
 .highlight
   width: 300px
   height: 300px
+  color: #5bc0de
   &:hover
     opacity: 0.8
-    color: #FF00FF
+    color: orange
 
 #results h3
   text-align: center
@@ -37,6 +44,13 @@
   text-align: center
 
 // Rateme styles
+
+.product-name
+  color: #5bc0de
+
+#current-rating
+  color: orange
+  font-size: 3em
 
 .rate-slider, .rating, .rate-button
   postion: absolute

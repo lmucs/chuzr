@@ -2,6 +2,7 @@ extends layout
 
 block css
   link(href='/stylesheets/product.css', rel='stylesheet')
+  link(href='/stylesheets/game.css', rel='stylesheet')
 
 
 block pagetitle
@@ -11,7 +12,7 @@ block pagetitle
 
 block content
   script(src='/js/rateme.js')
-  h1(class='product-name' product-id=id)
+  h3(class='product-name span8' product-id=id)
   br
   div(class='product-image-rating row')
     img(class='span8')
@@ -20,15 +21,13 @@ block content
       input(type="range" id="product-rating" name="product-rating" min="1" max="10")
       div(id='current-rating')
       
-      button(id='rate-button' class='btn btn-info') Rate this Product
+      button(id='rate-button' class='btn btn-info') Save My Rating
   div(class='url-to-purchase row')
     a()
       button(id='url-button' class='btn btn-info btn-block span7') Purchase this Product
   div(class='info-block product-description row')
     h3 Description:
     div(class='description')
-  div(class='info-block similar-products row')
-    h3 Similar Products:
 
 
 
