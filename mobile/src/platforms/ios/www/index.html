@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+            <link href="boot/css/bootstrap.min.css" rel="stylesheet">
+                <link href="css/chuzr.css" rel="stylesheet">
+                    <script src="js/chuzrModule.js"></script>
+                    <script src="js/user.js"></script>
+                    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+                    <script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
+                    <script src="boot/js/bootstrap.min.js"></script>
+                    <script src="js/sideNavToggle.js"></script>
+                    </head>
+    <body>
+        <div id="wrap">
+            <div id="content" class="row-fluid">
+                <div id="side-nav" class="span1">
+                    <a href="/home"><img src="img/chuzr-logo.png" height="50" width="80"></a><br>
+                    <!--<ul data-role="listview" data-inset="true" data-filter="true">-->
+                        <ul id="side-nav-links" class="nav nav-tabs nav-list nav-stacked">
+                            <li><a href="/play" data-role="button">Play </a></li>
+                            <li><a href="/browse" data-role="button">Browse </a></li>
+                            <li><a href="/stuff" data-role="button">Stuff</a></li>
+                            <li><a href="/social" data-role="button">Social</a></li>
+                            <li><a href="/settings" data-role="button">Settings</a></li>
+                        </ul>
+                    <!--</ul>-->
+                </div>
+                <div id="side-nav-toggle" class="span1"></div>
+                <div id="main-content" class="span10">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

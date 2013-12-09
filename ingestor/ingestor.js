@@ -1,11 +1,7 @@
 var http = require('http'),
     parse = require('./parser')["json"],
     massage = require('./massager'),
-    load = require('./loader'),
-
-    env = process.env.NODE_ENV || 'development',
-    config = require('./config/config')[env],
-    MongoClient = require('mongodb').MongoClient;
+    load = require('./loader');
 
 var Ingestor = function () {
 
@@ -22,20 +18,20 @@ var Ingestor = function () {
     });
   };
 
-  var _products = function (url, category, db) {
+  var _products = function (url, category, db, callback) {
     _retrieveData(url, function (data) {
       var result = parse(data),
           chuzrProducts = massage.products(result, category);
       console.log("Loading products from: " + category.name);
-      load.products(chuzrProducts, db);
+      load.products(chuzrProducts, db, callback);
     });
   };
 
-  var _taxonomy = function (url) {
+  var _taxonomy = function (url, db, callback) {
     _retrieveData(url, function (data) {
       var result = parse(data),
           shopzillaTaxonomy = massage.taxonomy(result);
-      load.taxonomy(shopzillaTaxonomy);
+      load.taxonomy(shopzillaTaxonomy, db, callback);
     });
   };
 

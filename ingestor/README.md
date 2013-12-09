@@ -6,25 +6,28 @@ updates the data store accordingly.  Images and other media  are
 stored separately from the simple product data.
 
 
-### API Key Business
+### Before you can ingest
 
-Your developer's api key should be stored in ingestor/config/shopzilla/api.js as shown below,
-where both values are strings:
+You probably should pull the latest update from master. You should be in the master branch.
 
+Now, first thing, go into the ingestor directory (`cd ingestor/`).
+
+Your developer's api key should be stored in the file config/shopzilla/api.js as shown below,
+where both values are strings. If you don't have the apiKey and publisherId, you should get one
+or as your tech lead for one:
 
     module.exports = {
       apiKey: "xxx",
       publisherId: "xxx"
     };
 
-### How to do Ingesting
+Now, run `mongod` in another window to start up your mongo datbase
 
-(Currently) To run:
+### To Ingest
 
-First, run mongod. Then,
+To begin the ingestion bootstrap (from inside the ingestor directory still):
 
-    cd scripts/
-    bash chuzr-bootstrap.sh
+    npm install
+    ./chuzr-bootstrap.sh
 
-After you see that Sports Equiment products are loading, check in your mongo console if there
-are around (or just under 5000) products. Then you need to kill the bootstrap process manually.
+You should have lots of products in your database now :D

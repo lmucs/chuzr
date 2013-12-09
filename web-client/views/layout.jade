@@ -18,14 +18,22 @@ html
         div(class='navbar-inner')
           ul(class='nav')
             li:  a(href='/home')
-              img(src="/images/chuzr-logo.png", height='50', width='50')
+              img(src="/images/chuzr-icons/png/home.png", height='30', width='30')
             li: a(href='/play') 
-              img(src="/images/play-button.png", height='25', width='25')
-            li: a(href='/social') Social    
+              img(src='/images/chuzr-icons/png/play.png', height='30',width='30')
+            li: a(href='/social') 
+              img(src='/images/chuzr-icons/png/social.png', height='30',width='30')
+            li: a(href='/browse') 
+              img(src='/images/chuzr-icons/png/browse.png', height='30',width='30')
+            li: a(href='/trends') 
+              img(src='/images/chuzr-icons/png/trends.png', height='30',width='30')
+            li: a(href='/stuff') 
+              img(src='/images/chuzr-icons/png/prize.png', height='30',width='30')
+            
+
           ul(class='nav pull-right')
-            form(class='navbar-search')
-              input(type='text', class='search-query', placeholder='Search')
-            li(class='dropdown'): a(href='#', class='dropdown-toggle', data-toggle='dropdown') Account
+            li(class='dropdown'): a(href='#', class='dropdown-toggle', data-toggle='dropdown')
+              img(src='/images/chuzr-icons/png/settings.png', height='25',width='25')
               b(class='caret')
               ul(class='dropdown-menu')
                 li: a(href='/profile') Profile
@@ -34,29 +42,11 @@ html
 
       div(class='row-fluid', id='content')
         div(class='span1', id='side-nav')
-         a(href='/home')
-           img(src="/images/chuzr-logo.png", height='128', width='232')
-         br
-         ul(class='nav nav-tabs nav-list nav-stacked', id='side-nav-links')
-            li: a(href='/home') Home 
-            li: a(href='/play') Play 
-            li(id='browse-tab'): a(href='/browse') Browse       
-            li(class='sub-nav browse-nav'): a(href='/trends') Trends
-            li(class='sub-nav browse-nav'): a(href='#') Most Popular
-            li(class='divider')
-            li: a(href='/stuff') Stuff
-            li(id='social-tab'): a(href='/social') Social
-            li(class='sub-nav social-nav'): a(href='#') Profile
-            li(class='sub-nav social-nav'): a(href='#') Friends
-            li(class='sub-nav social-nav'): a(href='#') Compare
-            
-            li(class='divider')
-            li: a(href='/settings') Settings
-
-        div(class='span1',id='side-nav-toggle')
  
         div(class='span10', id='main-content')
-          block content
+          block pagetitle
+          div(id='page-content')
+            block content
       
     div(class='navbar navbar-fixed-bottom',id='footer-nav')
       div(class='navbar-inner')
