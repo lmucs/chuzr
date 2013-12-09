@@ -31,10 +31,10 @@ var userSchema = new mongoose.Schema({
 // A pre hook to hash the password on save
 userSchema.pre('save', function (next) {
   var user = this;
-  
+
   //don't bother hashing if no changes were made
   if (!user.isModified('hashedPassword')) return next();
-  
+
   bcrypt.hash(user.hashedPassword, null, null, function (err, hash) {
     if (err) return next(err);
     user.hashedPassword = hash;

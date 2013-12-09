@@ -3,9 +3,8 @@ require('./utils');
 var should = require('should');
 var request = require('supertest');  
 var Coupon = require('../models/coupon');
-var User = require('../models/coupon');
+var User = require('../models/user');
 var url = require('../config/config').test.url;
-
 
 var testCoupons = [
   {
@@ -80,20 +79,22 @@ function couponsShouldBeSame(coupon, other) {
  * Inserts from an array then calls the callback AFTER all coupons are inserted.
  */
 function insertCoupons(coupons, callback) {
-  User.create(admin, function (err, user) {
+  User.create(admin, function (err) {
     should.not.exist(err);
-    request(url).post('/sessions').type("form").send({email:userOne.email, pass: userOne.hashedPassword}).end(function (err, res) {
+    var form = {email:admin.email, pass: 'testPass'}
+    request(url).post('/sessions').type("form").send(form).end(function (err, res) {
       if (err) throw err;
       var cookies = res.headers['set-cookie'].pop().split(';')[0];
-      var couponsRemaining = coupons.length;
-      if (couponsRemaining === 0) callback();
+      var idsCreated = []
+      if (coupons.length === 0) return callback([]);
       for (var i = 0; i < coupons.length; i++) {
         req = request(url).post('/coupons');
         req.cookies = cookies;
         req.send(coupons[i]).end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(201);
-          if (--couponsRemaining === 0) callback();
+          idsCreated.push(res.body._id)
+          if (idsCreated.length === coupons.length) return callback(idsCreated);
         });
       }
     });
@@ -126,14 +127,8 @@ describe('Coupon Controller', function() {
   describe('retrieve', function () {
 
     it('should get by id correctly', function (done) {
-      // Create the coupon.
-      request(url).post('/coupons').send(testCoupons[0]).end(function (err, res) {
-        should.not.exist(err);
-        res.should.have.status(201);
-        res.should.be.json;
-
-        // Get that coupon by id.
-        request(url).get('/coupons/' + res.body._id).end(function (err, res) {
+      insertCoupons([testCoupons[0]], function (idsCreated) {
+        request(url).get('/coupons/' + idsCreated[0]).end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(200);
           res.should.be.json;
@@ -231,10 +226,8 @@ describe('Coupon Controller', function() {
     it('should delete correctly', function (done) {
 
       // Create the coupon
-      request(url).post('/coupons').send(testCoupons[0]).end(function (err, res) {
-        should.not.exist(err);
-        res.should.have.status(201);
-        var id = res.body._id;
+      insertCoupons([testCoupons[0]], function (idsCreated) {
+        var id = idsCreated[0];
 
         // Delete that coupon
         request(url).del('/coupons/' + id).end(function (err, res) {
@@ -256,10 +249,8 @@ describe('Coupon Controller', function() {
     it('should update correctly', function (done) {
       
       // Create the coupon
-      request(url).post('/coupons').send(testCoupons[0]).end(function (err, res) {
-        should.not.exist(err);
-        res.should.have.status(201);
-        var id = res.body._id;
+      insertCoupons([testCoupons[0]], function (idsCreated) {
+        var id = idsCreated[0];
         
         // Update that coupon
         request(url).put('/coupons/' + id).send(testCoupons[1]).end(function (err, res) {
