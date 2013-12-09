@@ -9,14 +9,7 @@ web-client/npm-debug.log
 analyzer/sampleDataFormats/CSV/file.csv
 npm-debug.log
 server/test/npm-debug.log
-<<<<<<< HEAD
 *.xcuserstate
 analyzer/analyzer-mobile/platforms/ios/cordova/console.log
 mobile/.cordova/*
 mobile/platforms/ios/*
-=======
-.cordova
-platforms
-plugins
-src
->>>>>>> 155eb6e5ff66dac39b6898dc90a0191acedf9842
