@@ -9,6 +9,9 @@
     "express": "3.3.8",
     "jade": "*",
     "stylus": "*",
-    "connect-mongo": "0.3.x"
+    "connect-mongo": "0.3.x",
+    "mocha" : "*",
+    "zombie": "*",
+    "assert": "*"
   }
 }
