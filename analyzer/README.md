@@ -4,7 +4,7 @@ The chuzr analyzer reads from the chuzr store and produces a number of reports.
 
 ## Running Analyzer
 
-In order to run the app, in the analyzer directory
+In order to run the app, in the analyzer directory:
 
 `````bash
 bash run_analyzer.sh [port number]
@@ -20,4 +20,10 @@ _In order for the analyzer to work. The API url should be up and running on port
 
 ## Running Analyzer As iPhone Application
 
-In order to run the mobile iOS application, in the analyzer directory
+In order to run the mobile iOS application, in the analyzer directory:
+
+Make sure to `npm install` in server directory.
+
+Then, run the `phonegap run ios` in analyzer-mobile directory. 
+
+After simulator comes up, for better views `cmd + ←, ↑ ,→ , ↓  ` .
