@@ -1,0 +1,15 @@
+*.mode1v3
+*.perspectivev3
+*.pbxuser
+.DS_Store
+build
+www/phonegap.js
+phonegap-ios-sim-c6fa2ae
+plugins
+ios-sim-1.8.2.zip
+www/spec/lib
+www/res
+platform/ios/cordova
+platform/ios/CordovaLib
+platform/ios/HelloWorld
+platform/ios/HelloWorld.xcodeproj
