@@ -1,19 +1,16 @@
-var mongoose = require('mongoose')
-  , Schema = mongoose.Schema
-  , ObjectId = Schema.ObjectId;
+var mongoose = require('mongoose');
 
-var voteSchema = new Schema({
-    userId         : Number        //ObjectId (will use later once functional)
-  , productId      : String        //ObjectTd
-  , ratingType     : String
-  , rating         :
-  {
-      type: Number
-    , min: 0
-    , max: 10
-  }
-  , timestamp      : Date
-  , active         : Boolean
+var voteSchema = new mongoose.Schema({
+  userId: String,
+  productId: String,
+  ratingType: String,
+  rating: {
+    type: Number,
+    min: 0,
+    max: 10
+  },
+  timestamp: Date,
+  active: Boolean
 });
 
 module.exports = mongoose.model('Vote', voteSchema);

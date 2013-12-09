@@ -9,133 +9,133 @@ var url = require('../config/config').test.url;
 var async = require('async');
 
 var voteOne = {
-  userId: 1,
+  userId: "1",
   productId: "32",
   ratingType: "numeric",
   rating: 8
 };
 
 var voteTwo = {
-  userId: 0,
+  userId: "0",
   productId: "32",
   ratingType: "numeric",
   rating: 4
 };
 
 var voteThree = {
-  userId: 0,
+  userId: "0",
   productId: "15",
   ratingType: "numeric",
   rating: 9
 };
 
 var voteFour = {
-  userId: 2,
+  userId: "2",
   productId: "4",
   ratingType: "numeric",
   rating: 10
 };
 
 var voteFive = {
-  userId: 1,
+  userId: "1",
   productId: "2",
   ratingType: "numeric",
   rating: 3
 };
 
 var voteSix = {
-  userId: 1,
+  userId: "1",
   productId: "44",
   ratingType: "numeric",
   rating: 8
 };
 
 var voteSeven = {
-  userId: 12,
+  userId: "12",
   productId: "9",
   ratingType: "numeric",
   rating: 10
 };
 
 var voteEight = {
-  userId: 8,
+  userId: "8",
   productId: "8",
   ratingType: "numeric",
   rating: 8
 };
 
 var voteNine = {
-  userId: 123,
+  userId: "123",
   productId: "456",
   ratingType: "numeric",
   rating: 7
 };
 
 var voteTen = {
-  userId: 288,
+  userId: "288",
   productId: "46",
   ratingType: "numeric",
   rating: 6
 };
 
 var voteEleven = {
-  userId: 65,
+  userId: "65",
   productId: "789",
   ratingType: "numeric",
   rating: 1
 };
 
 var voteTwelve = {
-  userId: 99,
+  userId: "99",
   productId: "98",
   ratingType: "numeric",
   rating: 0
 };
 
 var voteThirteen = {
-  userId: 99,
+  userId: "99",
   productId: "98",
   ratingType: "numeric",
   rating: 2
 };
 
 var voteFourteen = {
-  userId: 99,
+  userId: "99",
   productId: "98",
   ratingType: "numeric",
   rating: 7.7
 };
 
 var voteFifteen = {
-  userId: 99,
+  userId: "99",
   productId: "43",
   ratingType: "numeric",
   rating: 89
 };
 
 var voteSixteen = {
-  userId: 45,
+  userId: "45",
   productId: "100",
   ratingType: "numeric",
   rating: -5
 };
 
 var voteSeventeen = {
-  userId: 32,
+  userId: "32",
   productId: "12344",
   ratingType: "numeric",
   rating: 2.65
 };
 
 var voteEighteen = {
-  userId: 99,
+  userId: "99",
   productId: "98",
   ratingType: "comparison",
   rating: 3
 };
 
 var voteNineteen = {
-  userId: 54,
+  userId: "54",
   productId: "432",
   ratingType: "trashType",
   rating: 4
@@ -153,7 +153,7 @@ describe('Votes Model', function(){
     it('should assign all properties on creation', function (done) {
       Vote.create(voteOne, function (err, vote) {
         should.not.exist(err);
-        vote.userId.should.equal(1)
+        vote.userId.should.equal("1")
         vote.productId.should.equal("32")
         vote.rating.should.equal(8)
         done();
@@ -752,7 +752,7 @@ describe('Votes Controller', function(){
     it('should assign all properties on creation, including an _id', function (done) {
       request(url).post('/votes').send(voteOne).end(function (err, res) {
         if (err) throw err;
-        res.body.userId.should.equal(1);
+        res.body.userId.should.equal("1");
         res.body.productId.should.equal("32");
         res.body.rating.should.equal(8);
         res.body.active.should.equal(true);

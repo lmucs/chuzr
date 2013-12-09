@@ -3,11 +3,11 @@
     window.Config = {
         //Function that returns host name up to (not including) :port
         getApiBaseUrl: function () {
-            return "http://localhost:3000";
+            return "http://chuzr.cs.lmu.edu:3000";
         },
         
         getHostName: function () {
-            return "http://localhost";
+            return "http://chuzr.cs.lmu.edu";
         }
 
     }
