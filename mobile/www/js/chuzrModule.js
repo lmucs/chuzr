@@ -8,6 +8,12 @@
         
         getHostName: function () {
             return "http://chuzr.cs.lmu.edu";
+
+            return "http://localhost:3000";
+        },
+        
+        getHostName: function () {
+            return "http://localhost";
         }
 
     }
