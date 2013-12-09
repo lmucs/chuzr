@@ -86,7 +86,7 @@ function insertCoupons(coupons, callback) {
       if (err) throw err;
       var cookies = res.headers['set-cookie'].pop().split(';')[0];
       var idsCreated = []
-      if (coupons.length === 0) return callback([]);
+      if (coupons.length === 0) return callback([], cookies);
       for (var i = 0; i < coupons.length; i++) {
         req = request(url).post('/coupons');
         req.cookies = cookies;
@@ -94,7 +94,7 @@ function insertCoupons(coupons, callback) {
           should.not.exist(err);
           res.should.have.status(201);
           idsCreated.push(res.body._id)
-          if (idsCreated.length === coupons.length) return callback(idsCreated);
+          if (idsCreated.length === coupons.length) return callback(idsCreated, cookies);
         });
       }
     });
@@ -226,11 +226,13 @@ describe('Coupon Controller', function() {
     it('should delete correctly', function (done) {
 
       // Create the coupon
-      insertCoupons([testCoupons[0]], function (idsCreated) {
+      insertCoupons([testCoupons[0]], function (idsCreated, cookies) {
         var id = idsCreated[0];
 
         // Delete that coupon
-        request(url).del('/coupons/' + id).end(function (err, res) {
+        req = request(url).del('/coupons/' + id);
+        req.cookies = cookies;
+        req.end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(200);
 
@@ -249,11 +251,13 @@ describe('Coupon Controller', function() {
     it('should update correctly', function (done) {
       
       // Create the coupon
-      insertCoupons([testCoupons[0]], function (idsCreated) {
+      insertCoupons([testCoupons[0]], function (idsCreated, cookies) {
         var id = idsCreated[0];
         
         // Update that coupon
-        request(url).put('/coupons/' + id).send(testCoupons[1]).end(function (err, res) {
+        var req = request(url).put('/coupons/' + id);
+        req.cookies = cookies;
+        req.send(testCoupons[1]).end(function (err, res) {
           should.not.exist(err);
           res.should.have.status(200);
           
