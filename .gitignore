@@ -11,3 +11,5 @@ npm-debug.log
 server/test/npm-debug.log
 *.xcuserstate
 analyzer/analyzer-mobile/platforms/ios/cordova/console.log
+mobile/.cordova/*
+mobile/platforms/*
