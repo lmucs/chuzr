@@ -3,155 +3,87 @@ require('./utils');
 var should = require('should');
 var request = require('supertest');  
 var Vote = require('../models/vote');
+var User = require('../models/user');
 var VoteController = require('../controllers/vote-controller')
 var request = require('supertest')
 var url = require('../config/config').test.url;
 var async = require('async');
 
-var voteOne = {
-  userId: "1",
-  productId: "32",
-  ratingType: "numeric",
-  rating: 8
+var testData = [
+  "1|32|numeric|8",
+  "0|32|numeric|4",
+  "0|15|numeric|9",
+  "2|4|numeric|10",
+  "1|2|numeric|3",
+  "1|44|numeric|8",
+  "12|9|numeric|10",
+  "8|8|numeric|8",
+  "123|456|numeric|7",
+  "288|46|numeric|6",
+  "65|789|numeric|1",
+  "99|98|numeric|0",
+  "99|98|numeric|2",
+  "99|98|numeric|7.7",
+  "99|43|numeric|89",
+  "45|100|numeric|-5",
+  "32|12344|numeric|2.65",
+  "99|98|comparison|3",
+  "54|432|trashType|4"
+]
+
+var testVotes = testData.map(function (s) {
+  var v = s.split('|');
+  return {userId: v[0], productId: v[1], ratingType: v[2], rating: +v[3]}
+});
+
+var admin = {
+  name: {
+    first: 'Addy',
+    last: 'Ministrator'
+  },
+  email: 'admin@example.com',
+  login: 'testUser',
+  reputation: 9001,
+  socialHandle: 'Admin',
+  avatarURL: 'http://i.powertrip.com/iamadmin.jpg',
+  hashedPassword: 'testPass',
+  isAdmin: true
 };
 
-var voteTwo = {
-  userId: "0",
-  productId: "32",
-  ratingType: "numeric",
-  rating: 4
-};
-
-var voteThree = {
-  userId: "0",
-  productId: "15",
-  ratingType: "numeric",
-  rating: 9
-};
-
-var voteFour = {
-  userId: "2",
-  productId: "4",
-  ratingType: "numeric",
-  rating: 10
-};
-
-var voteFive = {
-  userId: "1",
-  productId: "2",
-  ratingType: "numeric",
-  rating: 3
-};
-
-var voteSix = {
-  userId: "1",
-  productId: "44",
-  ratingType: "numeric",
-  rating: 8
-};
-
-var voteSeven = {
-  userId: "12",
-  productId: "9",
-  ratingType: "numeric",
-  rating: 10
-};
-
-var voteEight = {
-  userId: "8",
-  productId: "8",
-  ratingType: "numeric",
-  rating: 8
-};
-
-var voteNine = {
-  userId: "123",
-  productId: "456",
-  ratingType: "numeric",
-  rating: 7
-};
-
-var voteTen = {
-  userId: "288",
-  productId: "46",
-  ratingType: "numeric",
-  rating: 6
-};
-
-var voteEleven = {
-  userId: "65",
-  productId: "789",
-  ratingType: "numeric",
-  rating: 1
-};
-
-var voteTwelve = {
-  userId: "99",
-  productId: "98",
-  ratingType: "numeric",
-  rating: 0
-};
-
-var voteThirteen = {
-  userId: "99",
-  productId: "98",
-  ratingType: "numeric",
-  rating: 2
-};
-
-var voteFourteen = {
-  userId: "99",
-  productId: "98",
-  ratingType: "numeric",
-  rating: 7.7
-};
-
-var voteFifteen = {
-  userId: "99",
-  productId: "43",
-  ratingType: "numeric",
-  rating: 89
-};
-
-var voteSixteen = {
-  userId: "45",
-  productId: "100",
-  ratingType: "numeric",
-  rating: -5
-};
-
-var voteSeventeen = {
-  userId: "32",
-  productId: "12344",
-  ratingType: "numeric",
-  rating: 2.65
-};
-
-var voteEighteen = {
-  userId: "99",
-  productId: "98",
-  ratingType: "comparison",
-  rating: 3
-};
-
-var voteNineteen = {
-  userId: "54",
-  productId: "432",
-  ratingType: "trashType",
-  rating: 4
-};
+function insertVotes(votes, callback) {
+  User.create(admin, function (err) {
+    should.not.exist(err);
+    var form = {email:admin.email, pass: 'testPass'}
+    request(url).post('/sessions').type("form").send(form).end(function (err, res) {
+      if (err) throw err;
+      var cookies = res.headers['set-cookie'].pop().split(';')[0];
+      var idsCreated = []
+      if (votes.length === 0) return callback([], cookies);
+      for (var i = 0; i < votes.length; i++) {
+        req = request(url).post('/votes');
+        req.cookies = cookies;
+        req.send(votes[i]).end(function (err, res) {
+          should.not.exist(err);
+          res.should.have.status(201);
+          idsCreated.push(res.body._id)
+          if (idsCreated.length === votes.length) return callback(idsCreated, cookies);
+        });
+      }
+    });
+  });
+}
 
 describe('Votes Model', function(){
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      Vote.create(voteOne, function (err) {
+      Vote.create(testVotes[0], function (err) {
         if (err) throw err;
         done();
       })
     })
     it('should assign all properties on creation', function (done) {
-      Vote.create(voteOne, function (err, vote) {
+      Vote.create(testVotes[0], function (err, vote) {
         should.not.exist(err);
         vote.userId.should.equal("1")
         vote.productId.should.equal("32")
@@ -162,9 +94,9 @@ describe('Votes Model', function(){
   })
 });
 
-describe('Votes Controller', function(){
-  
-    describe('#search()', function () {
+describe('Votes Controller', function() {
+  describe('#search()', function () {
+    
     it('should return an empty list when no votes have been created', function (done) {
       request(url).get('/votes').end(function (err, res) {
         if (err) throw err;
@@ -173,320 +105,84 @@ describe('Votes Controller', function(){
         done();
       })
     })
+    
     it('should get by id without error', function (done) {
-      // Create the vote.
-      request(url).post('/votes').send(voteOne).end(function (err, res) {
-        if (err) throw err;
-        res.should.have.status(201);
-
-        // Get that vote by id.
-        request(url).get('/votes/' + res.body._id).end(function (err, res) {
+      insertVotes([testVotes[0]], function (idsCreated, cookies) {
+        request(url).get('/votes/' + idsCreated[0]).end(function (err, res) {
           if (err) throw err;
           res.should.have.status(200);
           done();
         })
       })
     })
+    
     it('should return a list of three votes', function (done) {
-      async.series([
-        function(){
-          // Create 3 votes.
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          // Get the votes.
-          request(url).get('/votes').end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(200)
-            res.body.length.should.equal(3);
-            done();
-          })
-        }
-      ]);
+      insertVotes(testVotes.slice(0,3), function (idsCreated, cookies) {
+        request(url).get('/votes').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200)
+          res.body.length.should.equal(3);
+          done();
+        })
+      }) 
     })
     
     it('should return two votes with productId = 32', function (done) {
-      // Create 4 votes.
-      async.series([
-        function(){
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){  
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){  
-          // Get the votes.
-          request(url).get('/votes?productId=32').end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(200)
-            res.body.length.should.equal(2);
-            done();
-          })
-        }
-      ]);
+      insertVotes(testVotes.slice(0,4), function (idsCreated, cookies) {
+        request(url).get('/votes?productId=32').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200)
+          res.body.length.should.equal(2);
+          done();
+        })
+      });
     })
     
     it('should return two votes with userId = 0', function (done) {
-      async.series([
-        function(){
-          // Create 4 votes.
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          // Get the votes.
-          request(url).get('/votes?userId=0').end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(200)
-            res.body.length.should.equal(2);
-            done();
-          })
-        }
-      ]);
+      insertVotes(testVotes.slice(0,4), function (idsCreated, cookies) {
+        request(url).get('/votes?userId=0').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200)
+          res.body.length.should.equal(2);
+          done();
+        })
+      })
     })
 
     it('should return one vote with userId = 0 and productId = 32', function (done) {
-      async.series([
-        function(){
-          // Create 4 votes.
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          // Get the votes.
-          request(url).get('/votes?userId=0&productId=32').end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(200)
-            res.body[0].userId.should.equal(0)
-            res.body[0].productId.should.equal(32)
-            res.body[0].rating.should.equal(4)
-		    done();
-          })
-        }
-      ]);
+      insertVotes(testVotes.slice(0,4), function (idsCreated, cookies) {
+        request(url).get('/votes?userId=0&productId=32').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200)
+          res.body[0].userId.should.equal('0')
+          res.body[0].productId.should.equal('32')
+          res.body[0].rating.should.equal(4)
+		      done();
+        })
+      });
     })
 
     it('should return a list of 10 votes, testing limit', function (done) {
-      async.series([
-        function(){
-          // Create 11 votes
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteFive).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteSix).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteSeven).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteEight).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteNine).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteTen).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteEleven).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          // Get the first 10 votes.
-          request(url).get('/votes').end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(200)
-            res.body.length.should.equal(10);
-            done();
-          })
-        }
-      ]);
+      // Insert 11 votes but get endpoint returns 10 by default
+      insertVotes(testVotes.slice(0,11), function (idsCreated, cookies) {
+        request(url).get('/votes').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200)
+          res.body.length.should.equal(10);
+          done();
+        })
+      })
     })
     
     it('should return a list of 3 votes, testing limit', function (done) {
-      async.series([
-        function(){
-          // Create 4 votes
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(201);
-            done();
-          })
-        },
-        function(){
-          // Get the first 3 votes.
-          request(url).get('/votes?limit=3').end(function (err, res) {
-            if (err) throw err;
-            res.should.have.status(200);
-            res.body.length.should.equal(3);
-            done();
-          })
-        }
-      ]);
+      insertVotes(testVotes.slice(0,5), function (idsCreated, cookies) {
+        request(url).get('/votes?limit=3').end(function (err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+          res.body.length.should.equal(3);
+          done();
+        })
+      })
     })
 
     it('should return a list of 10 votes starting with the 2nd vote in the db, testing skip and limit',
@@ -494,84 +190,84 @@ describe('Votes Controller', function(){
       async.series([
         function(){
           // Create 12 votes
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[0]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[1]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[2]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[3]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFive).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[4]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteSix).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[5]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteSeven).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[6]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteEight).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[7]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteNine).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[8]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTen).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[9]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteEleven).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[10]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwelve).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[11]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -593,35 +289,35 @@ describe('Votes Controller', function(){
       async.series([
         function(){
           // Create 5 votes
-          request(url).post('/votes').send(voteOne).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[0]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteTwo).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[1]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThree).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[2]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFour).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[3]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteFive).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[4]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -641,7 +337,7 @@ describe('Votes Controller', function(){
     
     it('should return a 404 when looking for a vote that doesn\'t exist', function (done) {
       // Create the vote.
-      request(url).post('/votes').send(voteOne).end(function (err, res) {
+      request(url).post('/votes').send(testVotes[0]).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
 
@@ -658,14 +354,14 @@ describe('Votes Controller', function(){
       // Create two votes.
       async.series([
         function(){
-          request(url).post('/votes').send(voteTwelve).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[11]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
           })
         },
         function(){
-          request(url).post('/votes').send(voteThirteen).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[12]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -691,7 +387,7 @@ describe('Votes Controller', function(){
         },
         function(){
           // Create a third vote for this product and user
-          request(url).post('/votes').send(voteFourteen).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[13]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -699,7 +395,7 @@ describe('Votes Controller', function(){
         },
         function(){
           // Create a fourth vote for this product and user, but with a different ratingType
-          request(url).post('/votes').send(voteEighteen).end(function (err, res) {
+          request(url).post('/votes').send(testVotes[17]).end(function (err, res) {
             if (err) throw err;
             res.should.have.status(201);
             done();
@@ -726,7 +422,7 @@ describe('Votes Controller', function(){
 
     it('should return one vote with ratingType = "comparison"', function (done) {
       // Create the vote.
-      request(url).post('/votes').send(voteEighteen).end(function (err, res) {
+      request(url).post('/votes').send(testVotes[17]).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
 
@@ -742,7 +438,7 @@ describe('Votes Controller', function(){
 
   describe('#create()', function () {
     it('should create without error', function (done) {
-      request(url).post('/votes').send(voteOne).end(function (err, res) {
+      request(url).post('/votes').send(testVotes[0]).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(201);
         done();
@@ -750,7 +446,7 @@ describe('Votes Controller', function(){
     })
 
     it('should assign all properties on creation, including an _id', function (done) {
-      request(url).post('/votes').send(voteOne).end(function (err, res) {
+      request(url).post('/votes').send(testVotes[0]).end(function (err, res) {
         if (err) throw err;
         res.body.userId.should.equal("1");
         res.body.productId.should.equal("32");
@@ -762,7 +458,7 @@ describe('Votes Controller', function(){
     })
 
     it('should reject a rating higher than 10', function (done) {
-      request(url).post('/votes').send(voteFifteen).end(function (err, res) {
+      request(url).post('/votes').send(testVotes[14]).end(function (err, res) {
         if (err) throw err;
         res.should.have.status(400);
         done();
@@ -770,7 +466,7 @@ describe('Votes Controller', function(){
     })
 
     it('should reject a rating lower than 0', function (done) {
-      request(url).post('/votes').send(voteSixteen).end(function (err, res) {
+      insertVotes([testVotes[15]], function (idsCreated, cookies) {
         if (err) throw err;
         res.should.have.status(400);
         done();
@@ -778,7 +474,7 @@ describe('Votes Controller', function(){
     })
 
     it('should allow ratings that aren\'t a whole number', function (done) {
-      request(url).post('/votes').send(voteSeventeen).end(function (err, res) {
+      insertVotes([testVotes[17]], function (idsCreated, cookies) {
         if (err) throw err;
         res.should.have.status(201);
         done();
@@ -786,7 +482,7 @@ describe('Votes Controller', function(){
     })
     
     it('should reject a ratingType not in ["numeric", "comparison", "upDown"]', function (done) {
-      request(url).post('/votes').send(voteNineteen).end(function (err, res) {
+      insertVotes([testVotes[18]], function (idsCreated, cookies) {
         if (err) throw err;
         res.should.have.status(400);
         done();
