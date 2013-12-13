@@ -3,13 +3,18 @@ $(function(){
   $("#signin").click(function(){
     var email = $("#inputEmail").val();
     var pass = $("#inputPassword").val();
-    $.post("http://localhost:3000/sessions", {email: email, pass: pass})
-      .done(function(){
-        window.location.replace('/home');
-
-      })
-      .fail(function() {
-        window.location.replace('/');
-      })
+    // POST the session.
+    $.ajax({
+      type: 'POST',
+      url: Config.getApiBaseUrl() + "/sessions",
+      data: {email: email, pass: pass},
+      xhrFields: {
+        withCredentials: true
+      },
+      crossDomain: true,
+      complete: function (jqXHR, textStatus) {   
+      console.log("complete")
+      }
+    });
   });
 });

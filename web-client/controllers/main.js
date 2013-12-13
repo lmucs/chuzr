@@ -1,7 +1,7 @@
 module.exports = function (app) {
 
   app.get('/', function(req, res) {
-    if (req.session.isLoggedIn) {
+    if (req.session.userInfo) {
       res.redirect('/home');
     } else {
       res.render('login', {title: 'Login'});

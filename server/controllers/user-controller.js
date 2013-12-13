@@ -71,6 +71,7 @@ module.exports = function (app) {
         if (err) return res.json(500, err);
         if (!isMatch) return res.json(404, {message: 'Invalid email/password combination'});
         req.session.userInfo = user;
+        res.header('Access-Control-Allow-Credentials', 'true');
         res.json(200, {'Logged in': req.body.email});
       });
     });
