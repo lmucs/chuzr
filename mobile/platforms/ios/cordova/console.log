@@ -1,132 +1,30 @@
-2013-12-04 18:16:21.556 HelloWorld[9340:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-04 18:16:21.987 HelloWorld[9340:80b] Unlimited access to network resources
-2013-12-04 18:16:27.740 HelloWorld[9340:80b] Resetting plugins due to page load.
-2013-12-04 18:16:28.766 HelloWorld[9340:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-04 19:06:29.959 HelloWorld[10518:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-04 19:06:30.049 HelloWorld[10518:80b] Unlimited access to network resources
-2013-12-04 19:06:30.247 HelloWorld[10518:80b] Resetting plugins due to page load.
-2013-12-04 19:06:30.620 HelloWorld[10518:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 00:16:34.999 HelloWorld[11290:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 00:16:35.087 HelloWorld[11290:80b] Unlimited access to network resources
-2013-12-05 00:16:36.157 HelloWorld[11290:80b] Resetting plugins due to page load.
-2013-12-05 00:16:37.174 HelloWorld[11290:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 00:51:48.372 HelloWorld[12549:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 00:51:48.459 HelloWorld[12549:80b] Unlimited access to network resources
-2013-12-05 00:51:48.838 HelloWorld[12549:80b] Resetting plugins due to page load.
-2013-12-05 00:51:49.301 HelloWorld[12549:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 01:01:39.362 HelloWorld[13176:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 01:01:39.486 HelloWorld[13176:80b] Unlimited access to network resources
-2013-12-05 01:01:40.038 HelloWorld[13176:80b] Resetting plugins due to page load.
-2013-12-05 01:01:40.471 HelloWorld[13176:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 01:06:28.983 HelloWorld[13790:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 01:06:28.993 HelloWorld[13790:80b] Unlimited access to network resources
-2013-12-05 01:06:29.357 HelloWorld[13790:80b] Resetting plugins due to page load.
-2013-12-05 01:06:29.643 HelloWorld[13790:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 01:07:51.984 HelloWorld[14396:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 01:07:51.994 HelloWorld[14396:80b] Unlimited access to network resources
-2013-12-05 01:07:52.297 HelloWorld[14396:80b] Resetting plugins due to page load.
-2013-12-05 01:07:52.559 HelloWorld[14396:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 01:13:29.556 HelloWorld[15632:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 01:13:29.612 HelloWorld[15632:80b] Unlimited access to network resources
-2013-12-05 01:13:29.974 HelloWorld[15632:80b] Resetting plugins due to page load.
-2013-12-05 01:13:30.261 HelloWorld[15632:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 01:18:04.624 HelloWorld[16829:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 01:18:04.634 HelloWorld[16829:80b] Unlimited access to network resources
-2013-12-05 01:18:04.828 HelloWorld[16829:80b] Resetting plugins due to page load.
-2013-12-05 01:18:04.871 HelloWorld[16829:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 01:31:24.416 HelloWorld[18134:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 01:31:24.502 HelloWorld[18134:80b] Unlimited access to network resources
-2013-12-05 01:31:25.290 HelloWorld[18134:80b] Resetting plugins due to page load.
-2013-12-05 01:31:25.625 HelloWorld[18134:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 02:26:55.095 HelloWorld[18803:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 02:26:55.198 HelloWorld[18803:80b] Unlimited access to network resources
-2013-12-05 02:26:56.347 HelloWorld[18803:80b] Resetting plugins due to page load.
-2013-12-05 02:26:56.824 HelloWorld[18803:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 02:32:33.089 HelloWorld[19439:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 02:32:33.099 HelloWorld[19439:80b] Unlimited access to network resources
-2013-12-05 02:32:33.285 HelloWorld[19439:80b] Resetting plugins due to page load.
-2013-12-05 02:32:33.723 HelloWorld[19439:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 02:34:25.374 HelloWorld[20055:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 02:34:25.409 HelloWorld[20055:80b] Unlimited access to network resources
-2013-12-05 02:34:25.690 HelloWorld[20055:80b] Resetting plugins due to page load.
-2013-12-05 02:34:26.142 HelloWorld[20055:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 02:34:29.799 HelloWorld[20055:80b] Resetting plugins due to page load.
-2013-12-05 02:34:29.854 HelloWorld[20055:80b] Failed to load webpage with error: Frame load interrupted
-2013-12-05 02:37:27.157 HelloWorld[20055:80b] Resetting plugins due to page load.
-2013-12-05 02:37:27.374 HelloWorld[20055:80b] Failed to load webpage with error: Frame load interrupted
-2013-12-05 02:37:27.771 HelloWorld[20055:80b] Resetting plugins due to page load.
-2013-12-05 02:37:27.778 HelloWorld[20055:80b] Failed to load webpage with error: Frame load interrupted
-2013-12-05 02:38:31.386 HelloWorld[20692:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 02:38:31.418 HelloWorld[20692:80b] Unlimited access to network resources
-2013-12-05 02:38:32.455 HelloWorld[20692:80b] Resetting plugins due to page load.
-2013-12-05 02:38:33.284 HelloWorld[20692:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 03:38:53.672 HelloWorld[22627:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 03:38:54.207 HelloWorld[22627:80b] Unlimited access to network resources
-2013-12-05 03:38:54.881 HelloWorld[22627:80b] Resetting plugins due to page load.
-2013-12-05 03:38:55.188 HelloWorld[22627:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 03:40:49.630 HelloWorld[23252:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 03:40:49.658 HelloWorld[23252:80b] Unlimited access to network resources
-2013-12-05 03:40:50.124 HelloWorld[23252:80b] Resetting plugins due to page load.
-2013-12-05 03:40:50.538 HelloWorld[23252:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 03:42:46.211 HelloWorld[23875:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 03:42:46.221 HelloWorld[23875:80b] Unlimited access to network resources
-2013-12-05 03:42:46.472 HelloWorld[23875:80b] Resetting plugins due to page load.
-2013-12-05 03:42:46.528 HelloWorld[23875:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 03:48:08.478 HelloWorld[24511:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 03:48:08.590 HelloWorld[24511:80b] Unlimited access to network resources
-2013-12-05 03:48:08.995 HelloWorld[24511:80b] Resetting plugins due to page load.
-2013-12-05 03:48:09.619 HelloWorld[24511:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 03:49:53.689 HelloWorld[25130:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 03:49:53.725 HelloWorld[25130:80b] Unlimited access to network resources
-2013-12-05 03:49:54.037 HelloWorld[25130:80b] Resetting plugins due to page load.
-2013-12-05 03:49:54.169 HelloWorld[25130:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetFillColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetStrokeColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSaveGState: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetFlatness: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextAddPath: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextDrawPath: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextRestoreGState: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSaveGState: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetFlatness: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextAddPath: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextDrawPath: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextRestoreGState: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetFillColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetStrokeColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetFillColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetStrokeColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextGetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextFillRects: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetFillColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetStrokeColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextGetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextFillRects: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetFillColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetStrokeColorWithColor: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextGetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextFillRects: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-Dec  5 03:50:13 Jonathan-Piatos HelloWorld[25130] <Error>: CGContextSetBlendMode: invalid context 0x0. This is a serious error. This application, or a library it uses, is using an invalid context  and is thereby contributing to an overall degradation of system stability and reliability. This notice is a courtesy: please fix this problem. It will become a fatal error in an upcoming update.
-2013-12-05 04:05:59.268 HelloWorld[27049:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 04:05:59.317 HelloWorld[27049:80b] Unlimited access to network resources
-2013-12-05 04:05:59.562 HelloWorld[27049:80b] Resetting plugins due to page load.
-2013-12-05 04:05:59.670 HelloWorld[27049:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
-2013-12-05 04:06:13.853 HelloWorld[27049:80b] Resetting plugins due to page load.
-2013-12-05 04:06:13.857 HelloWorld[27049:80b] Failed to load webpage with error: Frame load interrupted
-2013-12-05 04:06:20.437 HelloWorld[27049:80b] Resetting plugins due to page load.
-2013-12-05 04:06:20.447 HelloWorld[27049:80b] Failed to load webpage with error: The requested URL was not found on this server.
-2013-12-05 04:06:20.940 HelloWorld[27049:80b] Resetting plugins due to page load.
-2013-12-05 04:06:20.942 HelloWorld[27049:80b] Failed to load webpage with error: Frame load interrupted
-2013-12-05 04:06:22.275 HelloWorld[27049:80b] Resetting plugins due to page load.
-2013-12-05 04:06:22.285 HelloWorld[27049:80b] Failed to load webpage with error: The requested URL was not found on this server.
-2013-12-05 04:08:03.262 HelloWorld[27049:80b] Resetting plugins due to page load.
-2013-12-05 04:08:03.294 HelloWorld[27049:80b] Failed to load webpage with error: The requested URL was not found on this server.
-2013-12-05 04:08:24.039 HelloWorld[27683:80b] Multi-tasking -> Device: YES, App: YES
-2013-12-05 04:08:24.048 HelloWorld[27683:80b] Unlimited access to network resources
-2013-12-05 04:08:24.279 HelloWorld[27683:80b] Resetting plugins due to page load.
-2013-12-05 04:08:24.379 HelloWorld[27683:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/F7084732-8314-4F66-8253-EBCD4EF56752/HelloWorld.app/www/index.html
+2013-12-08 14:47:35.015 Chuzr[51440:80b] Multi-tasking -> Device: YES, App: YES
+2013-12-08 14:47:37.119 Chuzr[51440:80b] Unlimited access to network resources
+2013-12-08 14:48:09.633 Chuzr[51440:80b] Resetting plugins due to page load.
+2013-12-08 14:48:31.383 Chuzr[51440:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C5D070DD-64EA-48DF-8365-32B0330ACED0/Chuzr.app/www/index.html
+2013-12-08 14:52:40.202 Chuzr[53008:80b] Multi-tasking -> Device: YES, App: YES
+2013-12-08 14:52:40.284 Chuzr[53008:80b] Unlimited access to network resources
+2013-12-08 14:52:41.955 Chuzr[53008:80b] Resetting plugins due to page load.
+2013-12-08 14:52:42.516 Chuzr[53008:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C5D070DD-64EA-48DF-8365-32B0330ACED0/Chuzr.app/www/index.html
+2013-12-08 14:59:17.489 Chuzr[54256:80b] Multi-tasking -> Device: YES, App: YES
+2013-12-08 14:59:17.614 Chuzr[54256:80b] Unlimited access to network resources
+2013-12-08 14:59:20.243 Chuzr[54256:80b] Resetting plugins due to page load.
+2013-12-08 14:59:22.571 Chuzr[54256:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C5D070DD-64EA-48DF-8365-32B0330ACED0/Chuzr.app/www/index.html
+2013-12-08 15:03:35.919 Chuzr[54917:80b] Multi-tasking -> Device: YES, App: YES
+2013-12-08 15:03:35.966 Chuzr[54917:80b] Unlimited access to network resources
+2013-12-08 15:03:36.868 Chuzr[54917:80b] Resetting plugins due to page load.
+2013-12-08 15:03:42.320 Chuzr[54917:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C5D070DD-64EA-48DF-8365-32B0330ACED0/Chuzr.app/www/index.html
+2013-12-08 15:53:04.818 Chuzr[56567:80b] Multi-tasking -> Device: YES, App: YES
+2013-12-08 15:53:04.914 Chuzr[56567:80b] Unlimited access to network resources
+2013-12-08 15:53:05.827 Chuzr[56567:80b] Resetting plugins due to page load.
+2013-12-08 15:53:09.608 Chuzr[56567:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C5D070DD-64EA-48DF-8365-32B0330ACED0/Chuzr.app/www/index.html
+2013-12-08 16:03:15.451 Chuzr[57282:80b] Multi-tasking -> Device: YES, App: YES
+2013-12-08 16:03:15.515 Chuzr[57282:80b] Unlimited access to network resources
+2013-12-08 16:03:17.825 Chuzr[57282:80b] Resetting plugins due to page load.
+2013-12-08 16:03:20.956 Chuzr[57282:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C5D070DD-64EA-48DF-8365-32B0330ACED0/Chuzr.app/www/index.html
+2013-12-08 16:03:29.924 Chuzr[57282:80b] Resetting plugins due to page load.
+2013-12-08 16:03:30.016 Chuzr[57282:80b] Failed to load webpage with error: The requested URL was not found on this server.
+2013-12-08 16:11:07.274 Chuzr[58048:80b] Multi-tasking -> Device: YES, App: YES
+2013-12-08 16:11:07.989 Chuzr[58048:80b] Unlimited access to network resources
+2013-12-08 16:11:32.355 Chuzr[58048:80b] Resetting plugins due to page load.
+2013-12-08 16:11:40.706 Chuzr[58048:80b] Finished load of: file:///Users/jpiatos13/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/C5D070DD-64EA-48DF-8365-32B0330ACED0/Chuzr.app/www/index.html

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -112,4 +113,110 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+=======
+html,
+body {
+  font: 16px Helvetica, Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.navbar {
+  background-color: rgba(136,159,151,0.5) !important;
+  margin-bottom: 0 !important;
+}
+.table td {
+  border-top: none;
+}
+#wrap {
+  height: 100%;
+  width: 100%;
+}
+a:hover {
+  opacity: 0.5;
+}
+.feature-div {
+  padding: 6px;
+  background-color: rgba(136,159,151,0.1);
+  border-radius: 10px;
+}
+#content {
+  height: 100%;
+  width: 100%;
+  background-image: url("/images/texture3.png");
+}
+#main-content {
+  margin-left: 10%;
+  background-color: rgba(255,255,255,0.75);
+  position: fixed;
+  width: 80%;
+  height: 90%;
+  overflow-y: auto !important;
+}
+#page-content {
+  margin-top: 10px;
+  margin-left: 30px;
+  padding-top: 3px;
+}
+#side-nav {
+  top: 0px;
+  left: 0px;
+  padding-left: 10px;
+  padding-top: 50px;
+  padding-right: 10px;
+  height: 100%;
+  width: 15%;
+}
+#side-nav a img {
+  display: block;
+  margin: auto;
+}
+#contentBox {
+  height: 80%;
+  width: 90%;
+  margin: 0 auto;
+}
+.columnLeft {
+  float: left;
+  margin: 0 auto;
+  width: 40%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.1);
+  background-color: rgba(220,220,220,0.8);
+  text-align: center;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+.columnRight {
+  float: right;
+  margin: 0 auto;
+  width: 40%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.1);
+  background-color: rgba(220,220,220,0.8);
+  text-align: center;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+.underline {
+  border-bottom: 5px solid rgba(0,0,0,0.8);
+  margin: 5%;
+}
+#user-profile {
+  padding: 10px;
+  background-color: rgba(19,164,157,0.12);
+}
+.right-label {
+  text-align: right !important;
+}
+.sub-nav {
+  padding-left: 5px;
+  background-color: rgba(19,164,157,0.12);
+}
+.page-title {
+  padding-left: 40%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgba(0,0,0,0.2);
+>>>>>>> 155eb6e5ff66dac39b6898dc90a0191acedf9842
 }
