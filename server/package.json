@@ -7,18 +7,17 @@
     "test": "mocha -R list"
   },
   "dependencies": {
-    "express": "3.3.8",
-    "mongoose": "3.x.x",
-    "should": "latest",
-    "json2csv": "2.1.0",
-    "supertest": "latest",
-    "cors": "latest",
-    "mocha": "latest",
-    "bcrypt-nodejs": "latest",
     "async": "latest",
+    "bcrypt-nodejs": "latest",
     "connect-mongo": "0.3.x",
+    "cors": "latest",
+    "express": "3.11.0",
     "ios-sim": "latest",
-    "phonegap": "latest"
-
+    "json2csv": "2.1.0",
+    "mocha": "latest",
+    "mongoose": "^5.13.2",
+    "phonegap": "latest",
+    "should": "latest",
+    "supertest": "latest"
   }
 }
